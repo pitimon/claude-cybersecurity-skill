@@ -1,0 +1,17 @@
+{
+  "name": "cybersecurity-pro",
+  "description": "Professional cybersecurity skill: DevSecOps, SOC L1-L3, DFIR, GitOps security. Bilingual Thai+English output.",
+  "version": "1.0.0",
+  "author": {
+    "name": "somapa"
+  },
+  "keywords": [
+    "cybersecurity",
+    "dfir",
+    "soc",
+    "devsecops",
+    "gitops",
+    "incident-response",
+    "forensics"
+  ]
+}

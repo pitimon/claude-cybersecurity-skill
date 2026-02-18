@@ -1,0 +1,20 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "pitimon-cybersecurity",
+  "description": "Cybersecurity professional skills for DFIR, SOC, DevSecOps, and GitOps security",
+  "owner": {
+    "name": "pitimon"
+  },
+  "plugins": [
+    {
+      "name": "cybersecurity-pro",
+      "description": "Professional cybersecurity skill: DevSecOps, SOC L1-L3, DFIR, GitOps security. Bilingual Thai+English output.",
+      "version": "1.0.0",
+      "author": {
+        "name": "somapa"
+      },
+      "source": "./",
+      "category": "security"
+    }
+  ]
+}
