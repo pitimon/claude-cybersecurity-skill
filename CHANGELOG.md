@@ -11,8 +11,39 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Threat Intelligence integration templates (STIX/TAXII)
 - Cloud security incident playbooks (AWS, GCP, Azure)
-- Compliance report generator (PCI-DSS, HIPAA)
-- Container runtime security monitoring configs
+
+## [2.0.0] - 2026-02-20
+
+### Added
+
+- **Code Security Analysis** (Domain 6) — Semgrep custom rules, CodeQL queries, SARIF 2.1.0 processing, variant analysis methodology
+  - Tool selection decision tree, taint mode tracking, combined CI/CD pipeline
+  - Condensed from 4 archive sources (1,599 lines → ~490 lines)
+- **Container & Supply Chain Security** (Domain 7) — Dockerfile hardening, Trivy/Grype scanning, SBOM generation, cosign signing
+  - Runtime security with Falco rules, Kubernetes SecurityContext, CIS Docker Benchmark
+  - Pre-build/build/post-build/runtime security checklist
+- **Compliance & Threat Modeling** (Domain 8) — SOC 2, ISO 27001, GDPR, HIPAA, PCI-DSS, STRIDE, PASTA
+  - Compliance framework selection guide with decision tree
+  - Risk assessment templates (5x5 matrix, SLE/ARO/ALE formulas)
+  - Thai legal context (พ.ร.บ. ไซเบอร์ 2562, PDPA) and SRE-inspired security KPIs
+
+### Enhanced
+
+- **SOC Operations** — Added Section 9: SOAR Automation Patterns
+  - Common SOAR playbooks (phishing, brute force, malware, ransomware, data exfiltration)
+  - Enrichment sources table, SOAR architecture pattern, automation metrics
+  - SRE-inspired security SLI/SLOs and severity framework mapping (SRE P1-P4 → SOC)
+- **IR Playbooks** — Added Section 7: Security Incident Post-Mortem Template
+  - Blameless post-mortem format with MITRE ATT&CK mapping
+  - Timeline reconstruction checklist (7 source categories)
+  - MTTD/MTTC/MTTR metrics tracking
+
+### Changed
+
+- **SKILL.md** expanded from 5 to 8 domains with updated decision tree and trigger keywords
+- **plugin.json** and **marketplace.json** bumped to v2.0.0 with expanded keywords
+- **README.md** professionally rewritten with architecture explanation, token budget analysis, and skill engineering techniques
+- **CLAUDE.md** updated to reflect 8-domain architecture
 
 ## [1.0.0] - 2026-02-19
 
@@ -54,5 +85,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Marketplace name standardized from `somapa-cybersecurity` to `pitimon-cybersecurity`
 - Plugin install key format corrected to `cybersecurity-pro@pitimon-cybersecurity`
 
-[Unreleased]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v1.0.0...v2.0.0
 [1.0.0]: https://github.com/pitimon/claude-cybersecurity-skill/releases/tag/v1.0.0

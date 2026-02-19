@@ -1,10 +1,12 @@
 {
   "name": "cybersecurity-pro",
-  "description": "Professional cybersecurity skill: DevSecOps, SOC L1-L3, DFIR, GitOps security. Bilingual Thai+English output.",
-  "version": "1.0.0",
+  "version": "2.0.0",
+  "description": "Professional cybersecurity skill: 8 domains covering IR, DFIR, DevSecOps, SOC+SOAR, GitOps, Code Security, Container/Supply Chain, and Compliance/Threat Modeling. Bilingual Thai+English output.",
   "author": {
     "name": "somapa"
   },
+  "repository": "https://github.com/pitimon/claude-cybersecurity-skill",
+  "license": "MIT",
   "keywords": [
     "cybersecurity",
     "dfir",
@@ -12,6 +14,15 @@
     "devsecops",
     "gitops",
     "incident-response",
-    "forensics"
-  ]
+    "forensics",
+    "container-security",
+    "sast",
+    "semgrep",
+    "codeql",
+    "compliance",
+    "threat-modeling",
+    "supply-chain",
+    "soar"
+  ],
+  "skills": "./skills/"
 }

@@ -1,31 +1,41 @@
 ---
 name: cybersecurity-pro
 description: >
-  Professional cybersecurity skill: DevSecOps, SOC L1-L3, DFIR, GitOps security.
-  Trigger on: incident response, IR playbook, runbook, SOC triage, alert investigation,
-  threat hunting, digital forensics, malware analysis, DFIR, DevSecOps, SAST, DAST,
-  SCA, SBOM, CI/CD security, GitOps, security-as-code, vulnerability management,
-  MITRE ATT&CK, NIST 800-61, ISO 27035, OWASP, escalation workflow, forensic report,
-  chain of custody, evidence handling, memory/disk/network forensics, log analysis,
-  SIEM correlation, compliance reports, threat modeling, security architecture.
-  Trigger for Thai: การตอบสนองต่อเหตุการณ์, วิเคราะห์ภัยคุกคาม, ความปลอดภัยไซเบอร์,
-  SOC, DevSecOps, นิติวิทยาศาสตร์ดิจิทัล. Outputs bilingual Thai+English docs.
+  Generate professional cybersecurity documents: IR playbooks, DFIR forensic reports,
+  DevSecOps pipeline configs, SOC L1-L3 triage procedures, GitOps security policies,
+  code security analysis, container/supply chain security, and compliance/threat modeling.
+  Use when asked about incident response, IR playbook, runbook, SOC triage, alert investigation,
+  threat hunting, digital forensics, malware analysis, DFIR, DevSecOps, SAST, DAST, SCA, SBOM,
+  CI/CD security, GitOps, security-as-code, vulnerability management, MITRE ATT&CK, NIST 800-61,
+  ISO 27035, OWASP, escalation workflow, forensic report, chain of custody, evidence handling,
+  log analysis, SIEM correlation, compliance reports, threat modeling, security architecture,
+  Semgrep, CodeQL, SARIF, variant analysis, code scanning, static analysis,
+  container security, Trivy, Grype, Dockerfile hardening, image scanning, supply chain, cosign, SLSA,
+  SOC 2, ISO 27001, GDPR, HIPAA, PCI-DSS, STRIDE, PASTA, risk assessment, PDPA,
+  SOAR, security orchestration, automation, post-mortem,
+  การตอบสนองต่อเหตุการณ์, วิเคราะห์ภัยคุกคาม, ความปลอดภัยไซเบอร์, นิติวิทยาศาสตร์ดิจิทัล,
+  การวิเคราะห์ code, ความปลอดภัย container, การปฏิบัติตามกฎระเบียบ, การจำลองภัยคุกคาม.
+  Outputs bilingual Thai+English documents mapped to NIST, MITRE ATT&CK, OWASP frameworks.
+user-invocable: true
+allowed-tools: Read, Grep, Glob, Write
 ---
 
 # Cybersecurity Pro Skill
 
-สกิลระดับมืออาชีพสำหรับ Cybersecurity Operations ครอบคลุม DevSecOps, SOC L1-L3,
-Digital Forensics & Incident Response (DFIR) และ GitOps Security
+สกิลระดับมืออาชีพสำหรับ Cybersecurity Operations ครอบคลุม 8 domains:
+IR, DFIR, DevSecOps, SOC+SOAR, GitOps, Code Security Analysis, Container & Supply Chain, Compliance & Threat Modeling
 
 ## Language Policy / นโยบายภาษา
 
 Output all documents in **bilingual format**:
+
 - Use **Thai** as the primary prose language for descriptions, explanations, procedures
 - Use **English** for all technical terms, tool names, commands, code, framework references
 - Format: Thai prose with inline English technical terms (ไม่ต้องแปลคำศัพท์เทคนิค)
 - Section headers: Thai followed by English in parentheses, e.g. `## การจัดการเหตุการณ์ (Incident Handling)`
 
 Example style:
+
 > เมื่อได้รับ alert จาก SIEM ให้ทำการ triage ตาม severity level โดยตรวจสอบ
 > IOC (Indicators of Compromise) ผ่าน Threat Intelligence platform ก่อน escalate
 
@@ -33,20 +43,24 @@ Example style:
 
 All outputs MUST reference the appropriate framework(s):
 
-| Domain | Primary Framework | Supporting Standards |
-|--------|------------------|---------------------|
-| Incident Response | NIST SP 800-61 Rev.2 | ISO 27035, SANS IR Process |
-| Threat Analysis | MITRE ATT&CK, MITRE D3FEND | Cyber Kill Chain, Diamond Model |
-| DevSecOps | OWASP SAMM, OWASP Top 10 | CIS Benchmarks, NIST SSDF |
-| Governance | NIST CSF 2.0 | ISO 27001:2022, พ.ร.บ. ไซเบอร์ 2562 |
+| Domain                 | Primary Framework           | Supporting Standards                |
+| ---------------------- | --------------------------- | ----------------------------------- |
+| Incident Response      | NIST SP 800-61 Rev.2        | ISO 27035, SANS IR Process          |
+| Threat Analysis        | MITRE ATT&CK, MITRE D3FEND  | Cyber Kill Chain, Diamond Model     |
+| DevSecOps              | OWASP SAMM, OWASP Top 10    | CIS Benchmarks, NIST SSDF           |
+| Governance             | NIST CSF 2.0                | ISO 27001:2022, พ.ร.บ. ไซเบอร์ 2562 |
+| Code Security          | CWE Top 25, OWASP Top 10    | SARIF 2.1.0, Semgrep, CodeQL        |
+| Container/Supply Chain | NIST SP 800-190, CIS Docker | SLSA, Sigstore, CycloneDX           |
+| Compliance             | NIST CSF, ISO 27001         | SOC 2, GDPR, HIPAA, PCI-DSS, PDPA   |
 
 When producing any output, map actions to relevant framework controls. For incident analysis, always include MITRE ATT&CK Tactic/Technique IDs (e.g., T1566.001).
 
 ## Output Domains
 
-This skill produces outputs across 5 domains. Identify which domain(s) the user needs and read the corresponding reference file BEFORE generating output:
+This skill produces outputs across 8 domains. Identify which domain(s) the user needs and read the corresponding reference file BEFORE generating output:
 
 ### 1. Incident Response Playbooks & Runbooks
+
 → Read `references/ir-playbooks.md`
 
 Produce structured IR playbooks and operational runbooks for specific incident types.
@@ -54,6 +68,7 @@ Covers: Phishing, Ransomware, Data Breach, DDoS, Insider Threat, Supply Chain At
 Cloud Security Incident, and custom scenarios.
 
 ### 2. Security Analysis Reports & Forensic Reports
+
 → Read `references/dfir-reports.md`
 
 Produce professional forensic investigation reports, threat analysis reports,
@@ -62,6 +77,7 @@ Covers: Evidence handling, chain of custody, timeline reconstruction, IOC extrac
 memory/disk/network forensics documentation.
 
 ### 3. DevSecOps Pipeline Configs
+
 → Read `references/devsecops-pipeline.md`
 
 Produce security-integrated CI/CD pipeline configurations, security-as-code templates,
@@ -70,6 +86,7 @@ Covers: SAST, DAST, SCA, SBOM, container security, IaC scanning, secret detectio
 dependency management, and compliance gates.
 
 ### 4. SOC Triage Procedures & Escalation Workflows
+
 → Read `references/soc-operations.md`
 
 Produce SOC operational procedures for L1/L2/L3 analysts, escalation matrices,
@@ -78,12 +95,40 @@ Covers: Alert triage, investigation procedures, threat hunting queries, SIEM
 correlation rules, and KPI/metrics dashboards.
 
 ### 5. GitOps Security Workflows
+
 → Read `references/gitops-security.md`
 
 Produce GitOps-native security configurations, policy-as-code frameworks,
 and automated security remediation workflows.
 Covers: ArgoCD/Flux security policies, OPA/Gatekeeper constraints, Git-based
 secret management, drift detection, and compliance automation.
+
+### 6. Code Security Analysis
+
+> Read `references/code-security-analysis.md`
+
+Produce static code security analysis configurations, custom scanning rules,
+and vulnerability hunting methodologies.
+Covers: Semgrep rules and rulesets, CodeQL queries and taint tracking, SARIF result
+processing and aggregation, variant analysis methodology, combined CI/CD security pipelines.
+
+### 7. Container & Supply Chain Security
+
+> Read `references/container-supply-chain.md`
+
+Produce container security hardening guides, vulnerability scanning configurations,
+SBOM generation workflows, and supply chain security checklists.
+Covers: Dockerfile hardening, Trivy/Grype scanning, Syft SBOM generation, cosign image
+signing, runtime SecurityContext, Falco rules, CIS Docker Benchmark compliance.
+
+### 8. Compliance & Threat Modeling
+
+> Read `references/compliance-threat-modeling.md`
+
+Produce compliance framework assessments, threat modeling documents,
+risk assessment reports, and compliance roadmaps.
+Covers: SOC 2 readiness, ISO 27001 ISMS, GDPR DPIA, HIPAA safeguards, PCI-DSS requirements,
+STRIDE threat modeling, PASTA attack trees, risk registers, Thai legal requirements (พ.ร.บ. ไซเบอร์, PDPA).
 
 ## General Output Rules
 
@@ -102,20 +147,30 @@ secret management, drift detection, and compliance automation.
 
 ```
 User request
-├── mentions "incident" / "เหตุการณ์" / "IR" / "playbook" / "runbook"
+├── mentions "incident" / "เหตุการณ์" / "IR" / "playbook" / "runbook" / "post-mortem"
 │   → Domain 1: IR Playbooks (read references/ir-playbooks.md)
 │
 ├── mentions "forensic" / "นิติวิทยาศาสตร์" / "investigation" / "evidence" / "malware analysis"
 │   → Domain 2: DFIR Reports (read references/dfir-reports.md)
 │
-├── mentions "pipeline" / "CI/CD" / "SAST" / "DAST" / "DevSecOps" / "shift-left"
+├── mentions "pipeline" / "CI/CD" / "DAST" / "DevSecOps" / "shift-left"
 │   → Domain 3: DevSecOps (read references/devsecops-pipeline.md)
 │
-├── mentions "SOC" / "triage" / "alert" / "escalation" / "L1" / "L2" / "L3" / "analyst"
+├── mentions "SOC" / "triage" / "alert" / "escalation" / "L1" / "L2" / "L3" / "SOAR"
 │   → Domain 4: SOC Operations (read references/soc-operations.md)
 │
 ├── mentions "GitOps" / "ArgoCD" / "Flux" / "policy-as-code" / "OPA" / "drift"
 │   → Domain 5: GitOps Security (read references/gitops-security.md)
+│
+├── mentions "Semgrep" / "CodeQL" / "SARIF" / "SAST" / "code scan" / "variant analysis" / "วิเคราะห์ code"
+│   → Domain 6: Code Security Analysis (read references/code-security-analysis.md)
+│
+├── mentions "container" / "Docker" / "Trivy" / "Grype" / "SBOM" / "image scan" / "supply chain" / "Dockerfile"
+│   → Domain 7: Container & Supply Chain (read references/container-supply-chain.md)
+│
+├── mentions "compliance" / "SOC 2" / "ISO 27001" / "GDPR" / "HIPAA" / "PCI-DSS" / "PDPA"
+│   / "threat model" / "STRIDE" / "risk assessment" / "การปฏิบัติตามกฎระเบียบ"
+│   → Domain 8: Compliance & Threat Modeling (read references/compliance-threat-modeling.md)
 │
 └── unclear / multiple domains
     → Ask user to clarify, or combine relevant domains
@@ -131,6 +186,7 @@ User request
 ## Quality Checklist
 
 Before finalizing any output, verify:
+
 - [ ] ภาษาไทยถูกต้อง ใช้คำศัพท์เทคนิคเป็นภาษาอังกฤษ
 - [ ] Framework references are accurate and specific (not generic)
 - [ ] MITRE ATT&CK IDs are real and correctly mapped

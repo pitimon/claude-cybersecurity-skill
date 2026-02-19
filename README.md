@@ -1,21 +1,43 @@
 # cybersecurity-pro
 
-**Professional Cybersecurity Skill for Claude Code**
+**Professional Cybersecurity Skill for Claude Code** | v2.0.0
 
-สกิลระดับมืออาชีพสำหรับ Cybersecurity Operations — ครอบคลุม Incident Response, Digital Forensics, DevSecOps, SOC Operations และ GitOps Security พร้อม output แบบ bilingual (Thai + English)
+สกิลระดับมืออาชีพสำหรับ Cybersecurity Operations — ครอบคลุม 8 domains ตั้งแต่ Incident Response ถึง Compliance & Threat Modeling พร้อม output แบบ bilingual (Thai + English)
 
 ---
 
-## Overview (ภาพรวม)
+## Why This Plugin (ทำไมต้องใช้ Plugin นี้)
 
-`cybersecurity-pro` เป็น Claude Code plugin skill ที่ช่วยสร้างเอกสาร cybersecurity ระดับ professional โดยอัตโนมัติ ออกแบบมาสำหรับ:
+**Problem**: Claude Code เป็น general-purpose AI — ไม่มี cybersecurity domain expertise built-in ทำให้ต้องเขียน prompt ละเอียดทุกครั้ง และผลลัพธ์อาจไม่สม่ำเสมอ
 
-- **SOC Analysts (L1-L3)** -- สร้าง triage procedures, escalation workflows, SIEM rules
-- **DFIR Investigators** -- สร้าง forensic reports, chain of custody docs, evidence handling procedures
-- **DevSecOps Engineers** -- สร้าง CI/CD security pipeline configs, OWASP compliance gates
-- **Security Architects** -- สร้าง GitOps security policies, policy-as-code frameworks
+**Solution**: `cybersecurity-pro` โหลด professional templates และ framework mappings อัตโนมัติ เมื่อ prompt ตรง trigger keywords
 
-ทุก output เป็น **bilingual Thai + English** — ใช้ภาษาไทยสำหรับคำอธิบาย และ English สำหรับ technical terms
+**Value**:
+
+- Output คุณภาพระดับ enterprise ทันที ไม่ต้อง prompt engineer เอง
+- Templates map กับ frameworks จริง (NIST, MITRE ATT&CK, OWASP, ISO 27001)
+- Bilingual Thai+English — พร้อมใช้ในองค์กรไทย
+- On-demand loading — ไม่ overload context, โหลดเฉพาะ domain ที่ต้องการ
+
+---
+
+## How It Works (สถาปัตยกรรม Skill)
+
+```
+User prompt → keyword match in SKILL.md frontmatter
+  → SKILL.md loaded (~2,400 tokens: language policy, frameworks, decision tree)
+  → Decision tree selects domain
+  → Corresponding references/*.md loaded on-demand (~3,000-5,000 tokens)
+  → Output generated following templates in reference file
+```
+
+**On-demand loading**: มี 8 domains แต่โหลดแค่ 1 ต่อ request
+
+| Component               | Tokens       | เมื่อไหร่โหลด (When Loaded)   |
+| ----------------------- | ------------ | ----------------------------- |
+| SKILL.md (router)       | ~2,400       | ทุก request ที่ trigger skill |
+| Reference file (1 of 8) | ~3,000-5,000 | เฉพาะ domain ที่ต้องการ       |
+| **Max per request**     | **~7,000**   | **< 4% ของ 200K context**     |
 
 ---
 
@@ -39,58 +61,119 @@ claude doctor
 
 ---
 
-## Capabilities (ความสามารถ)
+## Capabilities (ความสามารถ — 8 Domains)
 
-| Domain                      | คำอธิบาย                                                                    | Frameworks                               | Trigger Keywords                                |
-| --------------------------- | --------------------------------------------------------------------------- | ---------------------------------------- | ----------------------------------------------- |
-| **IR Playbooks & Runbooks** | Incident response playbooks ตาม NIST 800-61 พร้อม SLA และ escalation matrix | NIST SP 800-61, ISO 27035, SANS IR       | `incident response`, `IR playbook`, `runbook`   |
-| **DFIR Reports**            | Forensic investigation reports พร้อม chain of custody และ evidence handling | Chain of Custody, IOC, Timeline Analysis | `forensic`, `investigation`, `evidence`, `DFIR` |
-| **DevSecOps Pipeline**      | CI/CD security pipeline configs สำหรับ GitHub Actions / GitLab CI           | OWASP SAMM, OWASP Top 10, CIS Benchmarks | `DevSecOps`, `SAST`, `DAST`, `CI/CD security`   |
-| **SOC Operations L1-L3**    | SOC operating procedures พร้อม SIEM rules (Splunk SPL, KQL)                 | MITRE ATT&CK, Cyber Kill Chain           | `SOC`, `triage`, `alert`, `threat hunting`      |
-| **GitOps Security**         | Policy-as-code frameworks สำหรับ ArgoCD, OPA, Falco                         | OPA/Gatekeeper, Falco, ArgoCD RBAC       | `GitOps`, `ArgoCD`, `policy-as-code`, `OPA`     |
+### Security Operations
+
+| Domain                      | คำอธิบาย                                                                          | Frameworks                         | Trigger Keywords                                             |
+| --------------------------- | --------------------------------------------------------------------------------- | ---------------------------------- | ------------------------------------------------------------ |
+| **IR Playbooks & Runbooks** | Incident response playbooks ตาม NIST 800-61 พร้อม SLA, escalation, post-mortem    | NIST SP 800-61, ISO 27035, SANS IR | `incident response`, `IR playbook`, `runbook`, `post-mortem` |
+| **DFIR Reports**            | Forensic investigation reports พร้อม chain of custody และ evidence handling       | Chain of Custody, IOC, Timeline    | `forensic`, `investigation`, `evidence`, `DFIR`              |
+| **SOC Operations + SOAR**   | SOC L1-L3 procedures, SIEM rules, SOAR automation playbooks, SRE security metrics | MITRE ATT&CK, Cyber Kill Chain     | `SOC`, `triage`, `alert`, `SOAR`, `threat hunting`           |
+
+### Secure Development
+
+| Domain                       | คำอธิบาย                                                                | Frameworks                        | Trigger Keywords                                       |
+| ---------------------------- | ----------------------------------------------------------------------- | --------------------------------- | ------------------------------------------------------ |
+| **DevSecOps Pipeline**       | CI/CD security pipeline configs สำหรับ GitHub Actions / GitLab CI       | OWASP SAMM, OWASP Top 10, CIS     | `DevSecOps`, `DAST`, `CI/CD security`                  |
+| **Code Security Analysis**   | Static analysis ด้วย Semgrep/CodeQL, SARIF processing, variant analysis | CWE Top 25, SARIF 2.1.0           | `Semgrep`, `CodeQL`, `SAST`, `code scan`, `SARIF`      |
+| **Container & Supply Chain** | Container hardening, vulnerability scanning, SBOM, image signing        | NIST SP 800-190, CIS Docker, SLSA | `container`, `Docker`, `Trivy`, `SBOM`, `supply chain` |
+
+### Governance
+
+| Domain                           | คำอธิบาย                                                             | Frameworks                             | Trigger Keywords                                                |
+| -------------------------------- | -------------------------------------------------------------------- | -------------------------------------- | --------------------------------------------------------------- |
+| **GitOps Security**              | Policy-as-code frameworks สำหรับ ArgoCD, OPA, Falco                  | OPA/Gatekeeper, Falco, ArgoCD          | `GitOps`, `ArgoCD`, `policy-as-code`, `OPA`                     |
+| **Compliance & Threat Modeling** | Compliance assessments, STRIDE/PASTA threat modeling, risk registers | NIST CSF, ISO 27001, SOC 2, GDPR, PDPA | `compliance`, `SOC 2`, `ISO 27001`, `STRIDE`, `risk assessment` |
 
 ### Frameworks & Standards
 
 outputs ทั้งหมดอ้างอิง frameworks เหล่านี้ตามความเหมาะสม:
 
-- **MITRE ATT&CK** / **MITRE D3FEND** -- Tactic & Technique mapping
-- **NIST SP 800-61 Rev.2** -- Incident Response lifecycle
-- **NIST CSF 2.0** -- Cybersecurity Framework
-- **OWASP Top 10** / **OWASP SAMM** -- Application security
-- **ISO 27001:2022** / **ISO 27035** -- Information security management
-- **พ.ร.บ. การรักษาความมั่นคงปลอดภัยไซเบอร์ พ.ศ. 2562** -- Thai Cybersecurity Act
+- **MITRE ATT&CK** / **MITRE D3FEND** — Tactic & Technique mapping
+- **NIST SP 800-61 Rev.2** — Incident Response lifecycle
+- **NIST CSF 2.0** / **NIST SP 800-190** — Cybersecurity & Container security
+- **OWASP Top 10** / **OWASP SAMM** — Application security
+- **ISO 27001:2022** / **ISO 27035** — Information security management
+- **CWE Top 25** / **SARIF 2.1.0** — Code vulnerability classification
+- **CIS Docker Benchmark** / **SLSA** — Container & supply chain
+- **SOC 2** / **GDPR** / **HIPAA** / **PCI-DSS** — Compliance frameworks
+- **พ.ร.บ. ไซเบอร์ 2562** / **PDPA** — Thai cybersecurity & data privacy law
 
 ---
 
 ## Usage Examples (ตัวอย่างการใช้งาน)
 
-### 1. สร้าง Incident Response Playbook
+### IR Playbook
 
 ```
 สร้าง IR playbook สำหรับ ransomware incident ตาม NIST 800-61
 รวม escalation matrix และ SLA timelines
 ```
 
-### 2. สร้าง Forensic Report Template
+### DFIR Report
 
 ```
 สร้างแม่แบบ DFIR report สำหรับ memory forensics investigation
 ต้องมี chain of custody form และ evidence handling procedures
 ```
 
-### 3. สร้าง DevSecOps Pipeline
+### Code Security Analysis
 
 ```
-สร้าง GitHub Actions workflow สำหรับ DevSecOps pipeline
-รวม SAST, DAST, SCA, SBOM scanning พร้อม OWASP compliance gates
+สร้าง Semgrep custom rules สำหรับตรวจจับ SQL injection ด้วย taint mode
+พร้อม GitHub Actions pipeline ที่รวม CodeQL
 ```
 
-### 4. สร้าง SOC Triage Procedure
+### Container Security
 
 ```
-สร้าง SOC L1 triage procedure สำหรับ phishing alert
-รวม SIEM correlation rules (Splunk SPL) และ escalation criteria
+สร้าง Dockerfile hardening guide สำหรับ Node.js application
+รวม Trivy scanning, SBOM generation, และ cosign signing
 ```
+
+### SOC + SOAR
+
+```
+สร้าง SOAR playbook สำหรับ automated phishing response
+รวม enrichment sources และ containment actions
+```
+
+### Compliance
+
+```
+สร้าง SOC 2 Type II readiness roadmap 6 เดือน
+รวม control mapping และ evidence collection plan
+```
+
+---
+
+## Token Budget & Performance (งบประมาณ Token)
+
+| Component                   | Tokens       | หมายเหตุ                              |
+| --------------------------- | ------------ | ------------------------------------- |
+| SKILL.md (always loaded)    | ~2,400       | Router + language policy + frameworks |
+| Reference file (per domain) | ~3,000-5,000 | โหลดเฉพาะ domain ที่ trigger          |
+| **Max per request**         | **~7,000**   | **SKILL.md + 1 reference file**       |
+| Total all files             | ~33,000      | ไม่โหลดทั้งหมดพร้อมกัน                |
+
+เปรียบเทียบกับ context window 200K tokens: plugin ใช้ < 4% แม้ request ที่หนักที่สุด
+
+---
+
+## Skill Engineering Techniques (เทคนิคการจัดการ Skill)
+
+เทคนิคที่ใช้ออกแบบ plugin นี้ — เป็นแนวทางสำหรับผู้ที่ต้องการสร้าง Claude Code skill ของตัวเอง:
+
+1. **On-demand reference loading** — ไม่โหลด reference files ทั้งหมดพร้อมกัน โหลดเฉพาะ domain ที่ user ต้องการ ทำให้เพิ่ม domains ได้โดยไม่เพิ่ม base context cost
+
+2. **Composite reference files** — รวม topics ที่เกี่ยวข้องเป็นไฟล์เดียว (เช่น Semgrep + CodeQL + SARIF + Variant Analysis → `code-security-analysis.md`) ลด routing complexity ใน decision tree
+
+3. **Framework-first templates** — Templates map กับ framework controls ไว้แล้ว (NIST, MITRE ATT&CK IDs, CWE) ทำให้ output มี reference ที่ถูกต้องโดยอัตโนมัติ
+
+4. **Bilingual output policy** — Thai prose + English terms ไม่ต้องสร้าง 2 versions แยก ลด overhead และ maintain ง่าย
+
+5. **SKILL.md as compact router** — Decision tree ใน < 220 lines ทำหน้าที่เป็น lightweight router ที่เลือก reference file ที่เหมาะสม
 
 ---
 
@@ -100,35 +183,26 @@ outputs ทั้งหมดอ้างอิง frameworks เหล่าน
 claude-cybersecurity-skill/
 ├── .claude-plugin/
 │   ├── marketplace.json          # Marketplace metadata
-│   └── plugin.json               # Plugin metadata
+│   └── plugin.json               # Plugin metadata (v2.0.0)
 ├── skills/
 │   └── cybersecurity-pro/
-│       ├── SKILL.md              # Skill definition & trigger config
-│       ├── cybersecurity-pro.skill  # Packaged skill archive
+│       ├── SKILL.md              # Skill definition & decision tree
 │       └── references/
-│           ├── ir-playbooks.md       # IR playbook templates (NIST 800-61)
-│           ├── dfir-reports.md       # Forensic report templates
-│           ├── devsecops-pipeline.md # CI/CD security configs
-│           ├── soc-operations.md     # SOC L1-L3 procedures
-│           └── gitops-security.md    # GitOps security policies
+│           ├── ir-playbooks.md              # IR playbook + post-mortem templates
+│           ├── dfir-reports.md              # Forensic report templates
+│           ├── devsecops-pipeline.md        # CI/CD security configs
+│           ├── soc-operations.md            # SOC L1-L3 + SOAR automation
+│           ├── gitops-security.md           # GitOps security policies
+│           ├── code-security-analysis.md    # Semgrep/CodeQL/SARIF/Variant
+│           ├── container-supply-chain.md    # Container hardening/SBOM/signing
+│           └── compliance-threat-modeling.md # SOC2/ISO27001/STRIDE/Risk
 ├── docs/
 │   ├── INSTALL.md                # Installation guide
 │   └── TROUBLESHOOTING.md       # Troubleshooting guide
 ├── CHANGELOG.md                  # Version history
+├── CLAUDE.md                     # Claude Code guidance
 └── README.md                     # This file
 ```
-
----
-
-## Troubleshooting (แก้ไขปัญหา)
-
-| ปัญหา                                | วิธีแก้                                                                            |
-| ------------------------------------ | ---------------------------------------------------------------------------------- |
-| `claude doctor` แสดง "Invalid input" | ตรวจสอบ `source` ใน `known_marketplaces.json` ต้องเป็น `"github"` ไม่ใช่ `"local"` |
-| Plugin ไม่แสดงหลังติดตั้ง            | ตรวจสอบชื่อ marketplace ใน 3 config files ต้องตรงกัน                               |
-| Skill ไม่ trigger                    | Restart Claude Code session (`/clear`) แล้วใช้ trigger keywords                    |
-
-> ดูคู่มือแก้ไขปัญหาฉบับเต็ม: [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md)
 
 ---
 
@@ -139,34 +213,41 @@ claude-cybersecurity-skill/
 | **Plugin name** | `cybersecurity-pro`                       |
 | **Marketplace** | `pitimon-cybersecurity`                   |
 | **Install key** | `cybersecurity-pro@pitimon-cybersecurity` |
-| **Version**     | 1.0.0                                     |
+| **Version**     | 2.0.0                                     |
 | **Category**    | Security                                  |
 | **Author**      | somapa                                    |
 | **Language**    | Bilingual Thai + English                  |
+| **Domains**     | 8                                         |
 
 ---
 
 ## Contributing
 
 1. Fork repository
-2. สร้าง feature branch (`git checkout -b feat/new-playbook`)
-3. Commit changes (`git commit -m "feat: add cloud IR playbook"`)
-4. Push branch (`git push origin feat/new-playbook`)
+2. สร้าง feature branch (`git checkout -b feat/new-domain`)
+3. Commit changes (`git commit -m "feat: add new-domain reference"`)
+4. Push branch (`git push origin feat/new-domain`)
 5. เปิด Pull Request
 
-### Reference Files
+### เพิ่ม Domain ใหม่
 
-เพื่อเพิ่ม domain ใหม่หรืออัพเดท reference:
-
-- เพิ่มไฟล์ `.md` ใน `skills/cybersecurity-pro/references/`
-- อัพเดท `skills/cybersecurity-pro/SKILL.md` เพื่อเพิ่ม domain entry และ trigger keywords
-- อัพเดท CHANGELOG.md
+1. สร้างไฟล์ `skills/cybersecurity-pro/references/<domain-name>.md`
+2. อัพเดท `SKILL.md` — เพิ่ม domain entry + trigger keywords + decision tree branch
+3. อัพเดท `README.md` — เพิ่มใน capabilities table
+4. อัพเดท `CLAUDE.md` — เพิ่มใน domain table
+5. เพิ่ม entry ใน `CHANGELOG.md`
 
 ---
 
-## License
+## Troubleshooting (แก้ไขปัญหา)
 
-MIT
+| ปัญหา                                | วิธีแก้                                                           |
+| ------------------------------------ | ----------------------------------------------------------------- |
+| `claude doctor` แสดง "Invalid input" | ตรวจสอบ `source` ใน `known_marketplaces.json` ต้องเป็น `"github"` |
+| Plugin ไม่แสดงหลังติดตั้ง            | ตรวจสอบชื่อ marketplace ใน 3 config files ต้องตรงกัน              |
+| Skill ไม่ trigger                    | Restart session (`/clear`) แล้วใช้ trigger keywords               |
+
+> ดูคู่มือแก้ไขปัญหาฉบับเต็ม: [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md)
 
 ---
 
@@ -176,3 +257,7 @@ MIT
 - [Troubleshooting Guide](docs/TROUBLESHOOTING.md)
 - [Changelog](CHANGELOG.md)
 - [GitHub Issues](https://github.com/pitimon/claude-cybersecurity-skill/issues)
+
+## License
+
+MIT

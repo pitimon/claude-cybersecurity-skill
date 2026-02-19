@@ -1,15 +1,15 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "pitimon-cybersecurity",
-  "description": "Cybersecurity professional skills for DFIR, SOC, DevSecOps, and GitOps security",
+  "description": "Cybersecurity professional skills: 8 domains covering IR, DFIR, DevSecOps, SOC+SOAR, GitOps, Code Security, Container/Supply Chain, and Compliance/Threat Modeling",
   "owner": {
     "name": "pitimon"
   },
   "plugins": [
     {
       "name": "cybersecurity-pro",
-      "description": "Professional cybersecurity skill: DevSecOps, SOC L1-L3, DFIR, GitOps security. Bilingual Thai+English output.",
-      "version": "1.0.0",
+      "description": "Professional cybersecurity skill: 8 domains covering IR, DFIR, DevSecOps, SOC+SOAR, GitOps, Code Security, Container/Supply Chain, Compliance/Threat Modeling. Bilingual Thai+English output.",
+      "version": "2.0.0",
       "author": {
         "name": "somapa"
       },

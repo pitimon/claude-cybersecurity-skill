@@ -3,6 +3,7 @@
 คู่มือการสร้าง GitOps-native Security Configurations และ Policy-as-Code
 
 ## Table of Contents
+
 1. GitOps Security Architecture
 2. ArgoCD Security Configurations
 3. Flux Security Configurations
@@ -79,7 +80,7 @@ data:
     g, dev-team, role:developer
 
   policy.default: role:''
-  scopes: '[groups]'
+  scopes: "[groups]"
 ```
 
 ### ArgoCD Application สำหรับ Security Policies
@@ -105,9 +106,9 @@ spec:
     namespace: gatekeeper-system
   syncPolicy:
     automated:
-      prune: true        # ลบ resource ที่ไม่อยู่ใน Git
-      selfHeal: true     # แก้ไข drift อัตโนมัติ
-      allowEmpty: false   # ป้องกันการลบ policies ทั้งหมด
+      prune: true # ลบ resource ที่ไม่อยู่ใน Git
+      selfHeal: true # แก้ไข drift อัตโนมัติ
+      allowEmpty: false # ป้องกันการลบ policies ทั้งหมด
     syncOptions:
       - CreateNamespace=false
       - PruneLast=true
@@ -186,7 +187,7 @@ kind: K8sContainerNoRootUser
 metadata:
   name: container-must-not-run-as-root
 spec:
-  enforcementAction: deny  # deny | dryrun | warn
+  enforcementAction: deny # deny | dryrun | warn
   match:
     kinds:
       - apiGroups: [""]
@@ -206,18 +207,18 @@ spec:
 
 ### Common Security Policies ที่ควรมี
 
-| Policy | วัตถุประสงค์ (Purpose) | Enforcement |
-|---|---|---|
-| no-root-containers | ห้าม container run as root | deny (prod), warn (dev) |
-| require-resource-limits | บังคับ CPU/memory limits | deny (all) |
-| allowed-registries | จำกัด image registries ที่อนุญาต | deny (prod/staging) |
-| require-labels | บังคับ labels (owner, team, env) | deny (all) |
-| no-privileged-containers | ห้าม privileged mode | deny (all) |
-| require-network-policy | ทุก namespace ต้องมี NetworkPolicy | warn → deny |
-| no-latest-tag | ห้ามใช้ :latest tag | deny (prod), warn (dev) |
-| require-probes | บังคับ liveness/readiness probes | deny (prod) |
-| limit-host-paths | จำกัด hostPath volumes | deny (all) |
-| require-encryption | บังคับ TLS สำหรับ Ingress | deny (prod) |
+| Policy                   | วัตถุประสงค์ (Purpose)             | Enforcement             |
+| ------------------------ | ---------------------------------- | ----------------------- |
+| no-root-containers       | ห้าม container run as root         | deny (prod), warn (dev) |
+| require-resource-limits  | บังคับ CPU/memory limits           | deny (all)              |
+| allowed-registries       | จำกัด image registries ที่อนุญาต   | deny (prod/staging)     |
+| require-labels           | บังคับ labels (owner, team, env)   | deny (all)              |
+| no-privileged-containers | ห้าม privileged mode               | deny (all)              |
+| require-network-policy   | ทุก namespace ต้องมี NetworkPolicy | warn → deny             |
+| no-latest-tag            | ห้ามใช้ :latest tag                | deny (prod), warn (dev) |
+| require-probes           | บังคับ liveness/readiness probes   | deny (prod)             |
+| limit-host-paths         | จำกัด hostPath volumes             | deny (all)              |
+| require-encryption       | บังคับ TLS สำหรับ Ingress          | deny (prod)             |
 
 ---
 
@@ -230,7 +231,7 @@ spec:
 kubectl apply -f https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.24.0/controller.yaml
 
 # Encrypt secret ด้วย kubeseal
-echo -n "my-secret-password" | kubectl create secret generic db-creds \
+echo -n "<REPLACE_WITH_YOUR_SECRET>" | kubectl create secret generic db-creds \
   --from-file=password=/dev/stdin \
   --dry-run=client -o yaml | \
   kubeseal --format yaml > sealed-db-creds.yaml
@@ -245,10 +246,10 @@ echo -n "my-secret-password" | kubectl create secret generic db-creds \
 creation_rules:
   - path_regex: secrets/production/.*\.yaml$
     encrypted_regex: "^(data|stringData)$"
-    kms: "arn:aws:kms:ap-southeast-1:123456789:key/xxx"  # AWS KMS
+    kms: "arn:aws:kms:<REGION>:<ACCOUNT_ID>:key/<KEY_ID>" # AWS KMS
   - path_regex: secrets/staging/.*\.yaml$
     encrypted_regex: "^(data|stringData)$"
-    age: "age1xxx..."  # Age key สำหรับ staging
+    age: "age1<YOUR_AGE_PUBLIC_KEY>" # Age key สำหรับ staging
 ```
 
 ```bash
@@ -297,7 +298,8 @@ ArgoCD ตรวจ drift อัตโนมัติ — เมื่อ cluste
 # ตั้งค่าให้ auto-heal (แก้ drift อัตโนมัติ)
 syncPolicy:
   automated:
-    selfHeal: true  # แก้ drift กลับเป็นตาม Git
+    selfHeal: true # แก้ drift กลับเป็นตาม Git
+
 
 # สำหรับ security policies → แนะนำ selfHeal: true เสมอ
 # เพราะ manual changes อาจเป็น unauthorized modifications

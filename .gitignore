@@ -1,0 +1,17 @@
+# Claude Code local settings (may contain permissive MCP configs)
+.claude/settings.local.json
+
+# Skill archives (Claude Code reads source files directly)
+*.skill
+
+# Secrets and credentials
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.pfx
+
+# OS artifacts
+.DS_Store
+Thumbs.db

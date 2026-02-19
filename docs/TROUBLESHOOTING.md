@@ -66,7 +66,7 @@ cat ~/.claude/plugins/known_marketplaces.json | jq '.'
   "somapa-cybersecurity": {
     "source": {
       "source": "local",
-      "path": "/home/somapa/.claude/plugins/marketplaces/somapa-cybersecurity"
+      "path": "/home/<username>/.claude/plugins/marketplaces/somapa-cybersecurity"
     }
   }
 }
@@ -221,7 +221,7 @@ claude doctor
 
 **ห้าม** copy config files ข้าม server แบบ manual เพราะ:
 
-- path อาจไม่ตรง (เช่น `/home/somapa` vs `/home/admin`)
+- path อาจไม่ตรง (เช่น `$HOME` ต่างกันระหว่าง server)
 - source type อาจกลายเป็น `"local"` ซึ่ง Claude Code ไม่รองรับ
 - cache structure อาจไม่ครบ
 
