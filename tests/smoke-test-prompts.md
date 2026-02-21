@@ -1,6 +1,6 @@
 # Smoke Test Prompts — cybersecurity-pro Plugin
 
-Manual functional tests for all 14 domains. Run each prompt in a Claude Code session with the plugin installed, then verify against the checklist.
+Manual functional tests for all 15 domains. Run each prompt in a Claude Code session with the plugin installed, then verify against the checklist.
 
 ## Prerequisites
 
@@ -316,6 +316,27 @@ Create container hardening guide with Trivy scanning and SBOM generation
 
 ---
 
+## Domain 15: Threat Intelligence
+
+**Test Prompt:**
+
+```
+สร้าง threat intelligence program ด้วย STIX/TAXII integration พร้อม IOC lifecycle management
+```
+
+**Pass Criteria:**
+
+- [ ] STIX 2.1 object types referenced (SDO, SRO, SCO)
+- [ ] TAXII 2.1 server/client configuration or API endpoints
+- [ ] TI platform recommendations (MISP, OpenCTI, or commercial)
+- [ ] IOC lifecycle workflow (collection → validation → enrichment → dissemination → expiration)
+- [ ] TLP 2.0 classification definitions (RED, AMBER+STRICT, AMBER, GREEN, CLEAR)
+- [ ] Threat feed integration patterns (open-source and commercial)
+- [ ] TI-driven detection (Sigma rules, YARA rules, or MITRE ATT&CK mapping)
+- [ ] SOAR automation for TI workflows
+
+---
+
 ## Quick Regression Test
 
 For rapid regression after plugin updates, test these 4 prompts (covers Thai, English, mixed, and new domains):
@@ -326,6 +347,7 @@ For rapid regression after plugin updates, test these 4 prompts (covers Thai, En
 4. `สร้าง AI security assessment สำหรับ LLM application พร้อม prompt injection defense`
 5. `สร้าง API security assessment ตาม OWASP API Top 10 พร้อม JWT validation checklist`
 6. `สร้าง vulnerability prioritization matrix ด้วย CVSS+EPSS+KEV พร้อม SLA templates`
+7. `สร้าง threat intelligence program ด้วย STIX/TAXII พร้อม MISP integration`
 
 Minimum pass: all 4 produce structured bilingual output with framework references.
 

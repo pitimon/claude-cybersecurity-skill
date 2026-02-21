@@ -25,6 +25,8 @@ description: >
   API authentication, API inventory, API fuzzing, ความปลอดภัย API,
   vulnerability management, CVSS, EPSS, KEV, patch management, vulnerability scan,
   Nessus, Qualys, vulnerability prioritization, SSVC, การจัดการช่องโหว่,
+  threat intelligence, STIX, TAXII, IOC, indicator of compromise, threat feed,
+  MISP, OpenCTI, TLP, threat hunting, intelligence sharing, ข่าวกรองภัยคุกคาม,
   การตอบสนองต่อเหตุการณ์, วิเคราะห์ภัยคุกคาม, ความปลอดภัยไซเบอร์, นิติวิทยาศาสตร์ดิจิทัล,
   การวิเคราะห์ code, ความปลอดภัย container, การปฏิบัติตามกฎระเบียบ, การจำลองภัยคุกคาม,
   ความปลอดภัยบนคลาวด์, สถาปัตยกรรม Zero Trust, ความปลอดภัย AI.
@@ -35,7 +37,7 @@ allowed-tools: Read, Grep, Glob, Write
 
 # Cybersecurity Pro Skill
 
-สกิลระดับมืออาชีพสำหรับ Cybersecurity Operations ครอบคลุม 14 domains:
+สกิลระดับมืออาชีพสำหรับ Cybersecurity Operations ครอบคลุม 15 domains:
 IR, DFIR, DevSecOps, SOC+SOAR, GitOps, Code Security Analysis, Container & Supply Chain, Threat Modeling & Risk, Compliance Frameworks, Cloud Security & CSPM, Zero Trust Architecture, AI/ML Security
 
 ## Language Policy / นโยบายภาษา
@@ -72,12 +74,13 @@ All outputs MUST reference the appropriate framework(s):
 | AI/ML Security         | OWASP LLM Top 10, NIST AI RMF    | MITRE ATLAS, EU AI Act, ISO 42001     |
 | API Security           | OWASP API Top 10 2023            | OAuth 2.0 BCP (RFC 9700), OpenAPI     |
 | Vulnerability Mgmt     | CVSS v4.0, EPSS                  | CISA KEV, SSVC, FIRST VRDX            |
+| Threat Intelligence    | STIX 2.1, TAXII 2.1              | MITRE ATT&CK, TLP 2.0, Diamond Model  |
 
 When producing any output, map actions to relevant framework controls. For incident analysis, always include MITRE ATT&CK Tactic/Technique IDs (e.g., T1566.001).
 
 ## Output Domains
 
-This skill produces outputs across 14 domains. Identify which domain(s) the user needs and read the corresponding reference file BEFORE generating output:
+This skill produces outputs across 15 domains. Identify which domain(s) the user needs and read the corresponding reference file BEFORE generating output:
 
 ### 1. Incident Response Playbooks & Runbooks
 
@@ -210,6 +213,16 @@ Covers: CVSS v4.0 scoring, EPSS exploit prediction, CISA KEV catalog, SSVC decis
 trees, scanning tool configurations (Nessus/Qualys/OpenVAS/Nuclei/Trivy), patch
 management automation, risk acceptance workflows, vulnerability reporting.
 
+### 15. Threat Intelligence & IOC Management
+
+> Read `references/threat-intelligence.md`
+
+Produce threat intelligence program designs, STIX/TAXII integration templates,
+IOC lifecycle management workflows, and intelligence sharing procedures.
+Covers: STIX 2.1 object model (SDO/SRO/SCO), TAXII 2.1 server/client configuration,
+TI platform setup (MISP, OpenCTI), IOC lifecycle management, threat feed integration,
+intelligence sharing (TLP 2.0, ISACs), TI-driven detection and hunting, SOAR automation.
+
 ## General Output Rules
 
 1. **Structure**: Use consistent document templates per domain (defined in reference files)
@@ -281,6 +294,11 @@ User request
 │   / "vulnerability scan" / "Nessus" / "Qualys" / "SSVC" / "vulnerability prioritization"
 │   / "การจัดการช่องโหว่"
 │   → Domain 14: Vulnerability Management (read references/vulnerability-management.md)
+│
+├── mentions "threat intelligence" / "STIX" / "TAXII" / "IOC" / "threat feed"
+│   / "MISP" / "OpenCTI" / "TLP" / "intelligence sharing" / "indicator of compromise"
+│   / "ข่าวกรองภัยคุกคาม"
+│   → Domain 15: Threat Intelligence (read references/threat-intelligence.md)
 │
 └── unclear / multiple domains
     → Ask user to clarify, or combine relevant domains

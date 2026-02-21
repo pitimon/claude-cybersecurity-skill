@@ -7,9 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Planned
+## [3.2.0] - 2026-02-21
 
-- Threat Intelligence integration templates (STIX/TAXII)
+### Added
+
+- **Threat Intelligence & IOC Management** (Domain 15) — Comprehensive threat intelligence program
+  - STIX 2.1 Object Model — SDO, SRO, SCO object types with JSON examples and patterning language
+  - TAXII 2.1 Protocol — Server/client architecture, API endpoints, polling and push configuration
+  - Threat Intelligence Platforms — MISP setup/feeds/sharing groups, OpenCTI architecture/connectors, commercial comparison
+  - IOC Lifecycle Management — Collection → validation → enrichment → dissemination → expiration workflows
+  - Threat Feed Integration — Open-source feeds (AlienVault OTX, Abuse.ch, PhishTank, CIRCL), SIEM integration patterns
+  - Intelligence Sharing & ISACs — TLP 2.0 protocol, FIRST CSIRT framework, Thai context (ThaiCERT, PDPA)
+  - TI-Driven Detection & Hunting — MITRE ATT&CK mapping, Sigma/YARA rule generation from IOCs
+  - TI Automation & SOAR Integration — Automated IOC ingestion, enrichment playbooks, Python automation
+  - Frameworks: STIX 2.1 (OASIS), TAXII 2.1 (OASIS), MITRE ATT&CK, TLP 2.0, Diamond Model, FIRST CSIRT
+
+### Changed
+
+- **SKILL.md** expanded from 14 to 15 domains with updated frontmatter, frameworks table, and decision tree
+- **plugin.json** and **marketplace.json** bumped to v3.2.0 with expanded keywords
+- **README.md** updated: capabilities tables, repo structure, token budget, version, usage examples
+- **CLAUDE.md** updated to reflect 15-domain architecture
+- **validate-plugin.sh** updated to expect 15 reference files
 
 ## [3.1.0] - 2026-02-21
 
@@ -178,7 +197,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Marketplace name standardized from `somapa-cybersecurity` to `pitimon-cybersecurity`
 - Plugin install key format corrected to `cybersecurity-pro@pitimon-cybersecurity`
 
-[Unreleased]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.1.0...HEAD
+[Unreleased]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.2.0...HEAD
+[3.2.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.1.0...v3.2.0
 [3.1.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.0.0...v3.1.0
 [3.0.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v2.1.0...v3.0.0
 [2.1.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v2.0.0...v2.1.0

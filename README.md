@@ -1,8 +1,8 @@
 # cybersecurity-pro
 
-**Professional Cybersecurity Skill for Claude Code** | v3.1.0
+**Professional Cybersecurity Skill for Claude Code** | v3.2.0
 
-สกิลระดับมืออาชีพสำหรับ Cybersecurity Operations — ครอบคลุม 14 domains ตั้งแต่ Incident Response ถึง Vulnerability Management พร้อม output แบบ bilingual (Thai + English)
+สกิลระดับมืออาชีพสำหรับ Cybersecurity Operations — ครอบคลุม 15 domains ตั้งแต่ Incident Response ถึง Threat Intelligence พร้อม output แบบ bilingual (Thai + English)
 
 ---
 
@@ -31,12 +31,12 @@ User prompt → keyword match in SKILL.md frontmatter
   → Output generated following templates in reference file
 ```
 
-**On-demand loading**: มี 14 domains แต่โหลดแค่ 1 ต่อ request
+**On-demand loading**: มี 15 domains แต่โหลดแค่ 1 ต่อ request
 
 | Component                | Tokens       | เมื่อไหร่โหลด (When Loaded)   |
 | ------------------------ | ------------ | ----------------------------- |
 | SKILL.md (router)        | ~3,000       | ทุก request ที่ trigger skill |
-| Reference file (1 of 14) | ~3,000-5,000 | เฉพาะ domain ที่ต้องการ       |
+| Reference file (1 of 15) | ~3,000-5,000 | เฉพาะ domain ที่ต้องการ       |
 | **Max per request**      | **~8,000**   | **< 4% ของ 200K context**     |
 
 ---
@@ -100,7 +100,7 @@ claude doctor
 
 ---
 
-## Capabilities (ความสามารถ — 14 Domains)
+## Capabilities (ความสามารถ — 15 Domains)
 
 ### Security Operations
 
@@ -136,6 +136,12 @@ claude doctor
 | **Zero Trust Architecture** | Zero Trust maturity assessments, implementation roadmaps, microsegmentation policies | NIST 800-207, CISA ZT Maturity Model, Forrester ZTX | `zero trust`, `ZTA`, `ZTNA`, `NIST 800-207`, `microsegmentation`  |
 | **AI/ML Security**          | AI security assessments, LLM guardrails, AI red team playbooks, AI governance        | OWASP LLM Top 10, NIST AI RMF, MITRE ATLAS          | `AI security`, `LLM security`, `prompt injection`, `MITRE ATLAS`  |
 
+### Threat Intelligence
+
+| Domain                  | คำอธิบาย                                                                       | Frameworks                                  | Trigger Keywords                                                 |
+| ----------------------- | ------------------------------------------------------------------------------ | ------------------------------------------- | ---------------------------------------------------------------- |
+| **Threat Intelligence** | TI program design, STIX/TAXII integration, IOC lifecycle, intelligence sharing | STIX 2.1, TAXII 2.1, TLP 2.0, Diamond Model | `threat intelligence`, `STIX`, `TAXII`, `IOC`, `MISP`, `OpenCTI` |
+
 ### Frameworks & Standards
 
 outputs ทั้งหมดอ้างอิง frameworks เหล่านี้ตามความเหมาะสม:
@@ -159,6 +165,9 @@ outputs ทั้งหมดอ้างอิง frameworks เหล่าน
 - **OWASP API Security Top 10** — API-specific vulnerability risks
 - **CVSS v4.0** / **EPSS** — Vulnerability scoring and exploit prediction
 - **CISA KEV** / **SSVC** — Known exploited vulnerabilities and stakeholder prioritization
+- **STIX 2.1** / **TAXII 2.1** — Structured threat information expression & sharing
+- **Traffic Light Protocol 2.0** — Intelligence sharing classification
+- **Diamond Model** — Intrusion analysis framework
 - **พ.ร.บ. ไซเบอร์ 2562** / **PDPA** — Thai cybersecurity & data privacy law
 
 ---
@@ -251,6 +260,13 @@ outputs ทั้งหมดอ้างอิง frameworks เหล่าน
   รวม SLA templates, patch management workflow, และ executive dashboard
 ```
 
+### Threat Intelligence
+
+```
+> สร้าง threat intelligence program ด้วย STIX/TAXII integration
+  รวม MISP setup, IOC lifecycle management, และ TLP 2.0 sharing procedures
+```
+
 ---
 
 ## Token Budget & Performance (งบประมาณ Token)
@@ -260,7 +276,7 @@ outputs ทั้งหมดอ้างอิง frameworks เหล่าน
 | SKILL.md (always loaded)    | ~3,000       | Router + language policy + frameworks |
 | Reference file (per domain) | ~3,000-5,000 | โหลดเฉพาะ domain ที่ trigger          |
 | **Max per request**         | **~8,000**   | **SKILL.md + 1 reference file**       |
-| Total all files             | ~60,000      | ไม่โหลดทั้งหมดพร้อมกัน                |
+| Total all files             | ~65,000      | ไม่โหลดทั้งหมดพร้อมกัน                |
 
 เปรียบเทียบกับ context window 200K tokens: plugin ใช้ < 4% แม้ request ที่หนักที่สุด
 
@@ -288,7 +304,7 @@ outputs ทั้งหมดอ้างอิง frameworks เหล่าน
 claude-cybersecurity-skill/
 ├── .claude-plugin/
 │   ├── marketplace.json          # Marketplace metadata
-│   └── plugin.json               # Plugin metadata (v3.1.0)
+│   └── plugin.json               # Plugin metadata (v3.2.0)
 ├── skills/
 │   └── cybersecurity-pro/
 │       ├── SKILL.md              # Skill definition & decision tree
@@ -306,7 +322,8 @@ claude-cybersecurity-skill/
 │           ├── zero-trust-architecture.md   # ZTA/NIST 800-207/Microsegmentation
 │           ├── ai-ml-security.md            # AI/ML/LLM Security/MITRE ATLAS
 │           ├── api-security.md              # OWASP API Top 10/JWT/OAuth/Gateway
-│           └── vulnerability-management.md  # CVSS/EPSS/KEV/Patch Management
+│           ├── vulnerability-management.md  # CVSS/EPSS/KEV/Patch Management
+│           └── threat-intelligence.md       # STIX/TAXII/IOC/TLP/MISP/OpenCTI
 ├── docs/
 │   ├── INSTALL.md                # Installation guide
 │   └── TROUBLESHOOTING.md       # Troubleshooting guide
@@ -324,11 +341,11 @@ claude-cybersecurity-skill/
 | **Plugin name** | `cybersecurity-pro`                       |
 | **Marketplace** | `pitimon-cybersecurity`                   |
 | **Install key** | `cybersecurity-pro@pitimon-cybersecurity` |
-| **Version**     | 3.1.0                                     |
+| **Version**     | 3.2.0                                     |
 | **Category**    | Security                                  |
 | **Author**      | somapa                                    |
 | **Language**    | Bilingual Thai + English                  |
-| **Domains**     | 14                                        |
+| **Domains**     | 15                                        |
 
 ---
 
