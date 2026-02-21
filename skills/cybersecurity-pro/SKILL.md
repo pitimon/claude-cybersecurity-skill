@@ -27,6 +27,8 @@ description: >
   Nessus, Qualys, vulnerability prioritization, SSVC, การจัดการช่องโหว่,
   threat intelligence, STIX, TAXII, IOC, indicator of compromise, threat feed,
   MISP, OpenCTI, TLP, threat hunting, intelligence sharing, ข่าวกรองภัยคุกคาม,
+  cross-domain, integration, end-to-end, workflow, lifecycle, orchestration, security pipeline,
+  การบูรณาการ, cross-domain integration, multi-domain,
   การตอบสนองต่อเหตุการณ์, วิเคราะห์ภัยคุกคาม, ความปลอดภัยไซเบอร์, นิติวิทยาศาสตร์ดิจิทัล,
   การวิเคราะห์ code, ความปลอดภัย container, การปฏิบัติตามกฎระเบียบ, การจำลองภัยคุกคาม,
   ความปลอดภัยบนคลาวด์, สถาปัตยกรรม Zero Trust, ความปลอดภัย AI.
@@ -37,7 +39,7 @@ allowed-tools: Read, Grep, Glob, Write
 
 # Cybersecurity Pro Skill
 
-สกิลระดับมืออาชีพสำหรับ Cybersecurity Operations ครอบคลุม 15 domains:
+สกิลระดับมืออาชีพสำหรับ Cybersecurity Operations ครอบคลุม 16 domains:
 IR, DFIR, DevSecOps, SOC+SOAR, GitOps, Code Security Analysis, Container & Supply Chain, Threat Modeling & Risk, Compliance Frameworks, Cloud Security & CSPM, Zero Trust Architecture, AI/ML Security
 
 ## Language Policy / นโยบายภาษา
@@ -58,29 +60,30 @@ Example style:
 
 All outputs MUST reference the appropriate framework(s):
 
-| Domain                 | Primary Framework                | Supporting Standards                  |
-| ---------------------- | -------------------------------- | ------------------------------------- |
-| Incident Response      | NIST SP 800-61 Rev.2             | ISO 27035, SANS IR Process            |
-| DFIR / Forensics       | Chain of Custody, IOC            | NIST 800-86, SANS DFIR                |
-| Threat Analysis        | MITRE ATT&CK, MITRE D3FEND       | Cyber Kill Chain, Diamond Model       |
-| DevSecOps              | OWASP SAMM, OWASP Top 10         | CIS Benchmarks, NIST SSDF             |
-| Governance             | NIST CSF 2.0                     | ISO 27001:2022, พ.ร.บ. ไซเบอร์ 2562   |
-| Code Security          | CWE Top 25, OWASP Top 10         | SARIF 2.1.0, Semgrep, CodeQL          |
-| Container/Supply Chain | NIST SP 800-190, CIS Docker      | SLSA, Sigstore, CycloneDX             |
-| Threat Modeling & Risk | NIST CSF, ISO 27001, STRIDE      | SOC 2, PASTA, PDPA                    |
-| Compliance Frameworks  | NIST SP 800-53 Rev 5             | PCI DSS v4.0, CIS Controls v8         |
-| Cloud Security & CSPM  | CIS Cloud Benchmarks, CSA CCM v4 | NIST 800-144, AWS Well-Architected    |
-| Zero Trust             | NIST SP 800-207                  | CISA ZT Maturity Model, Forrester ZTX |
-| AI/ML Security         | OWASP LLM Top 10, NIST AI RMF    | MITRE ATLAS, EU AI Act, ISO 42001     |
-| API Security           | OWASP API Top 10 2023            | OAuth 2.0 BCP (RFC 9700), OpenAPI     |
-| Vulnerability Mgmt     | CVSS v4.0, EPSS                  | CISA KEV, SSVC, FIRST VRDX            |
-| Threat Intelligence    | STIX 2.1, TAXII 2.1              | MITRE ATT&CK, TLP 2.0, Diamond Model  |
+| Domain                   | Primary Framework                | Supporting Standards                  |
+| ------------------------ | -------------------------------- | ------------------------------------- |
+| Incident Response        | NIST SP 800-61 Rev.2             | ISO 27035, SANS IR Process            |
+| DFIR / Forensics         | Chain of Custody, IOC            | NIST 800-86, SANS DFIR                |
+| Threat Analysis          | MITRE ATT&CK, MITRE D3FEND       | Cyber Kill Chain, Diamond Model       |
+| DevSecOps                | OWASP SAMM, OWASP Top 10         | CIS Benchmarks, NIST SSDF             |
+| Governance               | NIST CSF 2.0                     | ISO 27001:2022, พ.ร.บ. ไซเบอร์ 2562   |
+| Code Security            | CWE Top 25, OWASP Top 10         | SARIF 2.1.0, Semgrep, CodeQL          |
+| Container/Supply Chain   | NIST SP 800-190, CIS Docker      | SLSA, Sigstore, CycloneDX             |
+| Threat Modeling & Risk   | NIST CSF, ISO 27001, STRIDE      | SOC 2, PASTA, PDPA                    |
+| Compliance Frameworks    | NIST SP 800-53 Rev 5             | PCI DSS v4.0, CIS Controls v8         |
+| Cloud Security & CSPM    | CIS Cloud Benchmarks, CSA CCM v4 | NIST 800-144, AWS Well-Architected    |
+| Zero Trust               | NIST SP 800-207                  | CISA ZT Maturity Model, Forrester ZTX |
+| AI/ML Security           | OWASP LLM Top 10, NIST AI RMF    | MITRE ATLAS, EU AI Act, ISO 42001     |
+| API Security             | OWASP API Top 10 2023            | OAuth 2.0 BCP (RFC 9700), OpenAPI     |
+| Vulnerability Mgmt       | CVSS v4.0, EPSS                  | CISA KEV, SSVC, FIRST VRDX            |
+| Threat Intelligence      | STIX 2.1, TAXII 2.1              | MITRE ATT&CK, TLP 2.0, Diamond Model  |
+| Cross-Domain Integration | NIST CSF 2.0                     | All domain frameworks                 |
 
 When producing any output, map actions to relevant framework controls. For incident analysis, always include MITRE ATT&CK Tactic/Technique IDs (e.g., T1566.001).
 
 ## Output Domains
 
-This skill produces outputs across 15 domains. Identify which domain(s) the user needs and read the corresponding reference file BEFORE generating output:
+This skill produces outputs across 16 domains. Identify which domain(s) the user needs and read the corresponding reference file BEFORE generating output:
 
 ### 1. Incident Response Playbooks & Runbooks
 
@@ -223,6 +226,18 @@ Covers: STIX 2.1 object model (SDO/SRO/SCO), TAXII 2.1 server/client configurati
 TI platform setup (MISP, OpenCTI), IOC lifecycle management, threat feed integration,
 intelligence sharing (TLP 2.0, ISACs), TI-driven detection and hunting, SOAR automation.
 
+### 16. Cross-Domain Integration Scenarios
+
+> Read `references/cross-domain-integration.md`
+
+Produce end-to-end security workflow designs, cross-domain SOAR playbooks,
+integration architecture diagrams, and multi-domain orchestration templates.
+Covers: IR lifecycle (TI→SOC→IR→DFIR), vulnerability-to-exploit pipeline,
+supply chain security pipeline (Code→Container→DevSecOps→GitOps→SOC),
+cloud compliance posture (Compliance→Cloud→ZeroTrust→VulnMgmt),
+AI/API threat surface (API→AI/ML→ThreatModel→Code), integration orchestration
+patterns, cross-domain metrics and KPIs, NIST CSF 2.0 mapping.
+
 ## General Output Rules
 
 1. **Structure**: Use consistent document templates per domain (defined in reference files)
@@ -300,8 +315,12 @@ User request
 │   / "ข่าวกรองภัยคุกคาม"
 │   → Domain 15: Threat Intelligence (read references/threat-intelligence.md)
 │
+├── mentions "integration" / "end-to-end" / "cross-domain" / "workflow" / "lifecycle"
+│   / "orchestration" / "การบูรณาการ" / "security pipeline" / "multi-domain"
+│   → Domain 16: Cross-Domain Integration (read references/cross-domain-integration.md)
+│
 └── unclear / multiple domains
-    → Ask user to clarify, or combine relevant domains
+    → Ask user to clarify, or if multi-domain workflow → Domain 16
 ```
 
 ## File Output Strategy

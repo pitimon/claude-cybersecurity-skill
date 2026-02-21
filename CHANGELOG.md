@@ -7,6 +7,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.3.0] - 2026-02-21
+
+### Added
+
+- **Cross-Domain Integration Scenarios** (Domain 16) — End-to-end security workflow orchestration
+  - Domain Dependency Map — ASCII visualization of all 16 domain relationships mapped to NIST CSF 2.0
+  - Integration Maturity Model — 5-level maturity progression from Siloed to Unified
+  - Scenario: Incident Response Lifecycle — TI(D15) → SOC(D4) → IR(D1) → DFIR(D2) → Vuln(D14) with SOAR orchestration
+  - Scenario: Vulnerability-to-Exploit Pipeline — Vuln(D14) → TI(D15) → SOC(D4) → IR(D1) with CVE enrichment and Sigma/YARA generation
+  - Scenario: Supply Chain Security Pipeline — Code(D6) → Container(D7) → DevSecOps(D3) → GitOps(D5) → SOC(D4) with SARIF→SBOM→gate→deploy→runtime flow
+  - Scenario: Cloud Compliance Posture — Compliance(D9) → Cloud(D10) → ZeroTrust(D11) → Vuln(D14) with CSPM and evidence collection
+  - Scenario: AI/API Threat Surface — API(D13) → AI/ML(D12) → ThreatModel(D8) → Code(D6) with ATLAS+OWASP mapping
+  - Integration Orchestration Patterns — SOAR backbone, data format standards (STIX/SARIF/CycloneDX), shared severity/SLA taxonomy
+  - Cross-Domain Metrics & KPIs — E2E MTTD/MTTR, TI-to-detection latency, pipeline block rate, compliance score
+  - Framework References & Integration Checklist — NIST CSF 2.0 orchestration mapping, Quick Win/Standard/Advanced checklist
+  - Each scenario includes: data flow diagram, exchange table, SOAR template, MITRE ATT&CK flow, handoff checklist
+  - Frameworks: NIST CSF 2.0, MITRE ATT&CK, STIX 2.1, SARIF 2.1.0, CycloneDX, SLSA
+
+### Changed
+
+- **SKILL.md** expanded from 15 to 16 domains with updated frontmatter, frameworks table, and decision tree
+- **plugin.json** and **marketplace.json** bumped to v3.3.0 with expanded keywords
+- **README.md** updated: capabilities tables, repo structure, token budget, version, usage examples
+- **CLAUDE.md** updated to reflect 16-domain architecture
+- **validate-plugin.sh** updated to expect 16 reference files
+- Cross-references backfilled in all 15 existing domain reference files (Domain 16 link + natural neighbor links)
+
 ## [3.2.0] - 2026-02-21
 
 ### Added
@@ -197,7 +224,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Marketplace name standardized from `somapa-cybersecurity` to `pitimon-cybersecurity`
 - Plugin install key format corrected to `cybersecurity-pro@pitimon-cybersecurity`
 
-[Unreleased]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.2.0...HEAD
+[Unreleased]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.3.0...HEAD
+[3.3.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.2.0...v3.3.0
 [3.2.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.1.0...v3.2.0
 [3.1.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.0.0...v3.1.0
 [3.0.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v2.1.0...v3.0.0

@@ -1,6 +1,6 @@
 # Smoke Test Prompts — cybersecurity-pro Plugin
 
-Manual functional tests for all 15 domains. Run each prompt in a Claude Code session with the plugin installed, then verify against the checklist.
+Manual functional tests for all 16 domains. Run each prompt in a Claude Code session with the plugin installed, then verify against the checklist.
 
 ## Prerequisites
 
@@ -337,6 +337,27 @@ Create container hardening guide with Trivy scanning and SBOM generation
 
 ---
 
+## Domain 16: Cross-Domain Integration
+
+**Test Prompt:**
+
+```
+ออกแบบ end-to-end security workflow ตั้งแต่ threat intelligence ถึง incident response พร้อม SOAR orchestration
+```
+
+**Pass Criteria:**
+
+- [ ] Multiple domains referenced (at least 3 domain numbers: D1, D4, D15, etc.)
+- [ ] Data flow diagram or workflow visualization (ASCII or structured)
+- [ ] SOAR playbook template with cross-domain handoff steps
+- [ ] Data exchange table showing what flows between domains
+- [ ] MITRE ATT&CK technique IDs flowing across boundaries
+- [ ] SLA/time markers for cross-domain handoffs
+- [ ] NIST CSF 2.0 function mapping (Identify/Protect/Detect/Respond/Recover)
+- [ ] Integration checklist or handoff checklist
+
+---
+
 ## Quick Regression Test
 
 For rapid regression after plugin updates, test these 4 prompts (covers Thai, English, mixed, and new domains):
@@ -348,8 +369,9 @@ For rapid regression after plugin updates, test these 4 prompts (covers Thai, En
 5. `สร้าง API security assessment ตาม OWASP API Top 10 พร้อม JWT validation checklist`
 6. `สร้าง vulnerability prioritization matrix ด้วย CVSS+EPSS+KEV พร้อม SLA templates`
 7. `สร้าง threat intelligence program ด้วย STIX/TAXII พร้อม MISP integration`
+8. `ออกแบบ end-to-end security workflow แบบ cross-domain พร้อม SOAR orchestration template`
 
-Minimum pass: all 4 produce structured bilingual output with framework references.
+Minimum pass: all prompts produce structured bilingual output with framework references.
 
 ---
 

@@ -1,8 +1,8 @@
 # cybersecurity-pro
 
-**Professional Cybersecurity Skill for Claude Code** | v3.2.0
+**Professional Cybersecurity Skill for Claude Code** | v3.3.0
 
-สกิลระดับมืออาชีพสำหรับ Cybersecurity Operations — ครอบคลุม 15 domains ตั้งแต่ Incident Response ถึง Threat Intelligence พร้อม output แบบ bilingual (Thai + English)
+สกิลระดับมืออาชีพสำหรับ Cybersecurity Operations — ครอบคลุม 16 domains ตั้งแต่ Incident Response ถึง Cross-Domain Integration พร้อม output แบบ bilingual (Thai + English)
 
 ---
 
@@ -31,13 +31,13 @@ User prompt → keyword match in SKILL.md frontmatter
   → Output generated following templates in reference file
 ```
 
-**On-demand loading**: มี 15 domains แต่โหลดแค่ 1 ต่อ request
+**On-demand loading**: มี 16 domains แต่โหลดแค่ 1 ต่อ request
 
 | Component                | Tokens       | เมื่อไหร่โหลด (When Loaded)   |
 | ------------------------ | ------------ | ----------------------------- |
-| SKILL.md (router)        | ~3,000       | ทุก request ที่ trigger skill |
-| Reference file (1 of 15) | ~3,000-5,000 | เฉพาะ domain ที่ต้องการ       |
-| **Max per request**      | **~8,000**   | **< 4% ของ 200K context**     |
+| SKILL.md (router)        | ~3,200       | ทุก request ที่ trigger skill |
+| Reference file (1 of 16) | ~3,000-5,000 | เฉพาะ domain ที่ต้องการ       |
+| **Max per request**      | **~8,200**   | **< 5% ของ 200K context**     |
 
 ---
 
@@ -100,7 +100,7 @@ claude doctor
 
 ---
 
-## Capabilities (ความสามารถ — 15 Domains)
+## Capabilities (ความสามารถ — 16 Domains)
 
 ### Security Operations
 
@@ -141,6 +141,12 @@ claude doctor
 | Domain                  | คำอธิบาย                                                                       | Frameworks                                  | Trigger Keywords                                                 |
 | ----------------------- | ------------------------------------------------------------------------------ | ------------------------------------------- | ---------------------------------------------------------------- |
 | **Threat Intelligence** | TI program design, STIX/TAXII integration, IOC lifecycle, intelligence sharing | STIX 2.1, TAXII 2.1, TLP 2.0, Diamond Model | `threat intelligence`, `STIX`, `TAXII`, `IOC`, `MISP`, `OpenCTI` |
+
+### Cross-Domain Integration
+
+| Domain                       | คำอธิบาย                                                                              | Frameworks                          | Trigger Keywords                                                         |
+| ---------------------------- | ------------------------------------------------------------------------------------- | ----------------------------------- | ------------------------------------------------------------------------ |
+| **Cross-Domain Integration** | End-to-end security workflows, SOAR orchestration, multi-domain integration scenarios | NIST CSF 2.0, All domain frameworks | `cross-domain`, `integration`, `end-to-end`, `workflow`, `orchestration` |
 
 ### Frameworks & Standards
 
@@ -267,18 +273,25 @@ outputs ทั้งหมดอ้างอิง frameworks เหล่าน
   รวม MISP setup, IOC lifecycle management, และ TLP 2.0 sharing procedures
 ```
 
+### Cross-Domain Integration
+
+```
+> ออกแบบ end-to-end security workflow ตั้งแต่ threat intelligence ถึง incident response
+  พร้อม SOAR orchestration template และ cross-domain metrics dashboard
+```
+
 ---
 
 ## Token Budget & Performance (งบประมาณ Token)
 
 | Component                   | Tokens       | หมายเหตุ                              |
 | --------------------------- | ------------ | ------------------------------------- |
-| SKILL.md (always loaded)    | ~3,000       | Router + language policy + frameworks |
+| SKILL.md (always loaded)    | ~3,200       | Router + language policy + frameworks |
 | Reference file (per domain) | ~3,000-5,000 | โหลดเฉพาะ domain ที่ trigger          |
-| **Max per request**         | **~8,000**   | **SKILL.md + 1 reference file**       |
-| Total all files             | ~65,000      | ไม่โหลดทั้งหมดพร้อมกัน                |
+| **Max per request**         | **~8,200**   | **SKILL.md + 1 reference file**       |
+| Total all files             | ~72,000      | ไม่โหลดทั้งหมดพร้อมกัน                |
 
-เปรียบเทียบกับ context window 200K tokens: plugin ใช้ < 4% แม้ request ที่หนักที่สุด
+เปรียบเทียบกับ context window 200K tokens: plugin ใช้ < 5% แม้ request ที่หนักที่สุด
 
 ---
 
@@ -304,7 +317,7 @@ outputs ทั้งหมดอ้างอิง frameworks เหล่าน
 claude-cybersecurity-skill/
 ├── .claude-plugin/
 │   ├── marketplace.json          # Marketplace metadata
-│   └── plugin.json               # Plugin metadata (v3.2.0)
+│   └── plugin.json               # Plugin metadata (v3.3.0)
 ├── skills/
 │   └── cybersecurity-pro/
 │       ├── SKILL.md              # Skill definition & decision tree
@@ -323,7 +336,8 @@ claude-cybersecurity-skill/
 │           ├── ai-ml-security.md            # AI/ML/LLM Security/MITRE ATLAS
 │           ├── api-security.md              # OWASP API Top 10/JWT/OAuth/Gateway
 │           ├── vulnerability-management.md  # CVSS/EPSS/KEV/Patch Management
-│           └── threat-intelligence.md       # STIX/TAXII/IOC/TLP/MISP/OpenCTI
+│           ├── threat-intelligence.md       # STIX/TAXII/IOC/TLP/MISP/OpenCTI
+│           └── cross-domain-integration.md # End-to-end workflows/orchestration
 ├── docs/
 │   ├── INSTALL.md                # Installation guide
 │   └── TROUBLESHOOTING.md       # Troubleshooting guide
@@ -341,11 +355,11 @@ claude-cybersecurity-skill/
 | **Plugin name** | `cybersecurity-pro`                       |
 | **Marketplace** | `pitimon-cybersecurity`                   |
 | **Install key** | `cybersecurity-pro@pitimon-cybersecurity` |
-| **Version**     | 3.2.0                                     |
+| **Version**     | 3.3.0                                     |
 | **Category**    | Security                                  |
 | **Author**      | somapa                                    |
 | **Language**    | Bilingual Thai + English                  |
-| **Domains**     | 15                                        |
+| **Domains**     | 16                                        |
 
 ---
 

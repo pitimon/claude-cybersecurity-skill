@@ -1,7 +1,7 @@
 {
   "name": "cybersecurity-pro",
-  "version": "3.2.0",
-  "description": "Professional cybersecurity skill: 15 domains covering IR, DFIR, DevSecOps, SOC+SOAR, GitOps, Code Security, Container/Supply Chain, Threat Modeling, Compliance Frameworks, Cloud Security & CSPM, Zero Trust Architecture, AI/ML Security, API Security, Vulnerability Management, and Threat Intelligence. Bilingual Thai+English output.",
+  "version": "3.3.0",
+  "description": "Professional cybersecurity skill: 16 domains covering IR, DFIR, DevSecOps, SOC+SOAR, GitOps, Code Security, Container/Supply Chain, Threat Modeling, Compliance Frameworks, Cloud Security & CSPM, Zero Trust Architecture, AI/ML Security, API Security, Vulnerability Management, Threat Intelligence, and Cross-Domain Integration. Bilingual Thai+English output.",
   "author": {
     "name": "somapa"
   },
@@ -43,7 +43,10 @@
     "stix",
     "taxii",
     "ioc",
-    "misp"
+    "misp",
+    "cross-domain",
+    "integration",
+    "security-workflow"
   ],
   "skills": "./skills/"
 }
