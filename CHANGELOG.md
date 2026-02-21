@@ -10,7 +10,48 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Planned
 
 - Threat Intelligence integration templates (STIX/TAXII)
-- Cloud security incident playbooks (AWS, GCP, Azure)
+- API Security domain (OWASP API Top 10, OAuth 2.0 BCP)
+- Vulnerability Management & Prioritization domain (CVSS v4.0, EPSS, CISA KEV)
+
+## [3.0.0] - 2026-02-21
+
+### Added
+
+- **Cloud Security & CSPM** (Domain 10) — Comprehensive cloud security audit and hardening
+  - Shared responsibility model with multi-cloud comparison (AWS/Azure/GCP)
+  - IAM policy templates and least privilege patterns
+  - Cloud storage security checklists (S3/Blob/GCS)
+  - CSPM tool configurations (Prowler, ScoutSuite, Cloud Custodian, Checkov)
+  - Cloud audit logging setup (CloudTrail, Azure Monitor, GCP Audit Logs)
+  - Infrastructure as Code security scanning (Terraform, CloudFormation)
+  - Frameworks: CIS Cloud Benchmarks, CSA CCM v4, NIST 800-144, AWS Well-Architected
+
+- **Zero Trust Architecture** (Domain 11) — Zero Trust implementation and maturity assessment
+  - NIST SP 800-207 framework coverage (7 tenets, 3 deployment approaches)
+  - 5 pillars: Identity, Device, Network, Application/Workload, Data
+  - CISA Zero Trust Maturity Model (Traditional→Initial→Advanced→Optimal)
+  - Microsegmentation and ZTNA migration patterns
+  - Conditional access and service mesh configurations
+  - Phase-by-phase implementation roadmap with KPIs
+  - Frameworks: NIST 800-207, CISA ZT Maturity Model, Forrester ZTX
+
+- **AI/ML Security** (Domain 12) — AI and LLM security assessment and governance
+  - OWASP Top 10 for LLM Applications with detection and mitigation templates
+  - Prompt injection defense patterns (direct/indirect, multi-layer defense)
+  - MITRE ATLAS threat mapping for AI-specific attacks
+  - NIST AI Risk Management Framework (Govern, Map, Measure, Manage)
+  - EU AI Act risk classification and compliance requirements
+  - ML-BOM (Machine Learning Bill of Materials) templates
+  - AI red teaming methodology and automated testing tools
+  - AI incident response playbook adapted from IR domain
+  - Frameworks: OWASP LLM Top 10, NIST AI RMF, MITRE ATLAS, EU AI Act, ISO 42001
+
+### Changed
+
+- **SKILL.md** expanded from 9 to 12 domains with updated frontmatter, frameworks table, and decision tree
+- **plugin.json** and **marketplace.json** bumped to v3.0.0 with expanded keywords
+- **README.md** updated: capabilities tables, repo structure, token budget, version, usage examples
+- **CLAUDE.md** updated to reflect 12-domain architecture
 
 ## [2.1.0] - 2026-02-21
 
@@ -105,7 +146,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Marketplace name standardized from `somapa-cybersecurity` to `pitimon-cybersecurity`
 - Plugin install key format corrected to `cybersecurity-pro@pitimon-cybersecurity`
 
-[Unreleased]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v2.1.0...HEAD
+[Unreleased]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.0.0...HEAD
+[3.0.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v2.1.0...v3.0.0
 [2.1.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v1.0.0...v2.0.0
 [1.0.0]: https://github.com/pitimon/claude-cybersecurity-skill/releases/tag/v1.0.0

@@ -1,6 +1,6 @@
 # Smoke Test Prompts — cybersecurity-pro Plugin
 
-Manual functional tests for all 9 domains. Run each prompt in a Claude Code session with the plugin installed, then verify against the checklist.
+Manual functional tests for all 12 domains. Run each prompt in a Claude Code session with the plugin installed, then verify against the checklist.
 
 ## Prerequisites
 
@@ -211,15 +211,79 @@ Create container hardening guide with Trivy scanning and SBOM generation
 
 ---
 
+## Domain 10: Cloud Security & CSPM
+
+**Test Prompt:**
+
+```
+สร้าง cloud security audit checklist สำหรับ AWS environment ตาม CIS Benchmarks
+```
+
+**Pass Criteria:**
+
+- [ ] Shared responsibility model reference
+- [ ] IAM policy review checklist (least privilege, MFA, key rotation)
+- [ ] S3 bucket security checks (public access, encryption, logging)
+- [ ] Security Group / VPC review items
+- [ ] CSPM tool recommendations (Prowler, ScoutSuite, or equivalent)
+- [ ] CloudTrail logging configuration
+- [ ] CIS AWS Foundations Benchmark controls referenced
+- [ ] Multi-cloud comparison or alternatives mentioned
+
+---
+
+## Domain 11: Zero Trust Architecture
+
+**Test Prompt:**
+
+```
+สร้าง Zero Trust implementation roadmap ตาม NIST 800-207 สำหรับองค์กรขนาดกลาง
+```
+
+**Pass Criteria:**
+
+- [ ] NIST 800-207 tenets referenced
+- [ ] 5 pillars covered: Identity, Device, Network, Application, Data
+- [ ] CISA Zero Trust Maturity Model levels (Traditional→Optimal)
+- [ ] Phase-by-phase implementation timeline
+- [ ] Microsegmentation or ZTNA migration pattern
+- [ ] Conditional access policy template or example
+- [ ] Maturity assessment checklist
+- [ ] KPIs/metrics for measuring Zero Trust progress
+
+---
+
+## Domain 12: AI/ML Security
+
+**Test Prompt:**
+
+```
+สร้าง AI security assessment สำหรับ LLM-based chatbot application
+```
+
+**Pass Criteria:**
+
+- [ ] OWASP LLM Top 10 risks referenced
+- [ ] Prompt injection defense patterns (direct + indirect)
+- [ ] MITRE ATLAS technique mapping
+- [ ] AI governance policy or responsible AI checklist
+- [ ] Model supply chain security considerations
+- [ ] LLM guardrails configuration (input/output filtering)
+- [ ] AI incident response procedures
+- [ ] EU AI Act or NIST AI RMF reference
+
+---
+
 ## Quick Regression Test
 
-For rapid regression after plugin updates, test these 3 prompts (covers Thai, English, and mixed):
+For rapid regression after plugin updates, test these 4 prompts (covers Thai, English, mixed, and new domains):
 
 1. `สร้าง IR playbook สำหรับ phishing incident`
 2. `Create a Semgrep rule to detect hardcoded secrets`
 3. `สร้าง NIST 800-53 gap assessment พร้อม PCI DSS control mapping`
+4. `สร้าง AI security assessment สำหรับ LLM application พร้อม prompt injection defense`
 
-Minimum pass: all 3 produce structured bilingual output with framework references.
+Minimum pass: all 4 produce structured bilingual output with framework references.
 
 ---
 

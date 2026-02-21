@@ -1,8 +1,8 @@
 # cybersecurity-pro
 
-**Professional Cybersecurity Skill for Claude Code** | v2.1.0
+**Professional Cybersecurity Skill for Claude Code** | v3.0.0
 
-สกิลระดับมืออาชีพสำหรับ Cybersecurity Operations — ครอบคลุม 9 domains ตั้งแต่ Incident Response ถึง Compliance Frameworks พร้อม output แบบ bilingual (Thai + English)
+สกิลระดับมืออาชีพสำหรับ Cybersecurity Operations — ครอบคลุม 12 domains ตั้งแต่ Incident Response ถึง AI/ML Security พร้อม output แบบ bilingual (Thai + English)
 
 ---
 
@@ -31,13 +31,13 @@ User prompt → keyword match in SKILL.md frontmatter
   → Output generated following templates in reference file
 ```
 
-**On-demand loading**: มี 9 domains แต่โหลดแค่ 1 ต่อ request
+**On-demand loading**: มี 12 domains แต่โหลดแค่ 1 ต่อ request
 
-| Component               | Tokens       | เมื่อไหร่โหลด (When Loaded)   |
-| ----------------------- | ------------ | ----------------------------- |
-| SKILL.md (router)       | ~2,600       | ทุก request ที่ trigger skill |
-| Reference file (1 of 9) | ~3,000-5,000 | เฉพาะ domain ที่ต้องการ       |
-| **Max per request**     | **~7,600**   | **< 4% ของ 200K context**     |
+| Component                | Tokens       | เมื่อไหร่โหลด (When Loaded)   |
+| ------------------------ | ------------ | ----------------------------- |
+| SKILL.md (router)        | ~3,000       | ทุก request ที่ trigger skill |
+| Reference file (1 of 12) | ~3,000-5,000 | เฉพาะ domain ที่ต้องการ       |
+| **Max per request**      | **~8,000**   | **< 4% ของ 200K context**     |
 
 ---
 
@@ -100,7 +100,7 @@ claude doctor
 
 ---
 
-## Capabilities (ความสามารถ — 9 Domains)
+## Capabilities (ความสามารถ — 12 Domains)
 
 ### Security Operations
 
@@ -126,6 +126,14 @@ claude doctor
 | **Threat Modeling & Risk** | STRIDE/PASTA threat modeling, risk assessment, SOC 2/ISO 27001 quick references | SOC 2, ISO 27001, STRIDE, PASTA, PDPA          | `threat model`, `STRIDE`, `risk assessment`, `SOC 2`, `ISO 27001`         |
 | **Compliance Frameworks**  | Detailed compliance framework assessments, gap analyses, control mappings       | NIST 800-53, PCI DSS v4.0, GDPR, HIPAA, CIS v8 | `NIST 800-53`, `PCI DSS`, `GDPR`, `HIPAA`, `CIS Controls`, `gap analysis` |
 
+### Cloud & Architecture
+
+| Domain                      | คำอธิบาย                                                                             | Frameworks                                          | Trigger Keywords                                                  |
+| --------------------------- | ------------------------------------------------------------------------------------ | --------------------------------------------------- | ----------------------------------------------------------------- |
+| **Cloud Security & CSPM**   | Cloud security audits, IAM policy reviews, CSPM configs สำหรับ AWS/Azure/GCP         | CIS Cloud Benchmarks, CSA CCM v4, NIST 800-144      | `cloud security`, `CSPM`, `AWS security`, `Prowler`, `ScoutSuite` |
+| **Zero Trust Architecture** | Zero Trust maturity assessments, implementation roadmaps, microsegmentation policies | NIST 800-207, CISA ZT Maturity Model, Forrester ZTX | `zero trust`, `ZTA`, `ZTNA`, `NIST 800-207`, `microsegmentation`  |
+| **AI/ML Security**          | AI security assessments, LLM guardrails, AI red team playbooks, AI governance        | OWASP LLM Top 10, NIST AI RMF, MITRE ATLAS          | `AI security`, `LLM security`, `prompt injection`, `MITRE ATLAS`  |
+
 ### Frameworks & Standards
 
 outputs ทั้งหมดอ้างอิง frameworks เหล่านี้ตามความเหมาะสม:
@@ -140,6 +148,12 @@ outputs ทั้งหมดอ้างอิง frameworks เหล่าน
 - **NIST SP 800-53 Rev 5** — Security and privacy control catalog
 - **SOC 2** / **GDPR** / **HIPAA** / **PCI-DSS** — Compliance frameworks
 - **CIS Controls v8** — Prioritized security best practices
+- **CIS Cloud Benchmarks** / **CSA CCM v4** — Cloud security posture
+- **NIST SP 800-207** — Zero Trust Architecture
+- **CISA Zero Trust Maturity Model** — ZTA implementation guidance
+- **OWASP Top 10 for LLM Apps** — AI/LLM application security
+- **NIST AI RMF** / **MITRE ATLAS** — AI risk management & threat landscape
+- **EU AI Act** / **ISO 42001** — AI governance and regulation
 - **พ.ร.บ. ไซเบอร์ 2562** / **PDPA** — Thai cybersecurity & data privacy law
 
 ---
@@ -197,16 +211,37 @@ outputs ทั้งหมดอ้างอิง frameworks เหล่าน
   พร้อม PCI DSS v4.0 control mapping และ CIS Controls roadmap
 ```
 
+### Cloud Security
+
+```
+> ทำ cloud security audit สำหรับ AWS environment
+  ตรวจสอบ IAM policies, S3 buckets, Security Groups ตาม CIS Benchmarks
+```
+
+### Zero Trust
+
+```
+> สร้าง Zero Trust implementation roadmap ตาม NIST 800-207
+  รวม maturity assessment และ microsegmentation plan
+```
+
+### AI/ML Security
+
+```
+> สร้าง AI security assessment สำหรับ LLM application
+  ตรวจสอบ prompt injection defense และ OWASP LLM Top 10 compliance
+```
+
 ---
 
 ## Token Budget & Performance (งบประมาณ Token)
 
 | Component                   | Tokens       | หมายเหตุ                              |
 | --------------------------- | ------------ | ------------------------------------- |
-| SKILL.md (always loaded)    | ~2,600       | Router + language policy + frameworks |
+| SKILL.md (always loaded)    | ~3,000       | Router + language policy + frameworks |
 | Reference file (per domain) | ~3,000-5,000 | โหลดเฉพาะ domain ที่ trigger          |
-| **Max per request**         | **~7,600**   | **SKILL.md + 1 reference file**       |
-| Total all files             | ~38,000      | ไม่โหลดทั้งหมดพร้อมกัน                |
+| **Max per request**         | **~8,000**   | **SKILL.md + 1 reference file**       |
+| Total all files             | ~50,000      | ไม่โหลดทั้งหมดพร้อมกัน                |
 
 เปรียบเทียบกับ context window 200K tokens: plugin ใช้ < 4% แม้ request ที่หนักที่สุด
 
@@ -224,7 +259,7 @@ outputs ทั้งหมดอ้างอิง frameworks เหล่าน
 
 4. **Bilingual output policy** — Thai prose + English terms ไม่ต้องสร้าง 2 versions แยก ลด overhead และ maintain ง่าย
 
-5. **SKILL.md as compact router** — Decision tree ใน < 220 lines ทำหน้าที่เป็น lightweight router ที่เลือก reference file ที่เหมาะสม
+5. **SKILL.md as compact router** — Decision tree ใน < 300 lines ทำหน้าที่เป็น lightweight router ที่เลือก reference file ที่เหมาะสม
 
 ---
 
@@ -234,7 +269,7 @@ outputs ทั้งหมดอ้างอิง frameworks เหล่าน
 claude-cybersecurity-skill/
 ├── .claude-plugin/
 │   ├── marketplace.json          # Marketplace metadata
-│   └── plugin.json               # Plugin metadata (v2.1.0)
+│   └── plugin.json               # Plugin metadata (v3.0.0)
 ├── skills/
 │   └── cybersecurity-pro/
 │       ├── SKILL.md              # Skill definition & decision tree
@@ -247,7 +282,10 @@ claude-cybersecurity-skill/
 │           ├── code-security-analysis.md    # Semgrep/CodeQL/SARIF/Variant
 │           ├── container-supply-chain.md    # Container hardening/SBOM/signing
 │           ├── compliance-threat-modeling.md # STRIDE/PASTA/Risk/SOC2/ISO27001
-│           └── compliance-frameworks.md     # NIST 800-53/PCI DSS/GDPR/HIPAA/CIS
+│           ├── compliance-frameworks.md     # NIST 800-53/PCI DSS/GDPR/HIPAA/CIS
+│           ├── cloud-security-cspm.md       # Cloud Security/IAM/CSPM/Multi-cloud
+│           ├── zero-trust-architecture.md   # ZTA/NIST 800-207/Microsegmentation
+│           └── ai-ml-security.md            # AI/ML/LLM Security/MITRE ATLAS
 ├── docs/
 │   ├── INSTALL.md                # Installation guide
 │   └── TROUBLESHOOTING.md       # Troubleshooting guide
@@ -265,11 +303,11 @@ claude-cybersecurity-skill/
 | **Plugin name** | `cybersecurity-pro`                       |
 | **Marketplace** | `pitimon-cybersecurity`                   |
 | **Install key** | `cybersecurity-pro@pitimon-cybersecurity` |
-| **Version**     | 2.1.0                                     |
+| **Version**     | 3.0.0                                     |
 | **Category**    | Security                                  |
 | **Author**      | somapa                                    |
 | **Language**    | Bilingual Thai + English                  |
-| **Domains**     | 9                                         |
+| **Domains**     | 12                                        |
 
 ---
 

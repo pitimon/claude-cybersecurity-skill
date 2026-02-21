@@ -3,7 +3,8 @@ name: cybersecurity-pro
 description: >
   Generate professional cybersecurity documents: IR playbooks, DFIR forensic reports,
   DevSecOps pipeline configs, SOC L1-L3 triage procedures, GitOps security policies,
-  code security analysis, container/supply chain security, and compliance/threat modeling.
+  code security analysis, container/supply chain security, compliance/threat modeling,
+  cloud security & CSPM, zero trust architecture, and AI/ML security.
   Use when asked about incident response, IR playbook, runbook, SOC triage, alert investigation,
   threat hunting, digital forensics, malware analysis, DFIR, DevSecOps, SAST, DAST, SCA, SBOM,
   CI/CD security, GitOps, security-as-code, vulnerability management, MITRE ATT&CK, NIST 800-61,
@@ -14,8 +15,15 @@ description: >
   SOC 2, ISO 27001, GDPR, HIPAA, PCI-DSS, STRIDE, PASTA, risk assessment, PDPA,
   NIST 800-53, CIS Controls, CIS Benchmarks, gap analysis, control mapping, compliance audit,
   SOAR, security orchestration, automation, post-mortem,
+  cloud security, CSPM, AWS security, Azure security, GCP security, IAM policy, cloud misconfiguration,
+  Prowler, ScoutSuite, CSA CCM, NIST 800-144, CIS Cloud Benchmarks,
+  zero trust, ZTA, ZTNA, NIST 800-207, microsegmentation, SDP, never trust always verify,
+  CISA Zero Trust, conditional access,
+  AI security, LLM security, prompt injection, AI red team, MITRE ATLAS, AI governance,
+  model security, AI risk, EU AI Act, AI RMF, OWASP LLM Top 10, ML-BOM,
   การตอบสนองต่อเหตุการณ์, วิเคราะห์ภัยคุกคาม, ความปลอดภัยไซเบอร์, นิติวิทยาศาสตร์ดิจิทัล,
-  การวิเคราะห์ code, ความปลอดภัย container, การปฏิบัติตามกฎระเบียบ, การจำลองภัยคุกคาม.
+  การวิเคราะห์ code, ความปลอดภัย container, การปฏิบัติตามกฎระเบียบ, การจำลองภัยคุกคาม,
+  ความปลอดภัยบนคลาวด์, สถาปัตยกรรม Zero Trust, ความปลอดภัย AI.
   Outputs bilingual Thai+English documents mapped to NIST, MITRE ATT&CK, OWASP frameworks.
 user-invocable: true
 allowed-tools: Read, Grep, Glob, Write
@@ -23,8 +31,8 @@ allowed-tools: Read, Grep, Glob, Write
 
 # Cybersecurity Pro Skill
 
-สกิลระดับมืออาชีพสำหรับ Cybersecurity Operations ครอบคลุม 9 domains:
-IR, DFIR, DevSecOps, SOC+SOAR, GitOps, Code Security Analysis, Container & Supply Chain, Threat Modeling & Risk, Compliance Frameworks
+สกิลระดับมืออาชีพสำหรับ Cybersecurity Operations ครอบคลุม 12 domains:
+IR, DFIR, DevSecOps, SOC+SOAR, GitOps, Code Security Analysis, Container & Supply Chain, Threat Modeling & Risk, Compliance Frameworks, Cloud Security & CSPM, Zero Trust Architecture, AI/ML Security
 
 ## Language Policy / นโยบายภาษา
 
@@ -44,26 +52,30 @@ Example style:
 
 All outputs MUST reference the appropriate framework(s):
 
-| Domain                 | Primary Framework           | Supporting Standards                |
-| ---------------------- | --------------------------- | ----------------------------------- |
-| Incident Response      | NIST SP 800-61 Rev.2        | ISO 27035, SANS IR Process          |
-| Threat Analysis        | MITRE ATT&CK, MITRE D3FEND  | Cyber Kill Chain, Diamond Model     |
-| DevSecOps              | OWASP SAMM, OWASP Top 10    | CIS Benchmarks, NIST SSDF           |
-| Governance             | NIST CSF 2.0                | ISO 27001:2022, พ.ร.บ. ไซเบอร์ 2562 |
-| Code Security          | CWE Top 25, OWASP Top 10    | SARIF 2.1.0, Semgrep, CodeQL        |
-| Container/Supply Chain | NIST SP 800-190, CIS Docker | SLSA, Sigstore, CycloneDX           |
-| Compliance             | NIST CSF, ISO 27001         | SOC 2, GDPR, HIPAA, PCI-DSS, PDPA   |
-| Compliance Frameworks  | NIST SP 800-53 Rev 5        | PCI DSS v4.0, CIS Controls v8       |
+| Domain                 | Primary Framework                | Supporting Standards                  |
+| ---------------------- | -------------------------------- | ------------------------------------- |
+| Incident Response      | NIST SP 800-61 Rev.2             | ISO 27035, SANS IR Process            |
+| DFIR / Forensics       | Chain of Custody, IOC            | NIST 800-86, SANS DFIR                |
+| Threat Analysis        | MITRE ATT&CK, MITRE D3FEND       | Cyber Kill Chain, Diamond Model       |
+| DevSecOps              | OWASP SAMM, OWASP Top 10         | CIS Benchmarks, NIST SSDF             |
+| Governance             | NIST CSF 2.0                     | ISO 27001:2022, พ.ร.บ. ไซเบอร์ 2562   |
+| Code Security          | CWE Top 25, OWASP Top 10         | SARIF 2.1.0, Semgrep, CodeQL          |
+| Container/Supply Chain | NIST SP 800-190, CIS Docker      | SLSA, Sigstore, CycloneDX             |
+| Threat Modeling & Risk | NIST CSF, ISO 27001, STRIDE      | SOC 2, PASTA, PDPA                    |
+| Compliance Frameworks  | NIST SP 800-53 Rev 5             | PCI DSS v4.0, CIS Controls v8         |
+| Cloud Security & CSPM  | CIS Cloud Benchmarks, CSA CCM v4 | NIST 800-144, AWS Well-Architected    |
+| Zero Trust             | NIST SP 800-207                  | CISA ZT Maturity Model, Forrester ZTX |
+| AI/ML Security         | OWASP LLM Top 10, NIST AI RMF    | MITRE ATLAS, EU AI Act, ISO 42001     |
 
 When producing any output, map actions to relevant framework controls. For incident analysis, always include MITRE ATT&CK Tactic/Technique IDs (e.g., T1566.001).
 
 ## Output Domains
 
-This skill produces outputs across 9 domains. Identify which domain(s) the user needs and read the corresponding reference file BEFORE generating output:
+This skill produces outputs across 12 domains. Identify which domain(s) the user needs and read the corresponding reference file BEFORE generating output:
 
 ### 1. Incident Response Playbooks & Runbooks
 
-→ Read `references/ir-playbooks.md`
+> Read `references/ir-playbooks.md`
 
 Produce structured IR playbooks and operational runbooks for specific incident types.
 Covers: Phishing, Ransomware, Data Breach, DDoS, Insider Threat, Supply Chain Attack,
@@ -71,7 +83,7 @@ Cloud Security Incident, and custom scenarios.
 
 ### 2. Security Analysis Reports & Forensic Reports
 
-→ Read `references/dfir-reports.md`
+> Read `references/dfir-reports.md`
 
 Produce professional forensic investigation reports, threat analysis reports,
 malware analysis reports, and root cause analysis documents.
@@ -80,7 +92,7 @@ memory/disk/network forensics documentation.
 
 ### 3. DevSecOps Pipeline Configs
 
-→ Read `references/devsecops-pipeline.md`
+> Read `references/devsecops-pipeline.md`
 
 Produce security-integrated CI/CD pipeline configurations, security-as-code templates,
 and DevSecOps maturity assessments.
@@ -89,7 +101,7 @@ dependency management, and compliance gates.
 
 ### 4. SOC Triage Procedures & Escalation Workflows
 
-→ Read `references/soc-operations.md`
+> Read `references/soc-operations.md`
 
 Produce SOC operational procedures for L1/L2/L3 analysts, escalation matrices,
 alert handling workflows, and shift handover templates.
@@ -98,7 +110,7 @@ correlation rules, and KPI/metrics dashboards.
 
 ### 5. GitOps Security Workflows
 
-→ Read `references/gitops-security.md`
+> Read `references/gitops-security.md`
 
 Produce GitOps-native security configurations, policy-as-code frameworks,
 and automated security remediation workflows.
@@ -141,6 +153,36 @@ Covers: NIST SP 800-53 Rev 5 (20 control families, impact baselines), PCI DSS v4
 (12 requirements, SAQ decision tree), GDPR (data subject rights, DPIA, breach notification),
 HIPAA (administrative/physical/technical safeguards), CIS Controls v8 (18 control groups, IGs),
 cross-framework mapping tables.
+
+### 10. Cloud Security & CSPM
+
+> Read `references/cloud-security-cspm.md`
+
+Produce cloud security audit checklists, IAM policy reviews, CSPM configurations,
+and cloud hardening guides for AWS, Azure, and GCP environments.
+Covers: Shared responsibility model, IAM policy templates, storage security audits,
+network security controls, CSPM tool configurations (Prowler, ScoutSuite, Cloud Custodian),
+cloud audit logging, IaC security scanning, CIS Cloud Benchmarks compliance.
+
+### 11. Zero Trust Architecture
+
+> Read `references/zero-trust-architecture.md`
+
+Produce Zero Trust maturity assessments, implementation roadmaps, microsegmentation
+policies, and ZTNA migration guides.
+Covers: NIST SP 800-207 framework, 5 pillars (Identity, Device, Network, App, Data),
+CISA Zero Trust Maturity Model, conditional access policies, service mesh configurations,
+identity-aware proxy patterns, ZTA implementation roadmaps.
+
+### 12. AI/ML Security
+
+> Read `references/ai-ml-security.md`
+
+Produce AI security assessments, LLM guardrail configurations, AI red team playbooks,
+and AI governance policy templates.
+Covers: OWASP Top 10 for LLM Applications, prompt injection defense, MITRE ATLAS
+threat mapping, NIST AI Risk Management Framework, EU AI Act compliance, model supply
+chain security (ML-BOM), AI incident response procedures, AI red teaming methodology.
 
 ## General Output Rules
 
@@ -188,6 +230,21 @@ User request
 │   / "gap analysis" / "gap assessment" / "control mapping" / "compliance audit"
 │   / "compliance roadmap" / "compliance framework" / "การปฏิบัติตามกฎระเบียบ"
 │   → Domain 9: Compliance Frameworks (read references/compliance-frameworks.md)
+│
+├── mentions "cloud security" / "CSPM" / "AWS security" / "Azure security" / "GCP security"
+│   / "IAM policy" / "cloud misconfiguration" / "Prowler" / "ScoutSuite" / "CSA CCM"
+│   / "cloud audit" / "cloud hardening" / "ความปลอดภัยบนคลาวด์"
+│   → Domain 10: Cloud Security & CSPM (read references/cloud-security-cspm.md)
+│
+├── mentions "zero trust" / "ZTA" / "ZTNA" / "NIST 800-207" / "microsegmentation"
+│   / "SDP" / "never trust always verify" / "conditional access"
+│   / "สถาปัตยกรรม Zero Trust"
+│   → Domain 11: Zero Trust Architecture (read references/zero-trust-architecture.md)
+│
+├── mentions "AI security" / "LLM security" / "prompt injection" / "AI red team"
+│   / "MITRE ATLAS" / "AI governance" / "model security" / "AI risk" / "EU AI Act"
+│   / "AI RMF" / "OWASP LLM" / "ML-BOM" / "ความปลอดภัย AI"
+│   → Domain 12: AI/ML Security (read references/ai-ml-security.md)
 │
 └── unclear / multiple domains
     → Ask user to clarify, or combine relevant domains
