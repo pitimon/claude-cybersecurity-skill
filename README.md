@@ -1,8 +1,8 @@
 # cybersecurity-pro
 
-**Professional Cybersecurity Skill for Claude Code** | v2.0.0
+**Professional Cybersecurity Skill for Claude Code** | v2.1.0
 
-สกิลระดับมืออาชีพสำหรับ Cybersecurity Operations — ครอบคลุม 8 domains ตั้งแต่ Incident Response ถึง Compliance & Threat Modeling พร้อม output แบบ bilingual (Thai + English)
+สกิลระดับมืออาชีพสำหรับ Cybersecurity Operations — ครอบคลุม 9 domains ตั้งแต่ Incident Response ถึง Compliance Frameworks พร้อม output แบบ bilingual (Thai + English)
 
 ---
 
@@ -31,13 +31,13 @@ User prompt → keyword match in SKILL.md frontmatter
   → Output generated following templates in reference file
 ```
 
-**On-demand loading**: มี 8 domains แต่โหลดแค่ 1 ต่อ request
+**On-demand loading**: มี 9 domains แต่โหลดแค่ 1 ต่อ request
 
 | Component               | Tokens       | เมื่อไหร่โหลด (When Loaded)   |
 | ----------------------- | ------------ | ----------------------------- |
-| SKILL.md (router)       | ~2,400       | ทุก request ที่ trigger skill |
-| Reference file (1 of 8) | ~3,000-5,000 | เฉพาะ domain ที่ต้องการ       |
-| **Max per request**     | **~7,000**   | **< 4% ของ 200K context**     |
+| SKILL.md (router)       | ~2,600       | ทุก request ที่ trigger skill |
+| Reference file (1 of 9) | ~3,000-5,000 | เฉพาะ domain ที่ต้องการ       |
+| **Max per request**     | **~7,600**   | **< 4% ของ 200K context**     |
 
 ---
 
@@ -81,7 +81,7 @@ Skill จะถูก trigger อัตโนมัติเมื่อ prompt 
 
 ---
 
-## Capabilities (ความสามารถ — 8 Domains)
+## Capabilities (ความสามารถ — 9 Domains)
 
 ### Security Operations
 
@@ -101,10 +101,11 @@ Skill จะถูก trigger อัตโนมัติเมื่อ prompt 
 
 ### Governance
 
-| Domain                           | คำอธิบาย                                                             | Frameworks                             | Trigger Keywords                                                |
-| -------------------------------- | -------------------------------------------------------------------- | -------------------------------------- | --------------------------------------------------------------- |
-| **GitOps Security**              | Policy-as-code frameworks สำหรับ ArgoCD, OPA, Falco                  | OPA/Gatekeeper, Falco, ArgoCD          | `GitOps`, `ArgoCD`, `policy-as-code`, `OPA`                     |
-| **Compliance & Threat Modeling** | Compliance assessments, STRIDE/PASTA threat modeling, risk registers | NIST CSF, ISO 27001, SOC 2, GDPR, PDPA | `compliance`, `SOC 2`, `ISO 27001`, `STRIDE`, `risk assessment` |
+| Domain                     | คำอธิบาย                                                                        | Frameworks                                     | Trigger Keywords                                                          |
+| -------------------------- | ------------------------------------------------------------------------------- | ---------------------------------------------- | ------------------------------------------------------------------------- |
+| **GitOps Security**        | Policy-as-code frameworks สำหรับ ArgoCD, OPA, Falco                             | OPA/Gatekeeper, Falco, ArgoCD                  | `GitOps`, `ArgoCD`, `policy-as-code`, `OPA`                               |
+| **Threat Modeling & Risk** | STRIDE/PASTA threat modeling, risk assessment, SOC 2/ISO 27001 quick references | SOC 2, ISO 27001, STRIDE, PASTA, PDPA          | `threat model`, `STRIDE`, `risk assessment`, `SOC 2`, `ISO 27001`         |
+| **Compliance Frameworks**  | Detailed compliance framework assessments, gap analyses, control mappings       | NIST 800-53, PCI DSS v4.0, GDPR, HIPAA, CIS v8 | `NIST 800-53`, `PCI DSS`, `GDPR`, `HIPAA`, `CIS Controls`, `gap analysis` |
 
 ### Frameworks & Standards
 
@@ -117,7 +118,9 @@ outputs ทั้งหมดอ้างอิง frameworks เหล่าน
 - **ISO 27001:2022** / **ISO 27035** — Information security management
 - **CWE Top 25** / **SARIF 2.1.0** — Code vulnerability classification
 - **CIS Docker Benchmark** / **SLSA** — Container & supply chain
+- **NIST SP 800-53 Rev 5** — Security and privacy control catalog
 - **SOC 2** / **GDPR** / **HIPAA** / **PCI-DSS** — Compliance frameworks
+- **CIS Controls v8** — Prioritized security best practices
 - **พ.ร.บ. ไซเบอร์ 2562** / **PDPA** — Thai cybersecurity & data privacy law
 
 ---
@@ -161,11 +164,18 @@ outputs ทั้งหมดอ้างอิง frameworks เหล่าน
   รวม enrichment sources และ containment actions
 ```
 
-### Compliance
+### Threat Modeling
 
 ```
-> สร้าง SOC 2 Type II readiness roadmap 6 เดือน
-  รวม control mapping และ evidence collection plan
+> สร้าง STRIDE threat model สำหรับ web application
+  รวม risk matrix และ SOC 2 compliance mapping
+```
+
+### Compliance Frameworks
+
+```
+> สร้าง NIST 800-53 gap assessment สำหรับ cloud environment
+  พร้อม PCI DSS v4.0 control mapping และ CIS Controls roadmap
 ```
 
 ---
@@ -174,10 +184,10 @@ outputs ทั้งหมดอ้างอิง frameworks เหล่าน
 
 | Component                   | Tokens       | หมายเหตุ                              |
 | --------------------------- | ------------ | ------------------------------------- |
-| SKILL.md (always loaded)    | ~2,400       | Router + language policy + frameworks |
+| SKILL.md (always loaded)    | ~2,600       | Router + language policy + frameworks |
 | Reference file (per domain) | ~3,000-5,000 | โหลดเฉพาะ domain ที่ trigger          |
-| **Max per request**         | **~7,000**   | **SKILL.md + 1 reference file**       |
-| Total all files             | ~33,000      | ไม่โหลดทั้งหมดพร้อมกัน                |
+| **Max per request**         | **~7,600**   | **SKILL.md + 1 reference file**       |
+| Total all files             | ~38,000      | ไม่โหลดทั้งหมดพร้อมกัน                |
 
 เปรียบเทียบกับ context window 200K tokens: plugin ใช้ < 4% แม้ request ที่หนักที่สุด
 
@@ -205,7 +215,7 @@ outputs ทั้งหมดอ้างอิง frameworks เหล่าน
 claude-cybersecurity-skill/
 ├── .claude-plugin/
 │   ├── marketplace.json          # Marketplace metadata
-│   └── plugin.json               # Plugin metadata (v2.0.0)
+│   └── plugin.json               # Plugin metadata (v2.1.0)
 ├── skills/
 │   └── cybersecurity-pro/
 │       ├── SKILL.md              # Skill definition & decision tree
@@ -217,7 +227,8 @@ claude-cybersecurity-skill/
 │           ├── gitops-security.md           # GitOps security policies
 │           ├── code-security-analysis.md    # Semgrep/CodeQL/SARIF/Variant
 │           ├── container-supply-chain.md    # Container hardening/SBOM/signing
-│           └── compliance-threat-modeling.md # SOC2/ISO27001/STRIDE/Risk
+│           ├── compliance-threat-modeling.md # STRIDE/PASTA/Risk/SOC2/ISO27001
+│           └── compliance-frameworks.md     # NIST 800-53/PCI DSS/GDPR/HIPAA/CIS
 ├── docs/
 │   ├── INSTALL.md                # Installation guide
 │   └── TROUBLESHOOTING.md       # Troubleshooting guide
@@ -235,11 +246,11 @@ claude-cybersecurity-skill/
 | **Plugin name** | `cybersecurity-pro`                       |
 | **Marketplace** | `pitimon-cybersecurity`                   |
 | **Install key** | `cybersecurity-pro@pitimon-cybersecurity` |
-| **Version**     | 2.0.0                                     |
+| **Version**     | 2.1.0                                     |
 | **Category**    | Security                                  |
 | **Author**      | somapa                                    |
 | **Language**    | Bilingual Thai + English                  |
-| **Domains**     | 8                                         |
+| **Domains**     | 9                                         |
 
 ---
 

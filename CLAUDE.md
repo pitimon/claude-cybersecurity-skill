@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What This Is
 
-A Claude Code **plugin skill** (`cybersecurity-pro`) distributed via the `pitimon-cybersecurity` marketplace. It generates professional cybersecurity documents (IR playbooks, DFIR reports, DevSecOps configs, SOC procedures, GitOps policies) in bilingual Thai + English format.
+A Claude Code **plugin skill** (`cybersecurity-pro`) distributed via the `pitimon-cybersecurity` marketplace. It generates professional cybersecurity documents (IR playbooks, DFIR reports, DevSecOps configs, SOC procedures, GitOps policies, compliance frameworks) in bilingual Thai + English format.
 
 There are no build, lint, or test commands — this is a pure markdown/JSON skill definition repository.
 
@@ -17,7 +17,7 @@ The plugin system has two layers:
 
 ### How it works at runtime
 
-When a user's prompt matches trigger keywords in `SKILL.md`'s frontmatter, Claude Code loads the skill. The skill's decision tree routes to one of 8 reference files, which provide templates and frameworks for generating output.
+When a user's prompt matches trigger keywords in `SKILL.md`'s frontmatter, Claude Code loads the skill. The skill's decision tree routes to one of 9 reference files, which provide templates and frameworks for generating output.
 
 ```
 User prompt → keyword match in SKILL.md frontmatter
@@ -33,20 +33,21 @@ User prompt → keyword match in SKILL.md frontmatter
 | `.claude-plugin/marketplace.json`          | Marketplace registry entry (name, owner, plugins list)                                       |
 | `.claude-plugin/plugin.json`               | Plugin manifest (name, version, author, skills path)                                         |
 | `skills/cybersecurity-pro/SKILL.md`        | Skill definition: trigger keywords, language policy, frameworks, decision tree, output rules |
-| `skills/cybersecurity-pro/references/*.md` | Domain-specific templates and framework mappings (8 files, one per domain)                   |
+| `skills/cybersecurity-pro/references/*.md` | Domain-specific templates and framework mappings (9 files, one per domain)                   |
 
-### The 8 domains
+### The 9 domains
 
-| Domain                       | Reference file                             | Frameworks                        |
-| ---------------------------- | ------------------------------------------ | --------------------------------- |
-| IR Playbooks                 | `references/ir-playbooks.md`               | NIST 800-61, ISO 27035            |
-| DFIR Reports                 | `references/dfir-reports.md`               | Chain of Custody, IOC, Timeline   |
-| DevSecOps Pipeline           | `references/devsecops-pipeline.md`         | OWASP SAMM/Top 10, CIS            |
-| SOC Operations + SOAR        | `references/soc-operations.md`             | MITRE ATT&CK, Cyber Kill Chain    |
-| GitOps Security              | `references/gitops-security.md`            | OPA/Gatekeeper, Falco, ArgoCD     |
-| Code Security Analysis       | `references/code-security-analysis.md`     | CWE Top 25, SARIF, Semgrep/CodeQL |
-| Container & Supply Chain     | `references/container-supply-chain.md`     | NIST SP 800-190, CIS Docker, SLSA |
-| Compliance & Threat Modeling | `references/compliance-threat-modeling.md` | NIST CSF, ISO 27001, SOC 2, GDPR  |
+| Domain                   | Reference file                             | Frameworks                                |
+| ------------------------ | ------------------------------------------ | ----------------------------------------- |
+| IR Playbooks             | `references/ir-playbooks.md`               | NIST 800-61, ISO 27035                    |
+| DFIR Reports             | `references/dfir-reports.md`               | Chain of Custody, IOC, Timeline           |
+| DevSecOps Pipeline       | `references/devsecops-pipeline.md`         | OWASP SAMM/Top 10, CIS                    |
+| SOC Operations + SOAR    | `references/soc-operations.md`             | MITRE ATT&CK, Cyber Kill Chain            |
+| GitOps Security          | `references/gitops-security.md`            | OPA/Gatekeeper, Falco, ArgoCD             |
+| Code Security Analysis   | `references/code-security-analysis.md`     | CWE Top 25, SARIF, Semgrep/CodeQL         |
+| Container & Supply Chain | `references/container-supply-chain.md`     | NIST SP 800-190, CIS Docker, SLSA         |
+| Threat Modeling & Risk   | `references/compliance-threat-modeling.md` | SOC 2, ISO 27001, STRIDE, PASTA           |
+| Compliance Frameworks    | `references/compliance-frameworks.md`      | NIST 800-53, PCI DSS, GDPR, HIPAA, CIS v8 |
 
 ## Critical Naming Conventions
 

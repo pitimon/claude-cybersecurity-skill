@@ -1,6 +1,6 @@
 # Smoke Test Prompts — cybersecurity-pro Plugin
 
-Manual functional tests for all 8 domains. Run each prompt in a Claude Code session with the plugin installed, then verify against the checklist.
+Manual functional tests for all 9 domains. Run each prompt in a Claude Code session with the plugin installed, then verify against the checklist.
 
 ## Prerequisites
 
@@ -169,12 +169,12 @@ Create container hardening guide with Trivy scanning and SBOM generation
 
 ---
 
-## Domain 8: Compliance & Threat Modeling
+## Domain 8: Threat Modeling & Risk Assessment
 
 **Test Prompt:**
 
 ```
-สร้าง STRIDE threat model พร้อม SOC 2 compliance roadmap
+สร้าง STRIDE threat model สำหรับ web application พร้อม risk assessment matrix
 ```
 
 **Pass Criteria:**
@@ -182,11 +182,32 @@ Create container hardening guide with Trivy scanning and SBOM generation
 - [ ] All 6 STRIDE categories: Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege
 - [ ] Threat-to-mitigation mapping table
 - [ ] Risk matrix (likelihood x impact)
-- [ ] SOC 2 Type II trust service criteria
-- [ ] Compliance roadmap with phases/timeline
+- [ ] SOC 2 or ISO 27001 quick reference
+- [ ] PASTA methodology reference
 - [ ] PDPA (Thai data protection) reference
-- [ ] Control mapping (NIST CSF or ISO 27001)
+- [ ] Risk register template
 - [ ] Data flow diagram or DFD reference
+
+---
+
+## Domain 9: Compliance Frameworks
+
+**Test Prompt:**
+
+```
+สร้าง NIST 800-53 gap assessment สำหรับ cloud environment พร้อม PCI DSS v4.0 control mapping
+```
+
+**Pass Criteria:**
+
+- [ ] NIST 800-53 control families referenced
+- [ ] PCI DSS v4.0 requirements listed
+- [ ] Cross-framework mapping table
+- [ ] Gap assessment template with remediation roadmap
+- [ ] Implementation priority (baselines or Implementation Groups)
+- [ ] CIS Controls reference for quick baseline
+- [ ] Compliance metrics and evidence collection plan
+- [ ] GDPR or HIPAA safeguards if applicable
 
 ---
 
@@ -196,7 +217,7 @@ For rapid regression after plugin updates, test these 3 prompts (covers Thai, En
 
 1. `สร้าง IR playbook สำหรับ phishing incident`
 2. `Create a Semgrep rule to detect hardcoded secrets`
-3. `สร้าง STRIDE threat model สำหรับ web application พร้อม compliance mapping`
+3. `สร้าง NIST 800-53 gap assessment พร้อม PCI DSS control mapping`
 
 Minimum pass: all 3 produce structured bilingual output with framework references.
 

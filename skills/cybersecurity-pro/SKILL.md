@@ -12,6 +12,7 @@ description: >
   Semgrep, CodeQL, SARIF, variant analysis, code scanning, static analysis,
   container security, Trivy, Grype, Dockerfile hardening, image scanning, supply chain, cosign, SLSA,
   SOC 2, ISO 27001, GDPR, HIPAA, PCI-DSS, STRIDE, PASTA, risk assessment, PDPA,
+  NIST 800-53, CIS Controls, CIS Benchmarks, gap analysis, control mapping, compliance audit,
   SOAR, security orchestration, automation, post-mortem,
   การตอบสนองต่อเหตุการณ์, วิเคราะห์ภัยคุกคาม, ความปลอดภัยไซเบอร์, นิติวิทยาศาสตร์ดิจิทัล,
   การวิเคราะห์ code, ความปลอดภัย container, การปฏิบัติตามกฎระเบียบ, การจำลองภัยคุกคาม.
@@ -22,8 +23,8 @@ allowed-tools: Read, Grep, Glob, Write
 
 # Cybersecurity Pro Skill
 
-สกิลระดับมืออาชีพสำหรับ Cybersecurity Operations ครอบคลุม 8 domains:
-IR, DFIR, DevSecOps, SOC+SOAR, GitOps, Code Security Analysis, Container & Supply Chain, Compliance & Threat Modeling
+สกิลระดับมืออาชีพสำหรับ Cybersecurity Operations ครอบคลุม 9 domains:
+IR, DFIR, DevSecOps, SOC+SOAR, GitOps, Code Security Analysis, Container & Supply Chain, Threat Modeling & Risk, Compliance Frameworks
 
 ## Language Policy / นโยบายภาษา
 
@@ -52,12 +53,13 @@ All outputs MUST reference the appropriate framework(s):
 | Code Security          | CWE Top 25, OWASP Top 10    | SARIF 2.1.0, Semgrep, CodeQL        |
 | Container/Supply Chain | NIST SP 800-190, CIS Docker | SLSA, Sigstore, CycloneDX           |
 | Compliance             | NIST CSF, ISO 27001         | SOC 2, GDPR, HIPAA, PCI-DSS, PDPA   |
+| Compliance Frameworks  | NIST SP 800-53 Rev 5        | PCI DSS v4.0, CIS Controls v8       |
 
 When producing any output, map actions to relevant framework controls. For incident analysis, always include MITRE ATT&CK Tactic/Technique IDs (e.g., T1566.001).
 
 ## Output Domains
 
-This skill produces outputs across 8 domains. Identify which domain(s) the user needs and read the corresponding reference file BEFORE generating output:
+This skill produces outputs across 9 domains. Identify which domain(s) the user needs and read the corresponding reference file BEFORE generating output:
 
 ### 1. Incident Response Playbooks & Runbooks
 
@@ -121,14 +123,24 @@ SBOM generation workflows, and supply chain security checklists.
 Covers: Dockerfile hardening, Trivy/Grype scanning, Syft SBOM generation, cosign image
 signing, runtime SecurityContext, Falco rules, CIS Docker Benchmark compliance.
 
-### 8. Compliance & Threat Modeling
+### 8. Threat Modeling & Risk Assessment
 
 > Read `references/compliance-threat-modeling.md`
 
-Produce compliance framework assessments, threat modeling documents,
-risk assessment reports, and compliance roadmaps.
-Covers: SOC 2 readiness, ISO 27001 ISMS, GDPR DPIA, HIPAA safeguards, PCI-DSS requirements,
-STRIDE threat modeling, PASTA attack trees, risk registers, Thai legal requirements (พ.ร.บ. ไซเบอร์, PDPA).
+Produce threat modeling documents, risk assessment reports, and compliance quick references.
+Covers: SOC 2 readiness, ISO 27001 ISMS, STRIDE threat modeling, PASTA attack trees,
+risk registers, risk matrices, Thai legal requirements (พ.ร.บ. ไซเบอร์, PDPA).
+
+### 9. Compliance Frameworks
+
+> Read `references/compliance-frameworks.md`
+
+Produce detailed compliance framework assessments, gap analyses, control mappings,
+and compliance roadmaps for major regulatory frameworks.
+Covers: NIST SP 800-53 Rev 5 (20 control families, impact baselines), PCI DSS v4.0
+(12 requirements, SAQ decision tree), GDPR (data subject rights, DPIA, breach notification),
+HIPAA (administrative/physical/technical safeguards), CIS Controls v8 (18 control groups, IGs),
+cross-framework mapping tables.
 
 ## General Output Rules
 
@@ -168,9 +180,14 @@ User request
 ├── mentions "container" / "Docker" / "Trivy" / "Grype" / "SBOM" / "image scan" / "supply chain" / "Dockerfile"
 │   → Domain 7: Container & Supply Chain (read references/container-supply-chain.md)
 │
-├── mentions "compliance" / "SOC 2" / "ISO 27001" / "GDPR" / "HIPAA" / "PCI-DSS" / "PDPA"
-│   / "threat model" / "STRIDE" / "risk assessment" / "การปฏิบัติตามกฎระเบียบ"
-│   → Domain 8: Compliance & Threat Modeling (read references/compliance-threat-modeling.md)
+├── mentions "threat model" / "STRIDE" / "PASTA" / "risk assessment" / "risk matrix"
+│   / "SOC 2" / "ISO 27001" / "PDPA" / "การจำลองภัยคุกคาม"
+│   → Domain 8: Threat Modeling & Risk (read references/compliance-threat-modeling.md)
+│
+├── mentions "NIST 800-53" / "PCI DSS" / "PCI-DSS" / "GDPR" / "HIPAA" / "CIS Controls"
+│   / "gap analysis" / "gap assessment" / "control mapping" / "compliance audit"
+│   / "compliance roadmap" / "compliance framework" / "การปฏิบัติตามกฎระเบียบ"
+│   → Domain 9: Compliance Frameworks (read references/compliance-frameworks.md)
 │
 └── unclear / multiple domains
     → Ask user to clarify, or combine relevant domains

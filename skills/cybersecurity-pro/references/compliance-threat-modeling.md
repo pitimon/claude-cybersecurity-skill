@@ -1,61 +1,21 @@
-# Compliance & Threat Modeling Reference
+# Threat Modeling & Risk Assessment Reference
 
-คู่มือ Compliance Frameworks, Threat Modeling และ Risk Assessment
+คู่มือ Threat Modeling, Risk Assessment และ Compliance Quick References (SOC 2, ISO 27001)
+
+> สำหรับ compliance frameworks เชิงลึก (NIST 800-53, PCI DSS, GDPR, HIPAA, CIS Controls) → ดู references/compliance-frameworks.md
 
 ## Table of Contents
 
-1. Compliance Framework Selection Guide
-2. SOC 2 Quick Reference
-3. ISO 27001 Quick Reference
-4. GDPR Quick Reference
-5. HIPAA & PCI-DSS Quick Reference
-6. STRIDE Threat Modeling
-7. PASTA & Attack Trees
-8. Risk Assessment
-9. Thai Legal Context
-10. Security Metrics & KPIs
+1. SOC 2 Quick Reference
+2. ISO 27001 Quick Reference
+3. STRIDE Threat Modeling
+4. PASTA & Attack Trees
+5. Risk Assessment
+6. Thai Legal Context
 
 ---
 
-## 1. การเลือก Compliance Framework (Compliance Framework Selection Guide)
-
-```
-องค์กรประเภทไหน?
-
-├── SaaS / Cloud Service Provider
-│   ├── ขายให้ enterprise? → SOC 2 Type II (จำเป็น)
-│   ├── ลูกค้าต่างประเทศ? → ISO 27001 (แนะนำอย่างยิ่ง)
-│   ├── จัดการข้อมูลสุขภาพ? → HIPAA + HITRUST
-│   └── จัดการข้อมูลบัตรเครดิต? → PCI-DSS
-│
-├── Healthcare Provider
-│   ├── ในสหรัฐ → HIPAA (จำเป็น)
-│   └── ระดับสากล → HIPAA + GDPR
-│
-├── Financial Services
-│   ├── ในสหรัฐ → GLBA, SOX (ถ้าเป็น public)
-│   ├── รับชำระเงิน → PCI-DSS (จำเป็น)
-│   └── ระดับสากล → ISO 27001
-│
-├── E-commerce / Retail
-│   ├── รับบัตรเครดิต → PCI-DSS (จำเป็น)
-│   ├── ลูกค้า EU → GDPR (จำเป็น)
-│   └── ขาย B2B → SOC 2 Type II
-│
-├── องค์กรในประเทศไทย
-│   ├── CII (Critical Information Infrastructure) → พ.ร.บ. ไซเบอร์ 2562
-│   ├── จัดการข้อมูลส่วนบุคคล → PDPA (พ.ร.บ. คุ้มครองข้อมูลส่วนบุคคล)
-│   └── ต้องการ certification สากล → ISO 27001
-│
-└── Multi-Framework Strategy
-    ├── เริ่มจาก: SOC 2 หรือ ISO 27001 (เลือกเป็น foundation)
-    ├── เพิ่ม: Data privacy (GDPR, PDPA) ตามความจำเป็น
-    └── Layer on: Industry-specific requirements
-```
-
----
-
-## 2. SOC 2 Quick Reference
+## 1. SOC 2 Quick Reference
 
 ### Trust Service Criteria (TSC)
 
@@ -101,7 +61,7 @@
 
 ---
 
-## 3. ISO 27001 Quick Reference
+## 2. ISO 27001 Quick Reference
 
 ### PDCA Cycle (Plan-Do-Check-Act)
 
@@ -144,111 +104,7 @@
 
 ---
 
-## 4. GDPR Quick Reference
-
-### หลักการสำคัญ 7 ข้อ (7 Principles)
-
-| หลักการ (Principle)                | คำอธิบาย (Description)                  |
-| ---------------------------------- | --------------------------------------- |
-| Lawfulness, fairness, transparency | ประมวลผลอย่างถูกกฎหมาย เป็นธรรม โปร่งใส |
-| Purpose limitation                 | เก็บเฉพาะวัตถุประสงค์ที่แจ้งไว้         |
-| Data minimisation                  | เก็บเท่าที่จำเป็น                       |
-| Accuracy                           | ข้อมูลต้องถูกต้อง เป็นปัจจุบัน          |
-| Storage limitation                 | เก็บไม่นานเกินจำเป็น                    |
-| Integrity and confidentiality      | ปกป้องด้วยมาตรการรักษาความปลอดภัย       |
-| Accountability                     | พิสูจน์ได้ว่าปฏิบัติตาม                 |
-
-### Legal Bases สำหรับการประมวลผล
-
-| Legal Basis          | ใช้เมื่อ (Use When)                                 |
-| -------------------- | --------------------------------------------------- |
-| Consent              | ขอ consent ชัดเจน, ถอนได้                           |
-| Contract             | จำเป็นต่อการทำสัญญา                                 |
-| Legal obligation     | กฎหมายบังคับ                                        |
-| Vital interests      | จำเป็นต่อชีวิต                                      |
-| Public interest      | ภารกิจสาธารณะ                                       |
-| Legitimate interests | ประโยชน์โดยชอบ (ต้อง balance กับสิทธิ data subject) |
-
-### Data Protection Impact Assessment (DPIA)
-
-ต้องทำ DPIA เมื่อ:
-
-- Automated decision-making / profiling
-- Large-scale processing of special category data
-- Systematic monitoring of public area
-
-```markdown
-## DPIA Template
-
-### 1. คำอธิบายการประมวลผล (Processing Description)
-
-- วัตถุประสงค์: [purpose]
-- ข้อมูลที่ประมวลผล: [data categories]
-- Data subjects: [who]
-- Retention period: [how long]
-
-### 2. ความจำเป็นและสัดส่วน (Necessity & Proportionality)
-
-- Legal basis: [basis]
-- Data minimization measures: [measures]
-
-### 3. การประเมินความเสี่ยง (Risk Assessment)
-
-| ความเสี่ยง (Risk) | โอกาส (Likelihood) | ผลกระทบ (Impact) | มาตรการ (Mitigation) |
-| ----------------- | ------------------ | ---------------- | -------------------- |
-
-### 4. มาตรการรักษาความปลอดภัย (Security Measures)
-
-[technical and organizational measures]
-```
-
-### Breach Notification — กฎ 72 ชั่วโมง
-
-เมื่อเกิด data breach:
-
-1. **แจ้ง Supervisory Authority**: ภายใน 72 ชั่วโมง (เว้นแต่ไม่กระทบสิทธิ data subjects)
-2. **แจ้ง Data Subjects**: "without undue delay" ถ้ามีความเสี่ยงสูง
-3. **Document**: บันทึกทุก breach รวมทั้งที่ไม่ต้องแจ้ง
-
----
-
-## 5. HIPAA & PCI-DSS Quick Reference
-
-### HIPAA — Protected Health Information (PHI)
-
-**Safeguards ที่ต้องมี:**
-
-| ประเภท (Type)  | ตัวอย่าง Controls                                     |
-| -------------- | ----------------------------------------------------- |
-| Administrative | Risk analysis, workforce training, BAA with vendors   |
-| Physical       | Facility access controls, workstation security        |
-| Technical      | Access control, audit controls, encryption, integrity |
-
-**Breach Notification**: แจ้ง HHS ภายใน 60 วัน, แจ้ง individuals "without unreasonable delay"
-
-### PCI-DSS — 12 Requirements (Condensed)
-
-| Req # | คำอธิบาย (Description)                                               |
-| ----- | -------------------------------------------------------------------- |
-| 1-2   | Build and maintain secure network (firewall, no default credentials) |
-| 3-4   | Protect cardholder data (encryption at rest + in transit)            |
-| 5-6   | Maintain vulnerability management (anti-malware, secure development) |
-| 7-9   | Implement access control (need-to-know, unique IDs, physical access) |
-| 10-11 | Monitor and test (logging, regular testing)                          |
-| 12    | Maintain security policy                                             |
-
-**PCI-DSS Levels by Transaction Volume:**
-
-| Level   | จำนวน Transactions/ปี | ข้อกำหนด             |
-| ------- | --------------------- | -------------------- |
-| Level 1 | > 6 million           | On-site audit (QSA)  |
-| Level 2 | 1-6 million           | SAQ + quarterly scan |
-| Level 3 | 20K-1 million         | SAQ + quarterly scan |
-| Level 4 | < 20K                 | SAQ recommended      |
-
----
-
-## 6. STRIDE Threat Modeling
+## 3. STRIDE Threat Modeling
 
 ### STRIDE Categories
 
@@ -318,7 +174,7 @@ E - Elevation of Privilege
 
 ---
 
-## 7. PASTA & Attack Trees
+## 4. PASTA & Attack Trees
 
 ### PASTA (Process for Attack Simulation and Threat Analysis)
 
@@ -359,7 +215,7 @@ OR node: children ใดก็ได้สำเร็จ (default)
 
 ---
 
-## 8. Risk Assessment (การประเมินความเสี่ยง)
+## 5. Risk Assessment (การประเมินความเสี่ยง)
 
 ### 5x5 Risk Matrix
 
@@ -416,7 +272,7 @@ Risk Response Options:
 
 ---
 
-## 9. บริบทกฎหมายไทย (Thai Legal Context)
+## 6. บริบทกฎหมายไทย (Thai Legal Context)
 
 ### พ.ร.บ. การรักษาความมั่นคงปลอดภัยไซเบอร์ พ.ศ. 2562
 
@@ -435,35 +291,3 @@ Risk Response Options:
 | สิทธิของเจ้าของข้อมูล | เข้าถึง, แก้ไข, ลบ, โอนย้าย, คัดค้าน                                |
 | Breach notification   | ต้องแจ้ง สคส. ภายใน 72 ชั่วโมง, แจ้งเจ้าของข้อมูลถ้ามีความเสี่ยงสูง |
 | บทลงโทษ               | ปรับสูงสุด 5 ล้านบาท, จำคุกไม่เกิน 1 ปี                             |
-
----
-
-## 10. Security Metrics & KPIs (ตัวชี้วัดความปลอดภัย)
-
-### Compliance Metrics
-
-| Metric                     | คำอธิบาย (Description)                 | เป้าหมาย (Target) |
-| -------------------------- | -------------------------------------- | ----------------- |
-| Control Effectiveness Rate | % ของ controls ที่ operate effectively | > 95%             |
-| Audit Finding Closure Rate | % ของ audit findings ที่ปิดตาม SLA     | > 90%             |
-| Policy Acknowledgment Rate | % ของพนักงานที่ acknowledge policies   | 100%              |
-| Training Completion Rate   | % ของพนักงานที่ผ่าน security training  | > 95%             |
-
-### Risk & Vulnerability Metrics
-
-| Metric                        | คำอธิบาย (Description)                      | เป้าหมาย (Target)                 |
-| ----------------------------- | ------------------------------------------- | --------------------------------- |
-| Open Critical/High Risks      | จำนวน risks ระดับ Critical/High ที่เปิดอยู่ | 0 Critical, < 5 High              |
-| Mean Time to Remediate        | เวลาเฉลี่ยในการแก้ไข vulnerability          | Critical: < 48 hr, High: < 7 days |
-| Patch Compliance Rate         | % ของระบบที่ patch ตาม SLA                  | > 95%                             |
-| Vulnerability Recurrence Rate | % ของ vulnerabilities ที่เกิดซ้ำ            | < 5%                              |
-
-### SRE-Inspired Security KPIs
-
-| Metric                        | คำอธิบาย (Description)                        | เป้าหมาย (Target)                    |
-| ----------------------------- | --------------------------------------------- | ------------------------------------ |
-| Security Control Availability | Uptime ของ security controls (WAF, SIEM, EDR) | > 99.9%                              |
-| Detection Coverage SLO        | % ของ MITRE ATT&CK techniques ที่มี detection | > 80%                                |
-| Patching SLO                  | % ของ critical patches applied ภายใน SLA      | > 95%                                |
-| MTTR by Severity              | Mean time to remediate แยกตาม severity        | Critical: 24h, High: 7d, Medium: 30d |
-| False Positive Error Budget   | อัตรา false positive ที่ยอมรับได้             | < 30% (ถ้าเกิน = ต้อง tune rules)    |

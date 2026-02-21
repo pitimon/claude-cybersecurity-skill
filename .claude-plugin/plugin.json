@@ -1,7 +1,7 @@
 {
   "name": "cybersecurity-pro",
-  "version": "2.0.0",
-  "description": "Professional cybersecurity skill: 8 domains covering IR, DFIR, DevSecOps, SOC+SOAR, GitOps, Code Security, Container/Supply Chain, and Compliance/Threat Modeling. Bilingual Thai+English output.",
+  "version": "2.1.0",
+  "description": "Professional cybersecurity skill: 9 domains covering IR, DFIR, DevSecOps, SOC+SOAR, GitOps, Code Security, Container/Supply Chain, Threat Modeling, and Compliance Frameworks. Bilingual Thai+English output.",
   "author": {
     "name": "somapa"
   },
@@ -22,7 +22,12 @@
     "compliance",
     "threat-modeling",
     "supply-chain",
-    "soar"
+    "soar",
+    "nist-800-53",
+    "pci-dss",
+    "cis-controls",
+    "hipaa",
+    "gdpr"
   ],
   "skills": "./skills/"
 }

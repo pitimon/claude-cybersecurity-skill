@@ -148,7 +148,7 @@ fi
 # ============================================================
 section "3. File Integrity"
 
-# 3.1 All 8 reference files exist and are non-trivial (>100 lines)
+# 3.1 All 9 reference files exist and are non-trivial (>100 lines)
 EXPECTED_REFS=(
   ir-playbooks.md
   dfir-reports.md
@@ -158,6 +158,7 @@ EXPECTED_REFS=(
   code-security-analysis.md
   container-supply-chain.md
   compliance-threat-modeling.md
+  compliance-frameworks.md
 )
 
 for ref in "${EXPECTED_REFS[@]}"; do
@@ -197,7 +198,7 @@ sys.exit(1)
   fi
 done
 
-# 3.3 Decision tree references all 8 files
+# 3.3 Decision tree references all 9 files
 section "3.3 Decision Tree References"
 
 for ref in "${EXPECTED_REFS[@]}"; do
@@ -292,10 +293,10 @@ print(entry.get('source', {}).get('source', ''))
       CACHE_REFS_DIR="$CACHE_VERSION_DIR/skills/cybersecurity-pro/references"
       if [[ -d "$CACHE_REFS_DIR" ]]; then
         cache_ref_count=$(ls -1 "$CACHE_REFS_DIR"/*.md 2>/dev/null | wc -l | tr -d ' ')
-        if (( cache_ref_count >= 8 )); then
+        if (( cache_ref_count >= 9 )); then
           pass "Cache has all $cache_ref_count reference files"
         else
-          fail "Cache has only $cache_ref_count reference files (expected 8)"
+          fail "Cache has only $cache_ref_count reference files (expected 9)"
         fi
       else
         fail "Cache missing references directory"

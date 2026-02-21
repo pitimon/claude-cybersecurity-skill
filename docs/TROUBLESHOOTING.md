@@ -175,8 +175,8 @@ Plugin ติดตั้งสำเร็จ, `claude doctor` ผ่าน, �
    ```
 
 2. **ใช้ trigger keywords ที่ตรง** -- skill จะ trigger เมื่อ prompt มีคำเหล่านี้:
-   - English: `incident response`, `IR playbook`, `runbook`, `SOC triage`, `threat hunting`, `digital forensics`, `DFIR`, `DevSecOps`, `SAST`, `DAST`, `GitOps`, `MITRE ATT&CK`, `NIST 800-61`
-   - Thai: `การตอบสนองต่อเหตุการณ์`, `วิเคราะห์ภัยคุกคาม`, `ความปลอดภัยไซเบอร์`, `นิติวิทยาศาสตร์ดิจิทัล`
+   - English: `incident response`, `IR playbook`, `runbook`, `SOC triage`, `threat hunting`, `digital forensics`, `DFIR`, `DevSecOps`, `SAST`, `DAST`, `GitOps`, `MITRE ATT&CK`, `NIST 800-61`, `NIST 800-53`, `CIS Controls`, `PCI DSS`, `gap assessment`, `gap analysis`
+   - Thai: `การตอบสนองต่อเหตุการณ์`, `วิเคราะห์ภัยคุกคาม`, `ความปลอดภัยไซเบอร์`, `นิติวิทยาศาสตร์ดิจิทัล`, `การปฏิบัติตามกฎระเบียบ`
 
 3. **ตรวจสอบ SKILL.md** -- ดูว่า skill definition ถูกต้อง:
    ```bash

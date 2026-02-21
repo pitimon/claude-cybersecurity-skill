@@ -12,6 +12,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Threat Intelligence integration templates (STIX/TAXII)
 - Cloud security incident playbooks (AWS, GCP, Azure)
 
+## [2.1.0] - 2026-02-21
+
+### Added
+
+- **Compliance Frameworks** (Domain 9) — Dedicated reference for 5 major compliance frameworks
+  - NIST SP 800-53 Rev 5: 20 control families, impact baselines, tailoring guidance
+  - PCI DSS v4.0: 12 requirements, v3.2.1→v4.0 migration, SAQ decision tree
+  - GDPR (expanded): 8 data subject rights, DPIA process, 72h breach notification
+  - HIPAA (expanded): Administrative/Physical/Technical safeguards, breach notification
+  - CIS Controls v8: 18 control groups, Implementation Groups (IG1/IG2/IG3)
+  - Cross-framework mapping table across all 5 frameworks
+
+### Changed
+
+- **Domain 8** narrowed to "Threat Modeling & Risk Assessment" (SOC 2, ISO 27001, STRIDE, PASTA)
+- **SKILL.md** expanded from 8 to 9 domains with split compliance routing
+- **plugin.json** and **marketplace.json** bumped to v2.1.0
+- **README.md** updated: capabilities table, repo structure, token budget, version
+- **CLAUDE.md** updated to reflect 9-domain architecture
+
 ## [2.0.0] - 2026-02-20
 
 ### Added
@@ -85,6 +105,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Marketplace name standardized from `somapa-cybersecurity` to `pitimon-cybersecurity`
 - Plugin install key format corrected to `cybersecurity-pro@pitimon-cybersecurity`
 
-[Unreleased]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v2.1.0...HEAD
+[2.1.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v1.0.0...v2.0.0
 [1.0.0]: https://github.com/pitimon/claude-cybersecurity-skill/releases/tag/v1.0.0
