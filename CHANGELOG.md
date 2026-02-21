@@ -10,8 +10,40 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Planned
 
 - Threat Intelligence integration templates (STIX/TAXII)
-- API Security domain (OWASP API Top 10, OAuth 2.0 BCP)
-- Vulnerability Management & Prioritization domain (CVSS v4.0, EPSS, CISA KEV)
+
+## [3.1.0] - 2026-02-21
+
+### Added
+
+- **API Security** (Domain 13) — Comprehensive API security assessment and hardening
+  - OWASP API Security Top 10 2023 — all 10 risks with detection and mitigation templates
+  - API Authentication Matrix — API Key vs OAuth 2.0 vs mTLS vs JWT comparison
+  - JWT Validation Checklist — algorithm, claims, expiry, key management with code examples
+  - OAuth 2.0 Security Best Practices (RFC 9700) — PKCE, token rotation, redirect validation
+  - API Gateway Security Patterns — Kong configuration templates, mTLS termination
+  - API Inventory & Discovery — OpenAPI validation, shadow API detection, schema drift
+  - API Fuzzing & Security Testing — ZAP, Nuclei, Burp Suite, Postman security tests
+  - API Security CI/CD Pipeline — Spectral linting, SAST, DAST integration
+  - Frameworks: OWASP API Top 10 2023, OAuth 2.0 BCP (RFC 9700), OpenAPI 3.1.0
+
+- **Vulnerability Management & Prioritization** (Domain 14) — End-to-end vulnerability lifecycle
+  - Vulnerability Lifecycle Workflow — discover → assess → prioritize → remediate → verify → report
+  - Scoring & Prioritization — CVSS v4.0, EPSS, CISA KEV, SSVC decision trees
+  - Combined Prioritization Matrix — CVSS + EPSS + KEV workflow with SLA mapping
+  - SLA Templates — severity-based response/remediation SLAs with escalation paths
+  - Scanning Tool Comparison — Nessus, Qualys, OpenVAS, Nuclei, Trivy with command examples
+  - Patch Management Workflow — testing → staging → production, rollback, Ansible automation
+  - Exception & Risk Acceptance — templates for accepted risks, compensating controls
+  - Vulnerability Metrics & Reporting — MTTD, MTTR, SLA compliance, executive dashboards
+  - Frameworks: CVSS v4.0, EPSS, CISA KEV, SSVC 2.0, FIRST VRDX
+
+### Changed
+
+- **SKILL.md** expanded from 12 to 14 domains with updated frontmatter, frameworks table, and decision tree
+- **plugin.json** and **marketplace.json** bumped to v3.1.0 with expanded keywords
+- **README.md** updated: capabilities tables, repo structure, token budget, version, usage examples
+- **CLAUDE.md** updated to reflect 14-domain architecture
+- **validate-plugin.sh** updated to expect 14 reference files
 
 ## [3.0.0] - 2026-02-21
 
@@ -146,7 +178,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Marketplace name standardized from `somapa-cybersecurity` to `pitimon-cybersecurity`
 - Plugin install key format corrected to `cybersecurity-pro@pitimon-cybersecurity`
 
-[Unreleased]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.0.0...HEAD
+[Unreleased]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.1.0...HEAD
+[3.1.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.0.0...v3.1.0
 [3.0.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v2.1.0...v3.0.0
 [2.1.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v1.0.0...v2.0.0

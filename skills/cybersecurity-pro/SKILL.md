@@ -21,6 +21,10 @@ description: >
   CISA Zero Trust, conditional access,
   AI security, LLM security, prompt injection, AI red team, MITRE ATLAS, AI governance,
   model security, AI risk, EU AI Act, AI RMF, OWASP LLM Top 10, ML-BOM,
+  API security, OWASP API, BOLA, API gateway, rate limiting, JWT security, OAuth security,
+  API authentication, API inventory, API fuzzing, ความปลอดภัย API,
+  vulnerability management, CVSS, EPSS, KEV, patch management, vulnerability scan,
+  Nessus, Qualys, vulnerability prioritization, SSVC, การจัดการช่องโหว่,
   การตอบสนองต่อเหตุการณ์, วิเคราะห์ภัยคุกคาม, ความปลอดภัยไซเบอร์, นิติวิทยาศาสตร์ดิจิทัล,
   การวิเคราะห์ code, ความปลอดภัย container, การปฏิบัติตามกฎระเบียบ, การจำลองภัยคุกคาม,
   ความปลอดภัยบนคลาวด์, สถาปัตยกรรม Zero Trust, ความปลอดภัย AI.
@@ -31,7 +35,7 @@ allowed-tools: Read, Grep, Glob, Write
 
 # Cybersecurity Pro Skill
 
-สกิลระดับมืออาชีพสำหรับ Cybersecurity Operations ครอบคลุม 12 domains:
+สกิลระดับมืออาชีพสำหรับ Cybersecurity Operations ครอบคลุม 14 domains:
 IR, DFIR, DevSecOps, SOC+SOAR, GitOps, Code Security Analysis, Container & Supply Chain, Threat Modeling & Risk, Compliance Frameworks, Cloud Security & CSPM, Zero Trust Architecture, AI/ML Security
 
 ## Language Policy / นโยบายภาษา
@@ -66,12 +70,14 @@ All outputs MUST reference the appropriate framework(s):
 | Cloud Security & CSPM  | CIS Cloud Benchmarks, CSA CCM v4 | NIST 800-144, AWS Well-Architected    |
 | Zero Trust             | NIST SP 800-207                  | CISA ZT Maturity Model, Forrester ZTX |
 | AI/ML Security         | OWASP LLM Top 10, NIST AI RMF    | MITRE ATLAS, EU AI Act, ISO 42001     |
+| API Security           | OWASP API Top 10 2023            | OAuth 2.0 BCP (RFC 9700), OpenAPI     |
+| Vulnerability Mgmt     | CVSS v4.0, EPSS                  | CISA KEV, SSVC, FIRST VRDX            |
 
 When producing any output, map actions to relevant framework controls. For incident analysis, always include MITRE ATT&CK Tactic/Technique IDs (e.g., T1566.001).
 
 ## Output Domains
 
-This skill produces outputs across 12 domains. Identify which domain(s) the user needs and read the corresponding reference file BEFORE generating output:
+This skill produces outputs across 14 domains. Identify which domain(s) the user needs and read the corresponding reference file BEFORE generating output:
 
 ### 1. Incident Response Playbooks & Runbooks
 
@@ -184,6 +190,26 @@ Covers: OWASP Top 10 for LLM Applications, prompt injection defense, MITRE ATLAS
 threat mapping, NIST AI Risk Management Framework, EU AI Act compliance, model supply
 chain security (ML-BOM), AI incident response procedures, AI red teaming methodology.
 
+### 13. API Security
+
+> Read `references/api-security.md`
+
+Produce API security assessments, authentication architecture reviews, API gateway
+configurations, and API security testing plans.
+Covers: OWASP API Security Top 10 2023, JWT validation, OAuth 2.0 BCP (RFC 9700),
+API gateway security patterns (Kong/APISIX), API inventory & discovery, API fuzzing,
+API security CI/CD integration.
+
+### 14. Vulnerability Management & Prioritization
+
+> Read `references/vulnerability-management.md`
+
+Produce vulnerability management programs, prioritization frameworks, SLA templates,
+patch management workflows, and vulnerability metrics dashboards.
+Covers: CVSS v4.0 scoring, EPSS exploit prediction, CISA KEV catalog, SSVC decision
+trees, scanning tool configurations (Nessus/Qualys/OpenVAS/Nuclei/Trivy), patch
+management automation, risk acceptance workflows, vulnerability reporting.
+
 ## General Output Rules
 
 1. **Structure**: Use consistent document templates per domain (defined in reference files)
@@ -245,6 +271,16 @@ User request
 │   / "MITRE ATLAS" / "AI governance" / "model security" / "AI risk" / "EU AI Act"
 │   / "AI RMF" / "OWASP LLM" / "ML-BOM" / "ความปลอดภัย AI"
 │   → Domain 12: AI/ML Security (read references/ai-ml-security.md)
+│
+├── mentions "API security" / "OWASP API" / "BOLA" / "API gateway" / "rate limiting"
+│   / "JWT security" / "OAuth security" / "API authentication" / "API inventory"
+│   / "API fuzzing" / "ความปลอดภัย API"
+│   → Domain 13: API Security (read references/api-security.md)
+│
+├── mentions "vulnerability management" / "CVSS" / "EPSS" / "KEV" / "patch management"
+│   / "vulnerability scan" / "Nessus" / "Qualys" / "SSVC" / "vulnerability prioritization"
+│   / "การจัดการช่องโหว่"
+│   → Domain 14: Vulnerability Management (read references/vulnerability-management.md)
 │
 └── unclear / multiple domains
     → Ask user to clarify, or combine relevant domains

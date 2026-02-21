@@ -1,6 +1,6 @@
 # Smoke Test Prompts — cybersecurity-pro Plugin
 
-Manual functional tests for all 12 domains. Run each prompt in a Claude Code session with the plugin installed, then verify against the checklist.
+Manual functional tests for all 14 domains. Run each prompt in a Claude Code session with the plugin installed, then verify against the checklist.
 
 ## Prerequisites
 
@@ -274,6 +274,48 @@ Create container hardening guide with Trivy scanning and SBOM generation
 
 ---
 
+## Domain 13: API Security
+
+**Test Prompt:**
+
+```
+สร้าง API security assessment ตาม OWASP API Top 10 สำหรับ REST API
+```
+
+**Pass Criteria:**
+
+- [ ] OWASP API Security Top 10 2023 risks referenced
+- [ ] BOLA (API1) detection and mitigation covered
+- [ ] JWT validation checklist or code example
+- [ ] OAuth 2.0 best practices (PKCE, token rotation)
+- [ ] Rate limiting and resource consumption controls
+- [ ] API gateway configuration template or recommendations
+- [ ] Security headers (HSTS, X-Content-Type-Options)
+- [ ] API inventory / shadow API detection mentioned
+
+---
+
+## Domain 14: Vulnerability Management
+
+**Test Prompt:**
+
+```
+สร้าง vulnerability management program พร้อม CVSS+EPSS prioritization matrix
+```
+
+**Pass Criteria:**
+
+- [ ] Vulnerability lifecycle workflow (discover → assess → prioritize → remediate → verify)
+- [ ] CVSS v4.0 scoring explanation or severity table
+- [ ] EPSS (Exploit Prediction Scoring System) integration
+- [ ] CISA KEV catalog reference and override logic
+- [ ] Combined prioritization matrix (CVSS + EPSS + KEV)
+- [ ] SLA templates per severity level
+- [ ] Scanning tool recommendations (Nessus, Qualys, or equivalents)
+- [ ] Vulnerability metrics (MTTD, MTTR, SLA compliance)
+
+---
+
 ## Quick Regression Test
 
 For rapid regression after plugin updates, test these 4 prompts (covers Thai, English, mixed, and new domains):
@@ -282,6 +324,8 @@ For rapid regression after plugin updates, test these 4 prompts (covers Thai, En
 2. `Create a Semgrep rule to detect hardcoded secrets`
 3. `สร้าง NIST 800-53 gap assessment พร้อม PCI DSS control mapping`
 4. `สร้าง AI security assessment สำหรับ LLM application พร้อม prompt injection defense`
+5. `สร้าง API security assessment ตาม OWASP API Top 10 พร้อม JWT validation checklist`
+6. `สร้าง vulnerability prioritization matrix ด้วย CVSS+EPSS+KEV พร้อม SLA templates`
 
 Minimum pass: all 4 produce structured bilingual output with framework references.
 

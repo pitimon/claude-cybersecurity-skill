@@ -1,8 +1,8 @@
 # cybersecurity-pro
 
-**Professional Cybersecurity Skill for Claude Code** | v3.0.0
+**Professional Cybersecurity Skill for Claude Code** | v3.1.0
 
-สกิลระดับมืออาชีพสำหรับ Cybersecurity Operations — ครอบคลุม 12 domains ตั้งแต่ Incident Response ถึง AI/ML Security พร้อม output แบบ bilingual (Thai + English)
+สกิลระดับมืออาชีพสำหรับ Cybersecurity Operations — ครอบคลุม 14 domains ตั้งแต่ Incident Response ถึง Vulnerability Management พร้อม output แบบ bilingual (Thai + English)
 
 ---
 
@@ -31,12 +31,12 @@ User prompt → keyword match in SKILL.md frontmatter
   → Output generated following templates in reference file
 ```
 
-**On-demand loading**: มี 12 domains แต่โหลดแค่ 1 ต่อ request
+**On-demand loading**: มี 14 domains แต่โหลดแค่ 1 ต่อ request
 
 | Component                | Tokens       | เมื่อไหร่โหลด (When Loaded)   |
 | ------------------------ | ------------ | ----------------------------- |
 | SKILL.md (router)        | ~3,000       | ทุก request ที่ trigger skill |
-| Reference file (1 of 12) | ~3,000-5,000 | เฉพาะ domain ที่ต้องการ       |
+| Reference file (1 of 14) | ~3,000-5,000 | เฉพาะ domain ที่ต้องการ       |
 | **Max per request**      | **~8,000**   | **< 4% ของ 200K context**     |
 
 ---
@@ -100,7 +100,7 @@ claude doctor
 
 ---
 
-## Capabilities (ความสามารถ — 12 Domains)
+## Capabilities (ความสามารถ — 14 Domains)
 
 ### Security Operations
 
@@ -117,6 +117,8 @@ claude doctor
 | **DevSecOps Pipeline**       | CI/CD security pipeline configs สำหรับ GitHub Actions / GitLab CI       | OWASP SAMM, OWASP Top 10, CIS     | `DevSecOps`, `DAST`, `CI/CD security`                  |
 | **Code Security Analysis**   | Static analysis ด้วย Semgrep/CodeQL, SARIF processing, variant analysis | CWE Top 25, SARIF 2.1.0           | `Semgrep`, `CodeQL`, `SAST`, `code scan`, `SARIF`      |
 | **Container & Supply Chain** | Container hardening, vulnerability scanning, SBOM, image signing        | NIST SP 800-190, CIS Docker, SLSA | `container`, `Docker`, `Trivy`, `SBOM`, `supply chain` |
+| **API Security**             | OWASP API Top 10, JWT validation, OAuth 2.0 BCP, API gateway security   | OWASP API Top 10 2023, RFC 9700   | `API security`, `OWASP API`, `BOLA`, `JWT`, `OAuth`    |
+| **Vulnerability Management** | Vulnerability lifecycle, CVSS/EPSS/KEV prioritization, patch management | CVSS v4.0, EPSS, CISA KEV, SSVC   | `CVSS`, `EPSS`, `KEV`, `Nessus`, `patch management`    |
 
 ### Governance
 
@@ -154,6 +156,9 @@ outputs ทั้งหมดอ้างอิง frameworks เหล่าน
 - **OWASP Top 10 for LLM Apps** — AI/LLM application security
 - **NIST AI RMF** / **MITRE ATLAS** — AI risk management & threat landscape
 - **EU AI Act** / **ISO 42001** — AI governance and regulation
+- **OWASP API Security Top 10** — API-specific vulnerability risks
+- **CVSS v4.0** / **EPSS** — Vulnerability scoring and exploit prediction
+- **CISA KEV** / **SSVC** — Known exploited vulnerabilities and stakeholder prioritization
 - **พ.ร.บ. ไซเบอร์ 2562** / **PDPA** — Thai cybersecurity & data privacy law
 
 ---
@@ -232,6 +237,20 @@ outputs ทั้งหมดอ้างอิง frameworks เหล่าน
   ตรวจสอบ prompt injection defense และ OWASP LLM Top 10 compliance
 ```
 
+### API Security
+
+```
+> สร้าง API security assessment ตาม OWASP API Top 10
+  ตรวจสอบ BOLA, JWT validation, rate limiting พร้อม API gateway config
+```
+
+### Vulnerability Management
+
+```
+> สร้าง vulnerability management program พร้อม CVSS+EPSS+KEV prioritization
+  รวม SLA templates, patch management workflow, และ executive dashboard
+```
+
 ---
 
 ## Token Budget & Performance (งบประมาณ Token)
@@ -241,7 +260,7 @@ outputs ทั้งหมดอ้างอิง frameworks เหล่าน
 | SKILL.md (always loaded)    | ~3,000       | Router + language policy + frameworks |
 | Reference file (per domain) | ~3,000-5,000 | โหลดเฉพาะ domain ที่ trigger          |
 | **Max per request**         | **~8,000**   | **SKILL.md + 1 reference file**       |
-| Total all files             | ~50,000      | ไม่โหลดทั้งหมดพร้อมกัน                |
+| Total all files             | ~60,000      | ไม่โหลดทั้งหมดพร้อมกัน                |
 
 เปรียบเทียบกับ context window 200K tokens: plugin ใช้ < 4% แม้ request ที่หนักที่สุด
 
@@ -269,7 +288,7 @@ outputs ทั้งหมดอ้างอิง frameworks เหล่าน
 claude-cybersecurity-skill/
 ├── .claude-plugin/
 │   ├── marketplace.json          # Marketplace metadata
-│   └── plugin.json               # Plugin metadata (v3.0.0)
+│   └── plugin.json               # Plugin metadata (v3.1.0)
 ├── skills/
 │   └── cybersecurity-pro/
 │       ├── SKILL.md              # Skill definition & decision tree
@@ -285,7 +304,9 @@ claude-cybersecurity-skill/
 │           ├── compliance-frameworks.md     # NIST 800-53/PCI DSS/GDPR/HIPAA/CIS
 │           ├── cloud-security-cspm.md       # Cloud Security/IAM/CSPM/Multi-cloud
 │           ├── zero-trust-architecture.md   # ZTA/NIST 800-207/Microsegmentation
-│           └── ai-ml-security.md            # AI/ML/LLM Security/MITRE ATLAS
+│           ├── ai-ml-security.md            # AI/ML/LLM Security/MITRE ATLAS
+│           ├── api-security.md              # OWASP API Top 10/JWT/OAuth/Gateway
+│           └── vulnerability-management.md  # CVSS/EPSS/KEV/Patch Management
 ├── docs/
 │   ├── INSTALL.md                # Installation guide
 │   └── TROUBLESHOOTING.md       # Troubleshooting guide
@@ -303,11 +324,11 @@ claude-cybersecurity-skill/
 | **Plugin name** | `cybersecurity-pro`                       |
 | **Marketplace** | `pitimon-cybersecurity`                   |
 | **Install key** | `cybersecurity-pro@pitimon-cybersecurity` |
-| **Version**     | 3.0.0                                     |
+| **Version**     | 3.1.0                                     |
 | **Category**    | Security                                  |
 | **Author**      | somapa                                    |
 | **Language**    | Bilingual Thai + English                  |
-| **Domains**     | 12                                        |
+| **Domains**     | 14                                        |
 
 ---
 

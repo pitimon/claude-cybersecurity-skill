@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What This Is
 
-A Claude Code **plugin skill** (`cybersecurity-pro`) distributed via the `pitimon-cybersecurity` marketplace. It generates professional cybersecurity documents (IR playbooks, DFIR reports, DevSecOps configs, SOC procedures, GitOps policies, compliance frameworks, cloud security audits, zero trust architecture, AI/ML security) in bilingual Thai + English format.
+A Claude Code **plugin skill** (`cybersecurity-pro`) distributed via the `pitimon-cybersecurity` marketplace. It generates professional cybersecurity documents (IR playbooks, DFIR reports, DevSecOps configs, SOC procedures, GitOps policies, compliance frameworks, cloud security audits, zero trust architecture, AI/ML security, API security, vulnerability management) in bilingual Thai + English format.
 
 There are no build, lint, or test commands — this is a pure markdown/JSON skill definition repository.
 
@@ -17,7 +17,7 @@ The plugin system has two layers:
 
 ### How it works at runtime
 
-When a user's prompt matches trigger keywords in `SKILL.md`'s frontmatter, Claude Code loads the skill. The skill's decision tree routes to one of 12 reference files, which provide templates and frameworks for generating output.
+When a user's prompt matches trigger keywords in `SKILL.md`'s frontmatter, Claude Code loads the skill. The skill's decision tree routes to one of 14 reference files, which provide templates and frameworks for generating output.
 
 ```
 User prompt → keyword match in SKILL.md frontmatter
@@ -33,9 +33,9 @@ User prompt → keyword match in SKILL.md frontmatter
 | `.claude-plugin/marketplace.json`          | Marketplace registry entry (name, owner, plugins list)                                       |
 | `.claude-plugin/plugin.json`               | Plugin manifest (name, version, author, skills path)                                         |
 | `skills/cybersecurity-pro/SKILL.md`        | Skill definition: trigger keywords, language policy, frameworks, decision tree, output rules |
-| `skills/cybersecurity-pro/references/*.md` | Domain-specific templates and framework mappings (12 files, one per domain)                  |
+| `skills/cybersecurity-pro/references/*.md` | Domain-specific templates and framework mappings (14 files, one per domain)                  |
 
-### The 12 domains
+### The 14 domains
 
 | Domain                   | Reference file                             | Frameworks                                     |
 | ------------------------ | ------------------------------------------ | ---------------------------------------------- |
@@ -51,6 +51,8 @@ User prompt → keyword match in SKILL.md frontmatter
 | Cloud Security & CSPM    | `references/cloud-security-cspm.md`        | CIS Cloud Benchmarks, CSA CCM v4, NIST 800-144 |
 | Zero Trust Architecture  | `references/zero-trust-architecture.md`    | NIST 800-207, CISA ZT Maturity Model           |
 | AI/ML Security           | `references/ai-ml-security.md`             | OWASP LLM Top 10, NIST AI RMF, MITRE ATLAS     |
+| API Security             | `references/api-security.md`               | OWASP API Top 10, OAuth 2.0 BCP                |
+| Vulnerability Management | `references/vulnerability-management.md`   | CVSS v4.0, EPSS, CISA KEV, SSVC                |
 
 ## Critical Naming Conventions
 
