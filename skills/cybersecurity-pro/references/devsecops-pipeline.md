@@ -2,7 +2,20 @@
 
 คู่มือการสร้าง Security-integrated CI/CD Pipeline และ DevSecOps configurations
 
+> สำหรับ code security analysis (Semgrep/CodeQL) → ดู references/code-security-analysis.md (Domain 6)
+> สำหรับ container security และ SBOM → ดู references/container-supply-chain.md (Domain 7)
+> สำหรับ API security testing → ดู references/api-security.md (Domain 13)
+> สำหรับ end-to-end supply chain workflow → ดู references/cross-domain-integration.md (Domain 16)
+
+**Cross-references:**
+
+- Domain 6: Code Security Analysis → `references/code-security-analysis.md`
+- Domain 7: Container & Supply Chain → `references/container-supply-chain.md`
+- Domain 13: API Security → `references/api-security.md`
+- Domain 16: Cross-Domain Integration → `references/cross-domain-integration.md`
+
 ## Table of Contents
+
 1. DevSecOps Pipeline Architecture
 2. Security Scanning Tools Matrix
 3. GitHub Actions Security Pipeline
@@ -37,17 +50,17 @@
 
 ## 2. Security Scanning Tools Matrix
 
-| ประเภท (Category) | Open Source | Commercial | OWASP Reference |
-|---|---|---|---|
-| SAST (Static Analysis) | Semgrep, SonarQube CE, Bandit (Python), ESLint-security | Snyk Code, Checkmarx, Fortify | OWASP Code Review Guide |
-| DAST (Dynamic Analysis) | OWASP ZAP, Nuclei, Nikto | Burp Suite Enterprise, Qualys WAS | OWASP Testing Guide |
-| SCA (Software Composition) | OWASP Dependency-Check, Trivy, Grype | Snyk Open Source, Black Duck, Mend | OWASP Top 10 A06 |
-| Container Security | Trivy, Grype, Clair, Syft | Snyk Container, Prisma Cloud, Aqua | - |
-| IaC Scanning | Checkov, tfsec, KICS, Terrascan | Snyk IaC, Prisma Cloud | - |
-| Secret Detection | Gitleaks, TruffleHog, detect-secrets | GitGuardian, SpectralOps | - |
-| SBOM Generation | Syft, CycloneDX | Anchore Enterprise | - |
-| License Compliance | FOSSology, ScanCode | Snyk, FOSSA | - |
-| API Security | OWASP ZAP, Dredd | 42Crunch, Salt Security | OWASP API Top 10 |
+| ประเภท (Category)          | Open Source                                             | Commercial                         | OWASP Reference         |
+| -------------------------- | ------------------------------------------------------- | ---------------------------------- | ----------------------- |
+| SAST (Static Analysis)     | Semgrep, SonarQube CE, Bandit (Python), ESLint-security | Snyk Code, Checkmarx, Fortify      | OWASP Code Review Guide |
+| DAST (Dynamic Analysis)    | OWASP ZAP, Nuclei, Nikto                                | Burp Suite Enterprise, Qualys WAS  | OWASP Testing Guide     |
+| SCA (Software Composition) | OWASP Dependency-Check, Trivy, Grype                    | Snyk Open Source, Black Duck, Mend | OWASP Top 10 A06        |
+| Container Security         | Trivy, Grype, Clair, Syft                               | Snyk Container, Prisma Cloud, Aqua | -                       |
+| IaC Scanning               | Checkov, tfsec, KICS, Terrascan                         | Snyk IaC, Prisma Cloud             | -                       |
+| Secret Detection           | Gitleaks, TruffleHog, detect-secrets                    | GitGuardian, SpectralOps           | -                       |
+| SBOM Generation            | Syft, CycloneDX                                         | Anchore Enterprise                 | -                       |
+| License Compliance         | FOSSology, ScanCode                                     | Snyk, FOSSA                        | -                       |
+| API Security               | OWASP ZAP, Dredd                                        | 42Crunch, Salt Security            | OWASP API Top 10        |
 
 ---
 
@@ -114,11 +127,11 @@ jobs:
       - name: Trivy SCA Scan
         uses: aquasecurity/trivy-action@master
         with:
-          scan-type: 'fs'
-          scan-ref: '.'
-          format: 'sarif'
-          output: 'trivy-sca.sarif'
-          severity: 'CRITICAL,HIGH'
+          scan-type: "fs"
+          scan-ref: "."
+          format: "sarif"
+          output: "trivy-sca.sarif"
+          severity: "CRITICAL,HIGH"
 
   sbom:
     name: "📋 SBOM Generation"
@@ -151,10 +164,10 @@ jobs:
       - name: Trivy Container Scan
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: 'app:${{ github.sha }}'
-          format: 'sarif'
-          output: 'trivy-container.sarif'
-          severity: 'CRITICAL,HIGH'
+          image-ref: "app:${{ github.sha }}"
+          format: "sarif"
+          output: "trivy-container.sarif"
+          severity: "CRITICAL,HIGH"
 
   # ──────────────────────────────────────────
   # Phase 4: IaC Security
@@ -233,27 +246,27 @@ security-gate:
 
 ### Gate Criteria (เกณฑ์ผ่าน/ไม่ผ่าน)
 
-| Severity | Production | Staging | Development |
-|---|---|---|---|
-| Critical | ❌ Block + Alert | ❌ Block + Alert | ⚠️ Warn + Create Issue |
-| High | ❌ Block | ⚠️ Warn + Approval Required | ⚠️ Warn + Create Issue |
-| Medium | ⚠️ Approval Required | ✅ Pass + Create Issue | ✅ Pass + Log |
-| Low | ✅ Pass + Create Issue | ✅ Pass + Log | ✅ Pass |
+| Severity | Production             | Staging                     | Development            |
+| -------- | ---------------------- | --------------------------- | ---------------------- |
+| Critical | ❌ Block + Alert       | ❌ Block + Alert            | ⚠️ Warn + Create Issue |
+| High     | ❌ Block               | ⚠️ Warn + Approval Required | ⚠️ Warn + Create Issue |
+| Medium   | ⚠️ Approval Required   | ✅ Pass + Create Issue      | ✅ Pass + Log          |
+| Low      | ✅ Pass + Create Issue | ✅ Pass + Log               | ✅ Pass                |
 
 ### OWASP Top 10 Mapping for Pipeline
 
-| OWASP Top 10 (2021) | Pipeline Stage | Tool Type |
-|---|---|---|
-| A01: Broken Access Control | SAST + DAST | Semgrep rules, ZAP active scan |
-| A02: Cryptographic Failures | SAST | Semgrep crypto rules |
-| A03: Injection | SAST + DAST | Semgrep injection, ZAP SQLi/XSS |
-| A04: Insecure Design | Code Review | Manual + SAST design patterns |
-| A05: Security Misconfiguration | IaC Scan | Checkov, tfsec |
-| A06: Vulnerable Components | SCA | Trivy, Dependency-Check |
-| A07: Auth Failures | SAST + DAST | Custom rules + ZAP auth |
-| A08: Software/Data Integrity | SBOM + SCA | Syft, signature verification |
-| A09: Logging Failures | SAST | Custom logging rules |
-| A10: SSRF | SAST + DAST | Semgrep SSRF, ZAP SSRF |
+| OWASP Top 10 (2021)            | Pipeline Stage | Tool Type                       |
+| ------------------------------ | -------------- | ------------------------------- |
+| A01: Broken Access Control     | SAST + DAST    | Semgrep rules, ZAP active scan  |
+| A02: Cryptographic Failures    | SAST           | Semgrep crypto rules            |
+| A03: Injection                 | SAST + DAST    | Semgrep injection, ZAP SQLi/XSS |
+| A04: Insecure Design           | Code Review    | Manual + SAST design patterns   |
+| A05: Security Misconfiguration | IaC Scan       | Checkov, tfsec                  |
+| A06: Vulnerable Components     | SCA            | Trivy, Dependency-Check         |
+| A07: Auth Failures             | SAST + DAST    | Custom rules + ZAP auth         |
+| A08: Software/Data Integrity   | SBOM + SCA     | Syft, signature verification    |
+| A09: Logging Failures          | SAST           | Custom logging rules            |
+| A10: SSRF                      | SAST + DAST    | Semgrep SSRF, ZAP SSRF          |
 
 ---
 
@@ -276,6 +289,7 @@ syft packages registry:myapp:latest -o cyclonedx-json > container-sbom.json
 ```
 
 ### Supply Chain Security Checklist
+
 - [ ] SBOM generated สำหรับทุก release
 - [ ] Dependencies pinned to specific versions (ไม่ใช้ `latest`)
 - [ ] Signature verification enabled สำหรับ packages

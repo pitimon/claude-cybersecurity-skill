@@ -6,6 +6,14 @@
 > สำหรับ SOC operations และ monitoring → ดู references/soc-operations.md
 > สำหรับ GitOps security policies → ดู references/gitops-security.md
 > สำหรับ cloud security configurations → ดู references/cloud-security-cspm.md (Domain 10)
+> สำหรับ end-to-end cloud compliance workflow → ดู references/cross-domain-integration.md (Domain 16)
+
+**Cross-references:**
+
+- Domain 4: SOC Operations → `references/soc-operations.md`
+- Domain 5: GitOps Security → `references/gitops-security.md`
+- Domain 10: Cloud Security & CSPM → `references/cloud-security-cspm.md`
+- Domain 16: Cross-Domain Integration → `references/cross-domain-integration.md`
 
 ## Table of Contents
 

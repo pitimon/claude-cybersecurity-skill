@@ -3,6 +3,12 @@
 คู่มือ Threat Modeling, Risk Assessment และ Compliance Quick References (SOC 2, ISO 27001)
 
 > สำหรับ compliance frameworks เชิงลึก (NIST 800-53, PCI DSS, GDPR, HIPAA, CIS Controls) → ดู references/compliance-frameworks.md
+> สำหรับ end-to-end workflow orchestration → ดู references/cross-domain-integration.md (Domain 16)
+
+**Cross-references:**
+
+- Domain 9: Compliance Frameworks → `references/compliance-frameworks.md`
+- Domain 16: Cross-Domain Integration → `references/cross-domain-integration.md`
 
 ## Table of Contents
 

@@ -2,6 +2,18 @@
 
 คู่มือความปลอดภัยของ Container Image และ Software Supply Chain
 
+> สำหรับ DevSecOps CI/CD pipeline → ดู references/devsecops-pipeline.md (Domain 3)
+> สำหรับ code security analysis → ดู references/code-security-analysis.md (Domain 6)
+> สำหรับ vulnerability management → ดู references/vulnerability-management.md (Domain 14)
+> สำหรับ end-to-end supply chain workflow → ดู references/cross-domain-integration.md (Domain 16)
+
+**Cross-references:**
+
+- Domain 3: DevSecOps Pipeline → `references/devsecops-pipeline.md`
+- Domain 6: Code Security Analysis → `references/code-security-analysis.md`
+- Domain 14: Vulnerability Management → `references/vulnerability-management.md`
+- Domain 16: Cross-Domain Integration → `references/cross-domain-integration.md`
+
 ## Table of Contents
 
 1. Container Security Lifecycle

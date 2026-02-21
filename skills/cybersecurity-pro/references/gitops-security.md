@@ -2,6 +2,18 @@
 
 คู่มือการสร้าง GitOps-native Security Configurations และ Policy-as-Code
 
+> สำหรับ DevSecOps CI/CD pipeline → ดู references/devsecops-pipeline.md (Domain 3)
+> สำหรับ container security → ดู references/container-supply-chain.md (Domain 7)
+> สำหรับ Zero Trust policies → ดู references/zero-trust-architecture.md (Domain 11)
+> สำหรับ end-to-end supply chain workflow → ดู references/cross-domain-integration.md (Domain 16)
+
+**Cross-references:**
+
+- Domain 3: DevSecOps Pipeline → `references/devsecops-pipeline.md`
+- Domain 7: Container & Supply Chain → `references/container-supply-chain.md`
+- Domain 11: Zero Trust Architecture → `references/zero-trust-architecture.md`
+- Domain 16: Cross-Domain Integration → `references/cross-domain-integration.md`
+
 ## Table of Contents
 
 1. GitOps Security Architecture

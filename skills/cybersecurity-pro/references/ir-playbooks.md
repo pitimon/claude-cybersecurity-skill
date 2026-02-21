@@ -2,6 +2,18 @@
 
 คู่มือการสร้าง IR Playbook และ Runbook ระดับมืออาชีพ
 
+> สำหรับ forensic investigation → ดู references/dfir-reports.md (Domain 2)
+> สำหรับ SOC triage และ alert handling → ดู references/soc-operations.md (Domain 4)
+> สำหรับ threat intelligence enrichment → ดู references/threat-intelligence.md (Domain 15)
+> สำหรับ end-to-end workflow orchestration → ดู references/cross-domain-integration.md (Domain 16)
+
+**Cross-references:**
+
+- Domain 2: DFIR Reports → `references/dfir-reports.md`
+- Domain 4: SOC Operations → `references/soc-operations.md`
+- Domain 15: Threat Intelligence → `references/threat-intelligence.md`
+- Domain 16: Cross-Domain Integration → `references/cross-domain-integration.md`
+
 ## Table of Contents
 
 1. Playbook vs Runbook

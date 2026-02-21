@@ -12,6 +12,7 @@ API Gateway Patterns, API Inventory & Testing พร้อม implementation tem
 - Domain 3: DevSecOps Pipeline → `references/devsecops-pipeline.md`
 - Domain 6: Code Security Analysis → `references/code-security-analysis.md`
 - Domain 11: Zero Trust Architecture → `references/zero-trust-architecture.md`
+- Domain 16: Cross-Domain Integration → `references/cross-domain-integration.md`
 
 ---
 

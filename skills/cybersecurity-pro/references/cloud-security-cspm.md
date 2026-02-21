@@ -5,6 +5,13 @@
 
 > สำหรับ container security และ supply chain → ดู references/container-supply-chain.md
 > สำหรับ compliance frameworks (NIST 800-53, PCI DSS, CIS Controls) → ดู references/compliance-frameworks.md
+> สำหรับ end-to-end cloud compliance workflow → ดู references/cross-domain-integration.md (Domain 16)
+
+**Cross-references:**
+
+- Domain 7: Container & Supply Chain → `references/container-supply-chain.md`
+- Domain 9: Compliance Frameworks → `references/compliance-frameworks.md`
+- Domain 16: Cross-Domain Integration → `references/cross-domain-integration.md`
 
 ## Table of Contents
 

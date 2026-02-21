@@ -13,6 +13,7 @@ IOC Lifecycle, Threat Feeds, Intelligence Sharing (TLP 2.0), TI-Driven Detection
 - Domain 4: SOC Operations → `references/soc-operations.md`
 - Domain 8: Threat Modeling & Risk → `references/compliance-threat-modeling.md`
 - Domain 14: Vulnerability Management → `references/vulnerability-management.md`
+- Domain 16: Cross-Domain Integration → `references/cross-domain-integration.md`
 
 ---
 

@@ -4,6 +4,12 @@
 พร้อม cross-framework mapping และ implementation templates
 
 > สำหรับ threat modeling (STRIDE, PASTA), risk assessment, SOC 2, ISO 27001 → ดู references/compliance-threat-modeling.md
+> สำหรับ end-to-end compliance posture workflow → ดู references/cross-domain-integration.md (Domain 16)
+
+**Cross-references:**
+
+- Domain 8: Threat Modeling & Risk → `references/compliance-threat-modeling.md`
+- Domain 16: Cross-Domain Integration → `references/cross-domain-integration.md`
 
 ## Table of Contents
 

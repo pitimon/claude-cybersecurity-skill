@@ -5,6 +5,14 @@
 > สำหรับ code security analysis (SAST/DAST) → ดู references/code-security-analysis.md (Domain 6)
 > สำหรับ compliance frameworks (NIST 800-53, GDPR) → ดู references/compliance-frameworks.md (Domain 9)
 > สำหรับ DevSecOps pipeline integration → ดู references/devsecops-pipeline.md (Domain 3)
+> สำหรับ end-to-end AI/API threat surface workflow → ดู references/cross-domain-integration.md (Domain 16)
+
+**Cross-references:**
+
+- Domain 3: DevSecOps Pipeline → `references/devsecops-pipeline.md`
+- Domain 6: Code Security Analysis → `references/code-security-analysis.md`
+- Domain 9: Compliance Frameworks → `references/compliance-frameworks.md`
+- Domain 16: Cross-Domain Integration → `references/cross-domain-integration.md`
 
 ## Table of Contents
 

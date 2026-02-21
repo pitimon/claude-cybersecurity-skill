@@ -2,6 +2,18 @@
 
 คู่มือการวิเคราะห์ความปลอดภัยของ code ด้วย Static Analysis, SARIF Processing และ Variant Analysis
 
+> สำหรับ DevSecOps CI/CD pipeline → ดู references/devsecops-pipeline.md (Domain 3)
+> สำหรับ container security → ดู references/container-supply-chain.md (Domain 7)
+> สำหรับ API security analysis → ดู references/api-security.md (Domain 13)
+> สำหรับ end-to-end supply chain workflow → ดู references/cross-domain-integration.md (Domain 16)
+
+**Cross-references:**
+
+- Domain 3: DevSecOps Pipeline → `references/devsecops-pipeline.md`
+- Domain 7: Container & Supply Chain → `references/container-supply-chain.md`
+- Domain 13: API Security → `references/api-security.md`
+- Domain 16: Cross-Domain Integration → `references/cross-domain-integration.md`
+
 ## Table of Contents
 
 1. Tool Selection Decision Tree

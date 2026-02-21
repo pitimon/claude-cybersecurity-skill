@@ -2,6 +2,18 @@
 
 คู่มือการปฏิบัติงาน SOC (Security Operations Center) ระดับ L1 ถึง L3
 
+> สำหรับ IR playbooks และ escalation → ดู references/ir-playbooks.md (Domain 1)
+> สำหรับ vulnerability prioritization → ดู references/vulnerability-management.md (Domain 14)
+> สำหรับ threat intelligence feeds → ดู references/threat-intelligence.md (Domain 15)
+> สำหรับ end-to-end workflow orchestration → ดู references/cross-domain-integration.md (Domain 16)
+
+**Cross-references:**
+
+- Domain 1: IR Playbooks → `references/ir-playbooks.md`
+- Domain 14: Vulnerability Management → `references/vulnerability-management.md`
+- Domain 15: Threat Intelligence → `references/threat-intelligence.md`
+- Domain 16: Cross-Domain Integration → `references/cross-domain-integration.md`
+
 ## Table of Contents
 
 1. SOC Analyst Roles (L1-L3)
@@ -357,8 +369,8 @@ SigninLogs
 
 [anything else the incoming shift needs to know]
 
-**Outgoing Signature**: ****\_\_\_****
-**Incoming Signature**: ****\_\_\_****
+**Outgoing Signature**: \***\*\_\_\_\*\***
+**Incoming Signature**: \***\*\_\_\_\*\***
 ```
 
 ---

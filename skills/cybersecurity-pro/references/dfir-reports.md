@@ -2,6 +2,18 @@
 
 คู่มือการสร้างรายงานนิติวิทยาศาสตร์ดิจิทัลและรายงานการตอบสนองเหตุการณ์ระดับมืออาชีพ
 
+> สำหรับ IR playbooks และ response procedures → ดู references/ir-playbooks.md (Domain 1)
+> สำหรับ SOC operations และ SIEM correlation → ดู references/soc-operations.md (Domain 4)
+> สำหรับ threat intelligence และ IOC management → ดู references/threat-intelligence.md (Domain 15)
+> สำหรับ end-to-end workflow orchestration → ดู references/cross-domain-integration.md (Domain 16)
+
+**Cross-references:**
+
+- Domain 1: IR Playbooks → `references/ir-playbooks.md`
+- Domain 4: SOC Operations → `references/soc-operations.md`
+- Domain 15: Threat Intelligence → `references/threat-intelligence.md`
+- Domain 16: Cross-Domain Integration → `references/cross-domain-integration.md`
+
 ## Table of Contents
 
 1. Report Types
