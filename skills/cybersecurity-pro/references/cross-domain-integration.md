@@ -559,7 +559,7 @@ phases:
      │                   │                    │                    │
      ▼                   ▼                    ▼                    ▼
   NIST 800-53       CIS Benchmarks      NIST 800-207          CVSS+EPSS
-  PCI DSS v4.0     CSA CCM v4          CISA ZT Maturity      patch SLA
+  PCI DSS v4.0.1  CSA CCM v4.1        CISA ZT Maturity      patch SLA
   gap assessment   Prowler/ScoutSuite  microsegmentation     verification
 ```
 

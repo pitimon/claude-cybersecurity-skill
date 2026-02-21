@@ -15,7 +15,7 @@
 
 1. Framework Selection Matrix
 2. NIST SP 800-53 Rev 5
-3. PCI DSS v4.0
+3. PCI DSS v4.0.1
 4. GDPR (General Data Protection Regulation)
 5. HIPAA (Health Insurance Portability and Accountability Act)
 6. CIS Controls v8
@@ -42,7 +42,7 @@
 │   └── EU healthcare → HIPAA + GDPR
 │
 ├── Payment / Financial
-│   ├── รับชำระบัตรเครดิต → PCI DSS v4.0 (จำเป็น)
+│   ├── รับชำระบัตรเครดิต → PCI DSS v4.0.1 (จำเป็น)
 │   ├── Payment processor → PCI DSS Level 1 (QSA audit)
 │   ├── E-commerce → PCI DSS + SOC 2
 │   └── Fintech → PCI DSS + SOC 2 + ISO 27001
@@ -68,7 +68,7 @@
 
 ### Framework Comparison Summary
 
-| Feature                 | NIST 800-53     | PCI DSS v4.0    | GDPR             | HIPAA            | CIS Controls v8   |
+| Feature                 | NIST 800-53     | PCI DSS v4.0.1  | GDPR             | HIPAA            | CIS Controls v8.1 |
 | ----------------------- | --------------- | --------------- | ---------------- | ---------------- | ----------------- |
 | Type                    | Control catalog | Standard        | Regulation       | Regulation       | Best practices    |
 | Mandatory for           | US Federal      | Card payments   | EU data          | US healthcare    | Voluntary         |
@@ -191,11 +191,12 @@ NIST 800-53 กำหนด control baselines ตาม impact level ของ�
 
 ---
 
-## 3. PCI DSS v4.0 (Payment Card Industry Data Security Standard)
+## 3. PCI DSS v4.0.1.1 (Payment Card Industry Data Security Standard)
 
 ### Overview
 
-PCI DSS v4.0 เผยแพร่มีนาคม 2022 แทนที่ v3.2.1 (retired มีนาคม 2024)
+PCI DSS v4.0.1.1 เผยแพร่มิถุนายน 2024 (limited revision แก้ไข errata จาก v4.0)
+v4.0 retired 31 ธันวาคม 2024 — v4.0.1 เป็น active version เพียงฉบับเดียว
 Future-dated requirements มีผลบังคับ 31 มีนาคม 2025
 
 ### 12 Requirements
@@ -228,11 +229,12 @@ Future-dated requirements มีผลบังคับ 31 มีนาคม 2
 | Customized approach    | ไม่มี                     | Alternative compliance path (ต้อง document objective) |
 | Encryption             | TLS 1.1+ allowed          | TLS 1.2+ required (TLS 1.0/1.1 deprecated)            |
 
-### PCI DSS v4.0 Timeline
+### PCI DSS v4.0.1.1 Timeline
 
 ```
-มี.ค. 2022 ──── PCI DSS v4.0 เผยแพร่
-มี.ค. 2024 ──── v3.2.1 retired, v4.0 active
+มี.ค. 2022 ──── PCI DSS v4.0.1 เผยแพร่
+มิ.ย. 2024 ──── PCI DSS v4.0.1.1 เผยแพร่ (limited revision, errata fixes)
+ธ.ค. 2024 ──── v4.0 retired, v4.0.1 เป็น active version เพียงฉบับเดียว
 มี.ค. 2025 ──── Future-dated requirements มีผลบังคับ
                  (Req 5.4.1, 6.4.3, 8.4.2, 11.6.1, 12.3.1 ฯลฯ)
 ```
@@ -279,7 +281,7 @@ Future-dated requirements มีผลบังคับ 31 มีนาคม 2
 ### Gap Assessment Checklist
 
 ```markdown
-## PCI DSS v4.0 Gap Assessment
+## PCI DSS v4.0.1 Gap Assessment
 
 ### Scope Definition
 
@@ -539,11 +541,12 @@ HIPAA ปกป้อง Protected Health Information (PHI) ครอบคล�
 
 ---
 
-## 6. CIS Controls v8 (Center for Internet Security)
+## 6. CIS Controls v8.1 (Center for Internet Security)
 
 ### Overview
 
-CIS Controls v8 มี 18 control groups จัดกลุ่มเป็น 3 Implementation Groups (IG)
+CIS Controls v8.1 (มิถุนายน 2024) มี 18 control groups จัดกลุ่มเป็น 3 Implementation Groups (IG)
+อัปเดตจาก v8.0 ด้วย alignment กับ NIST CSF 2.0, revised asset classes, และ expanded glossary
 ออกแบบให้ actionable — บอกชัดเจนว่าต้องทำอะไร ต่างจาก NIST 800-53 ที่เป็น comprehensive catalog
 
 ### 18 Control Groups
@@ -627,18 +630,18 @@ Phase 3: Advanced (IG3) — เดือน 9-12
 
 ใช้ตารางนี้เพื่อ map controls ระหว่าง frameworks — ลดงานซ้ำเมื่อองค์กรต้อง comply หลาย frameworks
 
-| Control Area           | NIST 800-53         | PCI DSS v4.0   | GDPR           | HIPAA              | CIS Controls v8 |
-| ---------------------- | ------------------- | -------------- | -------------- | ------------------ | --------------- |
-| **Access Control**     | AC-2, AC-3, AC-6    | Req 7, 8       | Art. 32        | §164.312(a)        | CIS 5, 6        |
-| **Encryption**         | SC-8, SC-12, SC-28  | Req 3, 4       | Art. 32        | §164.312(a)(2)(iv) | CIS 3.6-3.11    |
-| **Audit Logging**      | AU-2, AU-3, AU-6    | Req 10         | Art. 30        | §164.312(b)        | CIS 8           |
-| **Vuln Management**    | SI-2, RA-5          | Req 5, 6, 11   | Art. 32        | §164.308(a)(1)     | CIS 7, 16       |
-| **Incident Response**  | IR-1 through IR-8   | Req 12.10      | Art. 33, 34    | §164.308(a)(6)     | CIS 17          |
-| **Risk Assessment**    | RA-1 through RA-5   | Req 12.3.1     | Art. 35 (DPIA) | §164.308(a)(1)(ii) | CIS 1, 2        |
-| **Asset Management**   | CM-8, PM-5          | Req 2, 12.5.1  | Art. 30        | §164.310(d)        | CIS 1, 2        |
-| **Personnel Security** | PS-1 through PS-8   | Req 12.6       | Art. 39        | §164.308(a)(3-4)   | CIS 14          |
-| **Vendor Management**  | SA-9, SR-1 to SR-6  | Req 12.8, 12.9 | Art. 28        | §164.308(b)(1)     | CIS 15          |
-| **Data Protection**    | MP-2 to MP-7, SC-28 | Req 3, 9       | Art. 5, 25, 32 | §164.312(c-e)      | CIS 3           |
+| Control Area           | NIST 800-53         | PCI DSS v4.0.1 | GDPR           | HIPAA              | CIS Controls v8.1 |
+| ---------------------- | ------------------- | -------------- | -------------- | ------------------ | ----------------- |
+| **Access Control**     | AC-2, AC-3, AC-6    | Req 7, 8       | Art. 32        | §164.312(a)        | CIS 5, 6          |
+| **Encryption**         | SC-8, SC-12, SC-28  | Req 3, 4       | Art. 32        | §164.312(a)(2)(iv) | CIS 3.6-3.11      |
+| **Audit Logging**      | AU-2, AU-3, AU-6    | Req 10         | Art. 30        | §164.312(b)        | CIS 8             |
+| **Vuln Management**    | SI-2, RA-5          | Req 5, 6, 11   | Art. 32        | §164.308(a)(1)     | CIS 7, 16         |
+| **Incident Response**  | IR-1 through IR-8   | Req 12.10      | Art. 33, 34    | §164.308(a)(6)     | CIS 17            |
+| **Risk Assessment**    | RA-1 through RA-5   | Req 12.3.1     | Art. 35 (DPIA) | §164.308(a)(1)(ii) | CIS 1, 2          |
+| **Asset Management**   | CM-8, PM-5          | Req 2, 12.5.1  | Art. 30        | §164.310(d)        | CIS 1, 2          |
+| **Personnel Security** | PS-1 through PS-8   | Req 12.6       | Art. 39        | §164.308(a)(3-4)   | CIS 14            |
+| **Vendor Management**  | SA-9, SR-1 to SR-6  | Req 12.8, 12.9 | Art. 28        | §164.308(b)(1)     | CIS 15            |
+| **Data Protection**    | MP-2 to MP-7, SC-28 | Req 3, 9       | Art. 5, 25, 32 | §164.312(c-e)      | CIS 3             |
 
 ### วิธีใช้ Cross-Framework Mapping
 
@@ -663,7 +666,7 @@ Phase 3: Advanced (IG3) — เดือน 9-12
 - **Assessment Date**: [date]
 - **Assessor**: [name/team]
 - **Scope**: [systems, departments, data types in scope]
-- **Target Framework**: [NIST 800-53 / PCI DSS v4.0 / GDPR / HIPAA / CIS v8]
+- **Target Framework**: [NIST 800-53 / PCI DSS v4.0.1 / GDPR / HIPAA / CIS v8]
 
 ### Executive Summary
 

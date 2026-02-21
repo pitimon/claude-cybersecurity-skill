@@ -544,15 +544,15 @@ LIMIT 100;
 
 ### Retention and Compliance Requirements
 
-| Regulation / Standard  | Minimum Retention | ประเภท Logs ที่ต้อง retain                      |
-| ---------------------- | ----------------- | ----------------------------------------------- |
-| PCI DSS v4.0           | 12 months         | Access logs, authentication, system events      |
-| HIPAA                  | 6 years           | Access to PHI, system activity, user actions    |
-| SOC 2                  | 12 months         | All security-relevant events                    |
-| GDPR                   | Per data mapping  | Processing activities, consent, access requests |
-| NIST 800-53 (AU-11)    | Per policy        | Audit records per retention policy              |
-| CIS Controls v8 (8.10) | 90 days minimum   | Audit log data                                  |
-| Thai PDPA              | Per data mapping  | Personal data processing activities             |
+| Regulation / Standard    | Minimum Retention | ประเภท Logs ที่ต้อง retain                      |
+| ------------------------ | ----------------- | ----------------------------------------------- |
+| PCI DSS v4.0.1           | 12 months         | Access logs, authentication, system events      |
+| HIPAA                    | 6 years           | Access to PHI, system activity, user actions    |
+| SOC 2                    | 12 months         | All security-relevant events                    |
+| GDPR                     | Per data mapping  | Processing activities, consent, access requests |
+| NIST 800-53 (AU-11)      | Per policy        | Audit records per retention policy              |
+| CIS Controls v8.1 (8.10) | 90 days minimum   | Audit log data                                  |
+| Thai PDPA                | Per data mapping  | Personal data processing activities             |
 
 ---
 
@@ -800,7 +800,7 @@ Drift Remediation Workflow:
 | CIS Azure Foundations Benchmark v2.1   | Identity, Networking, Logging, Storage         | Sections 2, 3, 4, 6 |
 | CIS GCP Foundations Benchmark v3.0     | IAM, Networking, Logging, Storage              | Sections 2, 3, 4, 6 |
 | NIST SP 800-144                        | Cloud security and privacy guidelines          | Sections 1, 8       |
-| CSA CCM v4                             | Cloud Controls Matrix — comprehensive controls | Sections 1-8        |
+| CSA CCM v4.1                           | Cloud Controls Matrix — comprehensive controls | Sections 1-8        |
 | AWS Well-Architected — Security Pillar | Security best practices for AWS                | Sections 2, 4, 6, 8 |
 | NIST SP 800-53 (→ Domain 9)            | Comprehensive security controls catalog        | Cross-reference     |
-| CIS Controls v8 (→ Domain 9)           | Prioritized security actions                   | Cross-reference     |
+| CIS Controls v8.1 (→ Domain 9)         | Prioritized security actions                   | Cross-reference     |

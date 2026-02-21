@@ -122,17 +122,17 @@ claude doctor
 
 ### Governance
 
-| Domain                     | คำอธิบาย                                                                        | Frameworks                                     | Trigger Keywords                                                          |
-| -------------------------- | ------------------------------------------------------------------------------- | ---------------------------------------------- | ------------------------------------------------------------------------- |
-| **GitOps Security**        | Policy-as-code frameworks สำหรับ ArgoCD, OPA, Falco                             | OPA/Gatekeeper, Falco, ArgoCD                  | `GitOps`, `ArgoCD`, `policy-as-code`, `OPA`                               |
-| **Threat Modeling & Risk** | STRIDE/PASTA threat modeling, risk assessment, SOC 2/ISO 27001 quick references | SOC 2, ISO 27001, STRIDE, PASTA, PDPA          | `threat model`, `STRIDE`, `risk assessment`, `SOC 2`, `ISO 27001`         |
-| **Compliance Frameworks**  | Detailed compliance framework assessments, gap analyses, control mappings       | NIST 800-53, PCI DSS v4.0, GDPR, HIPAA, CIS v8 | `NIST 800-53`, `PCI DSS`, `GDPR`, `HIPAA`, `CIS Controls`, `gap analysis` |
+| Domain                     | คำอธิบาย                                                                        | Frameworks                                         | Trigger Keywords                                                          |
+| -------------------------- | ------------------------------------------------------------------------------- | -------------------------------------------------- | ------------------------------------------------------------------------- |
+| **GitOps Security**        | Policy-as-code frameworks สำหรับ ArgoCD, OPA, Falco                             | OPA/Gatekeeper, Falco, ArgoCD                      | `GitOps`, `ArgoCD`, `policy-as-code`, `OPA`                               |
+| **Threat Modeling & Risk** | STRIDE/PASTA threat modeling, risk assessment, SOC 2/ISO 27001 quick references | SOC 2, ISO 27001, STRIDE, PASTA, PDPA              | `threat model`, `STRIDE`, `risk assessment`, `SOC 2`, `ISO 27001`         |
+| **Compliance Frameworks**  | Detailed compliance framework assessments, gap analyses, control mappings       | NIST 800-53, PCI DSS v4.0.1, GDPR, HIPAA, CIS v8.1 | `NIST 800-53`, `PCI DSS`, `GDPR`, `HIPAA`, `CIS Controls`, `gap analysis` |
 
 ### Cloud & Architecture
 
 | Domain                      | คำอธิบาย                                                                             | Frameworks                                          | Trigger Keywords                                                  |
 | --------------------------- | ------------------------------------------------------------------------------------ | --------------------------------------------------- | ----------------------------------------------------------------- |
-| **Cloud Security & CSPM**   | Cloud security audits, IAM policy reviews, CSPM configs สำหรับ AWS/Azure/GCP         | CIS Cloud Benchmarks, CSA CCM v4, NIST 800-144      | `cloud security`, `CSPM`, `AWS security`, `Prowler`, `ScoutSuite` |
+| **Cloud Security & CSPM**   | Cloud security audits, IAM policy reviews, CSPM configs สำหรับ AWS/Azure/GCP         | CIS Cloud Benchmarks, CSA CCM v4.1, NIST 800-144    | `cloud security`, `CSPM`, `AWS security`, `Prowler`, `ScoutSuite` |
 | **Zero Trust Architecture** | Zero Trust maturity assessments, implementation roadmaps, microsegmentation policies | NIST 800-207, CISA ZT Maturity Model, Forrester ZTX | `zero trust`, `ZTA`, `ZTNA`, `NIST 800-207`, `microsegmentation`  |
 | **AI/ML Security**          | AI security assessments, LLM guardrails, AI red team playbooks, AI governance        | OWASP LLM Top 10, NIST AI RMF, MITRE ATLAS          | `AI security`, `LLM security`, `prompt injection`, `MITRE ATLAS`  |
 
@@ -161,8 +161,8 @@ outputs ทั้งหมดอ้างอิง frameworks เหล่าน
 - **CIS Docker Benchmark** / **SLSA** — Container & supply chain
 - **NIST SP 800-53 Rev 5** — Security and privacy control catalog
 - **SOC 2** / **GDPR** / **HIPAA** / **PCI-DSS** — Compliance frameworks
-- **CIS Controls v8** — Prioritized security best practices
-- **CIS Cloud Benchmarks** / **CSA CCM v4** — Cloud security posture
+- **CIS Controls v8.1** — Prioritized security best practices
+- **CIS Cloud Benchmarks** / **CSA CCM v4.1** — Cloud security posture
 - **NIST SP 800-207** — Zero Trust Architecture
 - **CISA Zero Trust Maturity Model** — ZTA implementation guidance
 - **OWASP Top 10 for LLM Apps** — AI/LLM application security

@@ -60,24 +60,24 @@ Example style:
 
 All outputs MUST reference the appropriate framework(s):
 
-| Domain                   | Primary Framework                | Supporting Standards                  |
-| ------------------------ | -------------------------------- | ------------------------------------- |
-| Incident Response        | NIST SP 800-61 Rev.2             | ISO 27035, SANS IR Process            |
-| DFIR / Forensics         | Chain of Custody, IOC            | NIST 800-86, SANS DFIR                |
-| Threat Analysis          | MITRE ATT&CK, MITRE D3FEND       | Cyber Kill Chain, Diamond Model       |
-| DevSecOps                | OWASP SAMM, OWASP Top 10         | CIS Benchmarks, NIST SSDF             |
-| Governance               | NIST CSF 2.0                     | ISO 27001:2022, พ.ร.บ. ไซเบอร์ 2562   |
-| Code Security            | CWE Top 25, OWASP Top 10         | SARIF 2.1.0, Semgrep, CodeQL          |
-| Container/Supply Chain   | NIST SP 800-190, CIS Docker      | SLSA, Sigstore, CycloneDX             |
-| Threat Modeling & Risk   | NIST CSF, ISO 27001, STRIDE      | SOC 2, PASTA, PDPA                    |
-| Compliance Frameworks    | NIST SP 800-53 Rev 5             | PCI DSS v4.0, CIS Controls v8         |
-| Cloud Security & CSPM    | CIS Cloud Benchmarks, CSA CCM v4 | NIST 800-144, AWS Well-Architected    |
-| Zero Trust               | NIST SP 800-207                  | CISA ZT Maturity Model, Forrester ZTX |
-| AI/ML Security           | OWASP LLM Top 10, NIST AI RMF    | MITRE ATLAS, EU AI Act, ISO 42001     |
-| API Security             | OWASP API Top 10 2023            | OAuth 2.0 BCP (RFC 9700), OpenAPI     |
-| Vulnerability Mgmt       | CVSS v4.0, EPSS                  | CISA KEV, SSVC, FIRST VRDX            |
-| Threat Intelligence      | STIX 2.1, TAXII 2.1              | MITRE ATT&CK, TLP 2.0, Diamond Model  |
-| Cross-Domain Integration | NIST CSF 2.0                     | All domain frameworks                 |
+| Domain                   | Primary Framework                  | Supporting Standards                  |
+| ------------------------ | ---------------------------------- | ------------------------------------- |
+| Incident Response        | NIST SP 800-61 Rev.2               | ISO 27035, SANS IR Process            |
+| DFIR / Forensics         | Chain of Custody, IOC              | NIST 800-86, SANS DFIR                |
+| Threat Analysis          | MITRE ATT&CK, MITRE D3FEND         | Cyber Kill Chain, Diamond Model       |
+| DevSecOps                | OWASP SAMM, OWASP Top 10           | CIS Benchmarks, NIST SSDF             |
+| Governance               | NIST CSF 2.0                       | ISO 27001:2022, พ.ร.บ. ไซเบอร์ 2562   |
+| Code Security            | CWE Top 25, OWASP Top 10           | SARIF 2.1.0, Semgrep, CodeQL          |
+| Container/Supply Chain   | NIST SP 800-190, CIS Docker        | SLSA, Sigstore, CycloneDX             |
+| Threat Modeling & Risk   | NIST CSF, ISO 27001, STRIDE        | SOC 2, PASTA, PDPA                    |
+| Compliance Frameworks    | NIST SP 800-53 Rev 5               | PCI DSS v4.0.1, CIS Controls v8.1     |
+| Cloud Security & CSPM    | CIS Cloud Benchmarks, CSA CCM v4.1 | NIST 800-144, AWS Well-Architected    |
+| Zero Trust               | NIST SP 800-207                    | CISA ZT Maturity Model, Forrester ZTX |
+| AI/ML Security           | OWASP LLM Top 10, NIST AI RMF      | MITRE ATLAS, EU AI Act, ISO 42001     |
+| API Security             | OWASP API Top 10 2023              | OAuth 2.0 BCP (RFC 9700), OpenAPI     |
+| Vulnerability Mgmt       | CVSS v4.0, EPSS                    | CISA KEV, SSVC, FIRST VRDX            |
+| Threat Intelligence      | STIX 2.1, TAXII 2.1                | MITRE ATT&CK, TLP 2.0, Diamond Model  |
+| Cross-Domain Integration | NIST CSF 2.0                       | All domain frameworks                 |
 
 When producing any output, map actions to relevant framework controls. For incident analysis, always include MITRE ATT&CK Tactic/Technique IDs (e.g., T1566.001).
 
@@ -163,7 +163,7 @@ Produce detailed compliance framework assessments, gap analyses, control mapping
 and compliance roadmaps for major regulatory frameworks.
 Covers: NIST SP 800-53 Rev 5 (20 control families, impact baselines), PCI DSS v4.0
 (12 requirements, SAQ decision tree), GDPR (data subject rights, DPIA, breach notification),
-HIPAA (administrative/physical/technical safeguards), CIS Controls v8 (18 control groups, IGs),
+HIPAA (administrative/physical/technical safeguards), CIS Controls v8.1 (18 control groups, IGs),
 cross-framework mapping tables.
 
 ### 10. Cloud Security & CSPM

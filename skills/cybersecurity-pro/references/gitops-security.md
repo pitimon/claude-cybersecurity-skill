@@ -110,7 +110,7 @@ metadata:
 spec:
   project: security
   source:
-    repoURL: https://git.company.com/security/policies.git
+    repoURL: https://git.example.com/security/policies.git
     targetRevision: main
     path: policies/
   destination:
@@ -214,7 +214,7 @@ spec:
       - monitoring
   parameters:
     exemptImages:
-      - "registry.company.com/infra/"
+      - "registry.example.com/infra/"
 ```
 
 ### Common Security Policies ที่ควรมี

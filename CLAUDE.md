@@ -37,24 +37,24 @@ User prompt → keyword match in SKILL.md frontmatter
 
 ### The 16 domains
 
-| Domain                   | Reference file                             | Frameworks                                     |
-| ------------------------ | ------------------------------------------ | ---------------------------------------------- |
-| IR Playbooks             | `references/ir-playbooks.md`               | NIST 800-61, ISO 27035                         |
-| DFIR Reports             | `references/dfir-reports.md`               | Chain of Custody, IOC, Timeline                |
-| DevSecOps Pipeline       | `references/devsecops-pipeline.md`         | OWASP SAMM/Top 10, CIS                         |
-| SOC Operations + SOAR    | `references/soc-operations.md`             | MITRE ATT&CK, Cyber Kill Chain                 |
-| GitOps Security          | `references/gitops-security.md`            | OPA/Gatekeeper, Falco, ArgoCD                  |
-| Code Security Analysis   | `references/code-security-analysis.md`     | CWE Top 25, SARIF, Semgrep/CodeQL              |
-| Container & Supply Chain | `references/container-supply-chain.md`     | NIST SP 800-190, CIS Docker, SLSA              |
-| Threat Modeling & Risk   | `references/compliance-threat-modeling.md` | SOC 2, ISO 27001, STRIDE, PASTA                |
-| Compliance Frameworks    | `references/compliance-frameworks.md`      | NIST 800-53, PCI DSS, GDPR, HIPAA, CIS v8      |
-| Cloud Security & CSPM    | `references/cloud-security-cspm.md`        | CIS Cloud Benchmarks, CSA CCM v4, NIST 800-144 |
-| Zero Trust Architecture  | `references/zero-trust-architecture.md`    | NIST 800-207, CISA ZT Maturity Model           |
-| AI/ML Security           | `references/ai-ml-security.md`             | OWASP LLM Top 10, NIST AI RMF, MITRE ATLAS     |
-| API Security             | `references/api-security.md`               | OWASP API Top 10, OAuth 2.0 BCP                |
-| Vulnerability Management | `references/vulnerability-management.md`   | CVSS v4.0, EPSS, CISA KEV, SSVC                |
-| Threat Intelligence      | `references/threat-intelligence.md`        | STIX 2.1, TAXII 2.1, TLP 2.0, Diamond Model    |
-| Cross-Domain Integration | `references/cross-domain-integration.md`   | NIST CSF 2.0, All domain frameworks            |
+| Domain                   | Reference file                             | Frameworks                                         |
+| ------------------------ | ------------------------------------------ | -------------------------------------------------- |
+| IR Playbooks             | `references/ir-playbooks.md`               | NIST 800-61, ISO 27035                             |
+| DFIR Reports             | `references/dfir-reports.md`               | Chain of Custody, IOC, Timeline                    |
+| DevSecOps Pipeline       | `references/devsecops-pipeline.md`         | OWASP SAMM/Top 10, CIS                             |
+| SOC Operations + SOAR    | `references/soc-operations.md`             | MITRE ATT&CK, Cyber Kill Chain                     |
+| GitOps Security          | `references/gitops-security.md`            | OPA/Gatekeeper, Falco, ArgoCD                      |
+| Code Security Analysis   | `references/code-security-analysis.md`     | CWE Top 25, SARIF, Semgrep/CodeQL                  |
+| Container & Supply Chain | `references/container-supply-chain.md`     | NIST SP 800-190, CIS Docker, SLSA                  |
+| Threat Modeling & Risk   | `references/compliance-threat-modeling.md` | SOC 2, ISO 27001, STRIDE, PASTA                    |
+| Compliance Frameworks    | `references/compliance-frameworks.md`      | NIST 800-53, PCI DSS v4.0.1, GDPR, HIPAA, CIS v8.1 |
+| Cloud Security & CSPM    | `references/cloud-security-cspm.md`        | CIS Cloud Benchmarks, CSA CCM v4.1, NIST 800-144   |
+| Zero Trust Architecture  | `references/zero-trust-architecture.md`    | NIST 800-207, CISA ZT Maturity Model               |
+| AI/ML Security           | `references/ai-ml-security.md`             | OWASP LLM Top 10, NIST AI RMF, MITRE ATLAS         |
+| API Security             | `references/api-security.md`               | OWASP API Top 10, OAuth 2.0 BCP                    |
+| Vulnerability Management | `references/vulnerability-management.md`   | CVSS v4.0, EPSS, CISA KEV, SSVC                    |
+| Threat Intelligence      | `references/threat-intelligence.md`        | STIX 2.1, TAXII 2.1, TLP 2.0, Diamond Model        |
+| Cross-Domain Integration | `references/cross-domain-integration.md`   | NIST CSF 2.0, All domain frameworks                |
 
 ## Critical Naming Conventions
 

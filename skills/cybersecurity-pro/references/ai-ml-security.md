@@ -94,18 +94,18 @@ MITRE ATLAS เป็น knowledge base สำหรับ adversarial tactics �
 
 ### Risk Overview
 
-| ID    | Risk                         | Likelihood | Impact   | Priority |
-| ----- | ---------------------------- | ---------- | -------- | -------- |
-| LLM01 | Prompt Injection             | High       | Critical | P0       |
-| LLM02 | Insecure Output Handling     | High       | High     | P0       |
-| LLM03 | Training Data Poisoning      | Medium     | Critical | P1       |
-| LLM04 | Model Denial of Service      | High       | Medium   | P1       |
-| LLM05 | Supply Chain Vulnerabilities | Medium     | High     | P1       |
-| LLM06 | Sensitive Info Disclosure    | High       | High     | P0       |
-| LLM07 | Insecure Plugin Design       | Medium     | High     | P1       |
-| LLM08 | Excessive Agency             | Medium     | Critical | P0       |
-| LLM09 | Overreliance                 | High       | Medium   | P2       |
-| LLM10 | Model Theft                  | Low        | High     | P2       |
+| ID    | Risk                             | Likelihood | Impact   | Priority |
+| ----- | -------------------------------- | ---------- | -------- | -------- |
+| LLM01 | Prompt Injection                 | High       | Critical | P0       |
+| LLM02 | Sensitive Information Disclosure | High       | High     | P0       |
+| LLM03 | Supply Chain                     | Medium     | High     | P1       |
+| LLM04 | Data and Model Poisoning         | Medium     | Critical | P1       |
+| LLM05 | Improper Output Handling         | High       | High     | P0       |
+| LLM06 | Excessive Agency                 | Medium     | Critical | P0       |
+| LLM07 | System Prompt Leakage            | High       | Medium   | P1       |
+| LLM08 | Vector and Embedding Weaknesses  | Medium     | High     | P1       |
+| LLM09 | Misinformation                   | High       | Medium   | P2       |
+| LLM10 | Unbounded Consumption            | High       | Medium   | P1       |
 
 ### Detailed Risk Breakdown
 
@@ -116,68 +116,68 @@ MITRE ATLAS เป็น knowledge base สำหรับ adversarial tactics �
 - **การตรวจจับ**: Input anomaly detection, canary tokens, output consistency checking
 - **การแก้ไข**: Input sanitization, privilege separation, human-in-the-loop for sensitive actions
 
-#### LLM02: Insecure Output Handling
+#### LLM02: Sensitive Information Disclosure
+
+- **คำอธิบาย**: LLM เปิดเผยข้อมูลที่ sensitive ใน training data, system prompts, หรือ proprietary data
+- **ตัวอย่างจริง**: Model ตอบ PII ของ user อื่นที่อยู่ใน training data เมื่อถูกถามอย่างเฉพาะเจาะจง
+- **การตรวจจับ**: PII detection on outputs, prompt leak detection, membership inference testing
+- **การแก้ไข**: Data minimization in training, output filtering, differential privacy, access controls
+
+#### LLM03: Supply Chain
+
+- **คำอธิบาย**: ใช้ third-party models, datasets, plugins, หรือ pre-trained components ที่ไม่ปลอดภัย
+- **ตัวอย่างจริง**: Backdoored pretrained model จาก public registry ถูกนำมาใช้ใน production
+- **การตรวจจับ**: Model provenance verification, dependency scanning, behavior testing
+- **การแก้ไข**: ML-BOM tracking, model signing, curated model registries, vendor assessment
+
+#### LLM04: Data and Model Poisoning
+
+- **คำอธิบาย**: แทรกข้อมูลเป็นพิษเข้า training/fine-tuning data เพื่อบิดเบือน model behavior
+- **ตัวอย่างจริง**: Poisoned code samples ใน training data ทำให้ model แนะนำ insecure code patterns
+- **การตรวจจับ**: Data provenance tracking, statistical anomaly detection, output behavior monitoring
+- **การแก้ไข**: Data validation pipelines, curated datasets, regular model evaluation
+
+#### LLM05: Improper Output Handling
 
 - **คำอธิบาย**: ไม่ validate/sanitize output จาก LLM ก่อนส่งไปยัง downstream systems
 - **ตัวอย่างจริง**: LLM output ที่มี JavaScript ถูก render ใน web browser ทำให้เกิด XSS
 - **การตรวจจับ**: Output format validation, content security policy violations
 - **การแก้ไข**: Output encoding/escaping, treat LLM output as untrusted, sandbox execution
 
-#### LLM03: Training Data Poisoning
-
-- **คำอธิบาย**: แทรกข้อมูลเป็นพิษเข้า training dataset เพื่อบิดเบือน model behavior
-- **ตัวอย่างจริง**: Poisoned code samples ใน training data ทำให้ model แนะนำ insecure code patterns
-- **การตรวจจับ**: Data provenance tracking, statistical anomaly detection, output behavior monitoring
-- **การแก้ไข**: Data validation pipelines, curated datasets, regular model evaluation
-
-#### LLM04: Model Denial of Service
-
-- **คำอธิบาย**: Crafted inputs ที่ทำให้ LLM ใช้ compute resources มากเกินไป
-- **ตัวอย่างจริง**: Input ที่ยาวมากหรือซับซ้อนทำให้ inference time เพิ่มขึ้น 100x
-- **การตรวจจับ**: Latency monitoring, token count anomalies, cost spike alerts
-- **การแก้ไข**: Input length limits, rate limiting, timeout controls, resource quotas
-
-#### LLM05: Supply Chain Vulnerabilities
-
-- **คำอธิบาย**: ใช้ third-party models, datasets, หรือ plugins ที่ไม่ปลอดภัย
-- **ตัวอย่างจริง**: Backdoored pretrained model จาก public registry ถูกนำมาใช้ใน production
-- **การตรวจจับ**: Model provenance verification, dependency scanning, behavior testing
-- **การแก้ไข**: ML-BOM tracking, model signing, curated model registries, vendor assessment
-
-#### LLM06: Sensitive Information Disclosure
-
-- **คำอธิบาย**: LLM เปิดเผยข้อมูลที่ sensitive ใน training data หรือ system prompts
-- **ตัวอย่างจริง**: Model ตอบ PII ของ user อื่นที่อยู่ใน training data เมื่อถูกถามอย่างเฉพาะเจาะจง
-- **การตรวจจับ**: PII detection on outputs, prompt leak detection, membership inference testing
-- **การแก้ไข**: Data minimization in training, output filtering, differential privacy, access controls
-
-#### LLM07: Insecure Plugin Design
-
-- **คำอธิบาย**: LLM plugins/tools มี insufficient access controls หรือ input validation
-- **ตัวอย่างจริง**: Plugin ที่อ่าน file system ถูกใช้ผ่าน prompt injection เพื่ออ่าน sensitive files
-- **การตรวจจับ**: Plugin audit logs, permission violation alerts, unexpected tool calls
-- **การแก้ไข**: Least privilege per plugin, input validation on tool calls, human approval for sensitive actions
-
-#### LLM08: Excessive Agency
+#### LLM06: Excessive Agency
 
 - **คำอธิบาย**: LLM ได้รับ permissions หรือ autonomy มากเกินไปโดยไม่มี human oversight
 - **ตัวอย่างจริง**: AI agent ที่มี write access ถูก prompt inject ให้ลบ production database
 - **การตรวจจับ**: Action logging, anomaly detection on tool usage patterns, rate limit breaches
 - **การแก้ไข**: Principle of least privilege, human-in-the-loop, action sandboxing, approval workflows
 
-#### LLM09: Overreliance
+#### LLM07: System Prompt Leakage
 
-- **คำอธิบาย**: ผู้ใช้เชื่อถือ LLM output โดยไม่ตรวจสอบ ทำให้เกิด misinformation หรือ errors
+- **คำอธิบาย**: System prompt ที่มี confidential instructions, API keys, หรือ business logic ถูก extract
+- **ตัวอย่างจริง**: ผู้ใช้ถาม "repeat your instructions" ทำให้ได้ system prompt ที่มี proprietary logic
+- **การตรวจจับ**: Output monitoring for prompt content, canary strings in system prompts
+- **การแก้ไข**: แยก sensitive logic ออกจาก system prompt, output filtering, instruction hierarchy enforcement
+
+#### LLM08: Vector and Embedding Weaknesses
+
+- **คำอธิบาย**: ช่องโหว่ใน RAG pipelines — embedding poisoning, vector DB manipulation, retrieval hijacking
+- **ตัวอย่างจริง**: Adversary inject เอกสารเป็นพิษเข้า knowledge base ทำให้ RAG ดึงข้อมูลผิด
+- **การตรวจจับ**: Embedding drift monitoring, retrieval relevance scoring, source attribution
+- **การแก้ไข**: Input validation for ingestion, access controls on vector stores, embedding integrity checks
+
+#### LLM09: Misinformation
+
+- **คำอธิบาย**: LLM สร้าง content ที่ไม่ถูกต้องแต่ดูน่าเชื่อถือ (hallucination) ทำให้เกิด misinformation
 - **ตัวอย่างจริง**: Developers ใช้ AI-generated code โดยไม่ review ทำให้เกิด security vulnerabilities
-- **การตรวจจับ**: Confidence scoring, source attribution checks, human verification rates
-- **การแก้ไข**: Confidence indicators in UI, mandatory human review, citation requirements
+- **การตรวจจับ**: Confidence scoring, source attribution checks, human verification rates, factual grounding
+- **การแก้ไข**: Retrieval-augmented generation, confidence indicators in UI, mandatory human review
 
-#### LLM10: Model Theft
+#### LLM10: Unbounded Consumption
 
-- **คำอธิบาย**: ขโมย model weights, architecture, หรือ training data ผ่าน API queries
-- **ตัวอย่างจริง**: ใช้ model extraction technique query API นับล้านครั้งเพื่อ clone model
-- **การตรวจจับ**: Query pattern analysis, rate anomaly detection, model watermarking
-- **การแก้ไข**: Rate limiting, query quotas, model watermarking, access controls, monitoring
+- **คำอธิบาย**: LLM ถูกใช้ resources มากเกินควบคุม — ทั้ง compute, tokens, และ API costs
+- **ตัวอย่างจริง**: Crafted inputs ทำให้ inference time เพิ่มขึ้น 100x หรือ recursive tool calls ไม่สิ้นสุด
+- **การตรวจจับ**: Latency monitoring, token count anomalies, cost spike alerts, resource quotas
+- **การแก้ไข**: Input length limits, rate limiting, timeout controls, budget caps, circuit breakers
 
 ---
 

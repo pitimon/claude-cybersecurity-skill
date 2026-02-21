@@ -132,7 +132,7 @@ STIX 2.1 Object Categories:
 | `[ipv4-addr:value = '203.0.113.50']`                                              | จับคู่ IP address เฉพาะ               |
 | `[domain-name:value = 'evil.example.com']`                                        | จับคู่ domain name                    |
 | `[file:hashes.'SHA-256' = 'aabbcc...']`                                           | จับคู่ file hash SHA-256              |
-| `[email-addr:value = 'phish@evil.com']`                                           | จับคู่ email address                  |
+| `[email-addr:value = 'phish@evil.example.com']`                                   | จับคู่ email address                  |
 | `[network-traffic:dst_ref.type = 'ipv4-addr' AND network-traffic:dst_port = 443]` | Network traffic ไปยัง IP ที่ port 443 |
 
 ---
