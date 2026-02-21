@@ -79,6 +79,25 @@ Skill จะถูก trigger อัตโนมัติเมื่อ prompt 
 
 > ดูคู่มือฉบับเต็ม: [docs/INSTALL.md](docs/INSTALL.md) | สำหรับ air-gapped server ดูหัวข้อ Manual Installation
 
+### อัพเดท Plugin (Update)
+
+เมื่อมี version ใหม่ ให้รันใน **terminal**:
+
+```bash
+# 1. อัพเดท marketplace cache
+claude plugin marketplace update pitimon-cybersecurity
+
+# 2. ติดตั้ง plugin ใหม่ (overwrite version เก่า)
+claude plugin install cybersecurity-pro@pitimon-cybersecurity
+
+# 3. ตรวจสอบ
+claude doctor
+
+# 4. Restart Claude Code session เพื่อโหลด skill version ใหม่
+```
+
+> สำหรับ air-gapped server ดูขั้นตอน Manual Upgrade ใน [docs/INSTALL.md](docs/INSTALL.md#manual-upgrade-air-gapped)
+
 ---
 
 ## Capabilities (ความสามารถ — 9 Domains)
