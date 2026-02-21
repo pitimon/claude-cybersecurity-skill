@@ -83,6 +83,14 @@ Traditional Security:              Zero Trust Security:
 - **ZTNA (Zero Trust Network Access)** — ทดแทน VPN ด้วย identity-based, application-level access
 - **SDP (Software Defined Perimeter)** — สร้าง perimeter แบบ dynamic รอบ resources
 
+### Forrester ZTX (Zero Trust eXtended)
+
+Forrester ZTX ขยายแนวคิด Zero Trust เดิมเป็น 7 domains ที่ map กับ CISA 5 Pillars:
+Data Security (→ Data), Network Security (→ Network), People Security (→ Identity),
+Workload Security (→ Application), Device Security (→ Device),
+plus **Visibility** และ **Automation** เป็น cross-pillar capabilities
+สำหรับ centralized analytics, orchestration และ automated response
+
 ---
 
 ## 2. มาตรฐาน NIST 800-207 (NIST SP 800-207 Framework)
@@ -236,12 +244,12 @@ Network ไม่ใช่ trust boundary อีกต่อไป — ใช้
 - **Service Mesh** — Istio/Linkerd สำหรับ mTLS, authorization policies ระหว่าง services
 - **Workload Identity** — SPIFFE/SPIRE สำหรับ machine-to-machine identity
 
-| Maturity Level | Description                                                        |
-| -------------- | ------------------------------------------------------------------ |
-| Traditional    | Network-based access, VPN for remote, no app-level auth            |
-| Initial        | SSO for web apps, VPN still primary, basic API authentication      |
-| Advanced       | ZTNA deployed, service mesh with mTLS, workload identity (SPIFFE)  |
-| Optimal        | All apps via ZTNA, per-request authorization, fully meshed, AI WAF |
+| Maturity Level | Description                                                               |
+| -------------- | ------------------------------------------------------------------------- |
+| Traditional    | Network-based access, VPN for remote, no app-level auth                   |
+| Initial        | SSO for web apps, VPN still primary, basic API authentication             |
+| Advanced       | ZTNA deployed, service mesh with mTLS, workload identity (SPIFFE)         |
+| Optimal        | All apps via ZTNA, per-request authorization, fully meshed, AI-driven WAF |
 
 ### Pillar 5: Data (ข้อมูล)
 
@@ -255,12 +263,12 @@ Network ไม่ใช่ trust boundary อีกต่อไป — ใช้
 - **Access Logging** — Log ทุก data access สำหรับ audit trail
 - **Rights Management** — Information Rights Management (IRM), conditional sharing
 
-| Maturity Level | Description                                                                   |
-| -------------- | ----------------------------------------------------------------------------- |
-| Traditional    | No classification, encryption only at perimeter, no DLP                       |
-| Initial        | Basic classification, encryption at rest/transit, manual DLP rules            |
-| Advanced       | Automated classification, granular DLP, access logging, tokenization          |
-| Optimal        | Real-time classification, adaptive DLP, confidential computing, zero-standing |
+| Maturity Level | Description                                                                              |
+| -------------- | ---------------------------------------------------------------------------------------- |
+| Traditional    | No classification, encryption only at perimeter, no DLP                                  |
+| Initial        | Basic classification, encryption at rest/transit, manual DLP rules                       |
+| Advanced       | Automated classification, granular DLP, access logging, tokenization                     |
+| Optimal        | Real-time classification, adaptive DLP, confidential computing, zero-standing privileges |
 
 ---
 

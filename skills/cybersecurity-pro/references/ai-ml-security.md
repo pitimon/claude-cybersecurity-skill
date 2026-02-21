@@ -82,7 +82,7 @@ MITRE ATLAS เป็น knowledge base สำหรับ adversarial tactics �
 
 ---
 
-## 2. OWASP Top 10 สำหรับ LLM Applications (OWASP Top 10 for LLM Applications)
+## 2. OWASP Top 10 สำหรับ LLM Applications (OWASP Top 10 for LLM Applications 2025)
 
 ### Risk Overview
 
@@ -338,7 +338,7 @@ guardrails:
 
 ## 4. ธรรมาภิบาล AI และนโยบาย (AI Governance & Policy)
 
-### NIST AI Risk Management Framework (AI RMF 100-1)
+### NIST AI Risk Management Framework (NIST AI 100-1)
 
 NIST AI RMF เป็น framework สำหรับจัดการความเสี่ยงของ AI systems ประกอบด้วย 4 core functions:
 
@@ -427,7 +427,17 @@ ethical principles, legal requirements, และ organizational risk tolerance
 - [ ] Security: ทดสอบ adversarial robustness และ prompt injection resistance
 - [ ] Accountability: กำหนด owner, escalation path, และ incident response plan
 - [ ] Human oversight: มี mechanism สำหรับ human override ใน high-stakes decisions
-- [ ] Compliance: ตรวจสอบ alignment กับ EU AI Act, NIST AI RMF, local regulations
+- [ ] Compliance: ตรวจสอบ alignment กับ EU AI Act, NIST AI RMF, ISO/IEC 42001, local regulations
+
+### ISO/IEC 42001 — AI Management System (AIMS)
+
+ISO/IEC 42001 เป็นมาตรฐาน certifiable สำหรับ AI Management System ครอบคลุม:
+
+- กรอบ governance สำหรับ responsible AI development, deployment และ operation
+- Risk management process เฉพาะสำหรับ AI systems (Annex B risk sources)
+- Controls สำหรับ data management, model lifecycle, third-party AI assessment (Annex A)
+- สอดคล้องกับ ISO 27001 (ISMS) — สามารถ integrate เข้ากับ existing management systems
+- เหมาะสำหรับองค์กรที่ต้องการ demonstrate AI governance maturity แก่ regulators และ customers
 
 ---
 

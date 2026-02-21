@@ -367,28 +367,28 @@ CSPM ทำอะไร:
 
 ### Prowler — Top 20 Critical Checks
 
-| #   | Check ID             | คำอธิบาย                                          | AWS CLI Equivalent                                                                    |
-| --- | -------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| 1   | iam_root_mfa         | Root account ต้องมี MFA                           | `aws iam get-account-summary \| jq .AccountMFAEnabled`                                |
-| 2   | iam_no_root_keys     | Root account ต้องไม่มี access keys                | `aws iam get-account-summary \| jq .AccountAccessKeysPresent`                         |
-| 3   | iam_password_policy  | Password policy ต้อง enforce complexity           | `aws iam get-account-password-policy`                                                 |
-| 4   | s3_public_access     | S3 buckets ต้องไม่เปิด public                     | `aws s3api get-public-access-block --bucket BUCKET`                                   |
-| 5   | s3_encryption        | S3 buckets ต้องเปิด encryption                    | `aws s3api get-bucket-encryption --bucket BUCKET`                                     |
-| 6   | ec2_sg_open_ssh      | Security groups ต้องไม่เปิด SSH จาก 0.0.0.0/0     | `aws ec2 describe-security-groups --filters "Name=ip-permission.to-port,Values=22"`   |
-| 7   | ec2_sg_open_rdp      | Security groups ต้องไม่เปิด RDP จาก 0.0.0.0/0     | `aws ec2 describe-security-groups --filters "Name=ip-permission.to-port,Values=3389"` |
-| 8   | cloudtrail_enabled   | CloudTrail ต้องเปิดใช้ทุก region                  | `aws cloudtrail describe-trails`                                                      |
-| 9   | cloudtrail_encrypted | CloudTrail logs ต้อง encrypt ด้วย KMS             | `aws cloudtrail describe-trails \| jq '.[].KmsKeyId'`                                 |
-| 10  | rds_encryption       | RDS instances ต้องเปิด encryption at rest         | `aws rds describe-db-instances \| jq '.[].StorageEncrypted'`                          |
-| 11  | rds_public           | RDS instances ต้องไม่เปิด public access           | `aws rds describe-db-instances \| jq '.[].PubliclyAccessible'`                        |
-| 12  | vpc_flow_logs        | VPCs ต้องเปิด Flow Logs                           | `aws ec2 describe-flow-logs --filter "Name=resource-id,Values=VPC_ID"`                |
-| 13  | ebs_encryption       | EBS volumes ต้องเปิด encryption                   | `aws ec2 describe-volumes \| jq '.[].Encrypted'`                                      |
-| 14  | kms_key_rotation     | KMS keys ต้องเปิด automatic rotation              | `aws kms get-key-rotation-status --key-id KEY_ID`                                     |
-| 15  | guardduty_enabled    | GuardDuty ต้องเปิดใช้งาน                          | `aws guardduty list-detectors`                                                        |
-| 16  | config_enabled       | AWS Config ต้องเปิดใช้ทุก region                  | `aws configservice describe-configuration-recorders`                                  |
-| 17  | iam_unused_creds     | IAM credentials ที่ไม่ใช้ > 90 วัน ต้อง disable   | `aws iam generate-credential-report`                                                  |
-| 18  | lambda_public        | Lambda functions ต้องไม่มี public resource policy | `aws lambda get-policy --function-name FUNC`                                          |
-| 19  | eks_public_endpoint  | EKS cluster endpoint ต้องไม่เปิด public           | `aws eks describe-cluster --name CLUSTER \| jq '.endpointPublicAccess'`               |
-| 20  | ecr_image_scan       | ECR repositories ต้องเปิด image scanning          | `aws ecr describe-repositories \| jq '.[].imageScanningConfiguration'`                |
+| #   | Check ID             | คำอธิบาย                                          | AWS CLI Equivalent                                                                                 |
+| --- | -------------------- | ------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| 1   | iam_root_mfa         | Root account ต้องมี MFA                           | `aws iam get-account-summary \| jq .SummaryMap.AccountMFAEnabled`                                  |
+| 2   | iam_no_root_keys     | Root account ต้องไม่มี access keys                | `aws iam get-account-summary \| jq .SummaryMap.AccountAccessKeysPresent`                           |
+| 3   | iam_password_policy  | Password policy ต้อง enforce complexity           | `aws iam get-account-password-policy`                                                              |
+| 4   | s3_public_access     | S3 buckets ต้องไม่เปิด public                     | `aws s3api get-public-access-block --bucket BUCKET`                                                |
+| 5   | s3_encryption        | S3 buckets ต้องเปิด encryption                    | `aws s3api get-bucket-encryption --bucket BUCKET`                                                  |
+| 6   | ec2_sg_open_ssh      | Security groups ต้องไม่เปิด SSH จาก 0.0.0.0/0     | `aws ec2 describe-security-groups --filters "Name=ip-permission.to-port,Values=22"`                |
+| 7   | ec2_sg_open_rdp      | Security groups ต้องไม่เปิด RDP จาก 0.0.0.0/0     | `aws ec2 describe-security-groups --filters "Name=ip-permission.to-port,Values=3389"`              |
+| 8   | cloudtrail_enabled   | CloudTrail ต้องเปิดใช้ทุก region                  | `aws cloudtrail describe-trails`                                                                   |
+| 9   | cloudtrail_encrypted | CloudTrail logs ต้อง encrypt ด้วย KMS             | `aws cloudtrail describe-trails \| jq '.trailList[].KmsKeyId'`                                     |
+| 10  | rds_encryption       | RDS instances ต้องเปิด encryption at rest         | `aws rds describe-db-instances \| jq '.DBInstances[].StorageEncrypted'`                            |
+| 11  | rds_public           | RDS instances ต้องไม่เปิด public access           | `aws rds describe-db-instances \| jq '.DBInstances[].PubliclyAccessible'`                          |
+| 12  | vpc_flow_logs        | VPCs ต้องเปิด Flow Logs                           | `aws ec2 describe-flow-logs --filter "Name=resource-id,Values=VPC_ID"`                             |
+| 13  | ebs_encryption       | EBS volumes ต้องเปิด encryption                   | `aws ec2 describe-volumes \| jq '.Volumes[].Encrypted'`                                            |
+| 14  | kms_key_rotation     | KMS keys ต้องเปิด automatic rotation              | `aws kms get-key-rotation-status --key-id KEY_ID`                                                  |
+| 15  | guardduty_enabled    | GuardDuty ต้องเปิดใช้งาน                          | `aws guardduty list-detectors`                                                                     |
+| 16  | config_enabled       | AWS Config ต้องเปิดใช้ทุก region                  | `aws configservice describe-configuration-recorders`                                               |
+| 17  | iam_unused_creds     | IAM credentials ที่ไม่ใช้ > 90 วัน ต้อง disable   | `aws iam generate-credential-report`                                                               |
+| 18  | lambda_public        | Lambda functions ต้องไม่มี public resource policy | `aws lambda get-policy --function-name FUNC`                                                       |
+| 19  | eks_public_endpoint  | EKS cluster endpoint ต้องไม่เปิด public           | `aws eks describe-cluster --name CLUSTER \| jq '.cluster.resourcesVpcConfig.endpointPublicAccess'` |
+| 20  | ecr_image_scan       | ECR repositories ต้องเปิด image scanning          | `aws ecr describe-repositories \| jq '.repositories[].imageScanningConfiguration'`                 |
 
 ### Cloud Custodian Policy Examples
 
@@ -432,19 +432,19 @@ policies:
 
 ### CSPM Tool Comparison
 
-| Feature               | Prowler         | ScoutSuite     | Checkov        | Cloud Custodian    | Commercial (Prisma/Wiz) |
-| --------------------- | --------------- | -------------- | -------------- | ------------------ | ----------------------- |
-| License               | Apache 2.0      | GPL-2.0        | Apache 2.0     | Apache 2.0         | Proprietary             |
-| AWS support           | Excellent       | Good           | IaC focus      | Excellent          | Excellent               |
-| Azure support         | Good            | Good           | IaC focus      | Good               | Excellent               |
-| GCP support           | Good            | Good           | IaC focus      | Good               | Excellent               |
-| Runtime scanning      | Yes             | Yes            | No (IaC only)  | Yes                | Yes                     |
-| IaC scanning          | Limited         | No             | Excellent      | No                 | Yes                     |
-| Auto-remediation      | Limited         | No             | No             | Excellent          | Yes                     |
-| CIS Benchmark mapping | Yes             | Yes            | Yes            | Manual             | Yes                     |
-| CI/CD integration     | GitHub Actions  | CLI            | GitHub Actions | CLI                | Full integration        |
-| Custom rules          | Python checks   | Limited        | Python/YAML    | YAML policies      | GUI + code              |
-| เหมาะกับ (Best for)   | AWS-first audit | Quick overview | IaC pipelines  | Policy enforcement | Enterprise multi-cloud  |
+| Feature               | Prowler          | ScoutSuite     | Checkov        | Cloud Custodian    | Commercial (Prisma/Wiz) |
+| --------------------- | ---------------- | -------------- | -------------- | ------------------ | ----------------------- |
+| License               | Apache 2.0 (CLI) | GPL-2.0        | Apache 2.0     | Apache 2.0         | Proprietary             |
+| AWS support           | Excellent        | Good           | IaC focus      | Excellent          | Excellent               |
+| Azure support         | Good             | Good           | IaC focus      | Good               | Excellent               |
+| GCP support           | Good             | Good           | IaC focus      | Good               | Excellent               |
+| Runtime scanning      | Yes              | Yes            | No (IaC only)  | Yes                | Yes                     |
+| IaC scanning          | Limited          | No             | Excellent      | No                 | Yes                     |
+| Auto-remediation      | Limited          | No             | No             | Excellent          | Yes                     |
+| CIS Benchmark mapping | Yes              | Yes            | Yes            | Manual             | Yes                     |
+| CI/CD integration     | GitHub Actions   | CLI            | GitHub Actions | CLI                | Full integration        |
+| Custom rules          | Python checks    | Limited        | Python/YAML    | YAML policies      | GUI + code              |
+| เหมาะกับ (Best for)   | AWS-first audit  | Quick overview | IaC pipelines  | Policy enforcement | Enterprise multi-cloud  |
 
 ---
 
@@ -643,7 +643,7 @@ repos:
       - id: terraform_tflint
 
   - repo: https://github.com/bridgecrewio/checkov
-    rev: 3.2.0
+    rev: v3.2.0
     hooks:
       - id: checkov
         args: ["--framework", "terraform"]
@@ -661,19 +661,19 @@ repos:
 
 ### IaC Security Tool Comparison
 
-| Feature               | Checkov         | tfsec          | KICS            | Terrascan      |
-| --------------------- | --------------- | -------------- | --------------- | -------------- |
-| Terraform             | Yes             | Yes            | Yes             | Yes            |
-| CloudFormation        | Yes             | No             | Yes             | Yes            |
-| Kubernetes manifests  | Yes             | No             | Yes             | Yes            |
-| Dockerfile            | Yes             | No             | Yes             | Yes            |
-| Custom rules          | Python + YAML   | Rego           | Rego            | Rego           |
-| SARIF output          | Yes             | Yes            | Yes             | Yes            |
-| IDE integration       | VS Code         | VS Code        | VS Code         | Limited        |
-| CI/CD integration     | GitHub Actions  | GitHub Actions | GitHub Actions  | GitHub Actions |
-| CIS Benchmark mapping | Yes             | Partial        | Yes             | Yes            |
-| Auto-fix suggestions  | Yes             | No             | No              | No             |
-| เหมาะกับ (Best for)   | Multi-framework | Terraform-only | Multi-framework | Policy-as-code |
+| Feature               | Checkov         | tfsec               | KICS            | Terrascan      |
+| --------------------- | --------------- | ------------------- | --------------- | -------------- |
+| Terraform             | Yes             | Yes                 | Yes             | Yes            |
+| CloudFormation        | Yes             | No                  | Yes             | Yes            |
+| Kubernetes manifests  | Yes             | No                  | Yes             | Yes            |
+| Dockerfile            | Yes             | No                  | Yes             | Yes            |
+| Custom rules          | Python + YAML   | Rego                | Rego            | Rego           |
+| SARIF output          | Yes             | Yes                 | Yes             | Yes            |
+| IDE integration       | VS Code         | VS Code             | VS Code         | Limited        |
+| CI/CD integration     | GitHub Actions  | GitHub Actions      | GitHub Actions  | GitHub Actions |
+| CIS Benchmark mapping | Yes             | Partial             | Yes             | Yes            |
+| Auto-fix suggestions  | Yes             | No                  | No              | No             |
+| เหมาะกับ (Best for)   | Multi-framework | Archived; use Trivy | Multi-framework | Policy-as-code |
 
 ### Drift Detection and Remediation
 
