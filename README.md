@@ -43,6 +43,10 @@ User prompt → keyword match in SKILL.md frontmatter
 
 ## Quick Start (เริ่มต้นใช้งาน)
 
+### Step 1: ติดตั้ง — รันใน Terminal Shell
+
+เปิด **terminal** (ไม่ใช่ใน Claude Code prompt) แล้วรันคำสั่งทั้ง 3 ตามลำดับ:
+
 ```bash
 # 1. เพิ่ม marketplace
 claude plugin marketplace add pitimon/claude-cybersecurity-skill
@@ -50,14 +54,30 @@ claude plugin marketplace add pitimon/claude-cybersecurity-skill
 # 2. ติดตั้ง plugin
 claude plugin install cybersecurity-pro@pitimon-cybersecurity
 
-# 3. ตรวจสอบ
+# 3. ตรวจสอบว่าติดตั้งสำเร็จ
 claude doctor
-
-# 4. Restart session เพื่อ load skill
-# ใช้ /clear ใน Claude Code หรือเปิด terminal ใหม่
+# Expected: ✓ cybersecurity-pro@pitimon-cybersecurity - OK
 ```
 
-> ดูคู่มือฉบับเต็ม: [docs/INSTALL.md](docs/INSTALL.md)
+### Step 2: เริ่มใช้งาน — พิมพ์ใน Claude Code Prompt
+
+เปิด **Claude Code session ใหม่** (หรือพิมพ์ `/clear` เพื่อ reload skills) แล้วพิมพ์ prompt ที่มี trigger keywords:
+
+```
+> สร้าง IR playbook สำหรับ ransomware incident ตาม NIST 800-61
+```
+
+```
+> สร้าง SOAR playbook สำหรับ automated phishing response
+```
+
+```
+> สร้าง SOC 2 Type II readiness roadmap 6 เดือน
+```
+
+Skill จะถูก trigger อัตโนมัติเมื่อ prompt ตรงกับ keywords ของ domain ใด domain หนึ่ง — ไม่ต้องเรียก skill ด้วยตัวเอง
+
+> ดูคู่มือฉบับเต็ม: [docs/INSTALL.md](docs/INSTALL.md) | สำหรับ air-gapped server ดูหัวข้อ Manual Installation
 
 ---
 
@@ -104,46 +124,48 @@ outputs ทั้งหมดอ้างอิง frameworks เหล่าน
 
 ## Usage Examples (ตัวอย่างการใช้งาน)
 
+ตัวอย่าง prompt ที่พิมพ์ **ใน Claude Code** — skill จะ trigger อัตโนมัติจาก keywords
+
 ### IR Playbook
 
 ```
-สร้าง IR playbook สำหรับ ransomware incident ตาม NIST 800-61
-รวม escalation matrix และ SLA timelines
+> สร้าง IR playbook สำหรับ ransomware incident ตาม NIST 800-61
+  รวม escalation matrix และ SLA timelines
 ```
 
 ### DFIR Report
 
 ```
-สร้างแม่แบบ DFIR report สำหรับ memory forensics investigation
-ต้องมี chain of custody form และ evidence handling procedures
+> สร้างแม่แบบ DFIR report สำหรับ memory forensics investigation
+  ต้องมี chain of custody form และ evidence handling procedures
 ```
 
 ### Code Security Analysis
 
 ```
-สร้าง Semgrep custom rules สำหรับตรวจจับ SQL injection ด้วย taint mode
-พร้อม GitHub Actions pipeline ที่รวม CodeQL
+> สร้าง Semgrep custom rules สำหรับตรวจจับ SQL injection ด้วย taint mode
+  พร้อม GitHub Actions pipeline ที่รวม CodeQL
 ```
 
 ### Container Security
 
 ```
-สร้าง Dockerfile hardening guide สำหรับ Node.js application
-รวม Trivy scanning, SBOM generation, และ cosign signing
+> สร้าง Dockerfile hardening guide สำหรับ Node.js application
+  รวม Trivy scanning, SBOM generation, และ cosign signing
 ```
 
 ### SOC + SOAR
 
 ```
-สร้าง SOAR playbook สำหรับ automated phishing response
-รวม enrichment sources และ containment actions
+> สร้าง SOAR playbook สำหรับ automated phishing response
+  รวม enrichment sources และ containment actions
 ```
 
 ### Compliance
 
 ```
-สร้าง SOC 2 Type II readiness roadmap 6 เดือน
-รวม control mapping และ evidence collection plan
+> สร้าง SOC 2 Type II readiness roadmap 6 เดือน
+  รวม control mapping และ evidence collection plan
 ```
 
 ---
