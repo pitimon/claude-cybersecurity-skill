@@ -28,7 +28,7 @@ claude plugin marketplace add pitimon/claude-cybersecurity-skill
 
 - Clone repository จาก GitHub
 - สร้าง entry ใน `~/.claude/plugins/known_marketplaces.json` ด้วย `source: "github"`
-- Cache source code ไว้ที่ `~/.claude/plugins/cache/pitimon/claude-cybersecurity-skill/`
+- Cache source code ไว้ที่ `~/.claude/plugins/cache/pitimon-cybersecurity/cybersecurity-pro/<version>/`
 
 ### Step 2: ติดตั้ง Plugin
 
@@ -68,11 +68,11 @@ cat ~/.claude/plugins/installed_plugins.json | jq 'has("cybersecurity-pro@pitimo
 # Expected: true
 
 # 3. Plugin ถูก enable
-cat ~/.claude/settings.json | jq '.enabledPlugins | index("cybersecurity-pro@pitimon-cybersecurity")'
-# Expected: ตัวเลข (ไม่ใช่ null)
+cat ~/.claude/settings.json | jq '.enabledPlugins["cybersecurity-pro@pitimon-cybersecurity"]'
+# Expected: true
 
 # 4. Cache มีไฟล์ครบ
-ls ~/.claude/plugins/cache/pitimon/claude-cybersecurity-skill/*/skills/cybersecurity-pro/SKILL.md
+ls ~/.claude/plugins/cache/pitimon-cybersecurity/cybersecurity-pro/*/skills/cybersecurity-pro/SKILL.md
 # Expected: แสดง path ของ SKILL.md
 ```
 
@@ -95,7 +95,12 @@ cd claude-cybersecurity-skill
 # สร้าง tarball สำหรับ transfer
 tar czf cybersecurity-pro-plugin.tar.gz \
   .claude-plugin/ \
-  skills/
+  skills/ \
+  docs/ \
+  CLAUDE.md \
+  README.md \
+  CHANGELOG.md \
+  .gitignore
 ```
 
 ### Step 2: Transfer ไปยัง target server
@@ -113,13 +118,25 @@ ssh user@target-server
 #### 3a. สร้าง cache directory
 
 ```bash
-CACHE_DIR="$HOME/.claude/plugins/cache/pitimon/claude-cybersecurity-skill/1.0.0"
+CACHE_DIR="$HOME/.claude/plugins/cache/pitimon-cybersecurity/cybersecurity-pro/2.0.0"
 mkdir -p "$CACHE_DIR"
 cd "$CACHE_DIR"
 tar xzf /tmp/cybersecurity-pro-plugin.tar.gz
 ```
 
-#### 3b. แก้ไข known_marketplaces.json
+#### 3b. สร้าง Marketplace Directory
+
+```bash
+MKT_DIR="$HOME/.claude/plugins/marketplaces/pitimon-cybersecurity"
+mkdir -p "$MKT_DIR"
+cd "$MKT_DIR"
+tar xzf /tmp/cybersecurity-pro-plugin.tar.gz
+```
+
+> **หมายเหตุ**: Claude Code ใช้ marketplace directory เป็น reference สำหรับ plugin metadata
+> ถ้าใช้ standard install, directory นี้จะถูกสร้างจาก `git clone` อัตโนมัติ
+
+#### 3c. แก้ไข known_marketplaces.json
 
 ```bash
 # สร้างหรือแก้ไข known_marketplaces.json
@@ -144,7 +161,7 @@ cat ~/.claude/plugins/known_marketplaces.json
 > **Critical**: source ต้องเป็น `"github"` เสมอ แม้ว่าจะติดตั้งแบบ manual
 > **ห้ามใช้** `"source": "local"` เพราะ Claude Code validator จะ reject
 
-#### 3c. แก้ไข installed_plugins.json
+#### 3d. แก้ไข installed_plugins.json
 
 ```bash
 cat ~/.claude/plugins/installed_plugins.json
@@ -155,27 +172,29 @@ cat ~/.claude/plugins/installed_plugins.json
 ```json
 {
   "cybersecurity-pro@pitimon-cybersecurity": {
-    "version": "1.0.0",
-    "installedAt": "2026-02-19T00:00:00.000Z"
+    "version": "2.0.0",
+    "installedAt": "2026-02-20T00:00:00.000Z"
   }
 }
 ```
 
-#### 3d. แก้ไข settings.json
+#### 3e. แก้ไข settings.json
 
 ```bash
 cat ~/.claude/settings.json
 ```
 
-**เพิ่มใน `enabledPlugins` array:**
+**เพิ่มใน `enabledPlugins` object:**
 
 ```json
 {
-  "enabledPlugins": ["cybersecurity-pro@pitimon-cybersecurity"]
+  "enabledPlugins": {
+    "cybersecurity-pro@pitimon-cybersecurity": true
+  }
 }
 ```
 
-หากมี plugins อื่นอยู่แล้ว ให้เพิ่มต่อท้าย array
+หากมี plugins อื่นอยู่แล้ว ให้เพิ่ม key-value ใน `enabledPlugins` object
 
 ### Step 4: ตรวจสอบ
 
@@ -204,7 +223,7 @@ claude doctor
 
 ```bash
 # 1. ลบ cache
-rm -rf ~/.claude/plugins/cache/pitimon/claude-cybersecurity-skill
+rm -rf ~/.claude/plugins/cache/pitimon-cybersecurity/cybersecurity-pro
 
 # 2. ลบ marketplace directory
 rm -rf ~/.claude/plugins/marketplaces/pitimon-cybersecurity
@@ -235,7 +254,7 @@ claude doctor
 
 ```bash
 # 1. ลบ cache เก่า
-rm -rf ~/.claude/plugins/cache/pitimon/claude-cybersecurity-skill
+rm -rf ~/.claude/plugins/cache/pitimon-cybersecurity/cybersecurity-pro
 
 # 2. ทำตามขั้นตอน Manual Installation อีกครั้ง
 # (transfer ไฟล์ใหม่, extract ไปยัง cache directory)
@@ -250,14 +269,14 @@ rm -rf ~/.claude/plugins/cache/pitimon/claude-cybersecurity-skill
 
 ### File Locations
 
-| ไฟล์                      | Path                                                          | Purpose               |
-| ------------------------- | ------------------------------------------------------------- | --------------------- |
-| `known_marketplaces.json` | `~/.claude/plugins/known_marketplaces.json`                   | Marketplace registry  |
-| `installed_plugins.json`  | `~/.claude/plugins/installed_plugins.json`                    | Installed plugin list |
-| `settings.json`           | `~/.claude/settings.json`                                     | Claude Code settings  |
-| `config.json`             | `~/.claude/plugins/config.json`                               | Plugin system config  |
-| Plugin cache              | `~/.claude/plugins/cache/pitimon/claude-cybersecurity-skill/` | Downloaded source     |
-| Marketplace dir           | `~/.claude/plugins/marketplaces/pitimon-cybersecurity/`       | Marketplace metadata  |
+| ไฟล์                      | Path                                                               | Purpose               |
+| ------------------------- | ------------------------------------------------------------------ | --------------------- |
+| `known_marketplaces.json` | `~/.claude/plugins/known_marketplaces.json`                        | Marketplace registry  |
+| `installed_plugins.json`  | `~/.claude/plugins/installed_plugins.json`                         | Installed plugin list |
+| `settings.json`           | `~/.claude/settings.json`                                          | Claude Code settings  |
+| `config.json`             | `~/.claude/plugins/config.json`                                    | Plugin system config  |
+| Plugin cache              | `~/.claude/plugins/cache/pitimon-cybersecurity/cybersecurity-pro/` | Downloaded source     |
+| Marketplace dir           | `~/.claude/plugins/marketplaces/pitimon-cybersecurity/`            | Marketplace metadata  |
 
 ### Expected known_marketplaces.json Entry
 
@@ -278,8 +297,8 @@ rm -rf ~/.claude/plugins/cache/pitimon/claude-cybersecurity-skill
 ```json
 {
   "cybersecurity-pro@pitimon-cybersecurity": {
-    "version": "1.0.0",
-    "installedAt": "2026-02-19T00:00:00.000Z"
+    "version": "2.0.0",
+    "installedAt": "2026-02-20T00:00:00.000Z"
   }
 }
 ```
@@ -288,28 +307,55 @@ rm -rf ~/.claude/plugins/cache/pitimon/claude-cybersecurity-skill
 
 ```json
 {
-  "enabledPlugins": ["cybersecurity-pro@pitimon-cybersecurity"]
+  "enabledPlugins": {
+    "cybersecurity-pro@pitimon-cybersecurity": true
+  }
 }
 ```
 
 ### Cache Directory Structure
 
 ```
-~/.claude/plugins/cache/pitimon/claude-cybersecurity-skill/
+~/.claude/plugins/cache/pitimon-cybersecurity/cybersecurity-pro/
 └── <version>/
     ├── .claude-plugin/
     │   ├── marketplace.json
     │   └── plugin.json
-    └── skills/
-        └── cybersecurity-pro/
-            ├── SKILL.md
-            ├── cybersecurity-pro.skill
-            └── references/
-                ├── devsecops-pipeline.md
-                ├── dfir-reports.md
-                ├── gitops-security.md
-                ├── ir-playbooks.md
-                └── soc-operations.md
+    ├── skills/
+    │   └── cybersecurity-pro/
+    │       ├── SKILL.md
+    │       └── references/
+    │           ├── ir-playbooks.md
+    │           ├── dfir-reports.md
+    │           ├── devsecops-pipeline.md
+    │           ├── soc-operations.md
+    │           ├── gitops-security.md
+    │           ├── code-security-analysis.md
+    │           ├── container-supply-chain.md
+    │           └── compliance-threat-modeling.md
+    ├── docs/
+    │   ├── INSTALL.md
+    │   └── TROUBLESHOOTING.md
+    ├── CLAUDE.md
+    ├── README.md
+    └── CHANGELOG.md
+```
+
+### Marketplace Directory Structure
+
+```
+~/.claude/plugins/marketplaces/pitimon-cybersecurity/
+├── .claude-plugin/
+│   ├── marketplace.json
+│   └── plugin.json
+├── skills/
+│   └── cybersecurity-pro/
+│       ├── SKILL.md
+│       └── references/ (8 files)
+├── docs/
+├── CLAUDE.md
+├── README.md
+└── CHANGELOG.md
 ```
 
 ---

@@ -99,8 +99,8 @@ cat ~/.claude/plugins/known_marketplaces.json | jq '.'
 ```json
 {
   "cybersecurity-pro@pitimon-cybersecurity": {
-    "version": "1.0.0",
-    "installedAt": "2026-02-19T00:00:00.000Z"
+    "version": "2.0.0",
+    "installedAt": "2026-02-20T00:00:00.000Z"
   }
 }
 ```
@@ -109,7 +109,9 @@ cat ~/.claude/plugins/known_marketplaces.json | jq '.'
 
 ```json
 {
-  "enabledPlugins": ["cybersecurity-pro@pitimon-cybersecurity"]
+  "enabledPlugins": {
+    "cybersecurity-pro@pitimon-cybersecurity": true
+  }
 }
 ```
 
@@ -150,11 +152,11 @@ cat ~/.claude/settings.json | jq '.enabledPlugins'
 
 ตรวจสอบว่าทั้ง 3 ไฟล์ใช้ชื่อตรงกัน:
 
-| ไฟล์                      | Key / Value ที่ต้องตรง                                      |
-| ------------------------- | ----------------------------------------------------------- |
-| `known_marketplaces.json` | key: `"pitimon-cybersecurity"`                              |
-| `installed_plugins.json`  | key: `"cybersecurity-pro@pitimon-cybersecurity"`            |
-| `settings.json`           | enabledPlugins: `"cybersecurity-pro@pitimon-cybersecurity"` |
+| ไฟล์                      | Key / Value ที่ต้องตรง                                              |
+| ------------------------- | ------------------------------------------------------------------- |
+| `known_marketplaces.json` | key: `"pitimon-cybersecurity"`                                      |
+| `installed_plugins.json`  | key: `"cybersecurity-pro@pitimon-cybersecurity"`                    |
+| `settings.json`           | enabledPlugins: `{"cybersecurity-pro@pitimon-cybersecurity": true}` |
 
 ---
 
@@ -178,7 +180,7 @@ Plugin ติดตั้งสำเร็จ, `claude doctor` ผ่าน, �
 
 3. **ตรวจสอบ SKILL.md** -- ดูว่า skill definition ถูกต้อง:
    ```bash
-   cat ~/.claude/plugins/cache/pitimon/claude-cybersecurity-skill/*/skills/cybersecurity-pro/SKILL.md
+   cat ~/.claude/plugins/cache/pitimon-cybersecurity/cybersecurity-pro/*/skills/cybersecurity-pro/SKILL.md
    ```
 
 ---
@@ -193,7 +195,7 @@ Plugin ติดตั้งสำเร็จ, `claude doctor` ผ่าน, �
 
 ```bash
 # 1. ลบ cache ของ marketplace นี้
-rm -rf ~/.claude/plugins/cache/pitimon/claude-cybersecurity-skill
+rm -rf ~/.claude/plugins/cache/pitimon-cybersecurity/cybersecurity-pro
 
 # 2. ลบ marketplace directory (ถ้ามี)
 rm -rf ~/.claude/plugins/marketplaces/pitimon-cybersecurity
