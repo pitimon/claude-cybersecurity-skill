@@ -492,7 +492,7 @@ claude-cybersecurity-skill/
 | **Install key** | `cybersecurity-pro@pitimon-cybersecurity` |
 | **Version**     | 3.4.0                                     |
 | **Category**    | Security                                  |
-| **Author**      | somapa                                    |
+| **Author**      | P.Itarun                                  |
 | **Language**    | Bilingual Thai + English                  |
 | **Domains**     | 17                                        |
 
