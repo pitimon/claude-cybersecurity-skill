@@ -1,43 +1,75 @@
+<div align="center">
+
 # cybersecurity-pro
 
-**Professional Cybersecurity Skill for Claude Code** | v3.4.0
+**Enterprise Cybersecurity Skill for Claude Code**
 
-สกิลระดับมืออาชีพสำหรับ Cybersecurity Operations — ครอบคลุม 17 domains ตั้งแต่ Incident Response ถึง Security Governance & Executive Leadership พร้อม output แบบ bilingual (Thai + English)
+สร้างเอกสาร Cybersecurity ระดับมืออาชีพใน 30 วินาที — IR Playbooks, SOC Procedures,
+Compliance Audits, Cloud Security, AI Governance และอีก 12 domains
+พร้อม output แบบ bilingual Thai + English ที่ map กับ NIST, MITRE ATT&CK, OWASP, ISO frameworks
 
----
+[![Version](https://img.shields.io/badge/version-3.4.0-blue.svg)](CHANGELOG.md)
+[![CI](https://github.com/pitimon/claude-cybersecurity-skill/actions/workflows/validate.yml/badge.svg)](https://github.com/pitimon/claude-cybersecurity-skill/actions/workflows/validate.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Domains](https://img.shields.io/badge/domains-17-orange.svg)](#capabilities-ความสามารถ--17-domains)
+[![Language](https://img.shields.io/badge/language-Thai%20%2B%20English-blueviolet.svg)](#bilingual-output-policy)
 
-## Why This Plugin (ทำไมต้องใช้ Plugin นี้)
-
-**Problem**: Claude Code เป็น general-purpose AI — ไม่มี cybersecurity domain expertise built-in ทำให้ต้องเขียน prompt ละเอียดทุกครั้ง และผลลัพธ์อาจไม่สม่ำเสมอ
-
-**Solution**: `cybersecurity-pro` โหลด professional templates และ framework mappings อัตโนมัติ เมื่อ prompt ตรง trigger keywords
-
-**Value**:
-
-- Output คุณภาพระดับ enterprise ทันที ไม่ต้อง prompt engineer เอง
-- Templates map กับ frameworks จริง (NIST, MITRE ATT&CK, OWASP, ISO 27001)
-- Bilingual Thai+English — พร้อมใช้ในองค์กรไทย
-- On-demand loading — ไม่ overload context, โหลดเฉพาะ domain ที่ต้องการ
+</div>
 
 ---
 
-## How It Works (สถาปัตยกรรม Skill)
+<div align="center">
+
+**17 Domains** | **30+ Frameworks** | **< 5% Context Budget**
+
+ครอบคลุม 17 security domains ตั้งแต่ Incident Response ถึง Executive Governance —
+map กับ 30+ international frameworks — ใช้ context เพียง ~8,200 tokens ต่อ request (< 5% ของ 200K window)
+
+</div>
+
+---
+
+## See It in Action (ลองใช้ใน 30 วินาที)
+
+พิมพ์ prompt เดียว — ได้ IR playbook ระดับ enterprise ทันที:
 
 ```
-User prompt → keyword match in SKILL.md frontmatter
-  → SKILL.md loaded (~2,400 tokens: language policy, frameworks, decision tree)
-  → Decision tree selects domain
-  → Corresponding references/*.md loaded on-demand (~3,000-5,000 tokens)
-  → Output generated following templates in reference file
+> สร้าง IR playbook สำหรับ ransomware incident ตาม NIST 800-61
+  รวม escalation matrix และ SLA timelines
 ```
 
-**On-demand loading**: มี 17 domains แต่โหลดแค่ 1 ต่อ request
+**Output ที่ได้** (ตัวอย่างบางส่วน):
 
-| Component                | Tokens       | เมื่อไหร่โหลด (When Loaded)   |
-| ------------------------ | ------------ | ----------------------------- |
-| SKILL.md (router)        | ~3,400       | ทุก request ที่ trigger skill |
-| Reference file (1 of 17) | ~3,000-5,000 | เฉพาะ domain ที่ต้องการ       |
-| **Max per request**      | **~8,200**   | **< 5% ของ 200K context**     |
+```markdown
+## 1. การเตรียมพร้อม (Preparation)
+
+### 1.1 Ransomware-Specific Preparation Checklist
+
+- [ ] Offline backup verification (3-2-1 rule) — ทดสอบ restore ทุก 90 วัน
+- [ ] Network segmentation — isolate critical assets ตาม NIST SP 800-41
+- [ ] EDR deployment — verify coverage ≥ 95% endpoints
+      ...
+
+## 3. การควบคุมและกำจัด (Containment & Eradication)
+
+### SLA Timeline
+
+| Severity    | Detection → Triage | Triage → Containment | Containment → Eradication |
+| ----------- | ------------------ | -------------------- | ------------------------- |
+| P1-Critical | ≤ 15 min           | ≤ 1 hour             | ≤ 4 hours                 |
+
+...
+
+### Escalation Matrix
+
+| Level | Role        | Trigger Condition | MITRE ATT&CK           |
+| ----- | ----------- | ----------------- | ---------------------- |
+| L1    | SOC Analyst | Initial alert     | T1486 (Data Encrypted) |
+
+...
+```
+
+ไม่ต้อง prompt engineer เอง — templates map กับ NIST 800-61, MITRE ATT&CK, ISO 27035 ให้อัตโนมัติ
 
 ---
 
@@ -61,42 +93,83 @@ claude doctor
 
 ### Step 2: เริ่มใช้งาน — พิมพ์ใน Claude Code Prompt
 
-เปิด **Claude Code session ใหม่** (หรือพิมพ์ `/clear` เพื่อ reload skills) แล้วพิมพ์ prompt ที่มี trigger keywords:
+เปิด **Claude Code session ใหม่** (หรือพิมพ์ `/clear` เพื่อ reload skills) แล้วพิมพ์:
 
 ```
 > สร้าง IR playbook สำหรับ ransomware incident ตาม NIST 800-61
 ```
 
-```
-> สร้าง SOAR playbook สำหรับ automated phishing response
-```
-
-```
-> สร้าง SOC 2 Type II readiness roadmap 6 เดือน
-```
-
 Skill จะถูก trigger อัตโนมัติเมื่อ prompt ตรงกับ keywords ของ domain ใด domain หนึ่ง — ไม่ต้องเรียก skill ด้วยตัวเอง
 
-> ดูคู่มือฉบับเต็ม: [docs/INSTALL.md](docs/INSTALL.md) | สำหรับ air-gapped server ดูหัวข้อ Manual Installation
-
-### อัพเดท Plugin (Update)
-
-เมื่อมี version ใหม่ ให้รันใน **terminal**:
+### อัพเดท Plugin
 
 ```bash
-# 1. อัพเดท marketplace cache
 claude plugin marketplace update pitimon-cybersecurity
-
-# 2. ติดตั้ง plugin ใหม่ (overwrite version เก่า)
 claude plugin install cybersecurity-pro@pitimon-cybersecurity
-
-# 3. ตรวจสอบ
-claude doctor
-
-# 4. Restart Claude Code session เพื่อโหลด skill version ใหม่
+claude doctor  # ตรวจสอบ version ใหม่
+# Restart Claude Code session เพื่อโหลด skill version ใหม่
 ```
 
-> สำหรับ air-gapped server ดูขั้นตอน Manual Upgrade ใน [docs/INSTALL.md](docs/INSTALL.md#manual-upgrade-air-gapped)
+> ดูคู่มือฉบับเต็ม: [docs/INSTALL.md](docs/INSTALL.md) | สำหรับ air-gapped server ดู Manual Installation
+
+---
+
+## Why This Plugin (ทำไมต้องใช้ Plugin นี้)
+
+**Problem**: Claude Code เป็น general-purpose AI — ไม่มี cybersecurity domain expertise built-in ทำให้ต้องเขียน prompt ละเอียดทุกครั้ง และผลลัพธ์ไม่สม่ำเสมอ
+
+**Solution**: `cybersecurity-pro` โหลด professional templates และ framework mappings อัตโนมัติเมื่อ prompt ตรง trigger keywords
+
+### Value Propositions
+
+- **Enterprise-quality output ทันที** — Templates ออกแบบโดย security professionals พร้อม SLA, escalation, RACI matrices ในตัว ไม่ต้อง prompt engineer เอง
+- **Framework-mapped templates** — ทุก output map กับ frameworks จริง (NIST, MITRE ATT&CK, OWASP, ISO 27001, CIS) — ไม่ต้องตรวจสอบความถูกต้องของ references เอง
+- **Bilingual Thai + English** — พร้อมใช้ในองค์กรไทย รองรับ พ.ร.บ. การรักษาความมั่นคงปลอดภัยไซเบอร์ พ.ศ. 2562 และ PDPA ใน compliance templates
+- **On-demand loading — ไม่กิน context** — มี 17 domains แต่โหลดแค่ 1 ต่อ request ใช้ context < 5% ของ 200K window
+
+---
+
+## NIST CSF 2.0 Coverage Map
+
+17 domains ครอบคลุมทุก function ของ NIST Cybersecurity Framework 2.0:
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                      NIST CSF 2.0 FUNCTIONS                     │
+├────────────┬────────────────────────────────────────────────────┤
+│            │                                                    │
+│  GOVERN    │  D17 Security Governance & Executive Leadership    │
+│            │                                                    │
+├────────────┼────────────────────────────────────────────────────┤
+│            │  D8  Threat Modeling & Risk                        │
+│  IDENTIFY  │  D9  Compliance Frameworks                        │
+│            │  D14 Vulnerability Management                      │
+│            │  D15 Threat Intelligence                           │
+├────────────┼────────────────────────────────────────────────────┤
+│            │  D3  DevSecOps Pipeline                            │
+│            │  D5  GitOps Security                               │
+│            │  D6  Code Security Analysis                        │
+│  PROTECT   │  D7  Container & Supply Chain                     │
+│            │  D10 Cloud Security & CSPM                         │
+│            │  D11 Zero Trust Architecture                       │
+│            │  D12 AI/ML Security                                │
+│            │  D13 API Security                                  │
+├────────────┼────────────────────────────────────────────────────┤
+│  DETECT    │  D4  SOC Operations + SOAR                        │
+│            │  D15 Threat Intelligence                           │
+├────────────┼────────────────────────────────────────────────────┤
+│  RESPOND   │  D1  IR Playbooks & Runbooks                      │
+│            │  D2  DFIR Reports                                  │
+├────────────┼────────────────────────────────────────────────────┤
+│  RECOVER   │  D1  IR Playbooks (post-mortem & lessons learned)  │
+│            │  D14 Vulnerability Management (remediation)        │
+├────────────┼────────────────────────────────────────────────────┤
+│            │                                                    │
+│  CROSS-    │  D16 Cross-Domain Integration Scenarios            │
+│  DOMAIN    │  (orchestrates all domains via SOAR & workflows)   │
+│            │                                                    │
+└────────────┴────────────────────────────────────────────────────┘
+```
 
 ---
 
@@ -104,78 +177,45 @@ claude doctor
 
 ### Security Operations
 
-| Domain                      | คำอธิบาย                                                                          | Frameworks                         | Trigger Keywords                                             |
-| --------------------------- | --------------------------------------------------------------------------------- | ---------------------------------- | ------------------------------------------------------------ |
-| **IR Playbooks & Runbooks** | Incident response playbooks ตาม NIST 800-61 พร้อม SLA, escalation, post-mortem    | NIST SP 800-61, ISO 27035, SANS IR | `incident response`, `IR playbook`, `runbook`, `post-mortem` |
-| **DFIR Reports**            | Forensic investigation reports พร้อม chain of custody และ evidence handling       | Chain of Custody, IOC, Timeline    | `forensic`, `investigation`, `evidence`, `DFIR`              |
-| **SOC Operations + SOAR**   | SOC L1-L3 procedures, SIEM rules, SOAR automation playbooks, SRE security metrics | MITRE ATT&CK, Cyber Kill Chain     | `SOC`, `triage`, `alert`, `SOAR`, `threat hunting`           |
+| Domain                           | คำอธิบาย                                                                           | Frameworks                         |
+| -------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------- |
+| **D1 — IR Playbooks & Runbooks** | Incident response playbooks พร้อม SLA, escalation matrix, post-mortem templates    | NIST SP 800-61, ISO 27035, SANS IR |
+| **D2 — DFIR Reports**            | Forensic investigation reports พร้อม chain of custody, evidence handling, timeline | Chain of Custody, IOC, Timeline    |
+| **D4 — SOC Operations + SOAR**   | SOC L1-L3 procedures, SIEM rules, SOAR automation playbooks, threat hunting        | MITRE ATT&CK, Cyber Kill Chain     |
 
 ### Secure Development
 
-| Domain                       | คำอธิบาย                                                                | Frameworks                        | Trigger Keywords                                       |
-| ---------------------------- | ----------------------------------------------------------------------- | --------------------------------- | ------------------------------------------------------ |
-| **DevSecOps Pipeline**       | CI/CD security pipeline configs สำหรับ GitHub Actions / GitLab CI       | OWASP SAMM, OWASP Top 10, CIS     | `DevSecOps`, `DAST`, `CI/CD security`                  |
-| **Code Security Analysis**   | Static analysis ด้วย Semgrep/CodeQL, SARIF processing, variant analysis | CWE Top 25, SARIF 2.1.0           | `Semgrep`, `CodeQL`, `SAST`, `code scan`, `SARIF`      |
-| **Container & Supply Chain** | Container hardening, vulnerability scanning, SBOM, image signing        | NIST SP 800-190, CIS Docker, SLSA | `container`, `Docker`, `Trivy`, `SBOM`, `supply chain` |
-| **API Security**             | OWASP API Top 10, JWT validation, OAuth 2.0 BCP, API gateway security   | OWASP API Top 10 2023, RFC 9700   | `API security`, `OWASP API`, `BOLA`, `JWT`, `OAuth`    |
-| **Vulnerability Management** | Vulnerability lifecycle, CVSS/EPSS/KEV prioritization, patch management | CVSS v4.0, EPSS, CISA KEV, SSVC   | `CVSS`, `EPSS`, `KEV`, `Nessus`, `patch management`    |
+| Domain                             | คำอธิบาย                                                                | Frameworks                        |
+| ---------------------------------- | ----------------------------------------------------------------------- | --------------------------------- |
+| **D3 — DevSecOps Pipeline**        | CI/CD security pipeline configs สำหรับ GitHub Actions / GitLab CI       | OWASP SAMM, OWASP Top 10, CIS     |
+| **D6 — Code Security Analysis**    | Static analysis ด้วย Semgrep/CodeQL, SARIF processing, variant analysis | CWE Top 25, SARIF 2.1.0           |
+| **D7 — Container & Supply Chain**  | Container hardening, vulnerability scanning, SBOM, image signing        | NIST SP 800-190, CIS Docker, SLSA |
+| **D13 — API Security**             | OWASP API Top 10, JWT validation, OAuth 2.0 BCP, API gateway security   | OWASP API Top 10 2023, RFC 9700   |
+| **D14 — Vulnerability Management** | Vulnerability lifecycle, CVSS/EPSS/KEV prioritization, patch management | CVSS v4.0, EPSS, CISA KEV, SSVC   |
 
-### Governance
+### Governance & Compliance
 
-| Domain                     | คำอธิบาย                                                                                 | Frameworks                                         | Trigger Keywords                                                          |
-| -------------------------- | ---------------------------------------------------------------------------------------- | -------------------------------------------------- | ------------------------------------------------------------------------- |
-| **GitOps Security**        | Policy-as-code frameworks สำหรับ ArgoCD, OPA, Falco                                      | OPA/Gatekeeper, Falco, ArgoCD                      | `GitOps`, `ArgoCD`, `policy-as-code`, `OPA`                               |
-| **Threat Modeling & Risk** | STRIDE/PASTA threat modeling, risk assessment, SOC 2/ISO 27001 quick references          | SOC 2, ISO 27001, STRIDE, PASTA, PDPA              | `threat model`, `STRIDE`, `risk assessment`, `SOC 2`, `ISO 27001`         |
-| **Compliance Frameworks**  | Detailed compliance framework assessments, gap analyses, control mappings                | NIST 800-53, PCI DSS v4.0.1, GDPR, HIPAA, CIS v8.1 | `NIST 800-53`, `PCI DSS`, `GDPR`, `HIPAA`, `CIS Controls`, `gap analysis` |
-| **Security Governance**    | Executive governance frameworks, board reporting, maturity models, CISO/CAIO/CAISO roles | NIST CSF 2.0 GOVERN, ISO 27014, C2M2               | `security governance`, `CISO`, `CAIO`, `board reporting`, `C2M2`          |
+| Domain                          | คำอธิบาย                                                                      | Frameworks                                         |
+| ------------------------------- | ----------------------------------------------------------------------------- | -------------------------------------------------- |
+| **D5 — GitOps Security**        | Policy-as-code frameworks สำหรับ ArgoCD, OPA, Falco                           | OPA/Gatekeeper, Falco, ArgoCD                      |
+| **D8 — Threat Modeling & Risk** | STRIDE/PASTA threat modeling, risk assessment, SOC 2/ISO 27001                | SOC 2, ISO 27001, STRIDE, PASTA, PDPA              |
+| **D9 — Compliance Frameworks**  | Compliance assessments, gap analyses, control mappings                        | NIST 800-53, PCI DSS v4.0.1, GDPR, HIPAA, CIS v8.1 |
+| **D17 — Security Governance**   | Executive governance, board reporting, maturity models, CISO/CAIO/CAISO roles | NIST CSF 2.0 GOVERN, ISO 27014, C2M2               |
 
 ### Cloud & Architecture
 
-| Domain                      | คำอธิบาย                                                                             | Frameworks                                          | Trigger Keywords                                                  |
-| --------------------------- | ------------------------------------------------------------------------------------ | --------------------------------------------------- | ----------------------------------------------------------------- |
-| **Cloud Security & CSPM**   | Cloud security audits, IAM policy reviews, CSPM configs สำหรับ AWS/Azure/GCP         | CIS Cloud Benchmarks, CSA CCM v4.1, NIST 800-144    | `cloud security`, `CSPM`, `AWS security`, `Prowler`, `ScoutSuite` |
-| **Zero Trust Architecture** | Zero Trust maturity assessments, implementation roadmaps, microsegmentation policies | NIST 800-207, CISA ZT Maturity Model, Forrester ZTX | `zero trust`, `ZTA`, `ZTNA`, `NIST 800-207`, `microsegmentation`  |
-| **AI/ML Security**          | AI security assessments, LLM guardrails, AI red team playbooks, AI governance        | OWASP LLM Top 10, NIST AI RMF, MITRE ATLAS          | `AI security`, `LLM security`, `prompt injection`, `MITRE ATLAS`  |
+| Domain                            | คำอธิบาย                                                             | Frameworks                                          |
+| --------------------------------- | -------------------------------------------------------------------- | --------------------------------------------------- |
+| **D10 — Cloud Security & CSPM**   | Cloud security audits, IAM reviews, CSPM configs (AWS/Azure/GCP)     | CIS Cloud Benchmarks, CSA CCM v4.1, NIST 800-144    |
+| **D11 — Zero Trust Architecture** | ZTA maturity assessments, implementation roadmaps, microsegmentation | NIST 800-207, CISA ZT Maturity Model, Forrester ZTX |
+| **D12 — AI/ML Security**          | AI security assessments, LLM guardrails, AI red team, AI governance  | OWASP LLM Top 10, NIST AI RMF, MITRE ATLAS          |
 
-### Threat Intelligence
+### Intelligence & Integration
 
-| Domain                  | คำอธิบาย                                                                       | Frameworks                                  | Trigger Keywords                                                 |
-| ----------------------- | ------------------------------------------------------------------------------ | ------------------------------------------- | ---------------------------------------------------------------- |
-| **Threat Intelligence** | TI program design, STIX/TAXII integration, IOC lifecycle, intelligence sharing | STIX 2.1, TAXII 2.1, TLP 2.0, Diamond Model | `threat intelligence`, `STIX`, `TAXII`, `IOC`, `MISP`, `OpenCTI` |
-
-### Cross-Domain Integration
-
-| Domain                       | คำอธิบาย                                                                              | Frameworks                          | Trigger Keywords                                                         |
-| ---------------------------- | ------------------------------------------------------------------------------------- | ----------------------------------- | ------------------------------------------------------------------------ |
-| **Cross-Domain Integration** | End-to-end security workflows, SOAR orchestration, multi-domain integration scenarios | NIST CSF 2.0, All domain frameworks | `cross-domain`, `integration`, `end-to-end`, `workflow`, `orchestration` |
-
-### Frameworks & Standards
-
-outputs ทั้งหมดอ้างอิง frameworks เหล่านี้ตามความเหมาะสม:
-
-- **MITRE ATT&CK** / **MITRE D3FEND** — Tactic & Technique mapping
-- **NIST SP 800-61 Rev.2** — Incident Response lifecycle
-- **NIST CSF 2.0** / **NIST SP 800-190** — Cybersecurity & Container security
-- **OWASP Top 10** / **OWASP SAMM** — Application security
-- **ISO 27001:2022** / **ISO 27035** — Information security management
-- **CWE Top 25** / **SARIF 2.1.0** — Code vulnerability classification
-- **CIS Docker Benchmark** / **SLSA** — Container & supply chain
-- **NIST SP 800-53 Rev 5** — Security and privacy control catalog
-- **SOC 2** / **GDPR** / **HIPAA** / **PCI-DSS** — Compliance frameworks
-- **CIS Controls v8.1** — Prioritized security best practices
-- **CIS Cloud Benchmarks** / **CSA CCM v4.1** — Cloud security posture
-- **NIST SP 800-207** — Zero Trust Architecture
-- **CISA Zero Trust Maturity Model** — ZTA implementation guidance
-- **OWASP Top 10 for LLM Apps** — AI/LLM application security
-- **NIST AI RMF** / **MITRE ATLAS** — AI risk management & threat landscape
-- **EU AI Act** / **ISO 42001** — AI governance and regulation
-- **OWASP API Security Top 10** — API-specific vulnerability risks
-- **CVSS v4.0** / **EPSS** — Vulnerability scoring and exploit prediction
-- **CISA KEV** / **SSVC** — Known exploited vulnerabilities and stakeholder prioritization
-- **STIX 2.1** / **TAXII 2.1** — Structured threat information expression & sharing
-- **Traffic Light Protocol 2.0** — Intelligence sharing classification
-- **Diamond Model** — Intrusion analysis framework
-- **พ.ร.บ. ไซเบอร์ 2562** / **PDPA** — Thai cybersecurity & data privacy law
+| Domain                             | คำอธิบาย                                                                       | Frameworks                                  |
+| ---------------------------------- | ------------------------------------------------------------------------------ | ------------------------------------------- |
+| **D15 — Threat Intelligence**      | TI program design, STIX/TAXII integration, IOC lifecycle, intelligence sharing | STIX 2.1, TAXII 2.1, TLP 2.0, Diamond Model |
+| **D16 — Cross-Domain Integration** | End-to-end security workflows, SOAR orchestration, multi-domain scenarios      | NIST CSF 2.0, All domain frameworks         |
 
 ---
 
@@ -189,6 +229,44 @@ outputs ทั้งหมดอ้างอิง frameworks เหล่าน
 > สร้าง IR playbook สำหรับ ransomware incident ตาม NIST 800-61
   รวม escalation matrix และ SLA timelines
 ```
+
+### SOC + SOAR
+
+```
+> สร้าง SOAR playbook สำหรับ automated phishing response
+  รวม enrichment sources และ containment actions
+```
+
+### Compliance
+
+```
+> สร้าง NIST 800-53 gap assessment สำหรับ cloud environment
+  พร้อม PCI DSS v4.0 control mapping และ CIS Controls roadmap
+```
+
+### Cloud Security
+
+```
+> ทำ cloud security audit สำหรับ AWS environment
+  ตรวจสอบ IAM policies, S3 buckets, Security Groups ตาม CIS Benchmarks
+```
+
+### AI/ML Security
+
+```
+> สร้าง AI security assessment สำหรับ LLM application
+  ตรวจสอบ prompt injection defense และ OWASP LLM Top 10 compliance
+```
+
+### Security Governance
+
+```
+> สร้าง security governance framework ตาม NIST CSF 2.0 GOVERN
+  พร้อม board reporting template, CISO/CAIO/CAISO RACI matrix, และ C2M2 maturity assessment
+```
+
+<details>
+<summary>ดูตัวอย่างเพิ่มเติมทั้ง 17 domains →</summary>
 
 ### DFIR Report
 
@@ -211,13 +289,6 @@ outputs ทั้งหมดอ้างอิง frameworks เหล่าน
   รวม Trivy scanning, SBOM generation, และ cosign signing
 ```
 
-### SOC + SOAR
-
-```
-> สร้าง SOAR playbook สำหรับ automated phishing response
-  รวม enrichment sources และ containment actions
-```
-
 ### Threat Modeling
 
 ```
@@ -225,32 +296,11 @@ outputs ทั้งหมดอ้างอิง frameworks เหล่าน
   รวม risk matrix และ SOC 2 compliance mapping
 ```
 
-### Compliance Frameworks
-
-```
-> สร้าง NIST 800-53 gap assessment สำหรับ cloud environment
-  พร้อม PCI DSS v4.0 control mapping และ CIS Controls roadmap
-```
-
-### Cloud Security
-
-```
-> ทำ cloud security audit สำหรับ AWS environment
-  ตรวจสอบ IAM policies, S3 buckets, Security Groups ตาม CIS Benchmarks
-```
-
 ### Zero Trust
 
 ```
 > สร้าง Zero Trust implementation roadmap ตาม NIST 800-207
   รวม maturity assessment และ microsegmentation plan
-```
-
-### AI/ML Security
-
-```
-> สร้าง AI security assessment สำหรับ LLM application
-  ตรวจสอบ prompt injection defense และ OWASP LLM Top 10 compliance
 ```
 
 ### API Security
@@ -281,41 +331,115 @@ outputs ทั้งหมดอ้างอิง frameworks เหล่าน
   พร้อม SOAR orchestration template และ cross-domain metrics dashboard
 ```
 
-### Security Governance
-
-```
-> สร้าง security governance framework ตาม NIST CSF 2.0 GOVERN
-  พร้อม board reporting template, CISO/CAIO/CAISO RACI matrix, และ C2M2 maturity assessment
-```
+</details>
 
 ---
 
-## Token Budget & Performance (งบประมาณ Token)
+## Architecture & Token Budget (สถาปัตยกรรมและงบ Token)
 
-| Component                   | Tokens       | หมายเหตุ                              |
-| --------------------------- | ------------ | ------------------------------------- |
-| SKILL.md (always loaded)    | ~3,400       | Router + language policy + frameworks |
-| Reference file (per domain) | ~3,000-5,000 | โหลดเฉพาะ domain ที่ trigger          |
-| **Max per request**         | **~8,400**   | **SKILL.md + 1 reference file**       |
-| Total all files             | ~77,000      | ไม่โหลดทั้งหมดพร้อมกัน                |
+### How It Works
 
-เปรียบเทียบกับ context window 200K tokens: plugin ใช้ < 5% แม้ request ที่หนักที่สุด
+```
+User prompt → keyword match in SKILL.md frontmatter
+  → SKILL.md loaded (~3,400 tokens: language policy, frameworks, decision tree)
+  → Decision tree selects domain
+  → Corresponding references/*.md loaded on-demand (~3,000-5,000 tokens)
+  → Output generated following templates in reference file
+```
 
----
+### Token Budget
 
-## Skill Engineering Techniques (เทคนิคการจัดการ Skill)
+**On-demand loading**: มี 17 domains แต่โหลดแค่ 1 ต่อ request
+
+| Component                | Tokens       | หมายเหตุ                              |
+| ------------------------ | ------------ | ------------------------------------- |
+| SKILL.md (always loaded) | ~3,400       | Router + language policy + frameworks |
+| Reference file (1 of 17) | ~3,000-5,000 | โหลดเฉพาะ domain ที่ trigger          |
+| **Max per request**      | **~8,400**   | **< 5% ของ 200K context window**      |
+| Total all files          | ~77,000      | ไม่โหลดทั้งหมดพร้อมกัน                |
+
+### Skill Engineering Techniques
 
 เทคนิคที่ใช้ออกแบบ plugin นี้ — เป็นแนวทางสำหรับผู้ที่ต้องการสร้าง Claude Code skill ของตัวเอง:
 
-1. **On-demand reference loading** — ไม่โหลด reference files ทั้งหมดพร้อมกัน โหลดเฉพาะ domain ที่ user ต้องการ ทำให้เพิ่ม domains ได้โดยไม่เพิ่ม base context cost
+1. **On-demand reference loading** — โหลดเฉพาะ domain ที่ user ต้องการ เพิ่ม domains ได้โดยไม่เพิ่ม base context cost
+2. **Composite reference files** — รวม topics ที่เกี่ยวข้องเป็นไฟล์เดียว (เช่น Semgrep + CodeQL + SARIF → `code-security-analysis.md`)
+3. **Framework-first templates** — Templates map กับ framework controls (NIST, MITRE ATT&CK IDs, CWE) ทำให้ output มี reference ที่ถูกต้อง
+4. **Bilingual output policy** — Thai prose + English terms ใน output เดียว ไม่ต้องสร้าง 2 versions
+5. **SKILL.md as compact router** — Decision tree ใน < 300 lines ทำหน้าที่เป็น lightweight router
 
-2. **Composite reference files** — รวม topics ที่เกี่ยวข้องเป็นไฟล์เดียว (เช่น Semgrep + CodeQL + SARIF + Variant Analysis → `code-security-analysis.md`) ลด routing complexity ใน decision tree
+---
 
-3. **Framework-first templates** — Templates map กับ framework controls ไว้แล้ว (NIST, MITRE ATT&CK IDs, CWE) ทำให้ output มี reference ที่ถูกต้องโดยอัตโนมัติ
+## Comparison (เปรียบเทียบ)
 
-4. **Bilingual output policy** — Thai prose + English terms ไม่ต้องสร้าง 2 versions แยก ลด overhead และ maintain ง่าย
+| Aspect                 | Manual Prompting  | cybersecurity-pro              | Enterprise Tools |
+| ---------------------- | ----------------- | ------------------------------ | ---------------- |
+| **Setup time**         | 0                 | 3 commands, 30 sec             | Weeks-months     |
+| **Framework mapping**  | Manual research   | Auto-mapped (30+ frameworks)   | Vendor-specific  |
+| **Bilingual TH+EN**    | DIY every time    | Built-in policy                | Limited/none     |
+| **Thai compliance**    | Must research     | พ.ร.บ. ไซเบอร์ / PDPA included | Varies           |
+| **Output consistency** | Varies per prompt | Standardized templates         | Standardized     |
+| **Context overhead**   | Variable          | < 5% (8,400 tokens)            | N/A              |
+| **Cost**               | Free              | Free (MIT)                     | $$$$             |
+| **Maintenance**        | Manual updates    | Community-maintained           | Vendor-dependent |
 
-5. **SKILL.md as compact router** — Decision tree ใน < 300 lines ทำหน้าที่เป็น lightweight router ที่เลือก reference file ที่เหมาะสม
+---
+
+## Frameworks & Standards
+
+Outputs อ้างอิง frameworks เหล่านี้ตามความเหมาะสม — จัดกลุ่มตาม audience:
+
+### SOC / IR Teams
+
+- **MITRE ATT&CK** / **MITRE D3FEND** — Tactic & technique mapping
+- **NIST SP 800-61 Rev.2** — Incident response lifecycle
+- **ISO 27035** — Incident management
+- **Cyber Kill Chain** — Attack phase analysis
+- **Diamond Model** — Intrusion analysis
+
+### DevSecOps / AppSec
+
+- **OWASP Top 10** / **OWASP SAMM** — Application security
+- **OWASP API Security Top 10** — API vulnerability risks
+- **CWE Top 25** / **SARIF 2.1.0** — Code vulnerability classification
+- **CIS Docker Benchmark** / **SLSA** — Container & supply chain
+- **NIST SP 800-190** — Container security
+
+### Compliance / GRC
+
+- **NIST SP 800-53 Rev 5** — Security & privacy controls
+- **PCI DSS v4.0.1** — Payment card industry
+- **GDPR** / **HIPAA** — Data protection & healthcare
+- **CIS Controls v8.1** — Prioritized security practices
+- **SOC 2** / **ISO 27001:2022** — Information security management
+- **พ.ร.บ. ไซเบอร์ 2562** / **PDPA** — Thai cybersecurity & data privacy law
+
+### Executive / Governance
+
+- **NIST CSF 2.0** — Cybersecurity framework (GOVERN function)
+- **ISO 27014:2020** — Information security governance
+- **C2M2** — Cybersecurity capability maturity model
+- **SEC Cybersecurity Rules** — Disclosure requirements
+
+### Cloud / Zero Trust
+
+- **CIS Cloud Benchmarks** / **CSA CCM v4.1** — Cloud security posture
+- **NIST SP 800-207** — Zero Trust Architecture
+- **CISA Zero Trust Maturity Model** — ZTA implementation
+- **NIST SP 800-144** — Cloud computing guidelines
+
+### AI Security
+
+- **OWASP Top 10 for LLM Apps** — AI/LLM application security
+- **NIST AI RMF** / **MITRE ATLAS** — AI risk management & threats
+- **EU AI Act** / **ISO 42001** — AI governance & regulation
+
+### Threat Intelligence
+
+- **STIX 2.1** / **TAXII 2.1** — Threat information expression & sharing
+- **Traffic Light Protocol 2.0** — Intelligence sharing classification
+- **CVSS v4.0** / **EPSS** — Vulnerability scoring & exploit prediction
+- **CISA KEV** / **SSVC** — Known exploited vulnerabilities & prioritization
 
 ---
 
@@ -345,11 +469,13 @@ claude-cybersecurity-skill/
 │           ├── api-security.md              # OWASP API Top 10/JWT/OAuth/Gateway
 │           ├── vulnerability-management.md  # CVSS/EPSS/KEV/Patch Management
 │           ├── threat-intelligence.md       # STIX/TAXII/IOC/TLP/MISP/OpenCTI
-│           ├── cross-domain-integration.md # End-to-end workflows/orchestration
+│           ├── cross-domain-integration.md  # End-to-end workflows/orchestration
 │           └── security-governance-executive.md # CISO/CAIO/CAISO/Board/Maturity
 ├── docs/
 │   ├── INSTALL.md                # Installation guide
-│   └── TROUBLESHOOTING.md       # Troubleshooting guide
+│   └── TROUBLESHOOTING.md        # Troubleshooting guide
+├── tests/
+│   └── validate-plugin.sh        # Structural validation (55+ checks)
 ├── CHANGELOG.md                  # Version history
 ├── CLAUDE.md                     # Claude Code guidance
 └── README.md                     # This file

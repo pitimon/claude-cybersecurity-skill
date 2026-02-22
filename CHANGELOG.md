@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- **README.md** professionally redesigned for adoption — hero section with badges, NIST CSF 2.0 coverage map, quick-win demo, comparison table, frameworks regrouped by audience, usage examples trimmed to top 6 with collapsible full list, architecture and token budget merged into single section
+
 ## [3.4.0] - 2026-02-22
 
 ### Added
