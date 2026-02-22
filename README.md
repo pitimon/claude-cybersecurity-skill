@@ -23,7 +23,7 @@ Compliance Audits, Cloud Security, AI Governance, OT/ICS Security และอ�
 **18 Domains** | **50+ Frameworks** | **< 5% Context Budget**
 
 ครอบคลุม 18 security domains ตั้งแต่ Incident Response ถึง OT/ICS Security —
-map กับ 50+ international frameworks — ใช้ context เพียง ~8,200 tokens ต่อ request (< 5% ของ 200K window)
+map กับ 50+ international frameworks — ใช้ context เพียง ~8,600 tokens ต่อ request (< 5% ของ 200K window)
 
 </div>
 
@@ -394,7 +394,7 @@ User prompt → keyword match in SKILL.md frontmatter
 | **Bilingual TH+EN**    | DIY every time    | Built-in policy                | Limited/none     |
 | **Thai compliance**    | Must research     | พ.ร.บ. ไซเบอร์ / PDPA included | Varies           |
 | **Output consistency** | Varies per prompt | Standardized templates         | Standardized     |
-| **Context overhead**   | Variable          | < 5% (8,400 tokens)            | N/A              |
+| **Context overhead**   | Variable          | < 5% (8,600 tokens)            | N/A              |
 | **Cost**               | Free              | Free (MIT)                     | $$$$             |
 | **Maintenance**        | Manual updates    | Community-maintained           | Vendor-dependent |
 
@@ -495,13 +495,13 @@ claude-cybersecurity-skill/
 │           ├── cross-domain-integration.md  # End-to-end workflows/orchestration
 │           ├── security-governance-executive.md # CISO/CAIO/CAISO/Board/Maturity
 │           └── ot-ics-security.md          # OT/ICS/SCADA/Purdue/IEC 62443
-├── frameworks.json                # Framework version manifest (50 entries)
+├── frameworks.json                # Framework version manifest (54 entries)
 ├── docs/
 │   ├── INSTALL.md                # Installation guide
 │   ├── TROUBLESHOOTING.md        # Troubleshooting guide
 │   └── FRAMEWORK-UPDATE-RUNBOOK.md # Framework update procedures
 ├── tests/
-│   ├── validate-plugin.sh        # Structural validation (58+ checks)
+│   ├── validate-plugin.sh        # Structural validation (61+ checks)
 │   └── check-framework-updates.sh # Ad-hoc framework staleness checker
 ├── .github/
 │   └── workflows/
