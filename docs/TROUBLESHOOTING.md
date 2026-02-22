@@ -257,6 +257,74 @@ claude doctor
 
 ---
 
+## Framework Validation Errors
+
+### อาการ: Section 5 FAIL — grep patterns don't match
+
+`validate-plugin.sh` Section 5 reports FAIL because grep patterns in `frameworks.json` don't match content in the declared `used_in` files.
+
+### ตรวจสอบ
+
+```bash
+# รัน Section 5 เท่านั้น
+bash tests/validate-plugin.sh --skip-install-check 2>&1 | grep -A2 "Section 5"
+
+# ตรวจสอบ framework ที่มีปัญหา
+cat frameworks.json | jq '.[] | select(.grep_pattern) | {name, grep_pattern, used_in}'
+```
+
+### สาเหตุที่พบบ่อย
+
+1. **grep_pattern ไม่ตรงกับ content จริง** — pattern ใน `frameworks.json` ไม่ตรงกับ version string ในไฟล์ reference
+2. **used_in ไฟล์ไม่ถูกต้อง** — ไฟล์ที่ระบุใน `used_in` ไม่ได้อ้างถึง framework นั้นจริง
+3. **Version ถูก update แต่ไม่ได้ update frameworks.json** — framework version ในไฟล์ reference ถูกเปลี่ยนแต่ `grep_pattern` ยังเป็นค่าเดิม
+
+### วิธีแก้
+
+```bash
+# 1. ตรวจสอบว่า pattern match ได้จริง
+grep -r "PATTERN" skills/cybersecurity-pro/references/
+
+# 2. แก้ไข frameworks.json
+# - broaden grep_pattern ให้ตรงกับ content จริง
+# - แก้ used_in ให้ชี้ไปยังไฟล์ที่ถูกต้อง
+
+# 3. รัน validation อีกครั้ง
+bash tests/validate-plugin.sh --skip-install-check
+```
+
+### อาการ: Stale framework WARN messages
+
+`check-framework-updates.sh` แสดง CRITICAL หรือ DUE สำหรับ frameworks ที่ไม่ได้ตรวจสอบนาน
+
+```bash
+# ตรวจสอบ framework ที่ต้อง update
+bash tests/check-framework-updates.sh
+
+# ดูทั้งหมดรวม OK
+bash tests/check-framework-updates.sh --all
+```
+
+### วิธีแก้
+
+ดูขั้นตอนการ update ที่ [FRAMEWORK-UPDATE-RUNBOOK.md](FRAMEWORK-UPDATE-RUNBOOK.md):
+
+1. อัพเดท `frameworks.json` — แก้ `version`, `grep_pattern`, `last_checked`
+2. อัพเดท reference files ตาม `used_in` list
+3. รัน `bash tests/validate-plugin.sh --skip-install-check` เพื่อ verify
+
+### อาการ: frameworks.json syntax errors
+
+```bash
+# ตรวจสอบ JSON validity
+jq '.' frameworks.json > /dev/null
+
+# หาก error ให้ใช้ jq เพื่อดู error location
+jq '.' frameworks.json
+```
+
+---
+
 ## Getting Help
 
 หากปัญหายังไม่หาย:

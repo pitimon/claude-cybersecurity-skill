@@ -8,7 +8,7 @@
 Compliance Audits, Cloud Security, AI Governance และอีก 12 domains
 พร้อม output แบบ bilingual Thai + English ที่ map กับ NIST, MITRE ATT&CK, OWASP, ISO frameworks
 
-[![Version](https://img.shields.io/badge/version-3.4.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-3.5.0-blue.svg)](CHANGELOG.md)
 [![CI](https://github.com/pitimon/claude-cybersecurity-skill/actions/workflows/validate.yml/badge.svg)](https://github.com/pitimon/claude-cybersecurity-skill/actions/workflows/validate.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Domains](https://img.shields.io/badge/domains-17-orange.svg)](#capabilities-ความสามารถ--17-domains)
@@ -20,10 +20,10 @@ Compliance Audits, Cloud Security, AI Governance และอีก 12 domains
 
 <div align="center">
 
-**17 Domains** | **30+ Frameworks** | **< 5% Context Budget**
+**17 Domains** | **50+ Frameworks** | **< 5% Context Budget**
 
 ครอบคลุม 17 security domains ตั้งแต่ Incident Response ถึง Executive Governance —
-map กับ 30+ international frameworks — ใช้ context เพียง ~8,200 tokens ต่อ request (< 5% ของ 200K window)
+map กับ 50+ international frameworks — ใช้ context เพียง ~8,200 tokens ต่อ request (< 5% ของ 200K window)
 
 </div>
 
@@ -375,7 +375,7 @@ User prompt → keyword match in SKILL.md frontmatter
 | Aspect                 | Manual Prompting  | cybersecurity-pro              | Enterprise Tools |
 | ---------------------- | ----------------- | ------------------------------ | ---------------- |
 | **Setup time**         | 0                 | 3 commands, 30 sec             | Weeks-months     |
-| **Framework mapping**  | Manual research   | Auto-mapped (30+ frameworks)   | Vendor-specific  |
+| **Framework mapping**  | Manual research   | Auto-mapped (50+ frameworks)   | Vendor-specific  |
 | **Bilingual TH+EN**    | DIY every time    | Built-in policy                | Limited/none     |
 | **Thai compliance**    | Must research     | พ.ร.บ. ไซเบอร์ / PDPA included | Varies           |
 | **Output consistency** | Varies per prompt | Standardized templates         | Standardized     |
@@ -449,7 +449,7 @@ Outputs อ้างอิง frameworks เหล่านี้ตามคว
 claude-cybersecurity-skill/
 ├── .claude-plugin/
 │   ├── marketplace.json          # Marketplace metadata
-│   └── plugin.json               # Plugin metadata (v3.4.0)
+│   └── plugin.json               # Plugin metadata (v3.5.0)
 ├── skills/
 │   └── cybersecurity-pro/
 │       ├── SKILL.md              # Skill definition & decision tree
@@ -471,11 +471,18 @@ claude-cybersecurity-skill/
 │           ├── threat-intelligence.md       # STIX/TAXII/IOC/TLP/MISP/OpenCTI
 │           ├── cross-domain-integration.md  # End-to-end workflows/orchestration
 │           └── security-governance-executive.md # CISO/CAIO/CAISO/Board/Maturity
+├── frameworks.json                # Framework version manifest (50 entries)
 ├── docs/
 │   ├── INSTALL.md                # Installation guide
-│   └── TROUBLESHOOTING.md        # Troubleshooting guide
+│   ├── TROUBLESHOOTING.md        # Troubleshooting guide
+│   └── FRAMEWORK-UPDATE-RUNBOOK.md # Framework update procedures
 ├── tests/
-│   └── validate-plugin.sh        # Structural validation (55+ checks)
+│   ├── validate-plugin.sh        # Structural validation (58+ checks)
+│   └── check-framework-updates.sh # Ad-hoc framework staleness checker
+├── .github/
+│   └── workflows/
+│       ├── validate.yml          # CI on push/PR
+│       └── framework-review.yml  # Quarterly framework review
 ├── CHANGELOG.md                  # Version history
 ├── CLAUDE.md                     # Claude Code guidance
 └── README.md                     # This file
@@ -490,7 +497,7 @@ claude-cybersecurity-skill/
 | **Plugin name** | `cybersecurity-pro`                       |
 | **Marketplace** | `pitimon-cybersecurity`                   |
 | **Install key** | `cybersecurity-pro@pitimon-cybersecurity` |
-| **Version**     | 3.4.0                                     |
+| **Version**     | 3.5.0                                     |
 | **Category**    | Security                                  |
 | **Author**      | P.Itarun                                  |
 | **Language**    | Bilingual Thai + English                  |
@@ -513,6 +520,7 @@ claude-cybersecurity-skill/
 3. อัพเดท `README.md` — เพิ่มใน capabilities table
 4. อัพเดท `CLAUDE.md` — เพิ่มใน domain table
 5. เพิ่ม entry ใน `CHANGELOG.md`
+6. หาก domain มี versioned frameworks ใหม่ — เพิ่ม entries ใน `frameworks.json` พร้อม grep patterns และ used_in file lists
 
 ---
 

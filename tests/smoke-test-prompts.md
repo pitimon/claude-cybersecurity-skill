@@ -379,6 +379,55 @@ Create container hardening guide with Trivy scanning and SBOM generation
 
 ---
 
+## Meta: Framework Maintenance Validation
+
+**Non-domain test** — validates the framework version maintenance tooling works correctly.
+
+### Test 1: Framework Staleness Check
+
+```bash
+bash tests/check-framework-updates.sh --all
+```
+
+**Pass Criteria:**
+
+- [ ] Script runs without errors
+- [ ] Output shows color-coded status (CRITICAL/DUE/OK)
+- [ ] All 50 frameworks are listed with `--all` flag
+- [ ] No CRITICAL frameworks (unless genuinely stale)
+
+### Test 2: Plugin Validation Section 5
+
+```bash
+bash tests/validate-plugin.sh --skip-install-check 2>&1 | grep -A5 "Section 5"
+```
+
+**Pass Criteria:**
+
+- [ ] Section 5 reports PASS for all framework pattern checks
+- [ ] No FAIL or WARN for grep_pattern mismatches
+- [ ] frameworks.json JSON validity confirmed
+
+### Test 3: frameworks.json Integrity
+
+```bash
+# Verify entry count
+jq 'length' frameworks.json
+# Expected: 50
+
+# Verify all entries have required fields
+jq '[.[] | select(.name and .version and .grep_pattern and .used_in)] | length' frameworks.json
+# Expected: 50
+```
+
+**Pass Criteria:**
+
+- [ ] frameworks.json has exactly 50 entries
+- [ ] All entries have name, version, grep_pattern, and used_in fields
+- [ ] JSON is valid (no syntax errors)
+
+---
+
 ## Quick Regression Test
 
 For rapid regression after plugin updates, test these 4 prompts (covers Thai, English, mixed, and new domains):

@@ -75,6 +75,7 @@ These identifiers must stay consistent across all config files and documentation
 2. Add the domain entry and trigger keywords to `skills/cybersecurity-pro/SKILL.md` (both the Output Domains section and the Quick Decision Tree)
 3. Update the capabilities table in `README.md`
 4. Add a CHANGELOG.md entry
+5. If the domain introduces new versioned frameworks, add entries to `frameworks.json` with grep patterns and used_in file lists
 
 ## Framework Maintenance
 

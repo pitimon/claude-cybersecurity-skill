@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [3.5.0] - 2026-02-22
 
 ### Added
 
@@ -15,10 +15,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `.github/workflows/framework-review.yml` — quarterly scheduled CI (Jan/Apr/Jul/Oct) that auto-creates GitHub Issues with framework review checklists
   - `docs/FRAMEWORK-UPDATE-RUNBOOK.md` — step-by-step procedure for version-string and substantive content updates, with post-update checklist and versioning convention
   - `tests/validate-plugin.sh` Section 5 — framework version consistency checks: JSON validity, grep pattern matching in declared files, staleness warnings
+- **Documentation completeness update** — all docs synced with v3.4.2 framework maintenance features
+  - `README.md` — repo structure updated with 4 new files (frameworks.json, check-framework-updates.sh, FRAMEWORK-UPDATE-RUNBOOK.md, framework-review.yml), framework count 30+ → 50+, contributing guide adds frameworks.json step, validation count 55+ → 58+
+  - `docs/INSTALL.md` — version refs updated, cache directory structure includes new files
+  - `docs/TROUBLESHOOTING.md` — new section for framework validation errors (Section 5 FAIL, stale WARN, JSON syntax)
+  - `tests/smoke-test-prompts.md` — new meta-test section for framework maintenance validation (staleness check, Section 5, frameworks.json integrity)
+  - `CLAUDE.md` — contributing guide adds frameworks.json step for new domains
 
 ### Changed
 
 - **README.md** professionally redesigned for adoption — hero section with badges, NIST CSF 2.0 coverage map, quick-win demo, comparison table, frameworks regrouped by audience, usage examples trimmed to top 6 with collapsible full list, architecture and token budget merged into single section
+- **plugin.json** and **marketplace.json** bumped to v3.5.0
 
 ## [3.4.0] - 2026-02-22
 
@@ -262,7 +269,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Marketplace name standardized from `somapa-cybersecurity` to `pitimon-cybersecurity`
 - Plugin install key format corrected to `cybersecurity-pro@pitimon-cybersecurity`
 
-[Unreleased]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.4.0...HEAD
+[3.5.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.4.0...v3.5.0
 [3.4.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.3.0...v3.4.0
 [3.3.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.2.0...v3.3.0
 [3.2.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.1.0...v3.2.0
