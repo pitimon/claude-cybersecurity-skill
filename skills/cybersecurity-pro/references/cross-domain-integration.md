@@ -25,6 +25,7 @@ Supply Chain Security, Cloud Compliance Posture, AI/API Threat Surface และ
 - Domain 14: Vulnerability Management → `references/vulnerability-management.md`
 - Domain 15: Threat Intelligence → `references/threat-intelligence.md`
 - Domain 17: Security Governance & Executive Leadership → `references/security-governance-executive.md`
+- Domain 18: OT/ICS Security → `references/ot-ics-security.md`
 
 ---
 

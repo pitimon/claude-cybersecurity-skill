@@ -14,6 +14,7 @@
 - Domain 5: GitOps Security → `references/gitops-security.md`
 - Domain 10: Cloud Security & CSPM → `references/cloud-security-cspm.md`
 - Domain 16: Cross-Domain Integration → `references/cross-domain-integration.md`
+- Domain 18: OT/ICS Security → `references/ot-ics-security.md`
 
 ## Table of Contents
 
@@ -67,6 +68,16 @@ Traditional Security:              Zero Trust Security:
 | 2021      | EO 14028 — Executive Order on Cybersecurity กำหนดให้ Federal ใช้ ZTA |
 | 2023      | CISA Zero Trust Maturity Model v2.0 — maturity assessment framework  |
 | 2024      | DoD Zero Trust Reference Architecture v2.0                           |
+
+### Vendor-Specific Implementation Reference: MCRA
+
+Microsoft Cybersecurity Reference Architecture (MCRA) เป็น vendor-specific reference architecture
+ที่ map Microsoft security products (Entra ID, Defender XDR, Sentinel, Intune, Purview)
+เข้ากับ Zero Trust pillars ทั้ง 5 ด้าน สามารถใช้เป็นตัวอย่าง implementation สำหรับองค์กรที่ใช้ Microsoft ecosystem
+แต่ควรใช้คู่กับ vendor-neutral standards เช่น NIST 800-207 และ CISA ZT Maturity Model เป็นหลัก
+
+> **หมายเหตุ**: MCRA เป็น vendor-specific — plugin นี้ออกแบบเป็น vendor-neutral
+> ใช้ NIST 800-207 เป็น primary reference, MCRA เป็น supplementary implementation guide สำหรับ Microsoft shops เท่านั้น
 
 ### เปรียบเทียบ Traditional Perimeter vs Zero Trust
 

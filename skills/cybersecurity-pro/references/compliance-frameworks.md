@@ -625,6 +625,21 @@ Phase 3: Advanced (IG3) — เดือน 9-12
 └── Continuous improvement and metrics
 ```
 
+### CIS v8.1 Asset Class Mapping
+
+CIS Controls v8.1 กำหนด 5 asset classes สำหรับ scope controls ให้เหมาะสมกับ asset type:
+
+| Asset Class  | คำอธิบาย                                  | Key Controls                                                    | OT Relevance                               |
+| ------------ | ----------------------------------------- | --------------------------------------------------------------- | ------------------------------------------ |
+| **Devices**  | Hardware assets ทั้ง physical และ virtual | CIS 1 (inventory), CIS 4 (secure config), CIS 10 (malware)      | PLCs, RTUs, HMIs, SCADA servers            |
+| **Software** | Applications, OS, firmware                | CIS 2 (software inventory), CIS 7 (vuln mgmt), CIS 16 (appsec)  | SCADA software, PLC firmware               |
+| **Data**     | ข้อมูลทุกรูปแบบ                           | CIS 3 (data protection), CIS 11 (recovery)                      | Process data, historian data, PLC programs |
+| **Users**    | Accounts, identities, privileges          | CIS 5 (account mgmt), CIS 6 (access control), CIS 14 (training) | Operators, engineers, admin accounts       |
+| **Network**  | Network infrastructure                    | CIS 12 (network mgmt), CIS 13 (monitoring)                      | IT/OT segmentation, industrial protocols   |
+
+> สำหรับ OT/ICS-specific asset inventory → ดู references/ot-ics-security.md (Domain 18)
+> CIS Controls ใช้ได้กับ OT โดยเพิ่ม fields สำหรับ firmware version, Purdue level, safety classification
+
 ---
 
 ## 7. Cross-Framework Mapping (ตาราง Mapping ข้าม Framework)

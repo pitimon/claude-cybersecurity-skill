@@ -5,6 +5,37 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.6.0] - 2026-02-22
+
+### Added
+
+- **OT/ICS Security** (Domain 18) — Operational Technology and Industrial Control System security
+  - OT Security Landscape & IT/OT Convergence — OT vs IT comparison, convergence challenges, safety-first priority hierarchy
+  - NIST SP 800-82 Rev.3 — OT system categories (SCADA, DCS, PLC, RTU, HMI, SIS), defense-in-depth layers, OT risk assessment matrix
+  - IEC 62443 — Security Levels (SL 1-4), zones and conduits model with ASCII diagram, component security requirements, ISASecure certification
+  - Purdue Model / ISA-95 — 6-level architecture diagram (Level 0-5), firewall/DMZ placement table, dual-firewall and data diode design patterns
+  - OT Asset Discovery & Inventory — Passive vs active discovery comparison, asset classification by Purdue level, YAML inventory template, tool comparison (Claroty, Nozomi, Dragos, Tenable.ot, Malcolm)
+  - OT Network Monitoring & Threat Detection — OT vs IT monitoring differences, industrial protocol analysis (Modbus, DNP3, OPC UA, BACnet, EtherNet/IP, PROFINET), MITRE ATT&CK for ICS technique mapping, anomaly detection baseline
+  - OT Incident Response — Safety-first IR considerations, OT IR decision tree, ICS-CERT coordination table, containment strategies (network isolation, VLAN, manual mode, data diode, air-gap), PLC/SCADA recovery checklist
+  - SCADA/PLC/HMI Hardening — PLC security configuration checklist, HMI hardening table, SCADA communication security enhancements per protocol, firmware update change management workflow
+  - Thai Context — CII categories under พ.ร.บ. ไซเบอร์ 2562, สกมช. (NCSA) reporting requirements and severity levels, Thai energy/transport/water/rail sector OT landscape
+  - Framework References & OT Security Checklist — Quick Win / Standard / Advanced checklists
+  - Frameworks: NIST SP 800-82 Rev.3, IEC 62443, Purdue Model/ISA-95, MITRE ATT&CK for ICS, NERC CIP, API 1164
+- **SIEM/XDR Platform Options** added to D4 (SOC Operations) — comparison table for Splunk, Elastic, Microsoft Sentinel, Defender XDR, Chronicle, Wazuh, QRadar
+- **MCRA reference** added to D11 (Zero Trust) — vendor-specific implementation note alongside NIST 800-207
+- **CIS v8.1 Asset Class Mapping** added to D9 (Compliance Frameworks) — 5 asset classes (Devices, Software, Data, Users, Network) with OT relevance column
+- **frameworks.json** expanded from 50 to 54 entries — NIST 800-82, IEC 62443, Purdue Model/ISA-95, MITRE ATT&CK for ICS
+
+### Changed
+
+- **SKILL.md** expanded from 17 to 18 domains with updated frontmatter (OT/ICS keywords), frameworks table, and decision tree
+- **plugin.json** and **marketplace.json** bumped to v3.6.0 with OT/ICS keywords
+- **README.md** updated: version badge, domain count 17→18, NIST CSF 2.0 map (D18 in IDENTIFY+PROTECT), new "Industrial & OT" capabilities group, "Industrial / OT" framework audience, repo structure, token budget, usage example
+- **CLAUDE.md** updated to reflect 18-domain architecture
+- **validate-plugin.sh** updated to expect 18 reference files
+- **smoke-test-prompts.md** updated with D18 test prompt and 8 pass criteria, quick regression test expanded to 10 items
+- Cross-references added to 5 existing domain reference files (D4, D9, D10, D11, D16 → D18 link)
+
 ## [3.5.0] - 2026-02-22
 
 ### Added
@@ -269,6 +300,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Marketplace name standardized from `somapa-cybersecurity` to `pitimon-cybersecurity`
 - Plugin install key format corrected to `cybersecurity-pro@pitimon-cybersecurity`
 
+[3.6.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.5.0...v3.6.0
 [3.5.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.4.0...v3.5.0
 [3.4.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.3.0...v3.4.0
 [3.3.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.2.0...v3.3.0

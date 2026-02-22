@@ -148,7 +148,7 @@ fi
 # ============================================================
 section "3. File Integrity"
 
-# 3.1 All 17 reference files exist and are non-trivial (>100 lines)
+# 3.1 All 18 reference files exist and are non-trivial (>100 lines)
 EXPECTED_REFS=(
   ir-playbooks.md
   dfir-reports.md
@@ -167,6 +167,7 @@ EXPECTED_REFS=(
   threat-intelligence.md
   cross-domain-integration.md
   security-governance-executive.md
+  ot-ics-security.md
 )
 
 for ref in "${EXPECTED_REFS[@]}"; do
@@ -301,10 +302,10 @@ print(entry.get('source', {}).get('source', ''))
       CACHE_REFS_DIR="$CACHE_VERSION_DIR/skills/cybersecurity-pro/references"
       if [[ -d "$CACHE_REFS_DIR" ]]; then
         cache_ref_count=$(ls -1 "$CACHE_REFS_DIR"/*.md 2>/dev/null | wc -l | tr -d ' ')
-        if (( cache_ref_count >= 17 )); then
+        if (( cache_ref_count >= 18 )); then
           pass "Cache has all $cache_ref_count reference files"
         else
-          fail "Cache has only $cache_ref_count reference files (expected 17)"
+          fail "Cache has only $cache_ref_count reference files (expected 18)"
         fi
       else
         fail "Cache missing references directory"

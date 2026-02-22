@@ -1,7 +1,7 @@
 {
   "name": "cybersecurity-pro",
-  "version": "3.5.0",
-  "description": "Professional cybersecurity skill: 17 domains covering IR, DFIR, DevSecOps, SOC+SOAR, GitOps, Code Security, Container/Supply Chain, Threat Modeling, Compliance Frameworks, Cloud Security & CSPM, Zero Trust Architecture, AI/ML Security, API Security, Vulnerability Management, Threat Intelligence, Cross-Domain Integration, and Security Governance & Executive Leadership. Bilingual Thai+English output.",
+  "version": "3.6.0",
+  "description": "Professional cybersecurity skill: 18 domains covering IR, DFIR, DevSecOps, SOC+SOAR, GitOps, Code Security, Container/Supply Chain, Threat Modeling, Compliance Frameworks, Cloud Security & CSPM, Zero Trust Architecture, AI/ML Security, API Security, Vulnerability Management, Threat Intelligence, Cross-Domain Integration, Security Governance & Executive Leadership, and OT/ICS Security. Bilingual Thai+English output.",
   "author": {
     "name": "P.Itarun"
   },
@@ -51,7 +51,13 @@
     "ciso",
     "board-reporting",
     "c2m2",
-    "nist-csf-govern"
+    "nist-csf-govern",
+    "ot-security",
+    "ics",
+    "scada",
+    "nist-800-82",
+    "iec-62443",
+    "purdue-model"
   ],
   "skills": "./skills/"
 }

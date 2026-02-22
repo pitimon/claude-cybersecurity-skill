@@ -5,13 +5,13 @@
 **Enterprise Cybersecurity Skill for Claude Code**
 
 สร้างเอกสาร Cybersecurity ระดับมืออาชีพใน 30 วินาที — IR Playbooks, SOC Procedures,
-Compliance Audits, Cloud Security, AI Governance และอีก 12 domains
+Compliance Audits, Cloud Security, AI Governance, OT/ICS Security และอีก 12 domains
 พร้อม output แบบ bilingual Thai + English ที่ map กับ NIST, MITRE ATT&CK, OWASP, ISO frameworks
 
-[![Version](https://img.shields.io/badge/version-3.5.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-3.6.0-blue.svg)](CHANGELOG.md)
 [![CI](https://github.com/pitimon/claude-cybersecurity-skill/actions/workflows/validate.yml/badge.svg)](https://github.com/pitimon/claude-cybersecurity-skill/actions/workflows/validate.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Domains](https://img.shields.io/badge/domains-17-orange.svg)](#capabilities-ความสามารถ--17-domains)
+[![Domains](https://img.shields.io/badge/domains-18-orange.svg)](#capabilities-ความสามารถ--18-domains)
 [![Language](https://img.shields.io/badge/language-Thai%20%2B%20English-blueviolet.svg)](#bilingual-output-policy)
 
 </div>
@@ -20,9 +20,9 @@ Compliance Audits, Cloud Security, AI Governance และอีก 12 domains
 
 <div align="center">
 
-**17 Domains** | **50+ Frameworks** | **< 5% Context Budget**
+**18 Domains** | **50+ Frameworks** | **< 5% Context Budget**
 
-ครอบคลุม 17 security domains ตั้งแต่ Incident Response ถึง Executive Governance —
+ครอบคลุม 18 security domains ตั้งแต่ Incident Response ถึง OT/ICS Security —
 map กับ 50+ international frameworks — ใช้ context เพียง ~8,200 tokens ต่อ request (< 5% ของ 200K window)
 
 </div>
@@ -125,13 +125,13 @@ claude doctor  # ตรวจสอบ version ใหม่
 - **Enterprise-quality output ทันที** — Templates ออกแบบโดย security professionals พร้อม SLA, escalation, RACI matrices ในตัว ไม่ต้อง prompt engineer เอง
 - **Framework-mapped templates** — ทุก output map กับ frameworks จริง (NIST, MITRE ATT&CK, OWASP, ISO 27001, CIS) — ไม่ต้องตรวจสอบความถูกต้องของ references เอง
 - **Bilingual Thai + English** — พร้อมใช้ในองค์กรไทย รองรับ พ.ร.บ. การรักษาความมั่นคงปลอดภัยไซเบอร์ พ.ศ. 2562 และ PDPA ใน compliance templates
-- **On-demand loading — ไม่กิน context** — มี 17 domains แต่โหลดแค่ 1 ต่อ request ใช้ context < 5% ของ 200K window
+- **On-demand loading — ไม่กิน context** — มี 18 domains แต่โหลดแค่ 1 ต่อ request ใช้ context < 5% ของ 200K window
 
 ---
 
 ## NIST CSF 2.0 Coverage Map
 
-17 domains ครอบคลุมทุก function ของ NIST Cybersecurity Framework 2.0:
+18 domains ครอบคลุมทุก function ของ NIST Cybersecurity Framework 2.0:
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -145,6 +145,7 @@ claude doctor  # ตรวจสอบ version ใหม่
 │  IDENTIFY  │  D9  Compliance Frameworks                        │
 │            │  D14 Vulnerability Management                      │
 │            │  D15 Threat Intelligence                           │
+│            │  D18 OT/ICS Security (OT asset management)        │
 ├────────────┼────────────────────────────────────────────────────┤
 │            │  D3  DevSecOps Pipeline                            │
 │            │  D5  GitOps Security                               │
@@ -154,6 +155,7 @@ claude doctor  # ตรวจสอบ version ใหม่
 │            │  D11 Zero Trust Architecture                       │
 │            │  D12 AI/ML Security                                │
 │            │  D13 API Security                                  │
+│            │  D18 OT/ICS Security (OT network protection)      │
 ├────────────┼────────────────────────────────────────────────────┤
 │  DETECT    │  D4  SOC Operations + SOAR                        │
 │            │  D15 Threat Intelligence                           │
@@ -173,7 +175,7 @@ claude doctor  # ตรวจสอบ version ใหม่
 
 ---
 
-## Capabilities (ความสามารถ — 17 Domains)
+## Capabilities (ความสามารถ — 18 Domains)
 
 ### Security Operations
 
@@ -209,6 +211,12 @@ claude doctor  # ตรวจสอบ version ใหม่
 | **D10 — Cloud Security & CSPM**   | Cloud security audits, IAM reviews, CSPM configs (AWS/Azure/GCP)     | CIS Cloud Benchmarks, CSA CCM v4.1, NIST 800-144    |
 | **D11 — Zero Trust Architecture** | ZTA maturity assessments, implementation roadmaps, microsegmentation | NIST 800-207, CISA ZT Maturity Model, Forrester ZTX |
 | **D12 — AI/ML Security**          | AI security assessments, LLM guardrails, AI red team, AI governance  | OWASP LLM Top 10, NIST AI RMF, MITRE ATLAS          |
+
+### Industrial & OT
+
+| Domain                    | คำอธิบาย                                                                    | Frameworks                                        |
+| ------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------- |
+| **D18 — OT/ICS Security** | OT/ICS security assessments, Purdue Model segmentation, SCADA/PLC hardening | NIST SP 800-82 Rev.3, IEC 62443, MITRE ATT&CK ICS |
 
 ### Intelligence & Integration
 
@@ -266,7 +274,7 @@ claude doctor  # ตรวจสอบ version ใหม่
 ```
 
 <details>
-<summary>ดูตัวอย่างเพิ่มเติมทั้ง 17 domains →</summary>
+<summary>ดูตัวอย่างเพิ่มเติมทั้ง 18 domains →</summary>
 
 ### DFIR Report
 
@@ -331,6 +339,13 @@ claude doctor  # ตรวจสอบ version ใหม่
   พร้อม SOAR orchestration template และ cross-domain metrics dashboard
 ```
 
+### OT/ICS Security
+
+```
+> สร้าง OT security assessment ตาม NIST 800-82 และ IEC 62443
+  รวม Purdue Model network segmentation design และ PLC hardening checklist
+```
+
 </details>
 
 ---
@@ -349,20 +364,20 @@ User prompt → keyword match in SKILL.md frontmatter
 
 ### Token Budget
 
-**On-demand loading**: มี 17 domains แต่โหลดแค่ 1 ต่อ request
+**On-demand loading**: มี 18 domains แต่โหลดแค่ 1 ต่อ request
 
 | Component                | Tokens       | หมายเหตุ                              |
 | ------------------------ | ------------ | ------------------------------------- |
-| SKILL.md (always loaded) | ~3,400       | Router + language policy + frameworks |
-| Reference file (1 of 17) | ~3,000-5,000 | โหลดเฉพาะ domain ที่ trigger          |
-| **Max per request**      | **~8,400**   | **< 5% ของ 200K context window**      |
-| Total all files          | ~77,000      | ไม่โหลดทั้งหมดพร้อมกัน                |
+| SKILL.md (always loaded) | ~3,600       | Router + language policy + frameworks |
+| Reference file (1 of 18) | ~3,000-5,000 | โหลดเฉพาะ domain ที่ trigger          |
+| **Max per request**      | **~8,600**   | **< 5% ของ 200K context window**      |
+| Total all files          | ~82,000      | ไม่โหลดทั้งหมดพร้อมกัน                |
 
 ### Skill Engineering Techniques
 
 เทคนิคที่ใช้ออกแบบ plugin นี้ — เป็นแนวทางสำหรับผู้ที่ต้องการสร้าง Claude Code skill ของตัวเอง:
 
-1. **On-demand reference loading** — โหลดเฉพาะ domain ที่ user ต้องการ เพิ่ม domains ได้โดยไม่เพิ่ม base context cost
+1. **On-demand reference loading** — โหลดเฉพาะ domain ที่ user ต้องการ เพิ่ม domains ได้โดยไม่เพิ่ม base context cost (ปัจจุบัน 18 domains)
 2. **Composite reference files** — รวม topics ที่เกี่ยวข้องเป็นไฟล์เดียว (เช่น Semgrep + CodeQL + SARIF → `code-security-analysis.md`)
 3. **Framework-first templates** — Templates map กับ framework controls (NIST, MITRE ATT&CK IDs, CWE) ทำให้ output มี reference ที่ถูกต้อง
 4. **Bilingual output policy** — Thai prose + English terms ใน output เดียว ไม่ต้องสร้าง 2 versions
@@ -434,6 +449,14 @@ Outputs อ้างอิง frameworks เหล่านี้ตามคว
 - **NIST AI RMF** / **MITRE ATLAS** — AI risk management & threats
 - **EU AI Act** / **ISO 42001** — AI governance & regulation
 
+### Industrial / OT
+
+- **NIST SP 800-82 Rev.3** — OT/ICS security guide
+- **IEC 62443** (ISA/IEC) — Industrial automation and control system security
+- **Purdue Model / ISA-95** — OT network segmentation architecture
+- **MITRE ATT&CK for ICS** — ICS-specific tactics, techniques, and procedures
+- **NERC CIP** — North American electric grid reliability standards
+
 ### Threat Intelligence
 
 - **STIX 2.1** / **TAXII 2.1** — Threat information expression & sharing
@@ -449,7 +472,7 @@ Outputs อ้างอิง frameworks เหล่านี้ตามคว
 claude-cybersecurity-skill/
 ├── .claude-plugin/
 │   ├── marketplace.json          # Marketplace metadata
-│   └── plugin.json               # Plugin metadata (v3.5.0)
+│   └── plugin.json               # Plugin metadata (v3.6.0)
 ├── skills/
 │   └── cybersecurity-pro/
 │       ├── SKILL.md              # Skill definition & decision tree
@@ -470,7 +493,8 @@ claude-cybersecurity-skill/
 │           ├── vulnerability-management.md  # CVSS/EPSS/KEV/Patch Management
 │           ├── threat-intelligence.md       # STIX/TAXII/IOC/TLP/MISP/OpenCTI
 │           ├── cross-domain-integration.md  # End-to-end workflows/orchestration
-│           └── security-governance-executive.md # CISO/CAIO/CAISO/Board/Maturity
+│           ├── security-governance-executive.md # CISO/CAIO/CAISO/Board/Maturity
+│           └── ot-ics-security.md          # OT/ICS/SCADA/Purdue/IEC 62443
 ├── frameworks.json                # Framework version manifest (50 entries)
 ├── docs/
 │   ├── INSTALL.md                # Installation guide
@@ -497,11 +521,11 @@ claude-cybersecurity-skill/
 | **Plugin name** | `cybersecurity-pro`                       |
 | **Marketplace** | `pitimon-cybersecurity`                   |
 | **Install key** | `cybersecurity-pro@pitimon-cybersecurity` |
-| **Version**     | 3.5.0                                     |
+| **Version**     | 3.6.0                                     |
 | **Category**    | Security                                  |
 | **Author**      | P.Itarun                                  |
 | **Language**    | Bilingual Thai + English                  |
-| **Domains**     | 17                                        |
+| **Domains**     | 18                                        |
 
 ---
 

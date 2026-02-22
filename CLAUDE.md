@@ -17,7 +17,7 @@ The plugin system has two layers:
 
 ### How it works at runtime
 
-When a user's prompt matches trigger keywords in `SKILL.md`'s frontmatter, Claude Code loads the skill. The skill's decision tree routes to one of 17 reference files, which provide templates and frameworks for generating output.
+When a user's prompt matches trigger keywords in `SKILL.md`'s frontmatter, Claude Code loads the skill. The skill's decision tree routes to one of 18 reference files, which provide templates and frameworks for generating output.
 
 ```
 User prompt → keyword match in SKILL.md frontmatter
@@ -33,9 +33,9 @@ User prompt → keyword match in SKILL.md frontmatter
 | `.claude-plugin/marketplace.json`          | Marketplace registry entry (name, owner, plugins list)                                       |
 | `.claude-plugin/plugin.json`               | Plugin manifest (name, version, author, skills path)                                         |
 | `skills/cybersecurity-pro/SKILL.md`        | Skill definition: trigger keywords, language policy, frameworks, decision tree, output rules |
-| `skills/cybersecurity-pro/references/*.md` | Domain-specific templates and framework mappings (17 files, one per domain)                  |
+| `skills/cybersecurity-pro/references/*.md` | Domain-specific templates and framework mappings (18 files, one per domain)                  |
 
-### The 17 domains
+### The 18 domains
 
 | Domain                   | Reference file                                | Frameworks                                         |
 | ------------------------ | --------------------------------------------- | -------------------------------------------------- |
@@ -56,6 +56,7 @@ User prompt → keyword match in SKILL.md frontmatter
 | Threat Intelligence      | `references/threat-intelligence.md`           | STIX 2.1, TAXII 2.1, TLP 2.0, Diamond Model        |
 | Cross-Domain Integration | `references/cross-domain-integration.md`      | NIST CSF 2.0, All domain frameworks                |
 | Security Governance      | `references/security-governance-executive.md` | NIST CSF 2.0 GOVERN, ISO 27014, C2M2               |
+| OT/ICS Security          | `references/ot-ics-security.md`               | NIST SP 800-82 Rev.3, IEC 62443, Purdue Model      |
 
 ## Critical Naming Conventions
 

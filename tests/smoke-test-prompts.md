@@ -1,6 +1,6 @@
 # Smoke Test Prompts — cybersecurity-pro Plugin
 
-Manual functional tests for all 17 domains. Run each prompt in a Claude Code session with the plugin installed, then verify against the checklist.
+Manual functional tests for all 18 domains. Run each prompt in a Claude Code session with the plugin installed, then verify against the checklist.
 
 ## Prerequisites
 
@@ -379,6 +379,27 @@ Create container hardening guide with Trivy scanning and SBOM generation
 
 ---
 
+## Domain 18: OT/ICS Security
+
+**Test Prompt:**
+
+```
+สร้าง OT security assessment ตาม NIST 800-82 และ IEC 62443 พร้อม Purdue Model network segmentation design และ PLC hardening checklist
+```
+
+**Pass Criteria:**
+
+- [ ] NIST SP 800-82 Rev.3 referenced as primary framework
+- [ ] IEC 62443 zones and conduits model explained
+- [ ] Purdue Model levels (0-5) described with ASCII diagram or table
+- [ ] IT/OT comparison table present (priority, protocols, lifespan)
+- [ ] OT-specific considerations: safety-first, no active scanning, passive monitoring
+- [ ] PLC/HMI/SCADA hardening checklist items
+- [ ] MITRE ATT&CK for ICS technique IDs (e.g., T0858, T0831)
+- [ ] Thai CII context or พ.ร.บ. ไซเบอร์ 2562 reference
+
+---
+
 ## Meta: Framework Maintenance Validation
 
 **Non-domain test** — validates the framework version maintenance tooling works correctly.
@@ -441,6 +462,7 @@ For rapid regression after plugin updates, test these 4 prompts (covers Thai, En
 7. `สร้าง threat intelligence program ด้วย STIX/TAXII พร้อม MISP integration`
 8. `ออกแบบ end-to-end security workflow แบบ cross-domain พร้อม SOAR orchestration template`
 9. `สร้าง security governance framework พร้อม CISO/CAIO RACI matrix และ board KPI dashboard`
+10. `สร้าง OT security assessment ตาม NIST 800-82 พร้อม Purdue Model segmentation และ PLC hardening checklist`
 
 Minimum pass: all prompts produce structured bilingual output with framework references.
 

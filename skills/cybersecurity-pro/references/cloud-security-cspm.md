@@ -12,6 +12,7 @@
 - Domain 7: Container & Supply Chain → `references/container-supply-chain.md`
 - Domain 9: Compliance Frameworks → `references/compliance-frameworks.md`
 - Domain 16: Cross-Domain Integration → `references/cross-domain-integration.md`
+- Domain 18: OT/ICS Security → `references/ot-ics-security.md`
 
 ## Table of Contents
 

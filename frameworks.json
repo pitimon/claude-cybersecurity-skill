@@ -740,6 +740,54 @@
       "used_in": ["SKILL.md", "zero-trust-architecture.md"],
       "update_frequency": "rare",
       "notes": "Analyst framework for Zero Trust ecosystem evaluation"
+    },
+    {
+      "id": "nist-800-82",
+      "name": "NIST SP 800-82",
+      "version": "Rev.3",
+      "released": "2023-09",
+      "source_url": "https://csrc.nist.gov/publications/detail/sp/800-82/rev-3/final",
+      "last_checked": "2026-02-22",
+      "grep_patterns": ["800-82 Rev\\.?3", "800-82"],
+      "used_in": ["SKILL.md", "ot-ics-security.md"],
+      "update_frequency": "rare",
+      "notes": "Guide to OT Security. Rev.3 published Sep 2023, major rewrite from Rev.2 (2015)"
+    },
+    {
+      "id": "iec-62443",
+      "name": "IEC 62443",
+      "version": "Series",
+      "released": "2018-01",
+      "source_url": "https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards",
+      "last_checked": "2026-02-22",
+      "grep_patterns": ["IEC 62443", "ISA.IEC 62443"],
+      "used_in": ["SKILL.md", "ot-ics-security.md"],
+      "update_frequency": "rare",
+      "notes": "Series of standards for IACS security. Multiple parts (1-1 through 4-2) published over time"
+    },
+    {
+      "id": "purdue-model",
+      "name": "Purdue Model / ISA-95",
+      "version": "ISA-95",
+      "released": "2000-01",
+      "source_url": "https://www.isa.org/isa95",
+      "last_checked": "2026-02-22",
+      "grep_patterns": ["Purdue Model", "ISA-95", "Purdue.*Level"],
+      "used_in": ["SKILL.md", "ot-ics-security.md"],
+      "update_frequency": "rare",
+      "notes": "Industrial network segmentation reference architecture. Widely used for IT/OT DMZ design"
+    },
+    {
+      "id": "mitre-attack-ics",
+      "name": "MITRE ATT&CK for ICS",
+      "version": "v15",
+      "released": "2024-04",
+      "source_url": "https://attack.mitre.org/techniques/ics/",
+      "last_checked": "2026-02-22",
+      "grep_patterns": ["ATT&CK for ICS", "ATT&CK.*ICS"],
+      "used_in": ["SKILL.md", "ot-ics-security.md"],
+      "update_frequency": "annual",
+      "notes": "ICS-specific tactics and techniques. Updated alongside main ATT&CK releases"
     }
   ]
 }

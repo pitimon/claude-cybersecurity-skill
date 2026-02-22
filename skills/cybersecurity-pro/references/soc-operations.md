@@ -14,6 +14,7 @@
 - Domain 15: Threat Intelligence → `references/threat-intelligence.md`
 - Domain 16: Cross-Domain Integration → `references/cross-domain-integration.md`
 - Domain 17: Security Governance & Executive Leadership → `references/security-governance-executive.md`
+- Domain 18: OT/ICS Security → `references/ot-ics-security.md`
 
 ## Table of Contents
 
@@ -239,6 +240,21 @@ Alert เข้ามา
 4. Critical/High incidents ต้อง notify SOC Manager แม้นอกเวลาทำการ
 
 ---
+
+### SIEM/XDR Platform Options
+
+| Platform                       | Type       | Query Language   | Strengths                                                                              |
+| ------------------------------ | ---------- | ---------------- | -------------------------------------------------------------------------------------- |
+| **Splunk Enterprise Security** | SIEM       | SPL              | Mature ecosystem, custom apps, flexible data model                                     |
+| **Elastic Security**           | SIEM/XDR   | EQL, KQL, Lucene | Open-source core, scalable, detection rules as code                                    |
+| **Microsoft Sentinel**         | Cloud SIEM | KQL              | Native Azure/M365 integration, AI-driven analytics, cost-effective for Microsoft shops |
+| **Microsoft Defender XDR**     | XDR        | KQL              | Unified endpoint/identity/email/cloud protection, auto investigation & response        |
+| **Google Chronicle**           | SIEM       | YARA-L           | Petabyte-scale, VirusTotal integration, fixed pricing                                  |
+| **Wazuh**                      | SIEM/XDR   | —                | Open-source, agent-based, compliance monitoring                                        |
+| **QRadar** (IBM)               | SIEM       | AQL              | Strong correlation engine, offense-based workflows                                     |
+
+> เลือก platform ตามขนาดองค์กร, cloud strategy, และ existing vendor ecosystem
+> สำหรับ OT/ICS monitoring → ดู references/ot-ics-security.md (Domain 18) สำหรับ OT-specific SIEM integration patterns
 
 ## 5. SIEM Correlation Rules (ตัวอย่าง)
 
