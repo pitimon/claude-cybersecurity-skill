@@ -13,6 +13,7 @@
 - Domain 6: Code Security Analysis → `references/code-security-analysis.md`
 - Domain 9: Compliance Frameworks → `references/compliance-frameworks.md`
 - Domain 16: Cross-Domain Integration → `references/cross-domain-integration.md`
+- Domain 17: Security Governance & Executive Leadership → `references/security-governance-executive.md`
 
 ## Table of Contents
 

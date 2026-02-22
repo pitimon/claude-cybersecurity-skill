@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.4.0] - 2026-02-22
+
+### Added
+
+- **Security Governance & Executive Leadership** (Domain 17) — Executive-level security governance
+  - Security Governance Landscape & Role Architecture — governance vs management distinction, hierarchy diagram, role evolution timeline
+  - NIST CSF 2.0 GOVERN Function (GV) — all 6 categories (GV.OC/RM/RR/PO/OV/SC) with 32 subcategories and artifact mapping
+  - ISO 27014:2020 — 5 governance processes (Evaluate/Direct/Monitor/Communicate/Assure), NACD 6 principles
+  - Security Maturity Models — C2M2 (10 domains, MIL 0-3), CMMI Cybermaturity, NIST CSF Tiers, 12-month roadmap
+  - Executive Roles: CISO, CAIO, CAISO — role definitions, RACI matrix, reporting structure patterns, "when to create CAISO" decision tree, AISOC concept
+  - Board Reporting & SEC Disclosure — SEC 8-K/10-K rules, materiality assessment template, board KPI dashboard (3 components), quarterly report structure
+  - AI Governance at Executive Level — NIST AI RMF GOVERN, ISO 42001 management view, EU AI Act obligations, AI Ethics Board charter, Singapore IMDA framework
+  - Governance Program Implementation Roadmap — 5-phase 12-month plan, implementation KPIs, operating model diagram
+  - Framework References & Governance Checklist — 10 framework references with URLs, Quick Win/Standard/Advanced checklist
+  - Frameworks: NIST CSF 2.0 GOVERN, ISO 27014:2020, C2M2, NACD Handbook, SEC Cybersecurity Rules, NIST AI RMF, ISO 42001, EU AI Act
+
+### Changed
+
+- **SKILL.md** expanded from 16 to 17 domains with updated frontmatter, frameworks table, and decision tree
+- **plugin.json** and **marketplace.json** bumped to v3.4.0 with expanded keywords
+- **README.md** updated: capabilities tables, repo structure, token budget, version, usage examples
+- **CLAUDE.md** updated to reflect 17-domain architecture
+- **validate-plugin.sh** updated to expect 17 reference files
+- Cross-references added to 5 existing domain reference files (D4, D8, D9, D12, D16 → D17 link)
+
 ## [3.3.0] - 2026-02-21
 
 ### Added
@@ -224,7 +249,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Marketplace name standardized from `somapa-cybersecurity` to `pitimon-cybersecurity`
 - Plugin install key format corrected to `cybersecurity-pro@pitimon-cybersecurity`
 
-[Unreleased]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.3.0...HEAD
+[Unreleased]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.4.0...HEAD
+[3.4.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.3.0...v3.4.0
 [3.3.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.2.0...v3.3.0
 [3.2.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.1.0...v3.2.0
 [3.1.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.0.0...v3.1.0

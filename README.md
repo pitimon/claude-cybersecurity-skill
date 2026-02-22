@@ -1,8 +1,8 @@
 # cybersecurity-pro
 
-**Professional Cybersecurity Skill for Claude Code** | v3.3.0
+**Professional Cybersecurity Skill for Claude Code** | v3.4.0
 
-สกิลระดับมืออาชีพสำหรับ Cybersecurity Operations — ครอบคลุม 16 domains ตั้งแต่ Incident Response ถึง Cross-Domain Integration พร้อม output แบบ bilingual (Thai + English)
+สกิลระดับมืออาชีพสำหรับ Cybersecurity Operations — ครอบคลุม 17 domains ตั้งแต่ Incident Response ถึง Security Governance & Executive Leadership พร้อม output แบบ bilingual (Thai + English)
 
 ---
 
@@ -31,12 +31,12 @@ User prompt → keyword match in SKILL.md frontmatter
   → Output generated following templates in reference file
 ```
 
-**On-demand loading**: มี 16 domains แต่โหลดแค่ 1 ต่อ request
+**On-demand loading**: มี 17 domains แต่โหลดแค่ 1 ต่อ request
 
 | Component                | Tokens       | เมื่อไหร่โหลด (When Loaded)   |
 | ------------------------ | ------------ | ----------------------------- |
-| SKILL.md (router)        | ~3,200       | ทุก request ที่ trigger skill |
-| Reference file (1 of 16) | ~3,000-5,000 | เฉพาะ domain ที่ต้องการ       |
+| SKILL.md (router)        | ~3,400       | ทุก request ที่ trigger skill |
+| Reference file (1 of 17) | ~3,000-5,000 | เฉพาะ domain ที่ต้องการ       |
 | **Max per request**      | **~8,200**   | **< 5% ของ 200K context**     |
 
 ---
@@ -100,7 +100,7 @@ claude doctor
 
 ---
 
-## Capabilities (ความสามารถ — 16 Domains)
+## Capabilities (ความสามารถ — 17 Domains)
 
 ### Security Operations
 
@@ -122,11 +122,12 @@ claude doctor
 
 ### Governance
 
-| Domain                     | คำอธิบาย                                                                        | Frameworks                                         | Trigger Keywords                                                          |
-| -------------------------- | ------------------------------------------------------------------------------- | -------------------------------------------------- | ------------------------------------------------------------------------- |
-| **GitOps Security**        | Policy-as-code frameworks สำหรับ ArgoCD, OPA, Falco                             | OPA/Gatekeeper, Falco, ArgoCD                      | `GitOps`, `ArgoCD`, `policy-as-code`, `OPA`                               |
-| **Threat Modeling & Risk** | STRIDE/PASTA threat modeling, risk assessment, SOC 2/ISO 27001 quick references | SOC 2, ISO 27001, STRIDE, PASTA, PDPA              | `threat model`, `STRIDE`, `risk assessment`, `SOC 2`, `ISO 27001`         |
-| **Compliance Frameworks**  | Detailed compliance framework assessments, gap analyses, control mappings       | NIST 800-53, PCI DSS v4.0.1, GDPR, HIPAA, CIS v8.1 | `NIST 800-53`, `PCI DSS`, `GDPR`, `HIPAA`, `CIS Controls`, `gap analysis` |
+| Domain                     | คำอธิบาย                                                                                 | Frameworks                                         | Trigger Keywords                                                          |
+| -------------------------- | ---------------------------------------------------------------------------------------- | -------------------------------------------------- | ------------------------------------------------------------------------- |
+| **GitOps Security**        | Policy-as-code frameworks สำหรับ ArgoCD, OPA, Falco                                      | OPA/Gatekeeper, Falco, ArgoCD                      | `GitOps`, `ArgoCD`, `policy-as-code`, `OPA`                               |
+| **Threat Modeling & Risk** | STRIDE/PASTA threat modeling, risk assessment, SOC 2/ISO 27001 quick references          | SOC 2, ISO 27001, STRIDE, PASTA, PDPA              | `threat model`, `STRIDE`, `risk assessment`, `SOC 2`, `ISO 27001`         |
+| **Compliance Frameworks**  | Detailed compliance framework assessments, gap analyses, control mappings                | NIST 800-53, PCI DSS v4.0.1, GDPR, HIPAA, CIS v8.1 | `NIST 800-53`, `PCI DSS`, `GDPR`, `HIPAA`, `CIS Controls`, `gap analysis` |
+| **Security Governance**    | Executive governance frameworks, board reporting, maturity models, CISO/CAIO/CAISO roles | NIST CSF 2.0 GOVERN, ISO 27014, C2M2               | `security governance`, `CISO`, `CAIO`, `board reporting`, `C2M2`          |
 
 ### Cloud & Architecture
 
@@ -280,16 +281,23 @@ outputs ทั้งหมดอ้างอิง frameworks เหล่าน
   พร้อม SOAR orchestration template และ cross-domain metrics dashboard
 ```
 
+### Security Governance
+
+```
+> สร้าง security governance framework ตาม NIST CSF 2.0 GOVERN
+  พร้อม board reporting template, CISO/CAIO/CAISO RACI matrix, และ C2M2 maturity assessment
+```
+
 ---
 
 ## Token Budget & Performance (งบประมาณ Token)
 
 | Component                   | Tokens       | หมายเหตุ                              |
 | --------------------------- | ------------ | ------------------------------------- |
-| SKILL.md (always loaded)    | ~3,200       | Router + language policy + frameworks |
+| SKILL.md (always loaded)    | ~3,400       | Router + language policy + frameworks |
 | Reference file (per domain) | ~3,000-5,000 | โหลดเฉพาะ domain ที่ trigger          |
-| **Max per request**         | **~8,200**   | **SKILL.md + 1 reference file**       |
-| Total all files             | ~72,000      | ไม่โหลดทั้งหมดพร้อมกัน                |
+| **Max per request**         | **~8,400**   | **SKILL.md + 1 reference file**       |
+| Total all files             | ~77,000      | ไม่โหลดทั้งหมดพร้อมกัน                |
 
 เปรียบเทียบกับ context window 200K tokens: plugin ใช้ < 5% แม้ request ที่หนักที่สุด
 
@@ -317,7 +325,7 @@ outputs ทั้งหมดอ้างอิง frameworks เหล่าน
 claude-cybersecurity-skill/
 ├── .claude-plugin/
 │   ├── marketplace.json          # Marketplace metadata
-│   └── plugin.json               # Plugin metadata (v3.3.0)
+│   └── plugin.json               # Plugin metadata (v3.4.0)
 ├── skills/
 │   └── cybersecurity-pro/
 │       ├── SKILL.md              # Skill definition & decision tree
@@ -337,7 +345,8 @@ claude-cybersecurity-skill/
 │           ├── api-security.md              # OWASP API Top 10/JWT/OAuth/Gateway
 │           ├── vulnerability-management.md  # CVSS/EPSS/KEV/Patch Management
 │           ├── threat-intelligence.md       # STIX/TAXII/IOC/TLP/MISP/OpenCTI
-│           └── cross-domain-integration.md # End-to-end workflows/orchestration
+│           ├── cross-domain-integration.md # End-to-end workflows/orchestration
+│           └── security-governance-executive.md # CISO/CAIO/CAISO/Board/Maturity
 ├── docs/
 │   ├── INSTALL.md                # Installation guide
 │   └── TROUBLESHOOTING.md       # Troubleshooting guide
@@ -355,11 +364,11 @@ claude-cybersecurity-skill/
 | **Plugin name** | `cybersecurity-pro`                       |
 | **Marketplace** | `pitimon-cybersecurity`                   |
 | **Install key** | `cybersecurity-pro@pitimon-cybersecurity` |
-| **Version**     | 3.3.0                                     |
+| **Version**     | 3.4.0                                     |
 | **Category**    | Security                                  |
 | **Author**      | somapa                                    |
 | **Language**    | Bilingual Thai + English                  |
-| **Domains**     | 16                                        |
+| **Domains**     | 17                                        |
 
 ---
 

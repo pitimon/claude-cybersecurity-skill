@@ -13,6 +13,7 @@
 - Domain 14: Vulnerability Management → `references/vulnerability-management.md`
 - Domain 15: Threat Intelligence → `references/threat-intelligence.md`
 - Domain 16: Cross-Domain Integration → `references/cross-domain-integration.md`
+- Domain 17: Security Governance & Executive Leadership → `references/security-governance-executive.md`
 
 ## Table of Contents
 

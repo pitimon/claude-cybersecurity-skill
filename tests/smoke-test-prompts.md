@@ -1,6 +1,6 @@
 # Smoke Test Prompts — cybersecurity-pro Plugin
 
-Manual functional tests for all 16 domains. Run each prompt in a Claude Code session with the plugin installed, then verify against the checklist.
+Manual functional tests for all 17 domains. Run each prompt in a Claude Code session with the plugin installed, then verify against the checklist.
 
 ## Prerequisites
 
@@ -358,6 +358,27 @@ Create container hardening guide with Trivy scanning and SBOM generation
 
 ---
 
+## Domain 17: Security Governance & Executive Leadership
+
+**Test Prompt:**
+
+```
+สร้าง security governance framework ตาม NIST CSF 2.0 GOVERN พร้อม board reporting template และ CISO/CAIO RACI matrix
+```
+
+**Pass Criteria:**
+
+- [ ] NIST CSF 2.0 GOVERN function referenced (GV.OC, GV.RM, GV.RR, GV.PO, GV.OV, GV.SC)
+- [ ] ISO 27014 governance processes mentioned (Evaluate/Direct/Monitor/Communicate/Assure)
+- [ ] Executive roles defined (CISO at minimum, CAIO/CAISO if AI relevant)
+- [ ] RACI matrix for key security activities
+- [ ] Board reporting template or KPI dashboard (risk posture, operational, maturity)
+- [ ] Maturity model reference (C2M2, CMMI, or CSF Tiers)
+- [ ] SEC disclosure or regulatory governance reference
+- [ ] Governance checklist or implementation roadmap
+
+---
+
 ## Quick Regression Test
 
 For rapid regression after plugin updates, test these 4 prompts (covers Thai, English, mixed, and new domains):
@@ -370,6 +391,7 @@ For rapid regression after plugin updates, test these 4 prompts (covers Thai, En
 6. `สร้าง vulnerability prioritization matrix ด้วย CVSS+EPSS+KEV พร้อม SLA templates`
 7. `สร้าง threat intelligence program ด้วย STIX/TAXII พร้อม MISP integration`
 8. `ออกแบบ end-to-end security workflow แบบ cross-domain พร้อม SOAR orchestration template`
+9. `สร้าง security governance framework พร้อม CISO/CAIO RACI matrix และ board KPI dashboard`
 
 Minimum pass: all prompts produce structured bilingual output with framework references.
 

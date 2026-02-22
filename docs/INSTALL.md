@@ -118,7 +118,7 @@ ssh user@target-server
 #### 3a. สร้าง cache directory
 
 ```bash
-CACHE_DIR="$HOME/.claude/plugins/cache/pitimon-cybersecurity/cybersecurity-pro/3.3.0"
+CACHE_DIR="$HOME/.claude/plugins/cache/pitimon-cybersecurity/cybersecurity-pro/3.4.0"
 mkdir -p "$CACHE_DIR"
 cd "$CACHE_DIR"
 tar xzf /tmp/cybersecurity-pro-plugin.tar.gz
@@ -172,7 +172,7 @@ cat ~/.claude/plugins/installed_plugins.json
 ```json
 {
   "cybersecurity-pro@pitimon-cybersecurity": {
-    "version": "3.3.0",
+    "version": "3.4.0",
     "installedAt": "2026-02-20T00:00:00.000Z"
   }
 }
@@ -297,7 +297,7 @@ rm -rf ~/.claude/plugins/cache/pitimon-cybersecurity/cybersecurity-pro
 ```json
 {
   "cybersecurity-pro@pitimon-cybersecurity": {
-    "version": "3.3.0",
+    "version": "3.4.0",
     "installedAt": "2026-02-20T00:00:00.000Z"
   }
 }
@@ -333,7 +333,15 @@ rm -rf ~/.claude/plugins/cache/pitimon-cybersecurity/cybersecurity-pro
     │           ├── code-security-analysis.md
     │           ├── container-supply-chain.md
     │           ├── compliance-threat-modeling.md
-    │           └── compliance-frameworks.md
+    │           ├── compliance-frameworks.md
+    │           ├── cloud-security-cspm.md
+    │           ├── zero-trust-architecture.md
+    │           ├── ai-ml-security.md
+    │           ├── api-security.md
+    │           ├── vulnerability-management.md
+    │           ├── threat-intelligence.md
+    │           ├── cross-domain-integration.md
+    │           └── security-governance-executive.md
     ├── docs/
     │   ├── INSTALL.md
     │   └── TROUBLESHOOTING.md
@@ -352,7 +360,7 @@ rm -rf ~/.claude/plugins/cache/pitimon-cybersecurity/cybersecurity-pro
 ├── skills/
 │   └── cybersecurity-pro/
 │       ├── SKILL.md
-│       └── references/ (9 files)
+│       └── references/ (17 files)
 ├── docs/
 ├── CLAUDE.md
 ├── README.md

@@ -1,8 +1,8 @@
 # Cross-Domain Integration Scenarios Reference
 
 คู่มือการบูรณาการข้ามโดเมน (Cross-Domain Integration) — ออกแบบ workflow แบบ end-to-end ที่เชื่อมโยง
-ทั้ง 15 domains เข้าด้วยกัน ครอบคลุม Incident Response lifecycle, Vulnerability-to-Exploit pipeline,
-Supply Chain Security, Cloud Compliance Posture และ AI/API Threat Surface
+ทั้ง 17 domains เข้าด้วยกัน ครอบคลุม Incident Response lifecycle, Vulnerability-to-Exploit pipeline,
+Supply Chain Security, Cloud Compliance Posture, AI/API Threat Surface และ Security Governance
 
 > ไฟล์นี้เป็น **orchestration layer** — ไม่ทดแทน domain-specific references แต่เชื่อมโยงขั้นตอนข้ามโดเมน
 > ให้เป็น workflow เดียวกัน เหมาะสำหรับผู้ที่ต้องการมองภาพรวมของ security operations ทั้งหมด
@@ -24,6 +24,7 @@ Supply Chain Security, Cloud Compliance Posture และ AI/API Threat Surface
 - Domain 13: API Security → `references/api-security.md`
 - Domain 14: Vulnerability Management → `references/vulnerability-management.md`
 - Domain 15: Threat Intelligence → `references/threat-intelligence.md`
+- Domain 17: Security Governance & Executive Leadership → `references/security-governance-executive.md`
 
 ---
 
@@ -45,7 +46,7 @@ Supply Chain Security, Cloud Compliance Posture และ AI/API Threat Surface
 
 ### Domain Dependency Map
 
-แผนผังแสดงความสัมพันธ์ระหว่าง 15 domains — ลูกศรแสดงทิศทางการไหลของข้อมูลหลัก:
+แผนผังแสดงความสัมพันธ์ระหว่าง 17 domains — ลูกศรแสดงทิศทางการไหลของข้อมูลหลัก:
 
 ```
                     ┌─────────────────────────────────────────────┐
@@ -54,23 +55,33 @@ Supply Chain Security, Cloud Compliance Posture และ AI/API Threat Surface
                     │    → Respond → Recover)                     │
                     └──────────────────┬──────────────────────────┘
                                        │
-          ┌────────────────────────────┼────────────────────────────┐
-          │                            │                            │
-    ┌─────▼─────┐              ┌──────▼──────┐             ┌──────▼──────┐
-    │ IDENTIFY  │              │   PROTECT   │             │   DETECT    │
-    │           │              │             │             │             │
-    │ D8:Threat │◄────────────►│ D3:DevSecOps│────────────►│ D4:SOC/SOAR │
-    │   Model   │              │ D5:GitOps   │             │ D15:TI      │
-    │ D9:Comply │              │ D6:CodeSec  │             │ D14:VulnMgmt│
-    │           │              │ D7:Container│             │             │
-    └─────┬─────┘              │ D10:Cloud   │             └──────┬──────┘
-          │                    │ D11:ZeroTr  │                    │
-          │                    │ D12:AI/ML   │                    │
-          │                    │ D13:API     │                    │
-          │                    └─────────────┘                    │
-          │                                                       │
-          │              ┌──────────────┐                         │
-          └─────────────►│   RESPOND    │◄────────────────────────┘
+              ┌────────────────────────┼─────────────────────────┐
+              │                        │                         │
+      ┌───────▼───────┐               │                         │
+      │    GOVERN     │               │                         │
+      │               │               │                         │
+      │ D17:Governance│───────────────┼─────────────────────────┤
+      │ D8:ThreatModel│               │                         │
+      │ D9:Compliance │               │                         │
+      └───────────────┘               │                         │
+                                      │                         │
+          ┌───────────────────────────┼─────────────────────────┤
+          │                           │                         │
+    ┌─────▼─────┐              ┌──────▼──────┐          ┌──────▼──────┐
+    │ IDENTIFY  │              │   PROTECT   │          │   DETECT    │
+    │           │              │             │          │             │
+    │ D8:Threat │◄────────────►│ D3:DevSecOps│─────────►│ D4:SOC/SOAR │
+    │   Model   │              │ D5:GitOps   │          │ D15:TI      │
+    │ D9:Comply │              │ D6:CodeSec  │          │ D14:VulnMgmt│
+    │           │              │ D7:Container│          │             │
+    └─────┬─────┘              │ D10:Cloud   │          └──────┬──────┘
+          │                    │ D11:ZeroTr  │                 │
+          │                    │ D12:AI/ML   │                 │
+          │                    │ D13:API     │                 │
+          │                    └─────────────┘                 │
+          │                                                    │
+          │              ┌──────────────┐                      │
+          └─────────────►│   RESPOND    │◄─────────────────────┘
                          │              │
                          │ D1:IR        │
                          │ D2:DFIR      │
@@ -871,14 +882,14 @@ SOAR platform ทำหน้าที่เป็น central orchestrator เ�
 
 NIST Cybersecurity Framework 2.0 เป็น meta-framework ที่เชื่อมทุก domain:
 
-| CSF 2.0 Function  | Domains ที่ Map                    | Activities                                  |
-| ----------------- | ---------------------------------- | ------------------------------------------- |
-| **GOVERN (GV)**   | D8, D9                             | Risk management, compliance oversight       |
-| **IDENTIFY (ID)** | D8, D9, D13, D14                   | Asset inventory, risk assessment, vuln scan |
-| **PROTECT (PR)**  | D3, D5, D6, D7, D10, D11, D12, D13 | Secure development, ZTA, cloud hardening    |
-| **DETECT (DE)**   | D4, D15                            | SOC monitoring, TI-driven detection         |
-| **RESPOND (RS)**  | D1, D2                             | IR execution, forensic investigation        |
-| **RECOVER (RC)**  | D1, D14                            | System restoration, patch deployment        |
+| CSF 2.0 Function  | Domains ที่ Map                    | Activities                                                  |
+| ----------------- | ---------------------------------- | ----------------------------------------------------------- |
+| **GOVERN (GV)**   | D8, D9, D17                        | Risk management, compliance oversight, executive governance |
+| **IDENTIFY (ID)** | D8, D9, D13, D14                   | Asset inventory, risk assessment, vuln scan                 |
+| **PROTECT (PR)**  | D3, D5, D6, D7, D10, D11, D12, D13 | Secure development, ZTA, cloud hardening                    |
+| **DETECT (DE)**   | D4, D15                            | SOC monitoring, TI-driven detection                         |
+| **RESPOND (RS)**  | D1, D2                             | IR execution, forensic investigation                        |
+| **RECOVER (RC)**  | D1, D14                            | System restoration, patch deployment                        |
 
 ### Integration Checklist
 
@@ -927,5 +938,5 @@ NIST Cybersecurity Framework 2.0 เป็น meta-framework ที่เชื�
 
 ---
 
-_Document version: 3.3.0 — Cross-Domain Integration Scenarios_
+_Document version: 3.4.0 — Cross-Domain Integration Scenarios_
 _Frameworks: NIST CSF 2.0, MITRE ATT&CK, STIX 2.1, SARIF 2.1.0, CycloneDX_

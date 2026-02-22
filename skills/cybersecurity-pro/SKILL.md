@@ -4,7 +4,9 @@ description: >
   Generate professional cybersecurity documents: IR playbooks, DFIR forensic reports,
   DevSecOps pipeline configs, SOC L1-L3 triage procedures, GitOps security policies,
   code security analysis, container/supply chain security, compliance/threat modeling,
-  cloud security & CSPM, zero trust architecture, and AI/ML security.
+  cloud security & CSPM, zero trust architecture, AI/ML security, API security,
+  vulnerability management, threat intelligence, cross-domain integration,
+  and security governance & executive leadership.
   Use when asked about incident response, IR playbook, runbook, SOC triage, alert investigation,
   threat hunting, digital forensics, malware analysis, DFIR, DevSecOps, SAST, DAST, SCA, SBOM,
   CI/CD security, GitOps, security-as-code, vulnerability management, MITRE ATT&CK, NIST 800-61,
@@ -29,6 +31,9 @@ description: >
   MISP, OpenCTI, TLP, threat hunting, intelligence sharing, ข่าวกรองภัยคุกคาม,
   cross-domain, integration, end-to-end, workflow, lifecycle, orchestration, security pipeline,
   การบูรณาการ, cross-domain integration, multi-domain,
+  security governance, CISO, CAIO, CAISO, board reporting, cyber risk governance,
+  SEC disclosure, NIST CSF GOVERN, ISO 27014, C2M2, NACD, board oversight,
+  governance framework, security maturity, executive leadership, ธรรมาภิบาลความปลอดภัย,
   การตอบสนองต่อเหตุการณ์, วิเคราะห์ภัยคุกคาม, ความปลอดภัยไซเบอร์, นิติวิทยาศาสตร์ดิจิทัล,
   การวิเคราะห์ code, ความปลอดภัย container, การปฏิบัติตามกฎระเบียบ, การจำลองภัยคุกคาม,
   ความปลอดภัยบนคลาวด์, สถาปัตยกรรม Zero Trust, ความปลอดภัย AI.
@@ -39,8 +44,8 @@ allowed-tools: Read, Grep, Glob, Write
 
 # Cybersecurity Pro Skill
 
-สกิลระดับมืออาชีพสำหรับ Cybersecurity Operations ครอบคลุม 16 domains:
-IR, DFIR, DevSecOps, SOC+SOAR, GitOps, Code Security Analysis, Container & Supply Chain, Threat Modeling & Risk, Compliance Frameworks, Cloud Security & CSPM, Zero Trust Architecture, AI/ML Security
+สกิลระดับมืออาชีพสำหรับ Cybersecurity Operations ครอบคลุม 17 domains:
+IR, DFIR, DevSecOps, SOC+SOAR, GitOps, Code Security Analysis, Container & Supply Chain, Threat Modeling & Risk, Compliance Frameworks, Cloud Security & CSPM, Zero Trust Architecture, AI/ML Security, API Security, Vulnerability Management, Threat Intelligence, Cross-Domain Integration, Security Governance & Executive Leadership
 
 ## Language Policy / นโยบายภาษา
 
@@ -78,12 +83,13 @@ All outputs MUST reference the appropriate framework(s):
 | Vulnerability Mgmt       | CVSS v4.0, EPSS                    | CISA KEV, SSVC, FIRST VRDX            |
 | Threat Intelligence      | STIX 2.1, TAXII 2.1                | MITRE ATT&CK, TLP 2.0, Diamond Model  |
 | Cross-Domain Integration | NIST CSF 2.0                       | All domain frameworks                 |
+| Security Governance      | NIST CSF 2.0 GOVERN, ISO 27014     | C2M2, NACD, SEC Rules, NIST AI RMF    |
 
 When producing any output, map actions to relevant framework controls. For incident analysis, always include MITRE ATT&CK Tactic/Technique IDs (e.g., T1566.001).
 
 ## Output Domains
 
-This skill produces outputs across 16 domains. Identify which domain(s) the user needs and read the corresponding reference file BEFORE generating output:
+This skill produces outputs across 17 domains. Identify which domain(s) the user needs and read the corresponding reference file BEFORE generating output:
 
 ### 1. Incident Response Playbooks & Runbooks
 
@@ -238,6 +244,17 @@ cloud compliance posture (Compliance→Cloud→ZeroTrust→VulnMgmt),
 AI/API threat surface (API→AI/ML→ThreatModel→Code), integration orchestration
 patterns, cross-domain metrics and KPIs, NIST CSF 2.0 mapping.
 
+### 17. Security Governance & Executive Leadership
+
+> Read `references/security-governance-executive.md`
+
+Produce security governance frameworks, board reporting templates, maturity assessments,
+and executive leadership role definitions.
+Covers: NIST CSF 2.0 GOVERN function (6 categories), ISO 27014 governance processes,
+C2M2 maturity model, CISO/CAIO/CAISO role definitions and RACI matrices, SEC 8-K/10-K
+cybersecurity disclosure, board KPI dashboards, AI governance at executive level,
+governance program implementation roadmaps.
+
 ## General Output Rules
 
 1. **Structure**: Use consistent document templates per domain (defined in reference files)
@@ -318,6 +335,12 @@ User request
 ├── mentions "integration" / "end-to-end" / "cross-domain" / "workflow" / "lifecycle"
 │   / "orchestration" / "การบูรณาการ" / "security pipeline" / "multi-domain"
 │   → Domain 16: Cross-Domain Integration (read references/cross-domain-integration.md)
+│
+├── mentions "security governance" / "CISO role" / "CISO reporting" / "CAIO" / "CAISO" / "board reporting"
+│   / "cyber risk governance" / "SEC disclosure" / "NIST CSF GOVERN" / "ISO 27014"
+│   / "C2M2" / "NACD" / "board oversight" / "governance framework"
+│   / "security maturity" / "executive leadership" / "ธรรมาภิบาลความปลอดภัย"
+│   → Domain 17: Security Governance (read references/security-governance-executive.md)
 │
 └── unclear / multiple domains
     → Ask user to clarify, or if multi-domain workflow → Domain 16

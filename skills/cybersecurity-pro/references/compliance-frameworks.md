@@ -10,6 +10,7 @@
 
 - Domain 8: Threat Modeling & Risk → `references/compliance-threat-modeling.md`
 - Domain 16: Cross-Domain Integration → `references/cross-domain-integration.md`
+- Domain 17: Security Governance & Executive Leadership → `references/security-governance-executive.md`
 
 ## Table of Contents
 
