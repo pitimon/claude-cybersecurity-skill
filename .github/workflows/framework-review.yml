@@ -1,0 +1,128 @@
+name: Quarterly Framework Review
+
+on:
+  schedule:
+    # First Monday of Jan, Apr, Jul, Oct at 09:00 UTC
+    - cron: "0 9 1-7 1,4,7,10 1"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run (print report only, no issue)"
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+
+permissions:
+  issues: write
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Check framework staleness
+        id: check
+        run: |
+          QUARTER="Q$(( ($(date +%-m) - 1) / 3 + 1 ))"
+          YEAR=$(date +%Y)
+          echo "quarter=${YEAR}-${QUARTER}" >> "$GITHUB_OUTPUT"
+
+          python3 - << 'PYTHON_SCRIPT'
+          import json
+          import os
+          from datetime import datetime
+
+          today = datetime.now()
+
+          with open("frameworks.json") as f:
+              data = json.load(f)
+
+          THRESHOLDS = {"rare": 180, "annual": 90, "frequent": 30}
+
+          stale = []
+          for fw in data["frameworks"]:
+              freq = fw.get("update_frequency", "rare")
+              threshold = THRESHOLDS.get(freq, 180)
+              last_checked = fw.get("last_checked", "")
+
+              if not last_checked:
+                  stale.append(fw)
+                  continue
+
+              try:
+                  checked = datetime.strptime(last_checked, "%Y-%m-%d")
+                  days = (today - checked).days
+                  if days > threshold:
+                      fw["_days_stale"] = days
+                      fw["_threshold"] = threshold
+                      stale.append(fw)
+              except ValueError:
+                  stale.append(fw)
+
+          # Build issue body
+          lines = []
+          lines.append("## Quarterly Framework Version Review\n")
+          lines.append(f"**Date**: {today.strftime('%Y-%m-%d')}")
+          lines.append(f"**Total frameworks**: {len(data['frameworks'])}")
+          lines.append(f"**Stale (past threshold)**: {len(stale)}\n")
+
+          if stale:
+              lines.append("### Frameworks to Review\n")
+              lines.append("| Framework | Current Version | Frequency | Days Since Check | Source |")
+              lines.append("|-----------|----------------|-----------|-----------------|--------|")
+              for fw in sorted(stale, key=lambda x: x.get("_days_stale", 9999), reverse=True):
+                  days = fw.get("_days_stale", "never checked")
+                  url = fw.get("source_url", "")
+                  link = f"[Check]({url})" if url else "-"
+                  lines.append(f"| {fw['name']} | {fw['version']} | {fw.get('update_frequency','rare')} | {days} | {link} |")
+
+              lines.append("\n### Checklist\n")
+              for fw in stale:
+                  lines.append(f"- [ ] **{fw['name']}** ({fw['version']}) — verify current, update if needed")
+
+              lines.append("\n### Update Procedure\n")
+              lines.append("See [docs/FRAMEWORK-UPDATE-RUNBOOK.md](docs/FRAMEWORK-UPDATE-RUNBOOK.md) for step-by-step instructions.\n")
+          else:
+              lines.append("All frameworks are within their check thresholds. No action needed.\n")
+
+          body = "\n".join(lines)
+
+          # Write outputs
+          with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+              f.write(f"stale_count={len(stale)}\n")
+              # Use file for multiline body
+          with open("issue_body.md", "w") as f:
+              f.write(body)
+
+          # Also print for dry run
+          print(body)
+          PYTHON_SCRIPT
+
+      - name: Create GitHub Issue
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TITLE="Quarterly Framework Review — ${{ steps.check.outputs.quarter }}"
+
+          # Check if issue already exists for this quarter
+          EXISTING=$(gh issue list --search "\"$TITLE\" in:title" --state open --json number --jq '.[0].number // empty')
+
+          if [[ -n "$EXISTING" ]]; then
+            echo "Issue #$EXISTING already exists for this quarter. Skipping creation."
+          else
+            gh issue create \
+              --title "$TITLE" \
+              --body-file issue_body.md \
+              --label "maintenance,framework-update"
+            echo "Issue created successfully."
+          fi

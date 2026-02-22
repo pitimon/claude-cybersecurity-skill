@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Framework Version Maintenance Workflow** — automated tracking and update process for 50 versioned framework references
+  - `frameworks.json` — single source of truth for all framework versions, grep patterns, file locations, update frequency, and staleness tracking
+  - `tests/check-framework-updates.sh` — ad-hoc CLI tool showing color-coded staleness report (CRITICAL/DUE/OK) with thresholds by update frequency
+  - `.github/workflows/framework-review.yml` — quarterly scheduled CI (Jan/Apr/Jul/Oct) that auto-creates GitHub Issues with framework review checklists
+  - `docs/FRAMEWORK-UPDATE-RUNBOOK.md` — step-by-step procedure for version-string and substantive content updates, with post-update checklist and versioning convention
+  - `tests/validate-plugin.sh` Section 5 — framework version consistency checks: JSON validity, grep pattern matching in declared files, staleness warnings
+
 ### Changed
 
 - **README.md** professionally redesigned for adoption — hero section with badges, NIST CSF 2.0 coverage map, quick-win demo, comparison table, frameworks regrouped by audience, usage examples trimmed to top 6 with collapsible full list, architecture and token budget merged into single section

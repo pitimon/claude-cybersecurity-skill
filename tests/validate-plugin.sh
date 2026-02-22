@@ -318,10 +318,141 @@ print(entry.get('source', {}).get('source', ''))
 fi
 
 # ============================================================
+# 5. Framework Version Consistency
+# ============================================================
+section "5. Framework Version Consistency"
+
+FRAMEWORKS_JSON="$REPO_ROOT/frameworks.json"
+WARN=0
+warn() { ((WARN++)); printf "  \033[33mWARN\033[0m %s\n" "$1"; }
+
+# 5.1 frameworks.json exists and is valid JSON
+if [[ ! -f "$FRAMEWORKS_JSON" ]]; then
+  fail "frameworks.json not found"
+else
+  if json_valid "$FRAMEWORKS_JSON"; then
+    pass "frameworks.json is valid JSON"
+  else
+    fail "frameworks.json has JSON syntax errors"
+  fi
+fi
+
+# 5.2 For each framework: every file in used_in contains at least one grep_patterns match
+if [[ -f "$FRAMEWORKS_JSON" ]] && json_valid "$FRAMEWORKS_JSON" 2>/dev/null; then
+  section "5.2 Framework Pattern Matching"
+  pattern_errors=$(python3 -c "
+import json, subprocess, sys, os
+
+repo_root = '$REPO_ROOT'
+skills_dir = os.path.join(repo_root, 'skills', 'cybersecurity-pro')
+refs_dir = os.path.join(skills_dir, 'references')
+
+with open('$FRAMEWORKS_JSON') as f:
+    data = json.load(f)
+
+errors = []
+for fw in data['frameworks']:
+    fid = fw['id']
+    patterns = fw.get('grep_patterns', [])
+    used_in = fw.get('used_in', [])
+
+    if not patterns or not used_in:
+        continue
+
+    for filename in used_in:
+        # Resolve file path
+        if filename == 'SKILL.md':
+            fpath = os.path.join(skills_dir, 'SKILL.md')
+        elif filename in ('README.md', 'CLAUDE.md'):
+            fpath = os.path.join(repo_root, filename)
+        else:
+            fpath = os.path.join(refs_dir, filename)
+
+        if not os.path.isfile(fpath):
+            errors.append(f'{fid}: file not found: {filename}')
+            continue
+
+        with open(fpath, encoding='utf-8') as fh:
+            content = fh.read()
+
+        import re
+        found = False
+        for pattern in patterns:
+            try:
+                if re.search(pattern, content):
+                    found = True
+                    break
+            except re.error:
+                if pattern in content:
+                    found = True
+                    break
+
+        if not found:
+            errors.append(f'{fid}: no pattern match in {filename}')
+
+for e in errors:
+    print(e)
+" 2>/dev/null || true)
+
+  if [[ -z "$pattern_errors" ]]; then
+    pass "All framework patterns match in declared files"
+  else
+    while IFS= read -r line; do
+      fail "Pattern mismatch: $line"
+    done <<< "$pattern_errors"
+  fi
+
+  # 5.3 Staleness warning (non-blocking)
+  section "5.3 Framework Staleness (advisory)"
+  stale_warnings=$(python3 -c "
+import json, sys
+from datetime import datetime
+
+with open('$FRAMEWORKS_JSON') as f:
+    data = json.load(f)
+
+today = datetime.now()
+thresholds = {'rare': 180, 'annual': 90, 'frequent': 30}
+warnings = []
+
+for fw in data['frameworks']:
+    freq = fw.get('update_frequency', 'rare')
+    threshold = thresholds.get(freq, 180)
+    last_checked = fw.get('last_checked', '')
+
+    if freq == 'rare':
+        continue  # Skip rare frameworks for staleness warning
+
+    if not last_checked:
+        warnings.append(f\"{fw['id']}: never checked (frequency={freq})\")
+        continue
+
+    try:
+        checked = datetime.strptime(last_checked, '%Y-%m-%d')
+        days = (today - checked).days
+        if days > threshold:
+            warnings.append(f\"{fw['id']}: {days}d since last check (threshold={threshold}d)\")
+    except ValueError:
+        warnings.append(f\"{fw['id']}: invalid date '{last_checked}'\")
+
+for w in warnings:
+    print(w)
+" 2>/dev/null || true)
+
+  if [[ -z "$stale_warnings" ]]; then
+    pass "No staleness warnings for annual/frequent frameworks"
+  else
+    while IFS= read -r line; do
+      warn "Stale: $line"
+    done <<< "$stale_warnings"
+  fi
+fi
+
+# ============================================================
 # Summary
 # ============================================================
 printf "\n\033[1m========================================\033[0m\n"
-printf "\033[1mResults: \033[32m%d PASS\033[0m  \033[31m%d FAIL\033[0m  \033[33m%d SKIP\033[0m\n" "$PASS" "$FAIL" "$SKIP"
+printf "\033[1mResults: \033[32m%d PASS\033[0m  \033[31m%d FAIL\033[0m  \033[33m%d SKIP\033[0m  \033[33m%d WARN\033[0m\n" "$PASS" "$FAIL" "$SKIP" "$WARN"
 printf "\033[1m========================================\033[0m\n"
 
 if (( FAIL > 0 )); then

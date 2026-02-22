@@ -76,6 +76,24 @@ These identifiers must stay consistent across all config files and documentation
 3. Update the capabilities table in `README.md`
 4. Add a CHANGELOG.md entry
 
+## Framework Maintenance
+
+All 50 versioned framework references are tracked in `frameworks.json` at the repo root. This is the single source of truth for versions, source URLs, grep patterns, and staleness tracking.
+
+### Key commands
+
+- `bash tests/validate-plugin.sh --skip-install-check` — Section 5 validates framework pattern consistency
+- `bash tests/check-framework-updates.sh` — ad-hoc staleness check (CRITICAL/DUE/OK)
+- `bash tests/check-framework-updates.sh --all` — include OK frameworks
+
+### Update procedure
+
+See `docs/FRAMEWORK-UPDATE-RUNBOOK.md` for step-by-step instructions. Key rule: always update `frameworks.json` first, then grep and replace version strings in all files listed in `used_in`.
+
+### Quarterly review
+
+`.github/workflows/framework-review.yml` runs on the first Monday of Jan/Apr/Jul/Oct and creates a GitHub Issue with a checklist of stale frameworks. Supports `workflow_dispatch` for manual trigger.
+
 ## Bilingual Output Policy
 
 All skill output uses Thai prose with inline English technical terms. Section headers use format: `## Thai (English)`. Technical terms (tool names, commands, framework names, acronyms) stay in English — never translated.
