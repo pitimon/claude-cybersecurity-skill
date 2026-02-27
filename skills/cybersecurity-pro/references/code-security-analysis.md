@@ -13,6 +13,7 @@
 - Domain 7: Container & Supply Chain → `references/container-supply-chain.md`
 - Domain 13: API Security → `references/api-security.md`
 - Domain 16: Cross-Domain Integration → `references/cross-domain-integration.md`
+- **Runtime Exploitation Testing** → `shannon-pentest` plugin (`shannon-pentest@pitimon-shannon`) — สำหรับ runtime security testing ที่เสริม static analysis จากไฟล์นี้ด้วย dynamic exploitation testing ครอบคลุม OWASP Top 10 (XSS, SQLi, SSRF, auth bypass)
 
 ## Table of Contents
 

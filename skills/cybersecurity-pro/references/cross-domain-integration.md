@@ -390,6 +390,16 @@ phases:
 | Detection Deploy (D4) | Initial Access, Execution | T1190 Exploit Public-Facing App       |
 | IR Response (D1)      | Lateral Movement          | T1210 Exploitation of Remote Services |
 
+### Automated Penetration Testing with Shannon
+
+> สำหรับ automated vulnerability discovery และ exploitation testing ใช้ `shannon-pentest` plugin (`shannon-pentest@pitimon-shannon`)
+> Shannon เป็น autonomous multi-agent pentester ที่รัน Docker-based scanning workflow ครอบคลุม OWASP Top 10
+> ผลลัพธ์จาก Shannon สามารถ feed เข้า Vulnerability-to-Exploit Pipeline ได้โดยตรง:
+>
+> - Shannon findings → D14 (vulnerability prioritization ด้วย CVSS+EPSS+KEV)
+> - Shannon auth/authz vulnerabilities → D13 (API Security analysis)
+> - Shannon OWASP mapping → D8 (Threat Modeling risk assessment)
+
 ### Handoff Checklist
 
 - [ ] **D14 → D15**: Critical CVEs ส่งพร้อม CVSS v4.0 vector, affected asset count

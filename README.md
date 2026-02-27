@@ -560,6 +560,16 @@ claude-cybersecurity-skill/
 
 ---
 
+## Related Plugins
+
+| Plugin                                                            | คำอธิบาย                                                                                                                                                                                                                                          | Install                                                 |
+| ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| **[shannon-pentest](https://github.com/pitimon/shannon-pentest)** | Autonomous penetration testing orchestrator — configure targets, launch Docker-based multi-agent scans, monitor Temporal workflows, and analyze security findings. ใช้ร่วมกับ cybersecurity-pro เพื่อ remediation guidance หลังพบ vulnerabilities | `claude plugin install shannon-pentest@pitimon-shannon` |
+
+> **Complementary workflow**: Shannon ค้นหา vulnerabilities (offensive) → cybersecurity-pro สร้าง remediation plans, IR playbooks, compliance mapping (defensive)
+
+---
+
 ## Links
 
 - [Installation Guide](docs/INSTALL.md)
