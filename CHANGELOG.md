@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.6.1] - 2026-02-28
+
+### Added
+
+- **shannon-pentest cross-references** in 3 domain reference files:
+  - `vulnerability-management.md` — Automated Penetration Testing link
+  - `cross-domain-integration.md` — Shannon section in Vulnerability-to-Exploit Pipeline
+  - `code-security-analysis.md` — Runtime Exploitation Testing link
+- **Related Plugins** section in README.md — points to `shannon-pentest@pitimon-shannon`
+
+### Changed
+
+- **plugin.json** and **marketplace.json** bumped to v3.6.1
+- **README.md** version badge updated to v3.6.1
+- **docs/INSTALL.md** cache path and version references updated
+
 ## [3.6.0] - 2026-02-22
 
 ### Added
@@ -300,6 +316,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Marketplace name standardized from `somapa-cybersecurity` to `pitimon-cybersecurity`
 - Plugin install key format corrected to `cybersecurity-pro@pitimon-cybersecurity`
 
+[3.6.1]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.6.0...v3.6.1
 [3.6.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.5.0...v3.6.0
 [3.5.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.4.0...v3.5.0
 [3.4.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.3.0...v3.4.0

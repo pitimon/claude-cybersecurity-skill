@@ -118,7 +118,7 @@ ssh user@target-server
 #### 3a. สร้าง cache directory
 
 ```bash
-CACHE_DIR="$HOME/.claude/plugins/cache/pitimon-cybersecurity/cybersecurity-pro/3.6.0"
+CACHE_DIR="$HOME/.claude/plugins/cache/pitimon-cybersecurity/cybersecurity-pro/3.6.1"
 mkdir -p "$CACHE_DIR"
 cd "$CACHE_DIR"
 tar xzf /tmp/cybersecurity-pro-plugin.tar.gz
@@ -172,7 +172,7 @@ cat ~/.claude/plugins/installed_plugins.json
 ```json
 {
   "cybersecurity-pro@pitimon-cybersecurity": {
-    "version": "3.6.0",
+    "version": "3.6.1",
     "installedAt": "2026-02-20T00:00:00.000Z"
   }
 }
@@ -297,7 +297,7 @@ rm -rf ~/.claude/plugins/cache/pitimon-cybersecurity/cybersecurity-pro
 ```json
 {
   "cybersecurity-pro@pitimon-cybersecurity": {
-    "version": "3.6.0",
+    "version": "3.6.1",
     "installedAt": "2026-02-20T00:00:00.000Z"
   }
 }
