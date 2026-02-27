@@ -949,5 +949,5 @@ NIST Cybersecurity Framework 2.0 เป็น meta-framework ที่เชื�
 
 ---
 
-_Document version: 3.4.0 — Cross-Domain Integration Scenarios_
+_Document version: 3.6.1 — Cross-Domain Integration Scenarios_
 _Frameworks: NIST CSF 2.0, MITRE ATT&CK, STIX 2.1, SARIF 2.1.0, CycloneDX_
