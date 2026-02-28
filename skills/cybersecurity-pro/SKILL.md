@@ -285,6 +285,12 @@ response (safety-first), PLC/HMI/SCADA hardening, Thai CII requirements under �
    - e.g., `⏱ SLA: ตอบสนองภายใน 15 นาที (Critical), 1 ชั่วโมง (High)`
 7. **Output Format**: Default to `.docx` for formal reports, `.md` for operational docs.
    If the user requests a specific format, use that instead.
+8. **Template Variables**: ใช้ placeholders เหล่านี้ในทุก output templates:
+   - `{ORG_NAME}` — ชื่อองค์กร (ถามผู้ใช้ถ้ายังไม่ทราบ)
+   - `{DATE}` — วันที่สร้างเอกสาร (ใช้วันปัจจุบัน)
+   - `{INDUSTRY}` — ประเภทอุตสาหกรรม (ถามผู้ใช้ถ้ายังไม่ทราบ)
+   - `{ANALYST_NAME}` — ชื่อผู้จัดทำ (ถามผู้ใช้ถ้ายังไม่ทราบ)
+     Replace with actual values when user provides them, otherwise keep as placeholders.
 
 ## Quick Decision Tree
 
@@ -373,6 +379,37 @@ User request
 └── unclear / multiple domains
     → Ask user to clarify, or if multi-domain workflow → Domain 16
 ```
+
+## Guided Domain Selection (Fallback)
+
+เมื่อ keyword matching ไม่ชัดเจน ให้ถามผู้ใช้ 2-3 คำถามเพื่อ narrow down:
+
+### Question 1: ประเภทงาน (Task Type)
+
+- "ต้องการสร้างเอกสาร/นโยบาย" → Governance cluster (D8, D9, D17)
+- "ต้องการวิเคราะห์/ตรวจสอบ" → Analysis cluster (D6, D14, D15)
+- "ต้องการสร้าง playbook/procedure" → Operations cluster (D1, D4, D7)
+- "ต้องการวางแผน architecture" → Architecture cluster (D10, D11, D20, D21)
+- "ต้องการ audit/security review" → Review cluster (D3, D13, D22)
+- "ต้องการจัดการกับ AI/Agent" → AI cluster (D12, D19)
+
+### Question 2: ประเภท asset (Asset Type)
+
+- "Application/Code" → D3, D6, D13, D22
+- "Infrastructure/Cloud" → D5, D10, D11, D18
+- "Data/Identity" → D9, D20, D21
+- "Organization/People" → D8, D17, D14
+- "AI/ML Systems" → D12, D19
+
+### Question 3: เป้าหมาย (Goal)
+
+- Narrow further based on specific goal within the cluster
+- ถ้าเป็น incident/threat → D1, D2, D4, D15
+- ถ้าเป็น compliance/audit → D8, D9, D17
+- ถ้าเป็น design/architecture → D5, D10, D11, D20
+- ถ้าเป็น monitoring/detection → D4, D14, D15
+
+> ถ้ายังไม่ชัดเจนหลังจาก 3 คำถาม → ใช้ Domain 16 (Cross-Domain Integration) เพื่อเชื่อมโยงหลาย domains
 
 ## File Output Strategy
 
