@@ -18,9 +18,9 @@ SKIP_INSTALL=false
 
 # --- Helpers ---
 
-pass() { ((PASS++)); printf "  \033[32mPASS\033[0m %s\n" "$1"; }
-fail() { ((FAIL++)); printf "  \033[31mFAIL\033[0m %s\n" "$1"; }
-skip() { ((SKIP++)); printf "  \033[33mSKIP\033[0m %s\n" "$1"; }
+pass() { PASS=$((PASS + 1)); printf "  \033[32mPASS\033[0m %s\n" "$1"; }
+fail() { FAIL=$((FAIL + 1)); printf "  \033[31mFAIL\033[0m %s\n" "$1"; }
+skip() { SKIP=$((SKIP + 1)); printf "  \033[33mSKIP\033[0m %s\n" "$1"; }
 section() { printf "\n\033[1;36m[%s]\033[0m\n" "$1"; }
 
 json_field() {
@@ -329,7 +329,7 @@ section "5. Framework Version Consistency"
 
 FRAMEWORKS_JSON="$REPO_ROOT/frameworks.json"
 WARN=0
-warn() { ((WARN++)); printf "  \033[33mWARN\033[0m %s\n" "$1"; }
+warn() { WARN=$((WARN + 1)); printf "  \033[33mWARN\033[0m %s\n" "$1"; }
 
 # 5.1 frameworks.json exists and is valid JSON
 if [[ ! -f "$FRAMEWORKS_JSON" ]]; then

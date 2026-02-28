@@ -543,7 +543,7 @@ claude-cybersecurity-skill/
 │   ├── TROUBLESHOOTING.md        # Troubleshooting guide
 │   └── FRAMEWORK-UPDATE-RUNBOOK.md # Framework update procedures
 ├── tests/
-│   ├── validate-plugin.sh        # Structural validation (61+ checks)
+│   ├── validate-plugin.sh        # Structural validation (68 checks)
 │   └── check-framework-updates.sh # Ad-hoc framework staleness checker
 ├── .github/
 │   └── workflows/
