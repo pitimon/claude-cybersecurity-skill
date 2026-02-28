@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.7.0] - 2026-02-28
+
+### Added
+
+- **Shannon post-pentest integration** — automated defensive document generation from Shannon pentest findings
+  - Handoff manifest reading and multi-domain orchestration
+  - Post-pentest mode in SKILL.md decision tree
+
+### Changed
+
+- **plugin.json** bumped to v3.7.0
+
 ## [3.6.1] - 2026-02-28
 
 ### Added

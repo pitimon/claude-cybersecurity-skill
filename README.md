@@ -472,7 +472,7 @@ Outputs อ้างอิง frameworks เหล่านี้ตามคว
 claude-cybersecurity-skill/
 ├── .claude-plugin/
 │   ├── marketplace.json          # Marketplace metadata
-│   └── plugin.json               # Plugin metadata (v3.6.1)
+│   └── plugin.json               # Plugin metadata (v3.7.0)
 ├── skills/
 │   └── cybersecurity-pro/
 │       ├── SKILL.md              # Skill definition & decision tree

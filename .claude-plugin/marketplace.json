@@ -9,7 +9,7 @@
     {
       "name": "cybersecurity-pro",
       "description": "Professional cybersecurity skill: 18 domains covering IR, DFIR, DevSecOps, SOC+SOAR, GitOps, Code Security, Container/Supply Chain, Threat Modeling, Compliance Frameworks, Cloud Security & CSPM, Zero Trust Architecture, AI/ML Security, API Security, Vulnerability Management, Threat Intelligence, Cross-Domain Integration, Security Governance & Executive Leadership, OT/ICS Security. Bilingual Thai+English output.",
-      "version": "3.6.1",
+      "version": "3.7.0",
       "author": {
         "name": "P.Itarun"
       },
