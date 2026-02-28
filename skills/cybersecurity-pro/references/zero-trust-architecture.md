@@ -15,6 +15,8 @@
 - Domain 10: Cloud Security & CSPM → `references/cloud-security-cspm.md`
 - Domain 16: Cross-Domain Integration → `references/cross-domain-integration.md`
 - Domain 18: OT/ICS Security → `references/ot-ics-security.md`
+- Domain 20: Post-Quantum Cryptography → `references/post-quantum-cryptography.md`
+- Domain 21: Identity & Access Security → `references/identity-access-security.md`
 
 ## Table of Contents
 

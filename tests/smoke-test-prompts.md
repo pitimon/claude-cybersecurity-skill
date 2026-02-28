@@ -1,6 +1,6 @@
 # Smoke Test Prompts — cybersecurity-pro Plugin
 
-Manual functional tests for all 18 domains. Run each prompt in a Claude Code session with the plugin installed, then verify against the checklist.
+Manual functional tests for all 22 domains. Run each prompt in a Claude Code session with the plugin installed, then verify against the checklist.
 
 ## Prerequisites
 
@@ -400,6 +400,108 @@ Create container hardening guide with Trivy scanning and SBOM generation
 
 ---
 
+## Domain 19: Agentic AI Security
+
+**Test Prompt:**
+
+```
+สร้าง security checklist สำหรับ agentic AI system ที่ใช้ multi-agent orchestration
+```
+
+**Pass Criteria:**
+
+- [ ] OWASP Agentic AI Top 10 2026 risks referenced
+- [ ] Agent permission models (least-privilege, capability-based)
+- [ ] Memory/context security (injection, poisoning, exfiltration)
+- [ ] Tool-use authorization patterns (human-in-the-loop gates)
+- [ ] Multi-agent trust boundaries and delegation chains
+- [ ] Agent identity and authentication mechanisms
+- [ ] Guardrails and safety layers for autonomous actions
+- [ ] MITRE ATLAS mapping for agentic-specific techniques
+
+---
+
+## Domain 20: Post-Quantum Cryptography
+
+**Test Prompt:**
+
+```
+ทำ crypto-agility assessment สำหรับองค์กรที่ต้อง migrate ไป post-quantum cryptography
+```
+
+**Pass Criteria:**
+
+- [ ] NIST FIPS 203 (ML-KEM), FIPS 204 (ML-DSA), FIPS 205 (SLH-DSA) referenced
+- [ ] CNSA 2.0 timeline milestones (2030 preference, 2035 mandatory)
+- [ ] Crypto-agility assessment template (inventory → risk → migrate)
+- [ ] Migration roadmap with phased approach
+- [ ] Hybrid key exchange patterns (classical + PQC)
+- [ ] Certificate and PKI migration considerations
+- [ ] Impact analysis on TLS, VPN, code signing
+- [ ] Quantum risk scoring (Harvest Now, Decrypt Later scenarios)
+
+---
+
+## Domain 21: Identity & Access Security
+
+**Test Prompt:**
+
+```
+สร้าง non-human identity management policy สำหรับ Kubernetes workloads
+```
+
+**Pass Criteria:**
+
+- [ ] SPIFFE/SPIRE framework referenced for workload identity
+- [ ] Machine identity lifecycle (issuance → rotation → revocation)
+- [ ] Non-human identity types covered (service accounts, API keys, certificates, tokens)
+- [ ] ITDR (Identity Threat Detection and Response) capabilities
+- [ ] OAuth 2.0 / OIDC patterns for machine-to-machine auth
+- [ ] Secret management integration (Vault, cloud KMS)
+- [ ] Privileged access management for service accounts
+- [ ] Identity governance and orphan identity detection
+
+---
+
+## Domain 22: Web3 & Blockchain Security
+
+**Test Prompt:**
+
+```
+ทำ smart contract security audit checklist สำหรับ DeFi protocol
+```
+
+**Pass Criteria:**
+
+- [ ] OWASP Smart Contract Top 10 2026 risks referenced
+- [ ] Reentrancy attack patterns and prevention (checks-effects-interactions)
+- [ ] Flash loan attack scenarios and mitigations
+- [ ] Access control patterns (OpenZeppelin Ownable/AccessControl)
+- [ ] Formal verification and static analysis tools (Slither, Mythril, Certora)
+- [ ] DeFi-specific risks (oracle manipulation, MEV, sandwich attacks)
+- [ ] Gas optimization vs security tradeoffs
+- [ ] Audit methodology and checklist (pre-deploy, post-deploy)
+
+---
+
+## Guided Fallback Test
+
+**Test Prompt:**
+
+```
+ช่วยสร้างเอกสาร cybersecurity
+```
+
+**Pass Criteria:**
+
+- [ ] Triggers guided domain selection fallback (not a specific domain)
+- [ ] Asks clarifying questions: Task Type, Asset Type, Goal
+- [ ] Presents domain categories or numbered options for user to choose
+- [ ] Does NOT generate a full document without clarification
+- [ ] Responds in Thai (matching input language)
+
+---
+
 ## Meta: Framework Maintenance Validation
 
 **Non-domain test** — validates the framework version maintenance tooling works correctly.
@@ -414,7 +516,7 @@ bash tests/check-framework-updates.sh --all
 
 - [ ] Script runs without errors
 - [ ] Output shows color-coded status (CRITICAL/DUE/OK)
-- [ ] All 50 frameworks are listed with `--all` flag
+- [ ] All frameworks are listed with `--all` flag
 - [ ] No CRITICAL frameworks (unless genuinely stale)
 
 ### Test 2: Plugin Validation Section 5
@@ -433,25 +535,25 @@ bash tests/validate-plugin.sh --skip-install-check 2>&1 | grep -A5 "Section 5"
 
 ```bash
 # Verify entry count
-jq 'length' frameworks.json
-# Expected: 50
+jq '.frameworks | length' frameworks.json
+# Expected: ~69
 
 # Verify all entries have required fields
-jq '[.[] | select(.name and .version and .grep_pattern and .used_in)] | length' frameworks.json
-# Expected: 50
+jq '[.frameworks[] | select(.name and .version and .grep_patterns and .used_in)] | length' frameworks.json
+# Expected: ~69
 ```
 
 **Pass Criteria:**
 
-- [ ] frameworks.json has exactly 50 entries
-- [ ] All entries have name, version, grep_pattern, and used_in fields
+- [ ] frameworks.json has ~69 entries (54 base + 15 new from D19-D22)
+- [ ] All entries have name, version, grep_patterns, and used_in fields
 - [ ] JSON is valid (no syntax errors)
 
 ---
 
 ## Quick Regression Test
 
-For rapid regression after plugin updates, test these 4 prompts (covers Thai, English, mixed, and new domains):
+For rapid regression after plugin updates, test these prompts (covers Thai, English, mixed, and new domains):
 
 1. `สร้าง IR playbook สำหรับ phishing incident`
 2. `Create a Semgrep rule to detect hardcoded secrets`
@@ -463,6 +565,10 @@ For rapid regression after plugin updates, test these 4 prompts (covers Thai, En
 8. `ออกแบบ end-to-end security workflow แบบ cross-domain พร้อม SOAR orchestration template`
 9. `สร้าง security governance framework พร้อม CISO/CAIO RACI matrix และ board KPI dashboard`
 10. `สร้าง OT security assessment ตาม NIST 800-82 พร้อม Purdue Model segmentation และ PLC hardening checklist`
+11. `สร้าง security checklist สำหรับ agentic AI system ที่ใช้ multi-agent orchestration`
+12. `ทำ crypto-agility assessment สำหรับ post-quantum cryptography migration`
+13. `สร้าง non-human identity management policy สำหรับ Kubernetes workloads`
+14. `ทำ smart contract security audit checklist สำหรับ DeFi protocol`
 
 Minimum pass: all prompts produce structured bilingual output with framework references.
 

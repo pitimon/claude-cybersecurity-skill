@@ -13,6 +13,7 @@
 - Domain 6: Code Security Analysis → `references/code-security-analysis.md`
 - Domain 14: Vulnerability Management → `references/vulnerability-management.md`
 - Domain 16: Cross-Domain Integration → `references/cross-domain-integration.md`
+- Domain 22: Web3 & Blockchain Security → `references/web3-blockchain-security.md`
 
 ## Table of Contents
 

@@ -26,6 +26,10 @@ Supply Chain Security, Cloud Compliance Posture, AI/API Threat Surface และ
 - Domain 15: Threat Intelligence → `references/threat-intelligence.md`
 - Domain 17: Security Governance & Executive Leadership → `references/security-governance-executive.md`
 - Domain 18: OT/ICS Security → `references/ot-ics-security.md`
+- Domain 19: Agentic AI Security → `references/agentic-ai-security.md`
+- Domain 20: Post-Quantum Cryptography → `references/post-quantum-cryptography.md`
+- Domain 21: Identity & Access Security → `references/identity-access-security.md`
+- Domain 22: Web3 & Blockchain Security → `references/web3-blockchain-security.md`
 
 ---
 

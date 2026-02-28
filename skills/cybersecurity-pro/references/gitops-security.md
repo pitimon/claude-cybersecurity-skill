@@ -13,6 +13,7 @@
 - Domain 7: Container & Supply Chain → `references/container-supply-chain.md`
 - Domain 11: Zero Trust Architecture → `references/zero-trust-architecture.md`
 - Domain 16: Cross-Domain Integration → `references/cross-domain-integration.md`
+- Domain 20: Post-Quantum Cryptography → `references/post-quantum-cryptography.md`
 
 ## Table of Contents
 

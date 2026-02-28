@@ -13,6 +13,8 @@ API Gateway Patterns, API Inventory & Testing พร้อม implementation tem
 - Domain 6: Code Security Analysis → `references/code-security-analysis.md`
 - Domain 11: Zero Trust Architecture → `references/zero-trust-architecture.md`
 - Domain 16: Cross-Domain Integration → `references/cross-domain-integration.md`
+- Domain 19: Agentic AI Security → `references/agentic-ai-security.md`
+- Domain 21: Identity & Access Security → `references/identity-access-security.md`
 
 ---
 
