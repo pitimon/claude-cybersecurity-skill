@@ -788,6 +788,201 @@
       "used_in": ["SKILL.md", "ot-ics-security.md"],
       "update_frequency": "annual",
       "notes": "ICS-specific tactics and techniques. Updated alongside main ATT&CK releases"
+    },
+    {
+      "id": "owasp-agentic-top10",
+      "name": "OWASP Top 10 for Agentic Applications",
+      "version": "2026",
+      "released": "2025-12",
+      "source_url": "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/",
+      "last_checked": "2026-02-28",
+      "grep_patterns": ["OWASP Agentic Top 10", "ASI0[0-9]", "Agentic.*Top 10"],
+      "used_in": ["skills/cybersecurity-pro/references/agentic-ai-security.md"],
+      "update_frequency": "annual"
+    },
+    {
+      "id": "owasp-securing-agentic-guide",
+      "name": "OWASP Securing Agentic Applications Guide",
+      "version": "1.0",
+      "released": "2025-07",
+      "source_url": "https://genai.owasp.org/resource/securing-agentic-applications-guide-1-0/",
+      "last_checked": "2026-02-28",
+      "grep_patterns": ["Securing Agentic.*Guide", "OWASP.*Agentic.*Guide"],
+      "used_in": ["skills/cybersecurity-pro/references/agentic-ai-security.md"],
+      "update_frequency": "annual"
+    },
+    {
+      "id": "nist-fips-203",
+      "name": "NIST FIPS 203 (ML-KEM)",
+      "version": "Final",
+      "released": "2024-08-14",
+      "source_url": "https://csrc.nist.gov/pubs/fips/203/final",
+      "last_checked": "2026-02-28",
+      "grep_patterns": ["FIPS 203", "ML-KEM", "Kyber"],
+      "used_in": [
+        "skills/cybersecurity-pro/references/post-quantum-cryptography.md"
+      ],
+      "update_frequency": "as-needed"
+    },
+    {
+      "id": "nist-fips-204",
+      "name": "NIST FIPS 204 (ML-DSA)",
+      "version": "Final",
+      "released": "2024-08-14",
+      "source_url": "https://csrc.nist.gov/pubs/fips/204/final",
+      "last_checked": "2026-02-28",
+      "grep_patterns": ["FIPS 204", "ML-DSA", "Dilithium"],
+      "used_in": [
+        "skills/cybersecurity-pro/references/post-quantum-cryptography.md"
+      ],
+      "update_frequency": "as-needed"
+    },
+    {
+      "id": "nist-fips-205",
+      "name": "NIST FIPS 205 (SLH-DSA)",
+      "version": "Final",
+      "released": "2024-08-14",
+      "source_url": "https://csrc.nist.gov/pubs/fips/205/final",
+      "last_checked": "2026-02-28",
+      "grep_patterns": ["FIPS 205", "SLH-DSA", "SPHINCS"],
+      "used_in": [
+        "skills/cybersecurity-pro/references/post-quantum-cryptography.md"
+      ],
+      "update_frequency": "as-needed"
+    },
+    {
+      "id": "nist-ir-8547",
+      "name": "NIST IR 8547 Transition to Post-Quantum Cryptography",
+      "version": "IPD",
+      "released": "2024-11",
+      "source_url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+      "last_checked": "2026-02-28",
+      "grep_patterns": ["IR 8547", "NIST.*8547", "Transition.*Post-Quantum"],
+      "used_in": [
+        "skills/cybersecurity-pro/references/post-quantum-cryptography.md"
+      ],
+      "update_frequency": "as-needed"
+    },
+    {
+      "id": "nist-cswp-39",
+      "name": "NIST CSWP 39 Crypto Agility Considerations",
+      "version": "Final",
+      "released": "2025-12",
+      "source_url": "https://csrc.nist.gov/pubs/cswp/39/final",
+      "last_checked": "2026-02-28",
+      "grep_patterns": ["CSWP 39", "Crypto.Agility"],
+      "used_in": [
+        "skills/cybersecurity-pro/references/post-quantum-cryptography.md"
+      ],
+      "update_frequency": "as-needed"
+    },
+    {
+      "id": "nist-ir-8596",
+      "name": "NISTIR 8596 Cybersecurity Framework AI Profile",
+      "version": "Preliminary Draft",
+      "released": "2025-12",
+      "source_url": "https://csrc.nist.gov/pubs/ir/8596/iprd",
+      "last_checked": "2026-02-28",
+      "grep_patterns": ["NISTIR 8596", "IR 8596", "Cyber AI Profile"],
+      "used_in": ["skills/cybersecurity-pro/references/ai-ml-security.md"],
+      "update_frequency": "as-needed",
+      "notes": "Preliminary draft; monitor for final version in 2026"
+    },
+    {
+      "id": "nist-800-63b",
+      "name": "NIST SP 800-63B Digital Identity Guidelines",
+      "version": "Rev 4",
+      "released": "2024-08",
+      "source_url": "https://csrc.nist.gov/pubs/sp/800/63b/r4/final",
+      "last_checked": "2026-02-28",
+      "grep_patterns": ["800-63B", "800-63b", "SP 800-63"],
+      "used_in": [
+        "skills/cybersecurity-pro/references/identity-access-security.md"
+      ],
+      "update_frequency": "3-5 years"
+    },
+    {
+      "id": "nist-ir-8587",
+      "name": "NIST IR 8587 Digital Identity Protection",
+      "version": "IPD",
+      "released": "2025-11",
+      "source_url": "https://csrc.nist.gov/pubs/ir/8587/ipd",
+      "last_checked": "2026-02-28",
+      "grep_patterns": ["IR 8587", "NIST.*8587"],
+      "used_in": [
+        "skills/cybersecurity-pro/references/identity-access-security.md"
+      ],
+      "update_frequency": "as-needed"
+    },
+    {
+      "id": "nist-cswp-41-lev",
+      "name": "NIST CSWP 41 LEV Metric",
+      "version": "Final",
+      "released": "2025-05",
+      "source_url": "https://csrc.nist.gov/pubs/cswp/41/final",
+      "last_checked": "2026-02-28",
+      "grep_patterns": ["CSWP 41", "LEV.*Metric", "Likely Exploited"],
+      "used_in": [
+        "skills/cybersecurity-pro/references/vulnerability-management.md"
+      ],
+      "update_frequency": "as-needed"
+    },
+    {
+      "id": "owasp-smart-contract-top10",
+      "name": "OWASP Smart Contract Top 10",
+      "version": "2026",
+      "released": "2026-02",
+      "source_url": "https://owasp.org/www-project-smart-contract-top-10/",
+      "last_checked": "2026-02-28",
+      "grep_patterns": [
+        "Smart Contract Top 10",
+        "SC0[0-9]",
+        "OWASP.*Smart Contract"
+      ],
+      "used_in": [
+        "skills/cybersecurity-pro/references/web3-blockchain-security.md"
+      ],
+      "update_frequency": "annual"
+    },
+    {
+      "id": "mitre-atlas-2025",
+      "name": "MITRE ATLAS",
+      "version": "2025",
+      "released": "2025-09",
+      "source_url": "https://atlas.mitre.org/",
+      "last_checked": "2026-02-28",
+      "grep_patterns": ["MITRE ATLAS 2025", "ATLAS.*2025", "AML\\.T00[67]"],
+      "used_in": [
+        "skills/cybersecurity-pro/references/ai-ml-security.md",
+        "skills/cybersecurity-pro/references/agentic-ai-security.md"
+      ],
+      "update_frequency": "annual"
+    },
+    {
+      "id": "mitre-cwe-top25-2025",
+      "name": "MITRE CWE Top 25",
+      "version": "2025",
+      "released": "2025-12",
+      "source_url": "https://cwe.mitre.org/top25/archive/2025/2025_cwe_top25.html",
+      "last_checked": "2026-02-28",
+      "grep_patterns": ["CWE Top 25.*2025", "CWE-79.*60\\.38"],
+      "used_in": [
+        "skills/cybersecurity-pro/references/code-security-analysis.md"
+      ],
+      "update_frequency": "annual"
+    },
+    {
+      "id": "cnsa-2-0",
+      "name": "NSA CNSA 2.0",
+      "version": "1.0",
+      "released": "2022-09",
+      "source_url": "https://media.defense.gov/2022/Sep/07/2003071834/-1/-1/0/CSA_CNSA_2.0_ALGORITHMS_.PDF",
+      "last_checked": "2026-02-28",
+      "grep_patterns": ["CNSA 2\\.0", "CNSA Suite"],
+      "used_in": [
+        "skills/cybersecurity-pro/references/post-quantum-cryptography.md"
+      ],
+      "update_frequency": "as-needed"
     }
   ]
 }
