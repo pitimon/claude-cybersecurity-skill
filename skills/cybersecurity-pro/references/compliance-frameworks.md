@@ -11,6 +11,7 @@
 - Domain 8: Threat Modeling & Risk → `references/compliance-threat-modeling.md`
 - Domain 16: Cross-Domain Integration → `references/cross-domain-integration.md`
 - Domain 17: Security Governance & Executive Leadership → `references/security-governance-executive.md`
+- Domain 20: Post-Quantum Cryptography → `references/post-quantum-cryptography.md`
 
 ## Table of Contents
 
@@ -22,6 +23,7 @@
 6. CIS Controls v8
 7. Cross-Framework Mapping
 8. Compliance Assessment Templates
+9. Compliance Cross-Walk Matrix (Framework Mapping)
 
 ---
 
@@ -747,3 +749,53 @@ CIS Controls v8.1 กำหนด 5 asset classes สำหรับ scope contr
 | Compliance Score by Framework | Weighted score across all control areas        | > 90%             | Quarterly   |
 | Exception/Waiver Count        | Active exceptions + waivers                    | < 5               | Monthly     |
 | Third-Party Risk Score        | Average vendor security rating                 | > 80/100          | Quarterly   |
+
+---
+
+## 9. Compliance Cross-Walk Matrix (Framework Mapping)
+
+ตาราง mapping ระหว่าง 5 frameworks หลัก — ใช้เมื่อองค์กรต้อง comply กับหลาย frameworks พร้อมกัน
+ช่วยลด duplicate effort โดย map control areas ข้ามกัน
+
+> สำหรับ Encryption & Key Mgmt row → ดู references/post-quantum-cryptography.md (Domain 20) สำหรับ post-quantum migration roadmap
+
+### Cross-Walk Table (20 Control Areas)
+
+| Control Area              | NIST 800-53 Rev 5 | ISO 27001:2022 | CIS v8.1  | SOC 2        | PCI DSS v4.0.1  |
+| ------------------------- | ----------------- | -------------- | --------- | ------------ | --------------- |
+| Access Control            | AC-1 to AC-25     | A.5.15-A.5.18  | CIS 5, 6  | CC6.1-CC6.3  | Req 7, 8        |
+| Audit & Accountability    | AU-1 to AU-16     | A.8.15         | CIS 8     | CC7.1-CC7.4  | Req 10          |
+| Risk Assessment           | RA-1 to RA-7      | A.5.1, A.8.8   | —         | CC3.1-CC3.4  | Req 6.3, 12.3.2 |
+| Incident Response         | IR-1 to IR-10     | A.5.24-A.5.28  | CIS 17    | CC7.3-CC7.5  | Req 12.10       |
+| Configuration Management  | CM-1 to CM-14     | A.8.9          | CIS 4     | CC8.1        | Req 2, 6.3      |
+| Identification & Auth     | IA-1 to IA-12     | A.5.16-A.5.17  | CIS 5, 6  | CC6.1        | Req 8           |
+| System & Comms Protection | SC-1 to SC-45     | A.8.20-A.8.24  | CIS 3     | CC6.6-CC6.8  | Req 4           |
+| Personnel Security        | PS-1 to PS-9      | A.6.1-A.6.6    | —         | CC1.4        | Req 12.6        |
+| Physical Protection       | PE-1 to PE-23     | A.7.1-A.7.14   | —         | CC6.4-CC6.5  | Req 9           |
+| System & Info Integrity   | SI-1 to SI-20     | A.8.25-A.8.34  | CIS 7, 10 | CC7.1-CC7.2  | Req 5, 6, 11    |
+| Awareness & Training      | AT-1 to AT-6      | A.6.3          | CIS 14    | CC1.4        | Req 12.6        |
+| Contingency Planning      | CP-1 to CP-13     | A.5.29-A.5.30  | CIS 11    | A1.1-A1.3    | Req 12.10       |
+| Media Protection          | MP-1 to MP-8      | A.7.10, A.8.10 | CIS 3     | CC6.7        | Req 3, 9.4      |
+| Planning                  | PL-1 to PL-11     | A.5.1          | —         | CC3.1        | Req 12.1        |
+| Program Management        | PM-1 to PM-32     | A.5.2-A.5.4    | —         | CC1.1-CC1.2  | Req 12          |
+| Supply Chain Risk Mgmt    | SR-1 to SR-12     | A.5.19-A.5.23  | CIS 15    | CC9.1-CC9.2  | Req 12.8        |
+| Data Classification       | RA-2, SC-16       | A.5.12-A.5.14  | CIS 3     | CC6.1        | Req 3           |
+| Vulnerability Management  | RA-5, SI-2        | A.8.8          | CIS 7     | CC7.1        | Req 6, 11       |
+| Encryption & Key Mgmt     | SC-12, SC-13      | A.8.24         | CIS 3     | CC6.1, CC6.7 | Req 3, 4        |
+| Logging & Monitoring      | AU-2, AU-6, SI-4  | A.8.15-A.8.16  | CIS 8     | CC7.2-CC7.3  | Req 10          |
+
+### How to Use This Matrix
+
+1. **Gap Analysis**: ระบุ framework หลักที่องค์กรต้อง comply → ใช้ matrix เพื่อ map controls
+2. **Control Consolidation**: สำหรับ control areas ที่ overlap → implement ครั้งเดียว collect evidence ครั้งเดียว
+3. **Audit Preparation**: ใช้ matrix เพื่อเตรียม evidence mapping สำหรับ multi-framework audits
+4. **Priority**: เริ่มจาก control areas ที่ appear ในทุก frameworks (Access Control, Audit, Incident Response)
+
+### Thai Compliance Integration
+
+| Thai Requirement                      | Maps To                                            |
+| ------------------------------------- | -------------------------------------------------- |
+| PDPA (พ.ร.บ. คุ้มครองข้อมูลส่วนบุคคล) | ISO 27001 A.5.34, NIST 800-53 SI-12, PCI DSS Req 3 |
+| พ.ร.บ. ไซเบอร์ 2562                   | NIST 800-53 IR family, ISO A.5.24-A.5.28, CIS 17   |
+| พ.ร.บ. คอมพิวเตอร์ 2560               | NIST 800-53 AU family, ISO A.8.15                  |
+| BoT IT Risk Guidelines                | NIST 800-53 RA, CM, SC families, PCI DSS           |
