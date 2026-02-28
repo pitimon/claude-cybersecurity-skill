@@ -5,13 +5,13 @@
 **Enterprise Cybersecurity Skill for Claude Code**
 
 สร้างเอกสาร Cybersecurity ระดับมืออาชีพใน 30 วินาที — IR Playbooks, SOC Procedures,
-Compliance Audits, Cloud Security, AI Governance, OT/ICS Security และอีก 12 domains
+Compliance Audits, Cloud Security, AI Governance, OT/ICS Security และอีก 16 domains
 พร้อม output แบบ bilingual Thai + English ที่ map กับ NIST, MITRE ATT&CK, OWASP, ISO frameworks
 
-[![Version](https://img.shields.io/badge/version-3.6.1-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-4.0.0-blue.svg)](CHANGELOG.md)
 [![CI](https://github.com/pitimon/claude-cybersecurity-skill/actions/workflows/validate.yml/badge.svg)](https://github.com/pitimon/claude-cybersecurity-skill/actions/workflows/validate.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Domains](https://img.shields.io/badge/domains-18-orange.svg)](#capabilities-ความสามารถ--18-domains)
+[![Domains](https://img.shields.io/badge/domains-22-orange.svg)](#capabilities-ความสามารถ--22-domains)
 [![Language](https://img.shields.io/badge/language-Thai%20%2B%20English-blueviolet.svg)](#bilingual-output-policy)
 
 </div>
@@ -20,10 +20,10 @@ Compliance Audits, Cloud Security, AI Governance, OT/ICS Security และอ�
 
 <div align="center">
 
-**18 Domains** | **50+ Frameworks** | **< 5% Context Budget**
+**22 Domains** | **65+ Frameworks** | **< 5% Context Budget**
 
-ครอบคลุม 18 security domains ตั้งแต่ Incident Response ถึง OT/ICS Security —
-map กับ 50+ international frameworks — ใช้ context เพียง ~8,600 tokens ต่อ request (< 5% ของ 200K window)
+ครอบคลุม 22 security domains ตั้งแต่ Incident Response ถึง Web3 & Blockchain Security —
+map กับ 65+ international frameworks — ใช้ context เพียง ~9,900 tokens ต่อ request (< 5% ของ 200K window)
 
 </div>
 
@@ -125,13 +125,13 @@ claude doctor  # ตรวจสอบ version ใหม่
 - **Enterprise-quality output ทันที** — Templates ออกแบบโดย security professionals พร้อม SLA, escalation, RACI matrices ในตัว ไม่ต้อง prompt engineer เอง
 - **Framework-mapped templates** — ทุก output map กับ frameworks จริง (NIST, MITRE ATT&CK, OWASP, ISO 27001, CIS) — ไม่ต้องตรวจสอบความถูกต้องของ references เอง
 - **Bilingual Thai + English** — พร้อมใช้ในองค์กรไทย รองรับ พ.ร.บ. การรักษาความมั่นคงปลอดภัยไซเบอร์ พ.ศ. 2562 และ PDPA ใน compliance templates
-- **On-demand loading — ไม่กิน context** — มี 18 domains แต่โหลดแค่ 1 ต่อ request ใช้ context < 5% ของ 200K window
+- **On-demand loading — ไม่กิน context** — มี 22 domains แต่โหลดแค่ 1 ต่อ request ใช้ context < 5% ของ 200K window
 
 ---
 
 ## NIST CSF 2.0 Coverage Map
 
-18 domains ครอบคลุมทุก function ของ NIST Cybersecurity Framework 2.0:
+22 domains ครอบคลุมทุก function ของ NIST Cybersecurity Framework 2.0:
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -146,6 +146,7 @@ claude doctor  # ตรวจสอบ version ใหม่
 │            │  D14 Vulnerability Management                      │
 │            │  D15 Threat Intelligence                           │
 │            │  D18 OT/ICS Security (OT asset management)        │
+│            │  D21 Identity & Access Security                    │
 ├────────────┼────────────────────────────────────────────────────┤
 │            │  D3  DevSecOps Pipeline                            │
 │            │  D5  GitOps Security                               │
@@ -156,9 +157,15 @@ claude doctor  # ตรวจสอบ version ใหม่
 │            │  D12 AI/ML Security                                │
 │            │  D13 API Security                                  │
 │            │  D18 OT/ICS Security (OT network protection)      │
+│            │  D19 Agentic AI Security                           │
+│            │  D20 Post-Quantum Cryptography                     │
+│            │  D21 Identity & Access Security                    │
+│            │  D22 Web3 & Blockchain Security                    │
 ├────────────┼────────────────────────────────────────────────────┤
 │  DETECT    │  D4  SOC Operations + SOAR                        │
 │            │  D15 Threat Intelligence                           │
+│            │  D19 Agentic AI Security                           │
+│            │  D22 Web3 & Blockchain Security                    │
 ├────────────┼────────────────────────────────────────────────────┤
 │  RESPOND   │  D1  IR Playbooks & Runbooks                      │
 │            │  D2  DFIR Reports                                  │
@@ -175,7 +182,7 @@ claude doctor  # ตรวจสอบ version ใหม่
 
 ---
 
-## Capabilities (ความสามารถ — 18 Domains)
+## Capabilities (ความสามารถ — 22 Domains)
 
 ### Security Operations
 
@@ -206,17 +213,26 @@ claude doctor  # ตรวจสอบ version ใหม่
 
 ### Cloud & Architecture
 
-| Domain                            | คำอธิบาย                                                             | Frameworks                                          |
-| --------------------------------- | -------------------------------------------------------------------- | --------------------------------------------------- |
-| **D10 — Cloud Security & CSPM**   | Cloud security audits, IAM reviews, CSPM configs (AWS/Azure/GCP)     | CIS Cloud Benchmarks, CSA CCM v4.1, NIST 800-144    |
-| **D11 — Zero Trust Architecture** | ZTA maturity assessments, implementation roadmaps, microsegmentation | NIST 800-207, CISA ZT Maturity Model, Forrester ZTX |
-| **D12 — AI/ML Security**          | AI security assessments, LLM guardrails, AI red team, AI governance  | OWASP LLM Top 10, NIST AI RMF, MITRE ATLAS          |
+| Domain                               | คำอธิบาย                                                                   | Frameworks                                          |
+| ------------------------------------ | -------------------------------------------------------------------------- | --------------------------------------------------- |
+| **D10 — Cloud Security & CSPM**      | Cloud security audits, IAM reviews, CSPM configs (AWS/Azure/GCP)           | CIS Cloud Benchmarks, CSA CCM v4.1, NIST 800-144    |
+| **D11 — Zero Trust Architecture**    | ZTA maturity assessments, implementation roadmaps, microsegmentation       | NIST 800-207, CISA ZT Maturity Model, Forrester ZTX |
+| **D12 — AI/ML Security**             | AI security assessments, LLM guardrails, AI red team, AI governance        | OWASP LLM Top 10, NIST AI RMF, MITRE ATLAS          |
+| **D19 — Agentic AI Security**        | Agentic AI threat modeling, tool-use guardrails, multi-agent orchestration | OWASP Agentic Top 10 2026, MITRE ATLAS 2025         |
+| **D20 — Post-Quantum Cryptography**  | PQC migration roadmaps, hybrid key exchange, crypto-agility assessments    | NIST FIPS 203/204/205, CNSA 2.0, NIST IR 8547       |
+| **D21 — Identity & Access Security** | IAM maturity assessments, FIDO2/passkeys, ITDR, identity governance        | NIST 800-63B, FIDO2, NIST IR 8587, SPIFFE           |
 
 ### Industrial & OT
 
 | Domain                    | คำอธิบาย                                                                    | Frameworks                                        |
 | ------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------- |
 | **D18 — OT/ICS Security** | OT/ICS security assessments, Purdue Model segmentation, SCADA/PLC hardening | NIST SP 800-82 Rev.3, IEC 62443, MITRE ATT&CK ICS |
+
+### Web3 & Blockchain
+
+| Domain                               | คำอธิบาย                                                                   | Frameworks                       |
+| ------------------------------------ | -------------------------------------------------------------------------- | -------------------------------- |
+| **D22 — Web3 & Blockchain Security** | Smart contract audits, DeFi security, on-chain monitoring, wallet security | OWASP Smart Contract Top 10 2026 |
 
 ### Intelligence & Integration
 
@@ -274,7 +290,7 @@ claude doctor  # ตรวจสอบ version ใหม่
 ```
 
 <details>
-<summary>ดูตัวอย่างเพิ่มเติมทั้ง 18 domains →</summary>
+<summary>ดูตัวอย่างเพิ่มเติมทั้ง 22 domains →</summary>
 
 ### DFIR Report
 
@@ -364,20 +380,20 @@ User prompt → keyword match in SKILL.md frontmatter
 
 ### Token Budget
 
-**On-demand loading**: มี 18 domains แต่โหลดแค่ 1 ต่อ request
+**On-demand loading**: มี 22 domains แต่โหลดแค่ 1 ต่อ request
 
 | Component                | Tokens       | หมายเหตุ                              |
 | ------------------------ | ------------ | ------------------------------------- |
-| SKILL.md (always loaded) | ~3,600       | Router + language policy + frameworks |
-| Reference file (1 of 18) | ~3,000-5,000 | โหลดเฉพาะ domain ที่ trigger          |
-| **Max per request**      | **~8,600**   | **< 5% ของ 200K context window**      |
-| Total all files          | ~82,000      | ไม่โหลดทั้งหมดพร้อมกัน                |
+| SKILL.md (always loaded) | ~3,900       | Router + language policy + frameworks |
+| Reference file (1 of 22) | ~3,000-6,000 | โหลดเฉพาะ domain ที่ trigger          |
+| **Max per request**      | **~9,900**   | **< 5% ของ 200K context window**      |
+| Total all files          | ~98,000      | ไม่โหลดทั้งหมดพร้อมกัน                |
 
 ### Skill Engineering Techniques
 
 เทคนิคที่ใช้ออกแบบ plugin นี้ — เป็นแนวทางสำหรับผู้ที่ต้องการสร้าง Claude Code skill ของตัวเอง:
 
-1. **On-demand reference loading** — โหลดเฉพาะ domain ที่ user ต้องการ เพิ่ม domains ได้โดยไม่เพิ่ม base context cost (ปัจจุบัน 18 domains)
+1. **On-demand reference loading** — โหลดเฉพาะ domain ที่ user ต้องการ เพิ่ม domains ได้โดยไม่เพิ่ม base context cost (ปัจจุบัน 22 domains)
 2. **Composite reference files** — รวม topics ที่เกี่ยวข้องเป็นไฟล์เดียว (เช่น Semgrep + CodeQL + SARIF → `code-security-analysis.md`)
 3. **Framework-first templates** — Templates map กับ framework controls (NIST, MITRE ATT&CK IDs, CWE) ทำให้ output มี reference ที่ถูกต้อง
 4. **Bilingual output policy** — Thai prose + English terms ใน output เดียว ไม่ต้องสร้าง 2 versions
@@ -390,11 +406,11 @@ User prompt → keyword match in SKILL.md frontmatter
 | Aspect                 | Manual Prompting  | cybersecurity-pro              | Enterprise Tools |
 | ---------------------- | ----------------- | ------------------------------ | ---------------- |
 | **Setup time**         | 0                 | 3 commands, 30 sec             | Weeks-months     |
-| **Framework mapping**  | Manual research   | Auto-mapped (50+ frameworks)   | Vendor-specific  |
+| **Framework mapping**  | Manual research   | Auto-mapped (65+ frameworks)   | Vendor-specific  |
 | **Bilingual TH+EN**    | DIY every time    | Built-in policy                | Limited/none     |
 | **Thai compliance**    | Must research     | พ.ร.บ. ไซเบอร์ / PDPA included | Varies           |
 | **Output consistency** | Varies per prompt | Standardized templates         | Standardized     |
-| **Context overhead**   | Variable          | < 5% (8,600 tokens)            | N/A              |
+| **Context overhead**   | Variable          | < 5% (9,900 tokens)            | N/A              |
 | **Cost**               | Free              | Free (MIT)                     | $$$$             |
 | **Maintenance**        | Manual updates    | Community-maintained           | Vendor-dependent |
 
@@ -449,6 +465,28 @@ Outputs อ้างอิง frameworks เหล่านี้ตามคว
 - **NIST AI RMF** / **MITRE ATLAS** — AI risk management & threats
 - **EU AI Act** / **ISO 42001** — AI governance & regulation
 
+### AI Agent Security Engineers
+
+- **OWASP Agentic Top 10 2026** — Agentic AI-specific vulnerability risks
+- **MITRE ATLAS 2025** — AI adversarial threat landscape (agent extensions)
+
+### Post-Quantum / Cryptography
+
+- **NIST FIPS 203/204/205** — ML-KEM, ML-DSA, SLH-DSA post-quantum standards
+- **CNSA 2.0** — NSA Commercial National Security Algorithm Suite
+- **NIST IR 8547** — Transition to post-quantum cryptography standards
+
+### Identity & Access
+
+- **NIST SP 800-63B** — Digital identity guidelines (authentication)
+- **FIDO2 / WebAuthn** — Passwordless authentication standards
+- **NIST IR 8587** — Identity threat detection & response
+- **SPIFFE / SPIRE** — Workload identity framework
+
+### Web3/Blockchain Developers
+
+- **OWASP Smart Contract Top 10 2026** — Smart contract vulnerability risks
+
 ### Industrial / OT
 
 - **NIST SP 800-82 Rev.3** — OT/ICS security guide
@@ -472,7 +510,7 @@ Outputs อ้างอิง frameworks เหล่านี้ตามคว
 claude-cybersecurity-skill/
 ├── .claude-plugin/
 │   ├── marketplace.json          # Marketplace metadata
-│   └── plugin.json               # Plugin metadata (v3.7.0)
+│   └── plugin.json               # Plugin metadata (v4.0.0)
 ├── skills/
 │   └── cybersecurity-pro/
 │       ├── SKILL.md              # Skill definition & decision tree
@@ -494,8 +532,12 @@ claude-cybersecurity-skill/
 │           ├── threat-intelligence.md       # STIX/TAXII/IOC/TLP/MISP/OpenCTI
 │           ├── cross-domain-integration.md  # End-to-end workflows/orchestration
 │           ├── security-governance-executive.md # CISO/CAIO/CAISO/Board/Maturity
-│           └── ot-ics-security.md          # OT/ICS/SCADA/Purdue/IEC 62443
-├── frameworks.json                # Framework version manifest (54 entries)
+│           ├── ot-ics-security.md           # OT/ICS/SCADA/Purdue/IEC 62443
+│           ├── agentic-ai-security.md       # Agentic AI/Tool-use/Multi-agent
+│           ├── post-quantum-cryptography.md # PQC/FIPS 203-205/CNSA 2.0
+│           ├── identity-access-security.md  # IAM/FIDO2/ITDR/SPIFFE
+│           └── web3-blockchain-security.md  # Smart Contract/DeFi/Web3
+├── frameworks.json                # Framework version manifest (69 entries)
 ├── docs/
 │   ├── INSTALL.md                # Installation guide
 │   ├── TROUBLESHOOTING.md        # Troubleshooting guide
@@ -521,11 +563,11 @@ claude-cybersecurity-skill/
 | **Plugin name** | `cybersecurity-pro`                       |
 | **Marketplace** | `pitimon-cybersecurity`                   |
 | **Install key** | `cybersecurity-pro@pitimon-cybersecurity` |
-| **Version**     | 3.6.1                                     |
+| **Version**     | 4.0.0                                     |
 | **Category**    | Security                                  |
 | **Author**      | P.Itarun                                  |
 | **Language**    | Bilingual Thai + English                  |
-| **Domains**     | 18                                        |
+| **Domains**     | 22                                        |
 
 ---
 

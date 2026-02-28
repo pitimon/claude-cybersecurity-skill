@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What This Is
 
-A Claude Code **plugin skill** (`cybersecurity-pro`) distributed via the `pitimon-cybersecurity` marketplace. It generates professional cybersecurity documents (IR playbooks, DFIR reports, DevSecOps configs, SOC procedures, GitOps policies, compliance frameworks, cloud security audits, zero trust architecture, AI/ML security, API security, vulnerability management, threat intelligence, cross-domain integration scenarios, security governance & executive leadership) in bilingual Thai + English format.
+A Claude Code **plugin skill** (`cybersecurity-pro`) distributed via the `pitimon-cybersecurity` marketplace. It generates professional cybersecurity documents (IR playbooks, DFIR reports, DevSecOps configs, SOC procedures, GitOps policies, compliance frameworks, cloud security audits, zero trust architecture, AI/ML security, API security, vulnerability management, threat intelligence, cross-domain integration scenarios, security governance & executive leadership, agentic AI security, post-quantum cryptography, identity & access security, Web3 & blockchain security) in bilingual Thai + English format.
 
 There are no build, lint, or test commands — this is a pure markdown/JSON skill definition repository.
 
@@ -17,7 +17,7 @@ The plugin system has two layers:
 
 ### How it works at runtime
 
-When a user's prompt matches trigger keywords in `SKILL.md`'s frontmatter, Claude Code loads the skill. The skill's decision tree routes to one of 18 reference files, which provide templates and frameworks for generating output.
+When a user's prompt matches trigger keywords in `SKILL.md`'s frontmatter, Claude Code loads the skill. The skill's decision tree routes to one of 22 reference files, which provide templates and frameworks for generating output.
 
 ```
 User prompt → keyword match in SKILL.md frontmatter
@@ -33,30 +33,34 @@ User prompt → keyword match in SKILL.md frontmatter
 | `.claude-plugin/marketplace.json`          | Marketplace registry entry (name, owner, plugins list)                                       |
 | `.claude-plugin/plugin.json`               | Plugin manifest (name, version, author, skills path)                                         |
 | `skills/cybersecurity-pro/SKILL.md`        | Skill definition: trigger keywords, language policy, frameworks, decision tree, output rules |
-| `skills/cybersecurity-pro/references/*.md` | Domain-specific templates and framework mappings (18 files, one per domain)                  |
+| `skills/cybersecurity-pro/references/*.md` | Domain-specific templates and framework mappings (22 files, one per domain)                  |
 
-### The 18 domains
+### The 22 domains
 
-| Domain                   | Reference file                                | Frameworks                                         |
-| ------------------------ | --------------------------------------------- | -------------------------------------------------- |
-| IR Playbooks             | `references/ir-playbooks.md`                  | NIST 800-61, ISO 27035                             |
-| DFIR Reports             | `references/dfir-reports.md`                  | Chain of Custody, IOC, Timeline                    |
-| DevSecOps Pipeline       | `references/devsecops-pipeline.md`            | OWASP SAMM/Top 10, CIS                             |
-| SOC Operations + SOAR    | `references/soc-operations.md`                | MITRE ATT&CK, Cyber Kill Chain                     |
-| GitOps Security          | `references/gitops-security.md`               | OPA/Gatekeeper, Falco, ArgoCD                      |
-| Code Security Analysis   | `references/code-security-analysis.md`        | CWE Top 25, SARIF, Semgrep/CodeQL                  |
-| Container & Supply Chain | `references/container-supply-chain.md`        | NIST SP 800-190, CIS Docker, SLSA                  |
-| Threat Modeling & Risk   | `references/compliance-threat-modeling.md`    | SOC 2, ISO 27001, STRIDE, PASTA                    |
-| Compliance Frameworks    | `references/compliance-frameworks.md`         | NIST 800-53, PCI DSS v4.0.1, GDPR, HIPAA, CIS v8.1 |
-| Cloud Security & CSPM    | `references/cloud-security-cspm.md`           | CIS Cloud Benchmarks, CSA CCM v4.1, NIST 800-144   |
-| Zero Trust Architecture  | `references/zero-trust-architecture.md`       | NIST 800-207, CISA ZT Maturity Model               |
-| AI/ML Security           | `references/ai-ml-security.md`                | OWASP LLM Top 10, NIST AI RMF, MITRE ATLAS         |
-| API Security             | `references/api-security.md`                  | OWASP API Top 10, OAuth 2.0 BCP                    |
-| Vulnerability Management | `references/vulnerability-management.md`      | CVSS v4.0, EPSS, CISA KEV, SSVC                    |
-| Threat Intelligence      | `references/threat-intelligence.md`           | STIX 2.1, TAXII 2.1, TLP 2.0, Diamond Model        |
-| Cross-Domain Integration | `references/cross-domain-integration.md`      | NIST CSF 2.0, All domain frameworks                |
-| Security Governance      | `references/security-governance-executive.md` | NIST CSF 2.0 GOVERN, ISO 27014, C2M2               |
-| OT/ICS Security          | `references/ot-ics-security.md`               | NIST SP 800-82 Rev.3, IEC 62443, Purdue Model      |
+| Domain                     | Reference file                                | Frameworks                                         |
+| -------------------------- | --------------------------------------------- | -------------------------------------------------- |
+| IR Playbooks               | `references/ir-playbooks.md`                  | NIST 800-61, ISO 27035                             |
+| DFIR Reports               | `references/dfir-reports.md`                  | Chain of Custody, IOC, Timeline                    |
+| DevSecOps Pipeline         | `references/devsecops-pipeline.md`            | OWASP SAMM/Top 10, CIS                             |
+| SOC Operations + SOAR      | `references/soc-operations.md`                | MITRE ATT&CK, Cyber Kill Chain                     |
+| GitOps Security            | `references/gitops-security.md`               | OPA/Gatekeeper, Falco, ArgoCD                      |
+| Code Security Analysis     | `references/code-security-analysis.md`        | CWE Top 25, SARIF, Semgrep/CodeQL                  |
+| Container & Supply Chain   | `references/container-supply-chain.md`        | NIST SP 800-190, CIS Docker, SLSA                  |
+| Threat Modeling & Risk     | `references/compliance-threat-modeling.md`    | SOC 2, ISO 27001, STRIDE, PASTA                    |
+| Compliance Frameworks      | `references/compliance-frameworks.md`         | NIST 800-53, PCI DSS v4.0.1, GDPR, HIPAA, CIS v8.1 |
+| Cloud Security & CSPM      | `references/cloud-security-cspm.md`           | CIS Cloud Benchmarks, CSA CCM v4.1, NIST 800-144   |
+| Zero Trust Architecture    | `references/zero-trust-architecture.md`       | NIST 800-207, CISA ZT Maturity Model               |
+| AI/ML Security             | `references/ai-ml-security.md`                | OWASP LLM Top 10, NIST AI RMF, MITRE ATLAS         |
+| API Security               | `references/api-security.md`                  | OWASP API Top 10, OAuth 2.0 BCP                    |
+| Vulnerability Management   | `references/vulnerability-management.md`      | CVSS v4.0, EPSS, CISA KEV, SSVC                    |
+| Threat Intelligence        | `references/threat-intelligence.md`           | STIX 2.1, TAXII 2.1, TLP 2.0, Diamond Model        |
+| Cross-Domain Integration   | `references/cross-domain-integration.md`      | NIST CSF 2.0, All domain frameworks                |
+| Security Governance        | `references/security-governance-executive.md` | NIST CSF 2.0 GOVERN, ISO 27014, C2M2               |
+| OT/ICS Security            | `references/ot-ics-security.md`               | NIST SP 800-82 Rev.3, IEC 62443, Purdue Model      |
+| Agentic AI Security        | `references/agentic-ai-security.md`           | OWASP Agentic Top 10 2026, MITRE ATLAS 2025        |
+| Post-Quantum Cryptography  | `references/post-quantum-cryptography.md`     | NIST FIPS 203/204/205, CNSA 2.0, NIST IR 8547      |
+| Identity & Access Security | `references/identity-access-security.md`      | NIST 800-63B, FIDO2, NIST IR 8587, SPIFFE          |
+| Web3 & Blockchain Security | `references/web3-blockchain-security.md`      | OWASP Smart Contract Top 10 2026                   |
 
 ## Critical Naming Conventions
 
@@ -80,7 +84,7 @@ These identifiers must stay consistent across all config files and documentation
 
 ## Framework Maintenance
 
-All 50 versioned framework references are tracked in `frameworks.json` at the repo root. This is the single source of truth for versions, source URLs, grep patterns, and staleness tracking.
+All 69 versioned framework references are tracked in `frameworks.json` at the repo root. This is the single source of truth for versions, source URLs, grep patterns, and staleness tracking.
 
 ### Key commands
 
