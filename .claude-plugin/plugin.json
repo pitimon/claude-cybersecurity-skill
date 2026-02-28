@@ -1,7 +1,7 @@
 {
   "name": "cybersecurity-pro",
-  "version": "3.7.0",
-  "description": "Professional cybersecurity skill: 18 domains covering IR, DFIR, DevSecOps, SOC+SOAR, GitOps, Code Security, Container/Supply Chain, Threat Modeling, Compliance Frameworks, Cloud Security & CSPM, Zero Trust Architecture, AI/ML Security, API Security, Vulnerability Management, Threat Intelligence, Cross-Domain Integration, Security Governance & Executive Leadership, and OT/ICS Security. Bilingual Thai+English output.",
+  "version": "4.0.0",
+  "description": "Professional cybersecurity skill: 22 domains covering IR, DFIR, DevSecOps, SOC+SOAR, GitOps, Code Security, Container/Supply Chain, Threat Modeling, Compliance Frameworks, Cloud Security & CSPM, Zero Trust Architecture, AI/ML Security, API Security, Vulnerability Management, Threat Intelligence, Cross-Domain Integration, Security Governance & Executive Leadership, OT/ICS Security, Agentic AI Security, Post-Quantum Cryptography, Identity & Access Security, and Web3 & Blockchain Security. Bilingual Thai+English output.",
   "author": {
     "name": "P.Itarun"
   },
@@ -57,7 +57,26 @@
     "scada",
     "nist-800-82",
     "iec-62443",
-    "purdue-model"
+    "purdue-model",
+    "agentic-ai",
+    "ai-agent-security",
+    "owasp-agentic-top-10",
+    "post-quantum",
+    "pqc",
+    "fips-203",
+    "fips-204",
+    "cnsa-2.0",
+    "crypto-agility",
+    "identity-security",
+    "passkeys",
+    "fido2",
+    "itdr",
+    "non-human-identity",
+    "spiffe",
+    "web3",
+    "blockchain-security",
+    "smart-contract",
+    "defi-security"
   ],
   "skills": "./skills/"
 }

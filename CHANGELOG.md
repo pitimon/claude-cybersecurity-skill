@@ -5,6 +5,35 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.0.0] - 2026-02-28
+
+### Added
+
+- **Agentic AI Security** (Domain 19) — OWASP Agentic Top 10 2026, agent permission models, memory & context security, multi-agent orchestration, MITRE ATLAS 2025 agent techniques
+- **Post-Quantum Cryptography Migration** (Domain 20) — NIST FIPS 203/204/205, CNSA 2.0 timeline, crypto-agility assessment, hybrid cryptography patterns, NIST IR 8547
+- **Identity & Access Security** (Domain 21) — NIST 800-63B, FIDO2/Passkeys, non-human identity management, ITDR, NIST IR 8587 token protection, SPIFFE/SPIRE
+- **Web3 & Blockchain Security** (Domain 22) — OWASP Smart Contract Top 10 2026, smart contract audit methodology, DeFi security patterns, wallet & key management
+- **NIST Cyber AI Profile** (NISTIR 8596) added to D12 — 3 focus areas mapped to CSF 2.0
+- **MITRE ATLAS 2025** agent techniques (14 new) added to D12
+- **NIST LEV metric** (CSWP 41) added to D14 — LEV vs EPSS vs KEV comparison
+- **CWE Top 25 (2025)** rankings updated in D6
+- **Claude Code Security** reasoning-based scanner reference added to D6
+- **Cyber Resilience Metrics** section added to D17 — prevention→resilience shift KPIs
+- **Security Workforce Development** section added to D17 — skills gap assessment, competency matrix
+- **Compliance Cross-Walk Matrix** added to D9 — NIST↔ISO↔CIS↔SOC2↔PCI mapping (20 control areas)
+- **Guided decision tree fallback** in SKILL.md — asks 2-3 clarifying questions if keyword match fails
+- **Template variables** ({ORG_NAME}, {DATE}, {INDUSTRY}, {ANALYST_NAME}) for all output
+- **frameworks.json** expanded from 54 to 69 entries with 15 new framework references
+
+### Changed
+
+- SKILL.md expanded from 18 to 22 domains with updated frontmatter, frameworks table, and decision tree
+- plugin.json and marketplace.json bumped to v4.0.0 with D19-D22 keywords
+- README.md updated: domain count 18→22, NIST CSF 2.0 map, capabilities, token budget
+- CLAUDE.md updated to reflect 22-domain architecture
+- validate-plugin.sh updated to expect 22 reference files and ~69 frameworks
+- smoke-test-prompts.md expanded with 4 new domain tests + guided fallback test
+
 ## [3.7.0] - 2026-02-28
 
 ### Added
@@ -328,6 +357,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Marketplace name standardized from `somapa-cybersecurity` to `pitimon-cybersecurity`
 - Plugin install key format corrected to `cybersecurity-pro@pitimon-cybersecurity`
 
+[4.0.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.7.0...v4.0.0
+[3.7.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.6.1...v3.7.0
 [3.6.1]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.6.0...v3.6.1
 [3.6.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.5.0...v3.6.0
 [3.5.0]: https://github.com/pitimon/claude-cybersecurity-skill/compare/v3.4.0...v3.5.0
