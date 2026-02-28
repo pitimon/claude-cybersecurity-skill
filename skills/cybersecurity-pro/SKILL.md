@@ -38,6 +38,14 @@ description: >
   Purdue model, industrial control, OT/IT convergence, ความปลอดภัย OT,
   โครงสร้างพื้นฐานสำคัญ, DCS, RTU, HMI, Modbus, DNP3, OPC UA, BACnet,
   NERC CIP, MITRE ATT&CK for ICS, OT incident response,
+  agentic AI, AI agent security, OWASP Agentic, ASI01, agent hijack, tool misuse,
+  agent orchestration, ความปลอดภัย AI Agent,
+  post-quantum, PQC, quantum cryptography, ML-KEM, ML-DSA, SLH-DSA, FIPS 203,
+  crypto-agility, CNSA 2.0, การเข้ารหัสควอนตัม,
+  identity security, IAM, FIDO2, passkeys, non-human identity, machine identity,
+  ITDR, identity governance, NIST 800-63, ความปลอดภัย Identity,
+  smart contract, Web3, blockchain security, DeFi, wallet security, Solidity,
+  OWASP Smart Contract, reentrancy, flash loan, ความปลอดภัย Blockchain,
   การตอบสนองต่อเหตุการณ์, วิเคราะห์ภัยคุกคาม, ความปลอดภัยไซเบอร์, นิติวิทยาศาสตร์ดิจิทัล,
   การวิเคราะห์ code, ความปลอดภัย container, การปฏิบัติตามกฎระเบียบ, การจำลองภัยคุกคาม,
   ความปลอดภัยบนคลาวด์, สถาปัตยกรรม Zero Trust, ความปลอดภัย AI,
@@ -50,7 +58,7 @@ allowed-tools: Read, Grep, Glob, Write
 
 # Cybersecurity Pro Skill
 
-สกิลระดับมืออาชีพสำหรับ Cybersecurity Operations ครอบคลุม 18 domains:
+สกิลระดับมืออาชีพสำหรับ Cybersecurity Operations ครอบคลุม 22 domains:
 IR, DFIR, DevSecOps, SOC+SOAR, GitOps, Code Security Analysis, Container & Supply Chain, Threat Modeling & Risk, Compliance Frameworks, Cloud Security & CSPM, Zero Trust Architecture, AI/ML Security, API Security, Vulnerability Management, Threat Intelligence, Cross-Domain Integration, Security Governance & Executive Leadership, OT/ICS Security
 
 ## Language Policy / นโยบายภาษา
@@ -71,32 +79,36 @@ Example style:
 
 All outputs MUST reference the appropriate framework(s):
 
-| Domain                   | Primary Framework                  | Supporting Standards                         |
-| ------------------------ | ---------------------------------- | -------------------------------------------- |
-| Incident Response        | NIST SP 800-61 Rev.2               | ISO 27035, SANS IR Process                   |
-| DFIR / Forensics         | Chain of Custody, IOC              | NIST 800-86, SANS DFIR                       |
-| Threat Analysis          | MITRE ATT&CK, MITRE D3FEND         | Cyber Kill Chain, Diamond Model              |
-| DevSecOps                | OWASP SAMM, OWASP Top 10           | CIS Benchmarks, NIST SSDF                    |
-| Governance               | NIST CSF 2.0                       | ISO 27001:2022, พ.ร.บ. ไซเบอร์ 2562          |
-| Code Security            | CWE Top 25, OWASP Top 10           | SARIF 2.1.0, Semgrep, CodeQL                 |
-| Container/Supply Chain   | NIST SP 800-190, CIS Docker        | SLSA, Sigstore, CycloneDX                    |
-| Threat Modeling & Risk   | NIST CSF, ISO 27001, STRIDE        | SOC 2, PASTA, PDPA                           |
-| Compliance Frameworks    | NIST SP 800-53 Rev 5               | PCI DSS v4.0.1, CIS Controls v8.1            |
-| Cloud Security & CSPM    | CIS Cloud Benchmarks, CSA CCM v4.1 | NIST 800-144, AWS Well-Architected           |
-| Zero Trust               | NIST SP 800-207                    | CISA ZT Maturity Model, Forrester ZTX        |
-| AI/ML Security           | OWASP LLM Top 10, NIST AI RMF      | MITRE ATLAS, EU AI Act, ISO 42001            |
-| API Security             | OWASP API Top 10 2023              | OAuth 2.0 BCP (RFC 9700), OpenAPI            |
-| Vulnerability Mgmt       | CVSS v4.0, EPSS                    | CISA KEV, SSVC, FIRST VRDX                   |
-| Threat Intelligence      | STIX 2.1, TAXII 2.1                | MITRE ATT&CK, TLP 2.0, Diamond Model         |
-| Cross-Domain Integration | NIST CSF 2.0                       | All domain frameworks                        |
-| Security Governance      | NIST CSF 2.0 GOVERN, ISO 27014     | C2M2, NACD, SEC Rules, NIST AI RMF           |
-| OT/ICS Security          | NIST SP 800-82 Rev.3, IEC 62443    | Purdue Model, MITRE ATT&CK for ICS, NERC CIP |
+| Domain                   | Primary Framework                  | Supporting Standards                                     |
+| ------------------------ | ---------------------------------- | -------------------------------------------------------- |
+| Incident Response        | NIST SP 800-61 Rev.2               | ISO 27035, SANS IR Process                               |
+| DFIR / Forensics         | Chain of Custody, IOC              | NIST 800-86, SANS DFIR                                   |
+| Threat Analysis          | MITRE ATT&CK, MITRE D3FEND         | Cyber Kill Chain, Diamond Model                          |
+| DevSecOps                | OWASP SAMM, OWASP Top 10           | CIS Benchmarks, NIST SSDF                                |
+| Governance               | NIST CSF 2.0                       | ISO 27001:2022, พ.ร.บ. ไซเบอร์ 2562                      |
+| Code Security            | CWE Top 25, OWASP Top 10           | SARIF 2.1.0, Semgrep, CodeQL                             |
+| Container/Supply Chain   | NIST SP 800-190, CIS Docker        | SLSA, Sigstore, CycloneDX                                |
+| Threat Modeling & Risk   | NIST CSF, ISO 27001, STRIDE        | SOC 2, PASTA, PDPA                                       |
+| Compliance Frameworks    | NIST SP 800-53 Rev 5               | PCI DSS v4.0.1, CIS Controls v8.1                        |
+| Cloud Security & CSPM    | CIS Cloud Benchmarks, CSA CCM v4.1 | NIST 800-144, AWS Well-Architected                       |
+| Zero Trust               | NIST SP 800-207                    | CISA ZT Maturity Model, Forrester ZTX                    |
+| AI/ML Security           | OWASP LLM Top 10, NIST AI RMF      | MITRE ATLAS, EU AI Act, ISO 42001                        |
+| API Security             | OWASP API Top 10 2023              | OAuth 2.0 BCP (RFC 9700), OpenAPI                        |
+| Vulnerability Mgmt       | CVSS v4.0, EPSS                    | CISA KEV, SSVC, FIRST VRDX                               |
+| Threat Intelligence      | STIX 2.1, TAXII 2.1                | MITRE ATT&CK, TLP 2.0, Diamond Model                     |
+| Cross-Domain Integration | NIST CSF 2.0                       | All domain frameworks                                    |
+| Security Governance      | NIST CSF 2.0 GOVERN, ISO 27014     | C2M2, NACD, SEC Rules, NIST AI RMF                       |
+| OT/ICS Security          | NIST SP 800-82 Rev.3, IEC 62443    | Purdue Model, MITRE ATT&CK for ICS, NERC CIP             |
+| Agentic AI Security      | OWASP Agentic Top 10 2026          | MITRE ATLAS 2025, OWASP Securing Agentic Apps Guide v1.0 |
+| Post-Quantum Crypto      | NIST FIPS 203/204/205              | CNSA 2.0, NIST IR 8547, NIST CSWP 39                     |
+| Identity & Access        | NIST SP 800-63B                    | FIDO2, NIST IR 8587, OAuth 2.1, SPIFFE                   |
+| Web3 & Blockchain        | OWASP Smart Contract Top 10 2026   | Ethereum Security Best Practices                         |
 
 When producing any output, map actions to relevant framework controls. For incident analysis, always include MITRE ATT&CK Tactic/Technique IDs (e.g., T1566.001).
 
 ## Output Domains
 
-This skill produces outputs across 18 domains. Identify which domain(s) the user needs and read the corresponding reference file BEFORE generating output:
+This skill produces outputs across 22 domains. Identify which domain(s) the user needs and read the corresponding reference file BEFORE generating output:
 
 ### 1. Incident Response Playbooks & Runbooks
 
@@ -375,6 +387,22 @@ User request
 │   / "HMI" / "RTU" / "DCS" / "Modbus" / "DNP3" / "OPC UA" / "BACnet"
 │   / "NERC CIP" / "ATT&CK for ICS" / "ความปลอดภัย OT" / "โครงสร้างพื้นฐานสำคัญ"
 │   → Domain 18: OT/ICS Security (read references/ot-ics-security.md)
+│
+├── mentions "agentic AI" / "AI agent" / "agent security" / "OWASP Agentic" / "tool misuse"
+│   / "agent hijack" / "multi-agent" / "ความปลอดภัย AI Agent"
+│   → Domain 19: Agentic AI Security (read references/agentic-ai-security.md)
+│
+├── mentions "post-quantum" / "PQC" / "quantum cryptography" / "ML-KEM" / "ML-DSA"
+│   / "crypto-agility" / "CNSA 2.0" / "FIPS 203" / "การเข้ารหัสควอนตัม"
+│   → Domain 20: Post-Quantum Cryptography (read references/post-quantum-cryptography.md)
+│
+├── mentions "identity security" / "IAM" / "FIDO2" / "passkeys" / "machine identity"
+│   / "ITDR" / "non-human identity" / "NIST 800-63" / "ความปลอดภัย Identity"
+│   → Domain 21: Identity & Access Security (read references/identity-access-security.md)
+│
+├── mentions "smart contract" / "Web3" / "blockchain" / "DeFi" / "Solidity"
+│   / "wallet security" / "flash loan" / "reentrancy" / "ความปลอดภัย Blockchain"
+│   → Domain 22: Web3 & Blockchain Security (read references/web3-blockchain-security.md)
 │
 └── unclear / multiple domains
     → Ask user to clarify, or if multi-domain workflow → Domain 16
