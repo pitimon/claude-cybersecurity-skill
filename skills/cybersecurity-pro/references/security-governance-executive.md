@@ -16,6 +16,7 @@
 - Domain 9: Compliance Frameworks → `references/compliance-frameworks.md`
 - Domain 12: AI/ML Security → `references/ai-ml-security.md`
 - Domain 16: Cross-Domain Integration → `references/cross-domain-integration.md`
+- Domain 21: Identity & Access Security → `references/identity-access-security.md`
 
 ---
 
@@ -30,6 +31,8 @@
 7. [AI Governance at Executive Level](#7-ai-governance-at-executive-level)
 8. [Governance Program Implementation Roadmap](#8-governance-program-implementation-roadmap)
 9. [Framework References & Governance Checklist](#9-framework-references--governance-checklist)
+10. [Cyber Resilience Metrics (Prevention → Resilience Shift)](#10-cyber-resilience-metrics-prevention--resilience-shift)
+11. [Security Workforce Development](#11-security-workforce-development)
 
 ---
 
@@ -795,3 +798,89 @@ Phase 5:                                          ████████  Opti
 - [ ] Security budget aligned to risk appetite (10-15% of IT budget benchmark)
 - [ ] Peer benchmarking conducted and gaps addressed
 - [ ] Board cyber literacy program delivered to all directors
+
+---
+
+## 10. Cyber Resilience Metrics (Prevention → Resilience Shift)
+
+Industry trend 2026: เปลี่ยนจาก prevention-focused KPIs ไปสู่ resilience-focused metrics
+— ยอมรับว่า breach จะเกิดขึ้น focus ที่ recovery speed และ business continuity
+
+### 10.1 Resilience KPI Dashboard
+
+| Metric                         | Target               | Measurement                                                |
+| ------------------------------ | -------------------- | ---------------------------------------------------------- |
+| MTTR (Mean Time to Recover)    | < 4 hours (Critical) | เวลาเฉลี่ยจากตรวจพบ incident จนถึง full recovery           |
+| Recovery Test Success Rate     | > 95%                | จำนวน recovery tests ที่สำเร็จ / ทั้งหมด                   |
+| Backup Validation Rate         | 100% monthly         | จำนวน backups ที่ verified / ทั้งหมด                       |
+| Failover Test Frequency        | Quarterly            | จำนวนครั้งที่ทดสอบ DR failover ต่อปี                       |
+| Cyber Insurance Coverage Ratio | > 80%                | มูลค่า coverage / estimated max loss                       |
+| Third-Party Resilience Score   | > B+                 | vendor resilience assessment rating                        |
+| Business Process Recovery      | < 2 hours (Critical) | เวลาที่ core business process กลับมาทำงานได้               |
+| Supply Chain Recovery Time     | < 24 hours           | เวลาเปลี่ยนผู้ให้บริการหรือกู้คืนจาก supply chain incident |
+
+### 10.2 Prevention vs Resilience KPI Comparison
+
+| Prevention KPI           | Resilience Alternative          | Why Shift                                         |
+| ------------------------ | ------------------------------- | ------------------------------------------------- |
+| # of incidents prevented | MTTR from incident              | Prevention ไม่ 100% — speed of recovery สำคัญกว่า |
+| # patches applied        | Patch-to-exploit window         | Focus on reducing exposure window                 |
+| Phishing click rate      | Phishing report rate + response | Encourage reporting over blame                    |
+| Uptime percentage        | Recovery time from disruption   | Resilience = bounce back, not just stay up        |
+
+---
+
+## 11. Security Workforce Development
+
+### 11.1 Skills Gap Landscape
+
+Based on Fortinet 2025 Skills Gap Report:
+
+- 55% ขององค์กรมีทีม security ไม่เพียงพอ
+- 65% มีตำแหน่งว่างที่ยังไม่สามารถหาคนมาทำได้
+- Top 3 skills ที่ขาดแคลนมากที่สุด: Cloud Security, AI/ML Security, Identity Security
+
+### 11.2 Skills Gap Assessment Template
+
+| Skill Area          | Current Level (1-5) | Target Level | Gap   | Priority       |
+| ------------------- | ------------------- | ------------ | ----- | -------------- |
+| AI/ML Security      | {LEVEL}             | {TARGET}     | {GAP} | {HIGH/MED/LOW} |
+| Cloud Security      | ...                 | ...          | ...   | ...            |
+| OT/ICS Security     | ...                 | ...          | ...   | ...            |
+| Threat Intelligence | ...                 | ...          | ...   | ...            |
+| Identity & Access   | ...                 | ...          | ...   | ...            |
+| Post-Quantum Crypto | ...                 | ...          | ...   | ...            |
+| Web3/Blockchain     | ...                 | ...          | ...   | ...            |
+| Agentic AI Security | ...                 | ...          | ...   | ...            |
+
+### 11.3 Role-Based Competency Matrix
+
+| Role              | Core Skills                   | Certifications               | Training Path   |
+| ----------------- | ----------------------------- | ---------------------------- | --------------- |
+| SOC Analyst L1-L2 | SIEM, triage, MITRE ATT&CK    | CompTIA CySA+, SC-200        | D4 → D15 → D1   |
+| Security Engineer | DevSecOps, cloud, IaC         | AWS Security Specialty, CCSP | D3 → D10 → D5   |
+| GRC Analyst       | Compliance, risk, governance  | CISA, ISO 27001 LA           | D9 → D8 → D17   |
+| Threat Hunter     | TI, forensics, DFIR           | GCTI, GREM                   | D15 → D2 → D4   |
+| CISO/Leadership   | Governance, risk, strategy    | CISSP, CCISO                 | D17 → D16 → D9  |
+| AI Security Eng.  | AI/ML, agent security, prompt | AI+ certification            | D12 → D19 → D6  |
+| Identity Eng.     | IAM, FIDO2, SPIFFE, ITDR      | SC-300, CIDPRO               | D21 → D11 → D13 |
+
+### 11.4 Training Program Template
+
+**Phase 1 (Month 1-3): Foundation**
+
+- Assign core domain references based on role
+- Complete cybersecurity-pro skill exercises for assigned domains
+- Score > 70% on skills assessment
+
+**Phase 2 (Month 4-6): Specialization**
+
+- Deep dive into 2-3 specialty domains
+- Hands-on lab exercises
+- Cross-domain integration scenarios (D16)
+
+**Phase 3 (Month 7-12): Advanced**
+
+- Lead incident response exercises
+- Contribute to policy/framework updates
+- Mentor junior team members
