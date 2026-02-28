@@ -14,6 +14,7 @@
 - Domain 9: Compliance Frameworks → `references/compliance-frameworks.md`
 - Domain 16: Cross-Domain Integration → `references/cross-domain-integration.md`
 - Domain 17: Security Governance & Executive Leadership → `references/security-governance-executive.md`
+- Domain 19: Agentic AI Security → `references/agentic-ai-security.md`
 
 ## Table of Contents
 
@@ -25,6 +26,7 @@
 6. AI Red Teaming
 7. AI Incident Response
 8. AI Security Checklist
+9. NIST Cyber AI Profile (NISTIR 8596)
 
 ---
 
@@ -74,6 +76,32 @@ MITRE ATLAS เป็น knowledge base สำหรับ adversarial tactics �
 | AML.TA08  | Discovery            | ค้นหาข้อมูลเพิ่มเติมเกี่ยวกับ ML system     | Discover model ontology, model fingerprinting |
 | AML.TA09  | Collection           | รวบรวมข้อมูลจาก ML system                   | Model extraction, training data extraction    |
 | AML.TA10  | Exfiltration         | นำข้อมูลออกจาก ML system                    | Exfiltrate training data via model inversion  |
+
+### MITRE ATLAS 2025 — Agent-Specific Techniques
+
+ในปี 2025 MITRE ATLAS ได้เพิ่ม 14 techniques ใหม่เฉพาะสำหรับ AI Agent systems ซึ่งครอบคลุม attack vectors
+ที่เกิดจาก autonomous capabilities, tool usage, multi-agent orchestration และ persistent state management
+ของ agentic AI architectures ที่มีความซับซ้อนมากขึ้น
+
+| ID        | Technique                              | Tactic               | คำอธิบาย                                                                                                |
+| --------- | -------------------------------------- | -------------------- | ------------------------------------------------------------------------------------------------------- |
+| AML.T0060 | Prompt Injection Chains                | Execution            | เชื่อมต่อ prompt injection หลายชั้นเพื่อ bypass guardrails ของ agent ที่มี multi-step reasoning         |
+| AML.T0061 | Memory Manipulation                    | Persistence          | แทรกหรือแก้ไข agent memory (conversation history, vector store) เพื่อบิดเบือน behavior ในอนาคต          |
+| AML.T0062 | Tool Poisoning                         | Initial Access       | แทรก malicious logic เข้าไปใน tools/plugins ที่ agent เรียกใช้ ทำให้ execute arbitrary actions          |
+| AML.T0063 | Agent Impersonation                    | Defense Evasion      | ปลอมตัวเป็น trusted agent ใน multi-agent system เพื่อ inject instructions หรือ intercept data           |
+| AML.T0064 | Context Window Exploitation            | Collection           | craft inputs ขนาดใหญ่เพื่อ push critical instructions ออกจาก context window ทำให้ agent ลืม constraints |
+| AML.T0065 | Multi-Agent Collusion                  | Lateral Movement     | ประสานงานระหว่าง compromised agents หลายตัวเพื่อ achieve objectives ที่ agent เดียวทำไม่ได้             |
+| AML.T0066 | Instruction Hierarchy Bypass           | Privilege Escalation | ข้าม instruction priority layers (system → user → tool) เพื่อ override safety constraints               |
+| AML.T0067 | Agent Goal Hijacking                   | Execution            | เปลี่ยน goal/objective ของ agent ผ่าน crafted inputs ทำให้ agent ทำงานเพื่อเป้าหมายของผู้โจมตี          |
+| AML.T0068 | Autonomous Action Escalation           | Privilege Escalation | ใช้ agent capabilities ในการ escalate privileges โดย chain tool calls ที่แต่ละ call ดูปกติ              |
+| AML.T0069 | Data Exfiltration via Agent Actions    | Exfiltration         | ใช้ legitimate agent tools (email, API calls, file operations) เป็นช่องทาง exfiltrate ข้อมูล            |
+| AML.T0070 | Supply Chain Compromise of Agent Tools | Initial Access       | compromise tool repositories หรือ plugin marketplaces ที่ agents ดึง tools มาใช้                        |
+| AML.T0071 | Trust Boundary Violations              | Defense Evasion      | ข้าม trust boundaries ระหว่าง agent components (planner, executor, memory) ที่ไม่ได้ enforce properly   |
+| AML.T0072 | State Manipulation Between Turns       | Persistence          | แก้ไข agent state (session variables, task queue) ระหว่าง turns เพื่อ alter execution flow              |
+| AML.T0073 | Observation Channel Exploitation       | Collection           | ดักจับหรือ manipulate observation channels ที่ agent ใช้รับ feedback จาก environment                    |
+
+> **Cross-reference**: สำหรับ defense frameworks เฉพาะ agentic AI → ดู references/agentic-ai-security.md (Domain 19)
+> ซึ่งครอบคลุม agent trust architecture, tool sandboxing, human-in-the-loop controls และ multi-agent governance
 
 ### Attack Surface Comparison
 
@@ -776,11 +804,118 @@ Phase 4: Report (รายงาน)
 
 ### Frameworks Quick Reference
 
-| Framework                      | Focus Area                       | URL / Reference                                         |
-| ------------------------------ | -------------------------------- | ------------------------------------------------------- |
-| OWASP Top 10 for LLM Apps 2025 | LLM-specific vulnerabilities     | owasp.org/www-project-top-10-for-llm                    |
-| NIST AI RMF (AI 100-1)         | AI risk management               | nist.gov/artificial-intelligence                        |
-| MITRE ATLAS                    | AI adversarial techniques        | atlas.mitre.org                                         |
-| EU AI Act                      | AI regulation (EU)               | artificialintelligenceact.eu                            |
-| ISO/IEC 42001                  | AI management system             | iso.org/standard/81230.html                             |
-| NIST SP 800-53 Rev 5           | Organizational security controls | csrc.nist.gov/publications/detail/sp/800-53/rev-5/final |
+| Framework                       | Focus Area                         | URL / Reference                                         |
+| ------------------------------- | ---------------------------------- | ------------------------------------------------------- |
+| OWASP Top 10 for LLM Apps 2025  | LLM-specific vulnerabilities       | owasp.org/www-project-top-10-for-llm                    |
+| NIST AI RMF (AI 100-1)          | AI risk management                 | nist.gov/artificial-intelligence                        |
+| MITRE ATLAS                     | AI adversarial techniques          | atlas.mitre.org                                         |
+| EU AI Act                       | AI regulation (EU)                 | artificialintelligenceact.eu                            |
+| ISO/IEC 42001                   | AI management system               | iso.org/standard/81230.html                             |
+| NIST SP 800-53 Rev 5            | Organizational security controls   | csrc.nist.gov/publications/detail/sp/800-53/rev-5/final |
+| NISTIR 8596 (Preliminary Draft) | Cyber AI Profile (CSF 2.0 mapping) | nist.gov/cyberai                                        |
+
+---
+
+## 9. NIST Cyber AI Profile — NISTIR 8596
+
+NIST เผยแพร่ Preliminary Draft ของ NISTIR 8596 (Cybersecurity Profile for AI Systems) ในเดือนธันวาคม 2025
+เอกสารนี้เป็นการ map ความเสี่ยงเฉพาะของ AI systems เข้ากับ NIST Cybersecurity Framework (CSF) 2.0
+เพื่อให้องค์กรสามารถใช้ CSF 2.0 ที่มีอยู่แล้วในการจัดการความปลอดภัยของ AI โดยไม่ต้องสร้าง framework ใหม่ทั้งหมด
+
+> **สถานะ**: NISTIR 8596 เป็น Preliminary Draft (ธันวาคม 2025) — คาดว่าจะเผยแพร่ final version ในปี 2026
+> องค์กรควรเริ่มศึกษาและ pilot implementation แต่ยังไม่ควรใช้เป็น compliance baseline จนกว่าจะ finalize
+
+### 3 Focus Areas ของ Cyber AI Profile
+
+NISTIR 8596 แบ่ง AI cybersecurity ออกเป็น 3 focus areas หลัก แต่ละ area map เข้ากับ CSF 2.0 functions ที่เกี่ยวข้อง:
+
+| Focus Area                       | คำอธิบาย                                                            | CSF 2.0 Functions ที่เกี่ยวข้อง |
+| -------------------------------- | ------------------------------------------------------------------- | ------------------------------- |
+| **Securing AI Systems**          | ปกป้องระบบ AI จากการโจมตี — ครอบคลุม model, data, infrastructure    | IDENTIFY, PROTECT, DETECT       |
+| **AI-Enabled Cyber Defense**     | ใช้ AI เป็นเครื่องมือเสริมในการตรวจจับและตอบสนองภัยคุกคาม           | DETECT, RESPOND                 |
+| **Thwarting AI-Enabled Attacks** | ป้องกันการโจมตีที่ผู้ไม่หวังดีใช้ AI เป็นอาวุธ (AI-powered threats) | PROTECT, DETECT, RESPOND        |
+
+### Focus Area 1: Securing AI Systems
+
+การรักษาความปลอดภัยของระบบ AI เอง — ครอบคลุมตั้งแต่ training pipeline, model weights, inference endpoints
+ไปจนถึง data stores และ supporting infrastructure ทั้งหมด
+
+```
+Securing AI Systems → CSF 2.0 Mapping
+├── IDENTIFY
+│   ├── ID.AM — AI Asset Management
+│   │   ├── จัดทำ inventory ของ AI assets ทั้งหมด (models, datasets, endpoints)
+│   │   ├── ระบุ dependencies ของ AI systems (training data sources, GPU clusters)
+│   │   └── track model versions, weights, และ configurations
+│   └── ID.RA — AI Risk Assessment
+│       ├── ประเมินความเสี่ยงเฉพาะ AI (adversarial attacks, data poisoning, model theft)
+│       ├── จำแนกระดับ criticality ของแต่ละ AI system
+│       └── วิเคราะห์ threat landscape สำหรับ AI/ML workloads
+│
+├── PROTECT
+│   └── PR.AC — AI Model Access Control
+│       ├── จำกัดการเข้าถึง model weights, training data, hyperparameters
+│       ├── enforce RBAC/ABAC สำหรับ inference endpoints
+│       └── ป้องกัน unauthorized model extraction ผ่าน API rate limiting
+│
+└── DETECT
+    └── DE.CM — AI Behavior Monitoring
+        ├── ตรวจจับ anomalies ใน model outputs (drift, degradation, manipulation)
+        ├── monitor prompt injection attempts และ adversarial inputs
+        └── แจ้งเตือนเมื่อ model behavior เบี่ยงเบนจาก baseline
+```
+
+### Focus Area 2: AI-Enabled Cyber Defense
+
+การใช้ AI เป็นเครื่องมือเสริมศักยภาพของ SOC team และระบบ defense ในการตรวจจับภัยคุกคาม
+ที่ซับซ้อนเกินกว่า rule-based detection จะจัดการได้
+
+| CSF 2.0 Function | Subcategory | การใช้ AI เสริม Cyber Defense                                                    |
+| ---------------- | ----------- | -------------------------------------------------------------------------------- |
+| DETECT           | DE.AE       | AI-powered anomaly detection สำหรับ network traffic, user behavior, log analysis |
+| DETECT           | DE.CM       | ML-based threat detection ที่ปรับตัวตาม evolving attack patterns                 |
+| RESPOND          | RS.AN       | AI-assisted incident analysis — automated triage, correlation, root cause        |
+| RESPOND          | RS.MI       | AI-driven response automation — SOAR playbooks ที่ใช้ ML ช่วย decision-making    |
+
+### Focus Area 3: Thwarting AI-Enabled Attacks
+
+การป้องกันภัยคุกคามที่ผู้โจมตีใช้ AI เป็นอาวุธ — ตั้งแต่ AI-generated phishing,
+deepfake-based social engineering ไปจนถึง automated vulnerability exploitation
+
+| ภัยคุกคามที่ใช้ AI                       | CSF 2.0 Mapping | แนวทางป้องกัน                                                       |
+| ---------------------------------------- | --------------- | ------------------------------------------------------------------- |
+| AI-generated phishing (เนื้อหาสมจริงมาก) | PROTECT (PR.AT) | Security awareness training ที่ครอบคลุม AI-generated content        |
+| Deepfake สำหรับ social engineering       | DETECT (DE.CM)  | Deepfake detection tools, multi-factor verification สำหรับ identity |
+| Automated vulnerability exploitation     | PROTECT (PR.IP) | Patch management เร่งด่วน, AI-assisted vulnerability prioritization |
+| AI-powered password/credential attacks   | PROTECT (PR.AC) | MFA enforcement, passwordless authentication, behavioral analytics  |
+| Polymorphic malware ที่ใช้ AI mutate     | DETECT (DE.AE)  | Behavioral-based detection แทน signature-based, EDR/XDR             |
+| AI-assisted reconnaissance               | DETECT (DE.CM)  | Deception technology (honeypots), traffic anomaly monitoring        |
+
+### Key Subcategories สำหรับ AI Security
+
+NISTIR 8596 ระบุ subcategories สำคัญที่องค์กรควร prioritize สำหรับ AI systems:
+
+| Subcategory | ชื่อ                    | ข้อกำหนดสำหรับ AI                                                                   | Priority |
+| ----------- | ----------------------- | ----------------------------------------------------------------------------------- | -------- |
+| ID.AM       | AI Asset Inventory      | จัดทำ inventory ของ AI models, datasets, endpoints, training pipelines ทั้งหมด      | P0       |
+| ID.RA       | AI Risk Assessment      | ประเมินความเสี่ยงเฉพาะ AI — adversarial, poisoning, extraction, bias, hallucination | P0       |
+| PR.AC       | AI Model Access Control | จำกัดการเข้าถึง model weights, APIs, training infrastructure ด้วย RBAC/ABAC         | P0       |
+| DE.CM       | AI Behavior Monitoring  | ตรวจจับ anomalies ใน model behavior — drift, injection, adversarial inputs          | P0       |
+| RS.AN       | AI Incident Response    | วิเคราะห์และตอบสนอง AI-specific incidents ด้วย playbooks เฉพาะ                      | P1       |
+
+### การ Integrate NISTIR 8596 กับ Frameworks อื่น
+
+NISTIR 8596 ออกแบบมาเพื่อทำงานร่วมกับ frameworks ที่มีอยู่ — ไม่ใช่ทดแทน:
+
+```
+NISTIR 8596 (Cyber AI Profile)
+├── builds on → NIST CSF 2.0 (โครงสร้างหลัก)
+├── complements → NIST AI RMF / AI 100-1 (AI risk management)
+├── references → MITRE ATLAS (adversarial technique taxonomy)
+├── aligns with → ISO/IEC 42001 (AI management system)
+├── maps to → OWASP Top 10 for LLM Apps (LLM-specific risks)
+└── extends → NIST SP 800-53 Rev 5 (security controls)
+```
+
+> **Cross-reference**: สำหรับ governance frameworks เพิ่มเติม → ดู references/security-governance-executive.md (Domain 17)
+> สำหรับ agentic AI security ที่ NISTIR 8596 ยังไม่ครอบคลุม → ดู references/agentic-ai-security.md (Domain 19)
