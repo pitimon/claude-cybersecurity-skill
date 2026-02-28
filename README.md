@@ -20,10 +20,10 @@ Compliance Audits, Cloud Security, AI Governance, OT/ICS Security และอ�
 
 <div align="center">
 
-**22 Domains** | **65+ Frameworks** | **< 5% Context Budget**
+**22 Domains** | **69 Frameworks** | **< 8% Context Budget**
 
 ครอบคลุม 22 security domains ตั้งแต่ Incident Response ถึง Web3 & Blockchain Security —
-map กับ 65+ international frameworks — ใช้ context เพียง ~9,900 tokens ต่อ request (< 5% ของ 200K window)
+map กับ 69 international frameworks — ใช้ context เพียง ~7,000-15,000 tokens ต่อ request (< 8% ของ 200K window)
 
 </div>
 
@@ -125,7 +125,7 @@ claude doctor  # ตรวจสอบ version ใหม่
 - **Enterprise-quality output ทันที** — Templates ออกแบบโดย security professionals พร้อม SLA, escalation, RACI matrices ในตัว ไม่ต้อง prompt engineer เอง
 - **Framework-mapped templates** — ทุก output map กับ frameworks จริง (NIST, MITRE ATT&CK, OWASP, ISO 27001, CIS) — ไม่ต้องตรวจสอบความถูกต้องของ references เอง
 - **Bilingual Thai + English** — พร้อมใช้ในองค์กรไทย รองรับ พ.ร.บ. การรักษาความมั่นคงปลอดภัยไซเบอร์ พ.ศ. 2562 และ PDPA ใน compliance templates
-- **On-demand loading — ไม่กิน context** — มี 22 domains แต่โหลดแค่ 1 ต่อ request ใช้ context < 5% ของ 200K window
+- **On-demand loading — ไม่กิน context** — มี 22 domains แต่โหลดแค่ 1 ต่อ request ใช้ context < 8% ของ 200K window
 
 ---
 
@@ -265,7 +265,7 @@ claude doctor  # ตรวจสอบ version ใหม่
 
 ```
 > สร้าง NIST 800-53 gap assessment สำหรับ cloud environment
-  พร้อม PCI DSS v4.0 control mapping และ CIS Controls roadmap
+  พร้อม PCI DSS v4.0.1 control mapping และ CIS Controls roadmap
 ```
 
 ### Cloud Security
@@ -362,6 +362,34 @@ claude doctor  # ตรวจสอบ version ใหม่
   รวม Purdue Model network segmentation design และ PLC hardening checklist
 ```
 
+### Agentic AI Security
+
+```
+> สร้าง agentic AI security checklist ตาม OWASP Agentic Top 10 2026
+  รวม agent permission models, memory security และ multi-agent orchestration controls
+```
+
+### Post-Quantum Cryptography
+
+```
+> สร้าง crypto-agility assessment สำหรับ PQC migration ตาม CNSA 2.0
+  รวม NIST FIPS 203/204/205 readiness checklist และ hybrid key exchange roadmap
+```
+
+### Identity & Access Security
+
+```
+> สร้าง identity security assessment ตาม NIST 800-63B Rev 4
+  รวม FIDO2/Passkeys rollout plan, NHI management และ ITDR program design
+```
+
+### Web3 & Blockchain Security
+
+```
+> สร้าง smart contract security audit checklist ตาม OWASP Smart Contract Top 10 2026
+  รวม Solidity code analysis, DeFi security patterns และ audit methodology
+```
+
 </details>
 
 ---
@@ -372,9 +400,9 @@ claude doctor  # ตรวจสอบ version ใหม่
 
 ```
 User prompt → keyword match in SKILL.md frontmatter
-  → SKILL.md loaded (~3,400 tokens: language policy, frameworks, decision tree)
+  → SKILL.md loaded (~5,000 tokens: language policy, frameworks, decision tree)
   → Decision tree selects domain
-  → Corresponding references/*.md loaded on-demand (~3,000-5,000 tokens)
+  → Corresponding references/*.md loaded on-demand (~2,000-10,000 tokens)
   → Output generated following templates in reference file
 ```
 
@@ -382,12 +410,12 @@ User prompt → keyword match in SKILL.md frontmatter
 
 **On-demand loading**: มี 22 domains แต่โหลดแค่ 1 ต่อ request
 
-| Component                | Tokens       | หมายเหตุ                              |
-| ------------------------ | ------------ | ------------------------------------- |
-| SKILL.md (always loaded) | ~3,900       | Router + language policy + frameworks |
-| Reference file (1 of 22) | ~3,000-6,000 | โหลดเฉพาะ domain ที่ trigger          |
-| **Max per request**      | **~9,900**   | **< 5% ของ 200K context window**      |
-| Total all files          | ~98,000      | ไม่โหลดทั้งหมดพร้อมกัน                |
+| Component                | Tokens            | หมายเหตุ                              |
+| ------------------------ | ----------------- | ------------------------------------- |
+| SKILL.md (always loaded) | ~5,000            | Router + language policy + frameworks |
+| Reference file (1 of 22) | ~2,000-10,000     | โหลดเฉพาะ domain ที่ trigger          |
+| **Per request**          | **~7,000-15,000** | **< 8% ของ 200K context window**      |
+| Total all files          | ~120,000          | ไม่โหลดทั้งหมดพร้อมกัน                |
 
 ### Skill Engineering Techniques
 
@@ -397,7 +425,7 @@ User prompt → keyword match in SKILL.md frontmatter
 2. **Composite reference files** — รวม topics ที่เกี่ยวข้องเป็นไฟล์เดียว (เช่น Semgrep + CodeQL + SARIF → `code-security-analysis.md`)
 3. **Framework-first templates** — Templates map กับ framework controls (NIST, MITRE ATT&CK IDs, CWE) ทำให้ output มี reference ที่ถูกต้อง
 4. **Bilingual output policy** — Thai prose + English terms ใน output เดียว ไม่ต้องสร้าง 2 versions
-5. **SKILL.md as compact router** — Decision tree ใน < 300 lines ทำหน้าที่เป็น lightweight router
+5. **SKILL.md as compact router** — Decision tree ใน ~500 lines ทำหน้าที่เป็น lightweight router
 
 ---
 
@@ -406,11 +434,11 @@ User prompt → keyword match in SKILL.md frontmatter
 | Aspect                 | Manual Prompting  | cybersecurity-pro              | Enterprise Tools |
 | ---------------------- | ----------------- | ------------------------------ | ---------------- |
 | **Setup time**         | 0                 | 3 commands, 30 sec             | Weeks-months     |
-| **Framework mapping**  | Manual research   | Auto-mapped (65+ frameworks)   | Vendor-specific  |
+| **Framework mapping**  | Manual research   | Auto-mapped (69 frameworks)    | Vendor-specific  |
 | **Bilingual TH+EN**    | DIY every time    | Built-in policy                | Limited/none     |
 | **Thai compliance**    | Must research     | พ.ร.บ. ไซเบอร์ / PDPA included | Varies           |
 | **Output consistency** | Varies per prompt | Standardized templates         | Standardized     |
-| **Context overhead**   | Variable          | < 5% (9,900 tokens)            | N/A              |
+| **Context overhead**   | Variable          | < 8% (7,000-15,000 tokens)     | N/A              |
 | **Cost**               | Free              | Free (MIT)                     | $$$$             |
 | **Maintenance**        | Manual updates    | Community-maintained           | Vendor-dependent |
 
@@ -539,12 +567,14 @@ claude-cybersecurity-skill/
 │           └── web3-blockchain-security.md  # Smart Contract/DeFi/Web3
 ├── frameworks.json                # Framework version manifest (69 entries)
 ├── docs/
-│   ├── INSTALL.md                # Installation guide
-│   ├── TROUBLESHOOTING.md        # Troubleshooting guide
-│   └── FRAMEWORK-UPDATE-RUNBOOK.md # Framework update procedures
+│   ├── INSTALL.md                 # Installation guide
+│   ├── TROUBLESHOOTING.md         # Troubleshooting guide
+│   ├── FRAMEWORK-UPDATE-RUNBOOK.md # Framework update procedures
+│   └── MANDAY-ESTIMATION.md       # Man-day cost estimation (63 days WBS)
 ├── tests/
-│   ├── validate-plugin.sh        # Structural validation (68 checks)
-│   └── check-framework-updates.sh # Ad-hoc framework staleness checker
+│   ├── validate-plugin.sh         # Structural validation (68 checks)
+│   ├── check-framework-updates.sh # Ad-hoc framework staleness checker
+│   └── smoke-test-prompts.md      # Manual functional tests (23 scenarios)
 ├── .github/
 │   └── workflows/
 │       ├── validate.yml          # CI on push/PR
