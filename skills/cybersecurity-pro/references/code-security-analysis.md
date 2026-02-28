@@ -13,6 +13,7 @@
 - Domain 7: Container & Supply Chain → `references/container-supply-chain.md`
 - Domain 13: API Security → `references/api-security.md`
 - Domain 16: Cross-Domain Integration → `references/cross-domain-integration.md`
+- Domain 22: Web3 & Blockchain Security → `references/web3-blockchain-security.md`
 - **Runtime Exploitation Testing** → `shannon-pentest` plugin (`shannon-pentest@pitimon-shannon`) — สำหรับ runtime security testing ที่เสริม static analysis จากไฟล์นี้ด้วย dynamic exploitation testing ครอบคลุม OWASP Top 10 (XSS, SQLi, SSRF, auth bypass)
 
 ## Table of Contents
@@ -23,6 +24,8 @@
 4. SARIF Result Processing
 5. Variant Analysis Methodology
 6. Combined CI/CD Pipeline
+7. CWE Top 25 (2025 Edition)
+8. Claude Code Security (Reasoning-Based Scanner)
 
 ---
 
@@ -509,3 +512,71 @@ jobs:
 | Main branch push     | Semgrep full + CodeQL               |
 | Weekly audit         | Semgrep + CodeQL + extended queries |
 | Post-incident hunt   | Variant analysis + custom rules     |
+
+---
+
+## 7. CWE Top 25 (2025 Edition)
+
+MITRE CWE Top 25 Most Dangerous Software Weaknesses อัปเดตเป็น **2025 edition** โดยคำนวณจาก real-world vulnerability data ใน NVD ช่วง 2 ปีล่าสุด ตาราง Top 10 ด้านล่างครอบคลุม weakness ที่พบบ่อยและมีผลกระทบสูงสุด:
+
+| Rank | CWE     | Weakness                          | Score | Category       |
+| ---- | ------- | --------------------------------- | ----- | -------------- |
+| 1    | CWE-79  | Cross-site Scripting (XSS)        | 60.38 | Injection      |
+| 2    | CWE-89  | SQL Injection                     | 28.72 | Injection      |
+| 3    | CWE-352 | Cross-Site Request Forgery (CSRF) | 13.64 | Session        |
+| 4    | CWE-862 | Missing Authorization             | 13.28 | Access Control |
+| 5    | CWE-787 | Out-of-bounds Write               | 12.68 | Memory         |
+| 6    | CWE-22  | Path Traversal                    | 8.99  | Injection      |
+| 7    | CWE-416 | Use After Free                    | 8.47  | Memory         |
+| 8    | CWE-125 | Out-of-bounds Read                | 7.88  | Memory         |
+| 9    | CWE-78  | OS Command Injection              | 7.85  | Injection      |
+| 10   | CWE-94  | Code Injection                    | 7.57  | Injection      |
+
+**การเปลี่ยนแปลงจาก 2024 (Changes from 2024)**:
+
+- CWE-862 (Missing Authorization) กระโดดขึ้น 5 อันดับมาอยู่ที่ **#4** สะท้อนถึง broken access control attacks ที่เพิ่มขึ้น
+- CWE-352 (CSRF) ขึ้นมาอยู่ที่ **#3** แสดงว่า session management weaknesses ยังเป็นปัญหาสำคัญ
+- มี **6 entries ใหม่** ใน full top 25 เทียบกับปี 2024
+
+**การใช้งานกับ SAST tools**:
+
+- Semgrep: ใช้ ruleset `p/cwe-top-25` สำหรับ pattern matching ตาม CWE Top 25
+- CodeQL: ใช้ `security-extended` query suite ซึ่งครอบคลุม CWE Top 25 ทั้งหมด
+- ทั้ง Semgrep rules และ CodeQL queries มี `metadata.cwe` tags ที่ map กลับมาที่ CWE IDs ในตารางนี้
+
+---
+
+## 8. Claude Code Security (Reasoning-Based Scanner)
+
+Anthropic เปิดตัว Claude Code Security เมื่อ February 2026 เป็น vulnerability scanner แบบ reasoning-based ที่แตกต่างจาก traditional rule-based SAST อย่างมีนัยสำคัญ:
+
+| Aspect           | Rule-Based SAST (Semgrep/CodeQL)                            | Reasoning-Based (Claude Code Security)                          |
+| ---------------- | ----------------------------------------------------------- | --------------------------------------------------------------- |
+| Detection method | Pattern matching / data flow rules                          | Contextual reasoning over code semantics                        |
+| Strengths        | Fast, deterministic, low false positives for known patterns | Business logic flaws, broken access control, complex data flows |
+| Weaknesses       | Misses novel patterns, requires rule updates                | Slower, may hallucinate, requires validation                    |
+| Best for         | CI/CD pipeline gates, known vulnerability patterns          | Deep review, pre-release audit, complex codebases               |
+
+**Recommendation**: ใช้ร่วมกัน — rule-based SAST เป็น first pass ใน CI/CD, reasoning-based เป็น second pass สำหรับ deep review
+
+### Workflow Integration
+
+```
+CI/CD Pipeline
+├── Stage 1: Rule-Based SAST (Semgrep/CodeQL)
+│   ├── เร็ว, deterministic — เหมาะเป็น gate check
+│   ├── Block PR ถ้าพบ known vulnerability patterns
+│   └── Output: SARIF → GitHub Security tab
+│
+└── Stage 2: Reasoning-Based (Claude Code Security)
+    ├── Deep review สำหรับ business logic flaws
+    ├── ตรวจ broken access control ที่ rule-based พลาด
+    └── ใช้เป็น pre-release audit หรือ periodic deep scan
+```
+
+### ข้อควรระวัง (Caveats)
+
+- **Hallucination risk**: Reasoning-based scanner อาจ report false positives ที่ดูน่าเชื่อ — ต้อง validate ทุก finding ด้วย manual review
+- **Non-deterministic**: ผลอาจต่างกันใน runs ที่ต่างกัน — ไม่เหมาะเป็น hard gate ใน CI/CD
+- **Cost & latency**: ใช้ LLM inference ซึ่งช้าและแพงกว่า rule-based — เหมาะกับ periodic scan มากกว่า every-commit scan
+- **Complementary, not replacement**: ใช้เสริม rule-based SAST ไม่ใช่แทนที่ — ทั้งสองมี strengths ที่ต่างกัน
