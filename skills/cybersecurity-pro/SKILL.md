@@ -40,7 +40,9 @@ description: >
   NERC CIP, MITRE ATT&CK for ICS, OT incident response,
   การตอบสนองต่อเหตุการณ์, วิเคราะห์ภัยคุกคาม, ความปลอดภัยไซเบอร์, นิติวิทยาศาสตร์ดิจิทัล,
   การวิเคราะห์ code, ความปลอดภัย container, การปฏิบัติตามกฎระเบียบ, การจำลองภัยคุกคาม,
-  ความปลอดภัยบนคลาวด์, สถาปัตยกรรม Zero Trust, ความปลอดภัย AI.
+  ความปลอดภัยบนคลาวด์, สถาปัตยกรรม Zero Trust, ความปลอดภัย AI,
+  Shannon handoff, post-pentest defensive, ผล Shannon, defensive security documents,
+  สร้าง defensive docs จาก Shannon, handoff-manifest.
   Outputs bilingual Thai+English documents mapped to NIST, MITRE ATT&CK, OWASP frameworks.
 user-invocable: true
 allowed-tools: Read, Grep, Glob, Write
@@ -358,6 +360,10 @@ User request
 │   / "security maturity" / "executive leadership" / "ธรรมาภิบาลความปลอดภัย"
 │   → Domain 17: Security Governance (read references/security-governance-executive.md)
 │
+├── mentions "Shannon findings" / "Shannon handoff" / "post-pentest" / "defensive docs"
+│   / "ผล Shannon" / "สร้าง defensive" / "handoff-manifest"
+│   → Post-Pentest Mode: Shannon Integration (read handoff manifest, multi-domain orchestration)
+│
 ├── mentions "OT security" / "ICS" / "SCADA" / "PLC" / "Purdue" / "operational technology"
 │   / "industrial control" / "NIST 800-82" / "IEC 62443" / "OT/IT convergence"
 │   / "HMI" / "RTU" / "DCS" / "Modbus" / "DNP3" / "OPC UA" / "BACnet"
@@ -374,6 +380,55 @@ User request
 - **Operational Docs** (playbooks, runbooks, triage procedures): Produce as `.md` files
 - **Pipeline Configs**: Produce as appropriate config files (`.yml`, `.yaml`, `.json`, `.rego`, `.tf`)
 - **Combined Packages**: When producing a complete set (e.g., full IR package), create a folder structure with all relevant files
+
+## Post-Pentest Integration Mode (Shannon Handoff)
+
+เมื่อ user มาจาก Shannon Phase 5 พร้อม handoff manifest:
+
+### Step 1: ค้นหา Handoff Manifest
+
+- User ระบุ path → อ่าน `handoff-manifest.json`
+- ถ้าไม่ระบุ → ค้นหา: `find ~/shannon-tool/audit-logs/*/handoff/handoff-manifest.json` (latest)
+- ถ้าไม่พบ manifest → ถาม user ว่ามี Shannon deliverables directory ไหม แล้ว fallback ไป Domain 16
+
+### Step 2: อ่าน Shannon Deliverables (Parallel Read)
+
+อ่านไฟล์เหล่านี้พร้อมกัน (parallel Read calls):
+
+- `handoff-manifest.json` → metadata + document requests
+- `comprehensive_security_assessment_report.md` → all findings summary
+- `auth_exploitation_evidence.md` / `authz_exploitation_evidence.md` → PoC details (ถ้ามี)
+- `data_security_audit_deliverable.md` → transport security findings (ถ้ามี)
+
+### Step 3: สร้างเอกสารตาม `requested_documents`
+
+สร้างไฟล์ลง `output_dir` (จาก manifest):
+
+| Document                   | อ่าน Reference File                                                                        | Output File                     |
+| -------------------------- | ------------------------------------------------------------------------------------------ | ------------------------------- |
+| Vuln Prioritization Matrix | `references/vulnerability-management.md` (D14)                                             | `vuln-prioritization-matrix.md` |
+| IR Playbook                | `references/ir-playbooks.md` (D1)                                                          | `ir-playbook.md`                |
+| Remediation Roadmap        | `references/vulnerability-management.md` + `references/code-security-analysis.md` (D14+D6) | `remediation-roadmap.md`        |
+| Compliance Gap Assessment  | `references/compliance-frameworks.md` (D9)                                                 | `compliance-gap-assessment.md`  |
+| Executive Summary          | `references/security-governance-executive.md` (D17)                                        | `executive-summary.md`          |
+| API Security Assessment    | `references/api-security.md` (D13)                                                         | `api-security-assessment.md`    |
+
+> ถ้า `requested_documents` มี identifier ที่ไม่รู้จัก → แจ้ง user:
+> "ไม่รู้จัก document type '[identifier]' — ข้ามและสร้างเอกสารที่รู้จักแทน"
+
+### Step 4: แสดงสรุป
+
+แสดงรายการเอกสารที่สร้าง + file sizes + verification checklist:
+
+```
+✓ สร้างเอกสาร defensive security จาก Shannon findings เรียบร้อย:
+  1. vuln-prioritization-matrix.md — [X] findings จัดลำดับ
+  2. ir-playbook.md — playbook สำหรับ [finding type]
+  ...
+ไฟล์ทั้งหมดอยู่ที่: [output_dir]
+```
+
+> **Cross-reference**: ดู `references/cross-domain-integration.md` Scenario: Post-Pentest Defensive Documentation สำหรับ data flow diagram
 
 ## Quality Checklist
 

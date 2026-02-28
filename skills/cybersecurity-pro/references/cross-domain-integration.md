@@ -37,9 +37,10 @@ Supply Chain Security, Cloud Compliance Posture, AI/API Threat Surface และ
 4. Scenario: Supply Chain Security Pipeline
 5. Scenario: Cloud Compliance Posture
 6. Scenario: AI/API Threat Surface
-7. Integration Orchestration Patterns
-8. Cross-Domain Metrics & KPIs
-9. Framework References & Integration Checklist
+7. Scenario: Post-Pentest Defensive Documentation (Shannon Integration)
+8. Integration Orchestration Patterns
+9. Cross-Domain Metrics & KPIs
+10. Framework References & Integration Checklist
 
 ---
 
@@ -800,7 +801,76 @@ phases:
 
 ---
 
-## 7. รูปแบบการ Orchestrate ข้ามโดเมน (Integration Orchestration Patterns)
+## 7. Scenario: Post-Pentest Defensive Documentation (Shannon Integration)
+
+### Participating Domains
+
+| Domain                     | บทบาทใน Scenario                                  |
+| -------------------------- | ------------------------------------------------- |
+| D14: Vulnerability Mgmt    | Vulnerability prioritization matrix, patch SLAs   |
+| D1: Incident Response      | IR playbook for critical/validated findings       |
+| D6: Code Security Analysis | Remediation roadmap, code-level fix guidance      |
+| D9: Compliance Frameworks  | Compliance gap assessment, control mapping        |
+| D13: API Security          | API security assessment (for auth/authz findings) |
+| D17: Security Governance   | Executive summary, board-ready reporting          |
+
+### Data Flow Diagram
+
+```
+  Shannon                D14:Vuln              D1:IR                D17:Exec
+  ┌──────┐              ┌──────┐             ┌──────┐            ┌──────┐
+  │Pentest│──manifest──►│Priori│──critical──►│Play- │──summary─►│Exec  │
+  │Findings│            │tize  │             │book  │            │Report│
+  │(Phase5)│            │Matrix│             │      │            │      │
+  └──────┘              └──────┘             └──────┘            └──────┘
+     │                     │                                        ▲
+     │                     ▼                                        │
+     │                  ┌──────┐             ┌──────┐              │
+     ├──auth findings─►│D13   │             │D9    │──evidence──┘
+     │                  │API   │             │Comply│
+     │                  │Assess│             │      │
+     │                  └──────┘             └──────┘
+     │                                          ▲
+     └──all findings──►┌──────┐                │
+                        │D6    │──roadmap───────┘
+                        │Remed │
+                        │iation│
+                        └──────┘
+```
+
+### Data Exchange Table
+
+| From → To     | ข้อมูลที่ส่ง                          | Format / Protocol          | SLA               |
+| ------------- | ------------------------------------- | -------------------------- | ----------------- |
+| Shannon → D14 | All findings + severity + OWASP cats  | handoff-manifest.json      | Post-pentest      |
+| Shannon → D1  | Critical/validated PoC findings       | Shannon deliverables (.md) | Post-pentest      |
+| D14 → D6      | Prioritized vulns needing remediation | Vuln priority matrix       | Per assessment    |
+| D6 → D9       | Remediation roadmap with timelines    | Remediation roadmap (.md)  | Per assessment    |
+| D9 → D17      | Compliance gaps + control mapping     | Gap assessment (.md)       | Per assessment    |
+| Shannon → D13 | Auth/AuthZ exploitation evidence      | Shannon deliverables (.md) | Per assessment    |
+| All → D17     | All domain outputs                    | Individual reports (.md)   | Final aggregation |
+
+### Trigger Mechanism
+
+1. Shannon Phase 5 เขียน `handoff-manifest.json` ลง `audit-logs/<session>/handoff/`
+2. User พิมพ์ `/cybersecurity-pro` พร้อม keyword "Shannon handoff" หรือ "defensive docs"
+3. Cybersecurity-pro ตรวจพบ manifest → เข้า Post-Pentest Mode
+4. อ่าน `requested_documents` จาก manifest → สร้างเอกสารตาม domain mapping
+
+### Handoff Checklist
+
+- [ ] **Shannon → manifest**: handoff-manifest.json valid, findings count ตรง, paths ถูกต้อง
+- [ ] **manifest → D14**: Vuln matrix สร้างเรียบร้อย, severity mapping ครบ
+- [ ] **D14 → D1**: IR playbook สร้างสำหรับ critical findings (ถ้ามี)
+- [ ] **D14+D6 → remediation**: Roadmap มี timeline + responsible party
+- [ ] **D9**: Compliance gaps mapped to OWASP categories from findings
+- [ ] **D13**: API security assessment covers auth/authz findings (ถ้ามี)
+- [ ] **D17**: Executive summary aggregates all domain outputs
+- [ ] **Output**: ทุกไฟล์อยู่ใน `output_dir` ตาม manifest
+
+---
+
+## 8. รูปแบบการ Orchestrate ข้ามโดเมน (Integration Orchestration Patterns)
 
 ### SOAR Backbone Architecture
 
@@ -850,7 +920,7 @@ SOAR platform ทำหน้าที่เป็น central orchestrator เ�
 
 ---
 
-## 8. ตัวชี้วัดและ KPIs ข้ามโดเมน (Cross-Domain Metrics & KPIs)
+## 9. ตัวชี้วัดและ KPIs ข้ามโดเมน (Cross-Domain Metrics & KPIs)
 
 ### End-to-End Metrics
 
@@ -887,7 +957,7 @@ SOAR platform ทำหน้าที่เป็น central orchestrator เ�
 
 ---
 
-## 9. อ้างอิง Framework และ Integration Checklist (Framework References & Integration Checklist)
+## 10. อ้างอิง Framework และ Integration Checklist (Framework References & Integration Checklist)
 
 ### NIST CSF 2.0 as Orchestration Framework
 
@@ -949,5 +1019,5 @@ NIST Cybersecurity Framework 2.0 เป็น meta-framework ที่เชื�
 
 ---
 
-_Document version: 3.6.1 — Cross-Domain Integration Scenarios_
+_Document version: 3.7.0 — Cross-Domain Integration Scenarios_
 _Frameworks: NIST CSF 2.0, MITRE ATT&CK, STIX 2.1, SARIF 2.1.0, CycloneDX_
