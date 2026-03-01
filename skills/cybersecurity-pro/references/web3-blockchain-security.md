@@ -1194,6 +1194,46 @@ jobs:
 | Smart Contract Liability     | ยังไม่ชัดเจน — ใช้หลัก พ.ร.บ. คอมพิวเตอร์ 2560 เป็นพื้นฐาน     |
 | Regulatory Sandbox           | กลต. เปิด sandbox สำหรับ fintech/DeFi innovation               |
 
+### ก.ล.ต. Regulatory Updates 2025-2026
+
+ก.ล.ต. อยู่ระหว่างปรับปรุงกฎเกณฑ์สำคัญหลายฉบับสำหรับ digital asset ecosystem:
+
+| Update Area                  | สถานะ (ณ มีนาคม 2026)                                | ผลกระทบต่อ Security                                             |
+| ---------------------------- | ---------------------------------------------------- | --------------------------------------------------------------- |
+| DeFi/DEX Licensing Framework | อยู่ระหว่างศึกษา — คาดประกาศ draft 2026-2027         | DEX ที่ให้บริการในไทยอาจต้อง apply license + audit              |
+| NFT Classification Update    | แยก utility NFT ออกจาก investment token (2025)       | Utility NFT ไม่ต้อง filing, investment NFT ยังคง regulated      |
+| Stablecoin Oversight         | ธปท. + ก.ล.ต. ร่วมกำกับ (MoU 2024)                   | Stablecoin issuer ต้อง maintain reserves, audit quarterly       |
+| ICO Portal Requirements      | เข้มงวดขึ้น — เพิ่ม smart contract audit requirement | ICO ต้องผ่าน security audit จาก approved firm ก่อน listing      |
+| Sandbox Graduation Criteria  | กำลังจัดทำ framework (2026)                          | Sandbox projects ต้องผ่าน security assessment ก่อน full license |
+
+### ICO Portal — Smart Contract Security Requirements
+
+ก.ล.ต. กำหนดให้ ICO ที่ยื่นผ่าน ICO Portal ต้องมี:
+
+1. **Smart Contract Audit Report** จาก auditor ที่ ก.ล.ต. approve
+   - Minimum: static analysis (Slither/Mythril) + manual code review
+   - Audit report ต้อง publish พร้อม whitepaper
+2. **Token Metadata Standards** — ERC-20 compliant, symbol registered กับ ก.ล.ต.
+3. **Whitepaper Approval** — submit ผ่าน ICO Portal, review period 30-60 วัน
+4. **Lock-up Period** — token ของ founders/team ต้อง lock อย่างน้อย 6-12 เดือน post-ICO
+5. **Investor Protection** — refund mechanism ถ้า project ไม่ดำเนินการตาม roadmap
+
+### Digital Asset Custodian Standards (มาตรฐานผู้ดูแลสินทรัพย์ดิจิทัล)
+
+ก.ล.ต. กำหนดมาตรฐานสำหรับผู้ประกอบธุรกิจ Digital Asset Custodian:
+
+| Requirement               | รายละเอียด                                                                                  |
+| ------------------------- | ------------------------------------------------------------------------------------------- |
+| **Key Management**        | ต้องใช้ HSM (Hardware Security Module) สำหรับ private key storage ระดับ FIPS 140-2 Level 3+ |
+| **Asset Segregation**     | แยก customer assets ออกจาก company assets ทั้ง on-chain + off-chain                         |
+| **Cold/Hot Wallet Ratio** | เก็บ ≥ 95% ใน cold storage, hot wallet เฉพาะ operational needs                              |
+| **Multi-signature**       | ใช้ multi-sig (≥ 2-of-3) สำหรับ cold wallet withdrawals                                     |
+| **Insurance**             | ต้องทำประกันภัยสินทรัพย์ดิจิทัล (cyber insurance + crime coverage)                          |
+| **Audit**                 | ตรวจสอบโดยผู้สอบบัญชีที่ ก.ล.ต. approve — อย่างน้อยปีละ 1 ครั้ง                             |
+| **Proof of Reserves**     | ต้อง publish Proof of Reserves (Merkle tree) quarterly                                      |
+| **Recovery Procedures**   | จัดทำ disaster recovery plan + key recovery procedures ทดสอบ semi-annually                  |
+| **Compliance**            | สอดคล้องกับ ธปท. IT Risk Management + ก.ล.ต. digital asset regulations                      |
+
 ---
 
 ## 9. รายการตรวจสอบความปลอดภัย Web3 (Web3 Security Checklist)

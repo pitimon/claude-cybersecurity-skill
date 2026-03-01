@@ -1287,6 +1287,27 @@ Thai Organization PQC Readiness Recommendations:
    - NIST SP 1800-38C (Migration to PQC) เป็น reference ที่ดี
 ```
 
+### CNSA 2.0 Timeline Mapping สำหรับ CII ประเทศไทย
+
+สำหรับหน่วยงาน CII (Critical Information Infrastructure) ภายใต้ พ.ร.บ. ไซเบอร์ 2562
+ควร map กับ CNSA 2.0 timeline ดังนี้:
+
+| CII Sector | ตัวอย่างองค์กร               | Priority Level | เริ่ม Inventory | Hybrid Transition | Full PQC |
+| ---------- | ---------------------------- | -------------- | --------------- | ----------------- | -------- |
+| การเงิน    | ธปท., ตลาดหลักทรัพย์, ธนาคาร | Critical       | 2025 (ตอนนี้)   | 2027-2029         | 2030     |
+| พลังงาน    | กฟผ., ปตท., กฟน./กฟภ.        | Critical       | 2025-2026       | 2028-2030         | 2032     |
+| โทรคมนาคม  | AIS, TRUE, DTAC, NT          | High           | 2026            | 2028-2030         | 2032     |
+| สาธารณสุข  | รพ.รัฐ, สปสช., สธ.           | High           | 2026-2027       | 2029-2031         | 2033     |
+| ราชการ     | สกมช., ETDA, DOPA            | High           | 2026            | 2028-2030         | 2032     |
+| ขนส่ง      | การบินไทย, รฟท., AOT         | Medium         | 2027            | 2030-2032         | 2035     |
+
+**หมายเหตุ:** สกมช. ยังไม่มี PQC-specific mandate (ณ มีนาคม 2026) — timeline ข้างต้นเป็น
+คำแนะนำที่ align กับ CNSA 2.0 + NIST IR 8547 โดยองค์กรไทยควร:
+
+- ภาคการเงิน: follow ธปท. IT Risk Management + BIS/FSB recommendations
+- ภาค NPKI/e-Government: รอ ETDA migration timeline สำหรับ Thai Government PKI
+- BAHTNET/PromptPay: ธปท. ควรเริ่ม PQC feasibility study ภายใน 2026-2027
+
 ### ผลกระทบต่อ Blockchain & Web3 (PQC Impact on Blockchain)
 
 > Cross-reference: ดู Domain 22 `references/web3-blockchain-security.md` Section 1 สำหรับ blockchain-specific PQC analysis

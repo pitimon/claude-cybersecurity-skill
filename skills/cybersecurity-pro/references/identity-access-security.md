@@ -1322,6 +1322,51 @@ Integration API:
 └── Support: iOS + Android SDK
 ```
 
+### PromptPay Identity Layer
+
+PromptPay เป็นระบบ National e-Payment ของประเทศไทย (เปิดใช้ 2017) มีผู้ลงทะเบียน 40+ ล้านบัญชี
+โดย bind identity ผ่านเลขบัตรประชาชน 13 หลักหรือเบอร์โทรศัพท์:
+
+```
+PromptPay Identity Binding Architecture:
+
+ผู้ใช้ (National ID / เบอร์มือถือ)
+│
+├── Registration: ลงทะเบียนผ่าน mobile banking app
+│   ├── Bank ยืนยัน identity (e-KYC / in-branch)
+│   ├── National ID → PromptPay Proxy (ITMX managed)
+│   └── ถ้าเลือกเบอร์มือถือ → OTP verification + ID binding
+│
+├── Payment Flow:
+│   ├── Sender ใส่ Proxy ID (เลขบัตร/เบอร์โทร)
+│   ├── ITMX resolve Proxy → Account Number + Bank Code
+│   ├── Inter-bank settlement (BAHTNET / PromptPay rail)
+│   └── Receiver ได้รับเงิน real-time
+│
+└── Security Considerations:
+    ├── SIM swap → เบอร์โทรถูก takeover → PromptPay account hijack
+    ├── National ID leak → ใช้ receive funds (low risk) แต่ social eng. vector
+    ├── No MFA on PromptPay registration at some banks (gap)
+    └── NDID integration → future: PromptPay re-registration ผ่าน NDID verification
+```
+
+**PromptPay + NDID Integration (แผนอนาคต):**
+
+- ธปท. ผลักดันให้ใช้ NDID สำหรับ PromptPay re-registration เพื่อลด SIM swap fraud
+- Cross-bank identity verification ผ่าน NDID ก่อน allow PromptPay proxy change
+- PromptPay QR code payment ควร link กับ ThaID verification สำหรับ high-value transactions
+
+**NDID Protocol Details (เพิ่มเติม):**
+
+| Component          | Technology                        | Description                                                         |
+| ------------------ | --------------------------------- | ------------------------------------------------------------------- |
+| Blockchain         | Tendermint (private chain)        | เก็บ transaction log, consent records (ไม่เก็บ PII)                 |
+| Identity Assertion | JSON signed with RSA-2048+        | IdP sign assertion → RP verify signature                            |
+| Encryption         | RSA + AES-256 (PII in transit)    | PII ส่งตรง IdP → RP, encrypted end-to-end                           |
+| SPIFFE ID (อนาคต)  | spiffe://ndid.co.th/idp/{bank}    | กำลังศึกษาการใช้ SPIFFE สำหรับ workload identity ระหว่าง NDID nodes |
+| DID Format         | did:ndid:{namespace}:{identifier} | Decentralized Identifier per NDID participant                       |
+| Consent            | On-chain hash                     | Hash of consent stored on blockchain, full consent off-chain        |
+
 ### Thai Organization Identity Security Recommendations
 
 | Priority  | Action                | Thai Context                                                             |
