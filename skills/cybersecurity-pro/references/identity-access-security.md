@@ -405,6 +405,134 @@ Phase 4: Passwordless (เดือน 10-12)
 └── Document remaining password exceptions with risk acceptance
 ```
 
+### IdP Configuration Templates (ตัวอย่างการตั้งค่า IdP)
+
+#### Microsoft Entra ID — Conditional Access Policy (JSON)
+
+```json
+{
+  "displayName": "Require phishing-resistant MFA for admins",
+  "state": "enabled",
+  "conditions": {
+    "users": {
+      "includeRoles": [
+        "62e90394-69f5-4237-9190-012177145e10",
+        "194ae4cb-b126-40b2-bd5b-6091b380977d"
+      ]
+    },
+    "applications": {
+      "includeApplications": ["All"]
+    },
+    "clientAppTypes": ["browser", "mobileAppsAndDesktopClients"]
+  },
+  "grantControls": {
+    "operator": "OR",
+    "builtInControls": [],
+    "authenticationStrength": {
+      "id": "00000000-0000-0000-0000-000000000004",
+      "displayName": "Phishing-resistant MFA"
+    }
+  },
+  "sessionControls": {
+    "signInFrequency": {
+      "value": 4,
+      "type": "hours",
+      "isEnabled": true
+    }
+  }
+}
+```
+
+**หมายเหตุ:** `authenticationStrength` ID `...0004` = Phishing-resistant MFA (FIDO2 + Windows Hello + Certificate)
+Deploy ผ่าน Microsoft Graph API: `POST /identity/conditionalAccess/policies`
+
+#### Okta — Authentication Policy (Terraform)
+
+```hcl
+# Okta Authentication Policy — require FIDO2 for admin apps
+resource "okta_app_signon_policy_rule" "admin_phishing_resistant" {
+  policy_id          = okta_app_signon_policy.admin_policy.id
+  name               = "Require FIDO2 for Admin Applications"
+  priority           = 1
+  status             = "ACTIVE"
+  factor_mode        = "2FA"
+  type               = "ASSURANCE"
+
+  platform_include {
+    type = "ANY"
+  }
+
+  constraints = jsonencode([
+    {
+      knowledge = {
+        types                 = ["password"]
+        reauthenticateIn      = "PT4H"
+      }
+      possession = {
+        deviceBound           = "REQUIRED"
+        hardwareProtection    = "REQUIRED"
+        phishingResistant     = "REQUIRED"
+        userPresence          = "REQUIRED"
+        userVerification      = "REQUIRED"
+      }
+    }
+  ])
+}
+
+# Okta Authenticator Enrollment Policy
+resource "okta_authenticator" "webauthn" {
+  name   = "Security Key or Biometric"
+  key    = "webauthn"
+  status = "ACTIVE"
+  settings = jsonencode({
+    userVerification   = "REQUIRED"
+    appInstanceId      = null
+    compliance = {
+      fips = "OPTIONAL"
+    }
+    attachment         = "ANY"
+    residentKey        = "REQUIRED"
+  })
+}
+```
+
+#### AWS IAM Identity Center — SCIM Provisioning Config
+
+```json
+{
+  "schemas": ["urn:ietf:params:scim:schemas:core:2.0:ServiceProviderConfig"],
+  "documentationUri": "https://docs.aws.amazon.com/singlesignon/latest/userguide/provision-automatically.html",
+  "patch": { "supported": true },
+  "bulk": { "supported": false },
+  "filter": {
+    "supported": true,
+    "maxResults": 50
+  },
+  "changePassword": { "supported": false },
+  "sort": { "supported": false },
+  "etag": { "supported": false },
+  "authenticationSchemes": [
+    {
+      "name": "OAuth Bearer Token",
+      "description": "SCIM Bearer Token Authentication",
+      "specUri": "https://tools.ietf.org/html/rfc6750",
+      "type": "oauthbearertoken",
+      "primary": true
+    }
+  ]
+}
+```
+
+**SCIM Provisioning Setup Steps:**
+
+1. AWS IAM Identity Center → Settings → Automatic provisioning → Enable
+2. คัดลอก SCIM endpoint URL + Access token
+3. Okta/Entra ID → Enterprise app → Provisioning → SCIM connector
+4. ใส่ SCIM endpoint + token → Test connection
+5. Configure attribute mapping: `userName`, `displayName`, `emails`, `groups`
+6. Enable: Create, Update, Delete users automatically
+7. ⏱ Initial sync อาจใช้เวลา 20-40 นาทีสำหรับ 1,000+ users
+
 ---
 
 ## 4. การจัดการ Non-Human Identity (Non-Human Identity Management)
