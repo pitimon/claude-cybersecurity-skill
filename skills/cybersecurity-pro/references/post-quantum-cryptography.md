@@ -1287,6 +1287,24 @@ Thai Organization PQC Readiness Recommendations:
    - NIST SP 1800-38C (Migration to PQC) เป็น reference ที่ดี
 ```
 
+### ผลกระทบต่อ Blockchain & Web3 (PQC Impact on Blockchain)
+
+> Cross-reference: ดู Domain 22 `references/web3-blockchain-security.md` Section 1 สำหรับ blockchain-specific PQC analysis
+
+Blockchain เป็น sector ที่ได้รับผลกระทบจาก quantum computing สูงมาก เนื่องจากพึ่งพา ECDSA/EdDSA
+ทั้งหมดสำหรับ transaction signing และ transactions บน public ledger เป็น permanent record (HNDL risk):
+
+- **Ethereum (secp256k1):** addresses ที่เคยส่ง tx expose public key → quantum target โดยตรง
+- **Bitcoin (secp256k1):** Taproot (BIP-341) เตรียม upgrade path สำหรับ future PQC signatures
+- **DeFi TVL >$100B:** ทั้งหมด protected ด้วย ECDSA — quantum break = systemic risk
+- **Smart contracts:** immutable contracts ที่ verify ECDSA on-chain ต้องมี proxy pattern สำหรับ migration
+
+**คำแนะนำสำหรับ crypto/Web3 organizations ในไทย:**
+
+- เริ่ม cryptographic inventory ของ on-chain assets ตั้งแต่วันนี้
+- ใช้ account abstraction (EIP-7702) เพื่อเตรียม signature scheme upgrade
+- ก.ล.ต. ควร issue PQC guidance สำหรับ digital asset custodians
+
 ---
 
 ## 9. Checklist การ Migrate PQC (PQC Migration Checklist)

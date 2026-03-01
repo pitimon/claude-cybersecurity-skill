@@ -19,7 +19,7 @@ Smart Contract Audit, DeFi Security Patterns, Wallet & Key Management
 
 ## Table of Contents
 
-1. Web3 Security Landscape
+1. Web3 Security Landscape (incl. Post-Quantum Impact on Blockchain)
 2. OWASP Smart Contract Top 10 2026
 3. Smart Contract Audit Methodology
 4. DeFi Security Patterns
@@ -142,6 +142,49 @@ Web3 Attack Surface
 | 2     | กำหนดรูปแบบ (Defined)          | มี audit process, severity classification, basic monitoring | External audit before mainnet, OpenZeppelin Defender       |
 | 3     | จัดการ (Managed)               | มี formal verification, bug bounty, on-chain monitoring     | Certora specs, Immunefi program, Forta bots                |
 | 4     | ปรับปรุงต่อเนื่อง (Optimizing) | มี comprehensive security program, proactive threat hunting | Red team exercises, MEV protection, cross-chain monitoring |
+
+### Post-Quantum Impact on Blockchain (ผลกระทบ Post-Quantum ต่อ Blockchain)
+
+> Cross-reference: ดู Domain 20 `references/post-quantum-cryptography.md` สำหรับ PQC standards เชิงลึก
+
+Blockchain ทั้งหมดพึ่งพา elliptic curve cryptography (ECDSA, EdDSA) สำหรับ transaction signing
+และ key derivation — quantum computer ที่มี qubit เพียงพอ (CRQC) จะทำลายได้ทั้งหมด:
+
+**Algorithms ที่ถูกคุกคาม:**
+
+| Algorithm               | ใช้ใน                        | Quantum Attack                             | Timeline                                |
+| ----------------------- | ---------------------------- | ------------------------------------------ | --------------------------------------- |
+| ECDSA P-256 / secp256k1 | Ethereum, Bitcoin tx signing | Shor's algorithm breaks in polynomial time | 2028-2035                               |
+| EdDSA (Ed25519)         | Solana, Cosmos, Polkadot     | Shor's algorithm                           | 2028-2035                               |
+| SHA-256 (mining)        | Bitcoin PoW                  | Grover's (quadratic speedup only)          | Low risk — double key length sufficient |
+| Keccak-256 (hashing)    | Ethereum state/storage       | Grover's (quadratic speedup only)          | Low risk                                |
+
+**ความเสี่ยงเฉพาะ Blockchain:**
+
+1. **"Harvest Now, Decrypt Later" (HNDL):** transactions บน public blockchain เป็น permanent record —
+   adversary สามารถเก็บ public keys วันนี้ แล้วใช้ quantum computer crack private keys ในอนาคต
+2. **Address reuse vulnerability:** Ethereum addresses ที่ส่ง transaction แล้ว expose public key
+   ทำให้เป็นเป้าหมายตรงของ quantum attack (addresses ที่ยังไม่เคยส่งปลอดภัยกว่า — ซ่อน public key ไว้หลัง hash)
+3. **Smart contract immutability:** contracts ที่ verify ECDSA signatures on-chain จะไม่สามารถ upgrade ได้
+   ถ้าไม่มี proxy pattern — ต้องวางแผน migration path ล่วงหน้า
+4. **DeFi total value locked:** มูลค่า >$100B ใน DeFi protocols ที่ protected ด้วย ECDSA —
+   quantum break จะเป็น systemic risk ระดับ ecosystem
+
+**Migration Path (แนวทางการ migrate):**
+
+| Phase        | Timeline  | Action                                                                                         |
+| ------------ | --------- | ---------------------------------------------------------------------------------------------- |
+| 1. Inventory | ตอนนี้    | สำรวจ contracts ที่ใช้ ECDSA verification, จำนวน addresses ที่ exposed public key              |
+| 2. Research  | 2025-2027 | ติดตาม EIP proposals สำหรับ PQC (EIP-7702 account abstraction, quantum-safe signature schemes) |
+| 3. Hybrid    | 2027-2030 | Deploy contracts ที่รองรับทั้ง ECDSA + PQC signatures (ML-DSA), ใช้ account abstraction        |
+| 4. Migration | 2030-2035 | Migrate ทุก wallet/contract ไป PQC-only, phase out ECDSA verification                          |
+
+**Ethereum-specific PQC Considerations:**
+
+- **EIP-7702** (Account Abstraction) ช่วยให้ EOA upgrade signature scheme ได้โดยไม่ต้องเปลี่ยน address
+- **Hash-based signatures** (XMSS, LMS) เป็น alternative ที่ quantum-safe แต่มี state management complexity
+- **Gas cost:** PQC signatures (ML-DSA) มีขนาดใหญ่กว่า ECDSA ~10-50x → gas cost สูงขึ้นมาก
+- **Bitcoin:** Taproot (BIP-341) เตรียม path สำหรับ future signature scheme upgrades
 
 ---
 
