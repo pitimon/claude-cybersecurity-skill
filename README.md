@@ -8,7 +8,7 @@
 Compliance Audits, Cloud Security, AI Governance, OT/ICS Security และอีก 16 domains
 พร้อม output แบบ bilingual Thai + English ที่ map กับ NIST, MITRE ATT&CK, OWASP, ISO frameworks
 
-[![Version](https://img.shields.io/badge/version-4.0.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-4.0.1-blue.svg)](CHANGELOG.md)
 [![CI](https://github.com/pitimon/claude-cybersecurity-skill/actions/workflows/validate.yml/badge.svg)](https://github.com/pitimon/claude-cybersecurity-skill/actions/workflows/validate.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Domains](https://img.shields.io/badge/domains-22-orange.svg)](#capabilities-ความสามารถ--22-domains)
@@ -538,7 +538,7 @@ Outputs อ้างอิง frameworks เหล่านี้ตามคว
 claude-cybersecurity-skill/
 ├── .claude-plugin/
 │   ├── marketplace.json          # Marketplace metadata
-│   └── plugin.json               # Plugin metadata (v4.0.0)
+│   └── plugin.json               # Plugin metadata (v4.0.1)
 ├── skills/
 │   └── cybersecurity-pro/
 │       ├── SKILL.md              # Skill definition & decision tree
@@ -593,7 +593,7 @@ claude-cybersecurity-skill/
 | **Plugin name** | `cybersecurity-pro`                       |
 | **Marketplace** | `pitimon-cybersecurity`                   |
 | **Install key** | `cybersecurity-pro@pitimon-cybersecurity` |
-| **Version**     | 4.0.0                                     |
+| **Version**     | 4.0.1                                     |
 | **Category**    | Security                                  |
 | **Author**      | P.Itarun                                  |
 | **Language**    | Bilingual Thai + English                  |
