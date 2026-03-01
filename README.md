@@ -20,10 +20,10 @@ Compliance Audits, Cloud Security, AI Governance, OT/ICS Security และอ�
 
 <div align="center">
 
-**22 Domains** | **69 Frameworks** | **< 8% Context Budget**
+**22 Domains** | **73 Frameworks** | **< 8% Context Budget**
 
 ครอบคลุม 22 security domains ตั้งแต่ Incident Response ถึง Web3 & Blockchain Security —
-map กับ 69 international frameworks — ใช้ context เพียง ~7,000-15,000 tokens ต่อ request (< 8% ของ 200K window)
+map กับ 73 international frameworks — ใช้ context เพียง ~7,000-15,000 tokens ต่อ request (< 8% ของ 200K window)
 
 </div>
 
@@ -434,7 +434,7 @@ User prompt → keyword match in SKILL.md frontmatter
 | Aspect                 | Manual Prompting  | cybersecurity-pro              | Enterprise Tools |
 | ---------------------- | ----------------- | ------------------------------ | ---------------- |
 | **Setup time**         | 0                 | 3 commands, 30 sec             | Weeks-months     |
-| **Framework mapping**  | Manual research   | Auto-mapped (69 frameworks)    | Vendor-specific  |
+| **Framework mapping**  | Manual research   | Auto-mapped (73 frameworks)    | Vendor-specific  |
 | **Bilingual TH+EN**    | DIY every time    | Built-in policy                | Limited/none     |
 | **Thai compliance**    | Must research     | พ.ร.บ. ไซเบอร์ / PDPA included | Varies           |
 | **Output consistency** | Varies per prompt | Standardized templates         | Standardized     |
@@ -565,7 +565,7 @@ claude-cybersecurity-skill/
 │           ├── post-quantum-cryptography.md # PQC/FIPS 203-205/CNSA 2.0
 │           ├── identity-access-security.md  # IAM/FIDO2/ITDR/SPIFFE
 │           └── web3-blockchain-security.md  # Smart Contract/DeFi/Web3
-├── frameworks.json                # Framework version manifest (69 entries)
+├── frameworks.json                # Framework version manifest (73 entries)
 ├── docs/
 │   ├── INSTALL.md                 # Installation guide
 │   ├── TROUBLESHOOTING.md         # Troubleshooting guide

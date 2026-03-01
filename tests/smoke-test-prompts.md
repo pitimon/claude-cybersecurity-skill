@@ -545,7 +545,7 @@ jq '[.frameworks[] | select(.name and .version and .grep_patterns and .used_in)]
 
 **Pass Criteria:**
 
-- [ ] frameworks.json has ~69 entries (54 base + 15 new from D19-D22)
+- [ ] frameworks.json has ~73 entries (54 base + 15 from D19-D22 + 4 gap-fill)
 - [ ] All entries have name, version, grep_patterns, and used_in fields
 - [ ] JSON is valid (no syntax errors)
 

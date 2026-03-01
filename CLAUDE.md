@@ -84,7 +84,7 @@ These identifiers must stay consistent across all config files and documentation
 
 ## Framework Maintenance
 
-All 69 versioned framework references are tracked in `frameworks.json` at the repo root. This is the single source of truth for versions, source URLs, grep patterns, and staleness tracking.
+All 73 versioned framework references are tracked in `frameworks.json` at the repo root. This is the single source of truth for versions, source URLs, grep patterns, and staleness tracking.
 
 ### Key commands
 
