@@ -30,6 +30,39 @@ Memory & Context Security, Multi-Agent Orchestration และ Agent Monitoring
 
 ---
 
+## Quick Reference (สรุปย่อ)
+
+> ใช้ section นี้สำหรับตอบคำถามเร็ว — deep-dive ดู sections ด้านล่าง
+
+**Frameworks:** OWASP Agentic Top 10 2026 | MITRE ATLAS 2025 | OWASP Securing Agentic Apps Guide v1.0 | NIST AI RMF 1.0
+
+**OWASP Agentic Top 10 2026:**
+
+| ID    | Risk                                 | Severity |
+| ----- | ------------------------------------ | -------- |
+| ASI01 | Agent Goal Hijack                    | Critical |
+| ASI02 | Tool Misuse and Exploitation         | Critical |
+| ASI03 | Identity and Privilege Abuse         | High     |
+| ASI04 | Agentic Supply Chain Vulnerabilities | High     |
+| ASI05 | Unexpected Code Execution            | Critical |
+| ASI06 | Memory and Context Poisoning         | High     |
+| ASI07 | Insecure Inter-Agent Communication   | High     |
+| ASI08 | Cascading Failures                   | Critical |
+| ASI09 | Human-Agent Trust Exploitation       | Medium   |
+| ASI10 | Uncontrolled Autonomy                | High     |
+
+**หลักการป้องกันหลัก:**
+
+- Least-privilege tool permissions (scoped per task, time-limited)
+- Human-in-the-loop สำหรับ high-risk actions (financial, data deletion, external comms)
+- Memory isolation ระหว่าง agents / sessions
+- Signed tool manifests + allowlists
+- Agent behavior monitoring & anomaly detection
+
+**Thai Context:** สกมช. AI Governance Guidelines, PDPA data processing by agents, BoT AI risk guidelines
+
+---
+
 ## 1. ภูมิทัศน์ภัยคุกคาม Agentic AI และรูปแบบสถาปัตยกรรม (Agentic AI Threat Landscape & Architecture Patterns)
 
 ### นิยาม Agentic AI (What Is Agentic AI)

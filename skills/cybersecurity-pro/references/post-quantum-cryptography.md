@@ -30,6 +30,39 @@ Crypto-Agility Assessment, Migration Roadmap, Hybrid Cryptography และ Thai
 
 ---
 
+## Quick Reference (สรุปย่อ)
+
+> ใช้ section นี้สำหรับตอบคำถามเร็ว — deep-dive ดู sections ด้านล่าง
+
+**Frameworks:** NIST FIPS 203/204/205 | CNSA 2.0 | NIST IR 8547 | NIST CSWP 39
+
+**NIST PQC Standards (Finalized Aug 2024):**
+
+| FIPS | Algorithm          | Type      | Use Case            | Key Sizes      |
+| ---- | ------------------ | --------- | ------------------- | -------------- |
+| 203  | ML-KEM (Kyber)     | KEM       | Key exchange, TLS   | 512/768/1024   |
+| 204  | ML-DSA (Dilithium) | Signature | Code signing, certs | 44/65/87       |
+| 205  | SLH-DSA (SPHINCS+) | Signature | Long-term signing   | 128f/192f/256f |
+
+**CNSA 2.0 Timeline:**
+
+| Year | Milestone                                                   |
+| ---- | ----------------------------------------------------------- |
+| 2025 | Code/firmware signing: prefer PQC. Browsers: support PQC    |
+| 2027 | OS must support PQC. New acquisitions: CNSA 2.0 compliant   |
+| 2030 | Networking: exclusively PQC. Code signing: mandatory        |
+| 2035 | All quantum-vulnerable algorithms disallowed (NIST IR 8547) |
+
+**Mosca's Theorem:** ถ้า X (shelf life) + Y (migration time) > Z (time to CRQC) → ต้องเริ่ม migrate วันนี้
+
+**Hybrid Pattern:** X25519Kyber768 (TLS 1.3) — ใช้ classic + PQC ร่วมกันในช่วงเปลี่ยนผ่าน
+
+**CRQC Threat Window:** 2028–2035 (คาดการณ์)
+
+**Thai Context:** สกมช. ยังไม่มี PQC guidance — เสนอเริ่มจาก CNSA 2.0 timeline, BoT cryptography requirements
+
+---
+
 ## 1. ภาพรวมภัยคุกคามควอนตัมและไทม์ไลน์ (Quantum Threat Landscape & Timeline)
 
 ### Quantum Computing คุกคามอะไรบ้าง

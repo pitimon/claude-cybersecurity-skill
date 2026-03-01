@@ -32,6 +32,42 @@ Non-Human Identity Management, Token Security, ITDR และ Identity Governanc
 
 ---
 
+## Quick Reference (สรุปย่อ)
+
+> ใช้ section นี้สำหรับตอบคำถามเร็ว — deep-dive ดู sections ด้านล่าง
+
+**Frameworks:** NIST SP 800-63B Rev 4 | FIDO2/WebAuthn L3 | NIST IR 8587 | SPIFFE/SPIRE | OAuth 2.1
+
+**Authentication Assurance Levels (AAL):**
+
+| Level | Factor         | Examples                       | Use Case                   |
+| ----- | -------------- | ------------------------------ | -------------------------- |
+| AAL1  | Single-factor  | Password, SMS OTP (deprecated) | Public, non-sensitive      |
+| AAL2  | Multi-factor   | TOTP, push notification        | Internal, SaaS             |
+| AAL3  | Hardware-based | FIDO2 key, smart card (PIV)    | Critical, financial, admin |
+
+**Identity Types:**
+
+| Type            | Examples                                 | Ratio   |
+| --------------- | ---------------------------------------- | ------- |
+| Human           | Employees, contractors, customers        | 1x      |
+| Non-Human (NHI) | Service accounts, API keys, workload IDs | 45x     |
+| AI Agent        | Claude Code, autonomous agents           | Growing |
+
+**Key Stats:** 30% ของ initial access vectors ใช้ stolen/leaked credentials (IBM X-Force 2025)
+
+**Essential Controls:**
+
+- FIDO2/Passkeys สำหรับ phishing-resistant MFA (AAL3)
+- SPIFFE/SPIRE สำหรับ workload identity ใน cloud-native
+- NIST IR 8587 token binding — ป้องกัน session hijacking
+- ITDR (Identity Threat Detection & Response) — detect credential abuse real-time
+- NHI lifecycle management — rotate, expire, audit non-human identities
+
+**Thai Context:** NDID architecture, PromptPay identity layer, PDPA consent สำหรับ biometric data
+
+---
+
 ## 1. ภูมิทัศน์ภัยคุกคามด้าน Identity ปี 2026 (Identity Threat Landscape 2026)
 
 Identity กลายเป็น attack vector อันดับ 1 ขององค์กรทั่วโลก จากข้อมูล IBM X-Force Threat Intelligence Index 2025

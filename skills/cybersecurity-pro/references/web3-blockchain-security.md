@@ -31,6 +31,41 @@ Smart Contract Audit, DeFi Security Patterns, Wallet & Key Management
 
 ---
 
+## Quick Reference (สรุปย่อ)
+
+> ใช้ section นี้สำหรับตอบคำถามเร็ว — deep-dive ดู sections ด้านล่าง
+
+**Frameworks:** OWASP Smart Contract Top 10 2026 | Ethereum Security Best Practices
+
+**OWASP Smart Contract Top 10 2026:**
+
+| ID   | Risk                           | Severity |
+| ---- | ------------------------------ | -------- |
+| SC01 | Access Control Vulnerabilities | Critical |
+| SC02 | Business Logic Vulnerabilities | Critical |
+| SC03 | Price Oracle Manipulation      | Critical |
+| SC04 | Flash Loan–Facilitated Attacks | Critical |
+| SC05 | Lack of Input Validation       | High     |
+| SC06 | Unchecked External Calls       | High     |
+| SC07 | Arithmetic Errors              | High     |
+| SC08 | Reentrancy Attacks             | Critical |
+| SC09 | Integer Overflow and Underflow | High     |
+| SC10 | Denial of Service (Gas Limit)  | Medium   |
+
+**Attack Stats:** $2.36B losses in 2024 (760+ incidents), avg $3.1M per incident
+
+**Essential Controls:**
+
+- Multi-sig wallets (Gnosis Safe) + hardware signing สำหรับ treasury
+- Professional audit (Slither + Mythril + manual review) ก่อน deploy
+- Time-lock + pause mechanisms สำหรับ upgradeable contracts
+- Price oracle: Chainlink + TWAP + deviation checks
+- Reentrancy guard (OpenZeppelin ReentrancyGuard) ทุก external call
+
+**Thai Context:** ก.ล.ต. digital asset regulations, Travel Rule FATF (transfers >= 1,000 USD), BoT stablecoin oversight
+
+---
+
 ## 1. ภูมิทัศน์ความปลอดภัย Web3 (Web3 Security Landscape)
 
 ### Web3 Attack Statistics (2024-2025)
