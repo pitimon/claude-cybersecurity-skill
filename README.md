@@ -8,7 +8,7 @@ Generate professional cybersecurity documents in 30 seconds — IR Playbooks, DF
 SOC Procedures, Compliance Audits, Cloud Security, AI Governance, OT/ICS, Post-Quantum Crypto,
 and 14 more domains — bilingual Thai + English output mapped to NIST, MITRE ATT&CK, OWASP, ISO frameworks
 
-[![Version](https://img.shields.io/badge/version-4.0.2-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-4.0.3-blue.svg)](CHANGELOG.md)
 [![CI](https://github.com/pitimon/claude-cybersecurity-skill/actions/workflows/validate.yml/badge.svg)](https://github.com/pitimon/claude-cybersecurity-skill/actions/workflows/validate.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Domains](https://img.shields.io/badge/domains-22-orange.svg)](#-22-security-domains)
@@ -31,7 +31,7 @@ and 14 more domains — bilingual Thai + English output mapped to NIST, MITRE AT
 - [See It in Action](#-see-it-in-action)
 - [Quick Start](#-quick-start)
 - [Why This Plugin](#-why-this-plugin)
-- [What's New in v4.0.2](#-whats-new-in-v402)
+- [What's New in v4.0.3](#-whats-new-in-v403)
 - [22 Security Domains](#-22-security-domains)
 - [NIST CSF 2.0 Coverage Map](#-nist-csf-20-coverage-map)
 - [Usage Examples](#-usage-examples)
@@ -148,7 +148,13 @@ claude doctor  # ตรวจสอบ version ใหม่
 
 ---
 
-## What's New in v4.0.2
+## What's New in v4.0.3
+
+**v4.0.3** — Skill description compliance + version reconciliation (Issue #9)
+
+- **SKILL.md description trimmed 4,663 → 590 chars** — เข้า cap ของ Anthropic spec (1024) และ Claude Code (`skillListingMaxDescChars` = 1536). แก้ `/doctor` warning, ป้องกัน truncation ของ trigger keywords และลด ~15k tokens/session overhead สำหรับ users ที่เปิด cap ไว้
+- **Trigger keywords moved to skill body** — 15 categories (Incident Response, DevSecOps, Cloud, AI/ML, OT/ICS, PQC, Identity, Web3, Thai prompts ฯลฯ) ภายใต้ section "When This Skill Activates / เมื่อใดที่สกิลนี้ทำงาน" — Claude อ่าน body ทุกครั้งที่ skill ถูก invoke อยู่แล้ว
+- **Version reconciliation** — `plugin.json` / `marketplace.json` (4.0.1 → 4.0.3) ให้ตรงกับ tag ล่าสุดที่ publish ไป (v4.0.2 issue #6 enhancements ที่ release Mar 1 ยังไม่ได้ bump manifest)
 
 **v4.0.2** — Issue #6 Enhancements (6 items)
 
@@ -567,7 +573,7 @@ Outputs อ้างอิง 73 frameworks จัดกลุ่มตาม au
 claude-cybersecurity-skill/
 ├── .claude-plugin/
 │   ├── marketplace.json              # Marketplace metadata
-│   └── plugin.json                   # Plugin manifest (v4.0.2)
+│   └── plugin.json                   # Plugin manifest (v4.0.3)
 ├── skills/
 │   └── cybersecurity-pro/
 │       ├── SKILL.md                  # Skill definition & decision tree (~500 lines)
@@ -621,7 +627,7 @@ claude-cybersecurity-skill/
 | **Plugin name** | `cybersecurity-pro`                       |
 | **Marketplace** | `pitimon-cybersecurity`                   |
 | **Install key** | `cybersecurity-pro@pitimon-cybersecurity` |
-| **Version**     | 4.0.2                                     |
+| **Version**     | 4.0.3                                     |
 | **Category**    | Security                                  |
 | **Author**      | P.Itarun                                  |
 | **Language**    | Bilingual Thai + English                  |
