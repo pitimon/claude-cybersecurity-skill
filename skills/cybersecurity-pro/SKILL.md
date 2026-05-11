@@ -1,57 +1,15 @@
 ---
 name: cybersecurity-pro
 description: >
-  Generate professional cybersecurity documents: IR playbooks, DFIR forensic reports,
-  DevSecOps pipeline configs, SOC L1-L3 triage procedures, GitOps security policies,
-  code security analysis, container/supply chain security, compliance/threat modeling,
-  cloud security & CSPM, zero trust architecture, AI/ML security, API security,
-  vulnerability management, threat intelligence, cross-domain integration,
-  and security governance & executive leadership.
-  Use when asked about incident response, IR playbook, runbook, SOC triage, alert investigation,
-  threat hunting, digital forensics, malware analysis, DFIR, DevSecOps, SAST, DAST, SCA, SBOM,
-  CI/CD security, GitOps, security-as-code, vulnerability management, MITRE ATT&CK, NIST 800-61,
-  ISO 27035, OWASP, escalation workflow, forensic report, chain of custody, evidence handling,
-  log analysis, SIEM correlation, compliance reports, threat modeling, security architecture,
-  Semgrep, CodeQL, SARIF, variant analysis, code scanning, static analysis,
-  container security, Trivy, Grype, Dockerfile hardening, image scanning, supply chain, cosign, SLSA,
-  SOC 2, ISO 27001, GDPR, HIPAA, PCI-DSS, STRIDE, PASTA, risk assessment, PDPA,
-  NIST 800-53, CIS Controls, CIS Benchmarks, gap analysis, control mapping, compliance audit,
-  SOAR, security orchestration, automation, post-mortem,
-  cloud security, CSPM, AWS security, Azure security, GCP security, IAM policy, cloud misconfiguration,
-  Prowler, ScoutSuite, CSA CCM, NIST 800-144, CIS Cloud Benchmarks,
-  zero trust, ZTA, ZTNA, NIST 800-207, microsegmentation, SDP, never trust always verify,
-  CISA Zero Trust, conditional access,
-  AI security, LLM security, prompt injection, AI red team, MITRE ATLAS, AI governance,
-  model security, AI risk, EU AI Act, AI RMF, OWASP LLM Top 10, ML-BOM,
-  API security, OWASP API, BOLA, API gateway, rate limiting, JWT security, OAuth security,
-  API authentication, API inventory, API fuzzing, ความปลอดภัย API,
-  vulnerability management, CVSS, EPSS, KEV, patch management, vulnerability scan,
-  Nessus, Qualys, vulnerability prioritization, SSVC, การจัดการช่องโหว่,
-  threat intelligence, STIX, TAXII, IOC, indicator of compromise, threat feed,
-  MISP, OpenCTI, TLP, threat hunting, intelligence sharing, ข่าวกรองภัยคุกคาม,
-  cross-domain, integration, end-to-end, workflow, lifecycle, orchestration, security pipeline,
-  การบูรณาการ, cross-domain integration, multi-domain,
-  security governance, CISO, CAIO, CAISO, board reporting, cyber risk governance,
-  SEC disclosure, NIST CSF GOVERN, ISO 27014, C2M2, NACD, board oversight,
-  governance framework, security maturity, executive leadership, ธรรมาภิบาลความปลอดภัย,
-  OT security, ICS, SCADA, PLC, operational technology, NIST 800-82, IEC 62443,
-  Purdue model, industrial control, OT/IT convergence, ความปลอดภัย OT,
-  โครงสร้างพื้นฐานสำคัญ, DCS, RTU, HMI, Modbus, DNP3, OPC UA, BACnet,
-  NERC CIP, MITRE ATT&CK for ICS, OT incident response,
-  agentic AI, AI agent security, OWASP Agentic, ASI01, agent hijack, tool misuse,
-  agent orchestration, ความปลอดภัย AI Agent,
-  post-quantum, PQC, quantum cryptography, ML-KEM, ML-DSA, SLH-DSA, FIPS 203,
-  crypto-agility, CNSA 2.0, การเข้ารหัสควอนตัม,
-  identity security, IAM, FIDO2, passkeys, non-human identity, machine identity,
-  ITDR, identity governance, NIST 800-63, ความปลอดภัย Identity,
-  smart contract, Web3, blockchain security, DeFi, wallet security, Solidity,
-  OWASP Smart Contract, reentrancy, flash loan, ความปลอดภัย Blockchain,
-  การตอบสนองต่อเหตุการณ์, วิเคราะห์ภัยคุกคาม, ความปลอดภัยไซเบอร์, นิติวิทยาศาสตร์ดิจิทัล,
-  การวิเคราะห์ code, ความปลอดภัย container, การปฏิบัติตามกฎระเบียบ, การจำลองภัยคุกคาม,
-  ความปลอดภัยบนคลาวด์, สถาปัตยกรรม Zero Trust, ความปลอดภัย AI,
-  Shannon handoff, post-pentest defensive, ผล Shannon, defensive security documents,
-  สร้าง defensive docs จาก Shannon, handoff-manifest.
-  Outputs bilingual Thai+English documents mapped to NIST, MITRE ATT&CK, OWASP frameworks.
+  Use when asked to generate professional cybersecurity documents — IR
+  playbooks, DFIR forensic reports, SOC L1–L3 triage runbooks, DevSecOps
+  pipeline configs, threat models, compliance gap analyses, or executive
+  cyber-risk reports. Covers 22 domains across AppSec / Cloud / OT / AI-ML /
+  API / Identity / Web3, bilingual Thai+English output mapped to NIST 800-53,
+  MITRE ATT&CK, OWASP, ISO 27001. Also: post-pentest defensive (Shannon
+  handoff manifest). Triggers: "incident response", "SOC triage", "DFIR",
+  "threat hunt", "compliance audit", "การตอบสนองต่อเหตุการณ์",
+  "post-pentest defensive".
 user-invocable: true
 allowed-tools: Read, Grep, Glob, Write
 ---
@@ -59,7 +17,56 @@ allowed-tools: Read, Grep, Glob, Write
 # Cybersecurity Pro Skill
 
 สกิลระดับมืออาชีพสำหรับ Cybersecurity Operations ครอบคลุม 22 domains:
-IR, DFIR, DevSecOps, SOC+SOAR, GitOps, Code Security Analysis, Container & Supply Chain, Threat Modeling & Risk, Compliance Frameworks, Cloud Security & CSPM, Zero Trust Architecture, AI/ML Security, API Security, Vulnerability Management, Threat Intelligence, Cross-Domain Integration, Security Governance & Executive Leadership, OT/ICS Security
+IR, DFIR, DevSecOps, SOC+SOAR, GitOps, Code Security Analysis, Container & Supply Chain, Threat Modeling & Risk, Compliance Frameworks, Cloud Security & CSPM, Zero Trust Architecture, AI/ML Security, API Security, Vulnerability Management, Threat Intelligence, Cross-Domain Integration, Security Governance & Executive Leadership, OT/ICS Security, Agentic AI Security, Post-Quantum Cryptography, Identity & Access Security, Web3 & Blockchain Security
+
+## When This Skill Activates / เมื่อใดที่สกิลนี้ทำงาน
+
+This skill activates when prompts match any of the following trigger families. The list lives here in the body (not in the frontmatter description) to keep the per-entry description under Claude Code's 1536-character cap — Claude reads the body once the skill is invoked.
+
+**Incident Response & DFIR**
+incident response, IR playbook, runbook, SOC triage, alert investigation, threat hunting, digital forensics, malware analysis, DFIR, escalation workflow, forensic report, chain of custody, evidence handling, log analysis, SIEM correlation, post-mortem, SOAR, security orchestration, automation, MITRE ATT&CK, NIST 800-61, ISO 27035
+
+**DevSecOps & Code Security**
+DevSecOps, SAST, DAST, SCA, SBOM, CI/CD security, GitOps, security-as-code, OWASP, Semgrep, CodeQL, SARIF, variant analysis, code scanning, static analysis, CWE Top 25
+
+**Container & Supply Chain**
+container security, Trivy, Grype, Dockerfile hardening, image scanning, supply chain, cosign, SLSA, NIST 800-190
+
+**Compliance & Risk**
+compliance reports, threat modeling, security architecture, SOC 2, ISO 27001, GDPR, HIPAA, PCI-DSS, STRIDE, PASTA, risk assessment, PDPA, NIST 800-53, CIS Controls, CIS Benchmarks, gap analysis, control mapping, compliance audit
+
+**Cloud Security & CSPM**
+cloud security, CSPM, AWS security, Azure security, GCP security, IAM policy, cloud misconfiguration, Prowler, ScoutSuite, CSA CCM, NIST 800-144, CIS Cloud Benchmarks
+
+**Zero Trust**
+zero trust, ZTA, ZTNA, NIST 800-207, microsegmentation, SDP, never trust always verify, CISA Zero Trust, conditional access
+
+**AI/ML & Agentic AI**
+AI security, LLM security, prompt injection, AI red team, MITRE ATLAS, AI governance, model security, AI risk, EU AI Act, AI RMF, OWASP LLM Top 10, ML-BOM, agentic AI, AI agent security, OWASP Agentic, ASI01, agent hijack, tool misuse, agent orchestration, ความปลอดภัย AI Agent, ความปลอดภัย AI
+
+**API Security**
+API security, OWASP API, BOLA, API gateway, rate limiting, JWT security, OAuth security, API authentication, API inventory, API fuzzing, ความปลอดภัย API
+
+**Vulnerability Management & Threat Intelligence**
+vulnerability management, CVSS, EPSS, KEV, patch management, vulnerability scan, Nessus, Qualys, vulnerability prioritization, SSVC, การจัดการช่องโหว่, threat intelligence, STIX, TAXII, IOC, indicator of compromise, threat feed, MISP, OpenCTI, TLP, intelligence sharing, ข่าวกรองภัยคุกคาม
+
+**Cross-Domain & Governance**
+cross-domain, integration, end-to-end, workflow, lifecycle, orchestration, security pipeline, การบูรณาการ, multi-domain, security governance, CISO, CAIO, CAISO, board reporting, cyber risk governance, SEC disclosure, NIST CSF GOVERN, ISO 27014, C2M2, NACD, board oversight, governance framework, security maturity, executive leadership, ธรรมาภิบาลความปลอดภัย
+
+**OT/ICS**
+OT security, ICS, SCADA, PLC, operational technology, NIST 800-82, IEC 62443, Purdue model, industrial control, OT/IT convergence, ความปลอดภัย OT, โครงสร้างพื้นฐานสำคัญ, DCS, RTU, HMI, Modbus, DNP3, OPC UA, BACnet, NERC CIP, MITRE ATT&CK for ICS, OT incident response
+
+**Post-Quantum Cryptography**
+post-quantum, PQC, quantum cryptography, ML-KEM, ML-DSA, SLH-DSA, FIPS 203, crypto-agility, CNSA 2.0, การเข้ารหัสควอนตัม
+
+**Identity & Web3**
+identity security, IAM, FIDO2, passkeys, non-human identity, machine identity, ITDR, identity governance, NIST 800-63, ความปลอดภัย Identity, smart contract, Web3, blockchain security, DeFi, wallet security, Solidity, OWASP Smart Contract, reentrancy, flash loan, ความปลอดภัย Blockchain
+
+**Thai prompts**
+การตอบสนองต่อเหตุการณ์, วิเคราะห์ภัยคุกคาม, ความปลอดภัยไซเบอร์, นิติวิทยาศาสตร์ดิจิทัล, การวิเคราะห์ code, ความปลอดภัย container, การปฏิบัติตามกฎระเบียบ, การจำลองภัยคุกคาม, ความปลอดภัยบนคลาวด์, สถาปัตยกรรม Zero Trust
+
+**Post-pentest defensive (Shannon handoff)**
+Shannon handoff, post-pentest defensive, ผล Shannon, defensive security documents, สร้าง defensive docs จาก Shannon, handoff-manifest
 
 ## Language Policy / นโยบายภาษา
 

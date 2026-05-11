@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.0.2] - 2026-05-12
+
+### Fixed
+
+- **SKILL.md description trimmed from ~4,663 → 590 characters** (#9) — within Anthropic spec cap (1024) and Claude Code per-entry cap (`skillListingMaxDescChars` = 1536). Eliminates `/doctor` warning, silent truncation of trailing trigger keywords, and ~15k tokens/session overhead for users who raised the cap. Full trigger keyword list (15 categories) moved to the skill body under "When This Skill Activates / เมื่อใดที่สกิลนี้ทำงาน" — Claude reads the body once the skill is invoked.
+
+### Changed
+
+- README.md rework — improved structure (TOC, NIST CSF coverage map, Frameworks badge, Related Plugins, Support table), Thai/English consistency pass, version bump to 4.0.2
+
 ## [4.0.0] - 2026-02-28
 
 ### Added
