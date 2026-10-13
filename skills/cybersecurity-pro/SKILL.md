@@ -10,6 +10,10 @@ description: >
   handoff manifest). Triggers: "incident response", "SOC triage", "DFIR",
   "threat hunt", "compliance audit", "การตอบสนองต่อเหตุการณ์",
   "post-pentest defensive".
+  Scope: document generation only — this skill does not execute scans or
+  live operational workflows. For running SAST/DAST/SCA/SBOM/container
+  scans, live vulnerability triage, or incident-response execution, prefer
+  the devsecops-ai-team plugin skills when that plugin is installed.
 user-invocable: true
 allowed-tools: Read, Grep, Glob, Write
 ---
@@ -23,16 +27,25 @@ IR, DFIR, DevSecOps, SOC+SOAR, GitOps, Code Security Analysis, Container & Suppl
 
 This skill activates when prompts match any of the following trigger families. The list lives here in the body (not in the frontmatter description) to keep the per-entry description under Claude Code's 1536-character cap — Claude reads the body once the skill is invoked.
 
-**Incident Response & DFIR**
+## Coexistence with devsecops-ai-team / การทำงานร่วมกับ devsecops-ai-team
+
+If the `devsecops-ai-team` plugin is installed, the two plugins divide work by INTENT:
+
+- **Execution intent** — run, scan, execute, triage live data (e.g. "run SAST on this repo", "สแกน image นี้", "triage CVE นี้") → defer to devsecops-ai-team (`/sast-scan`, `/dast-scan`, `/sca-scan`, `/sbom-generate`, `/container-scan`, `/incident-response`, `/compliance-report`, `threat-modeler`, `vuln-triager`).
+- **Document intent** — create, generate, draft, write a document (e.g. "สร้าง IR playbook", "เขียน compliance gap analysis", "draft VM policy") → this skill.
+
+Tie-break: document verbs win for this skill; execution verbs defer. If devsecops-ai-team is NOT installed, this skill covers the document side only and must say so rather than simulating scan results. Unique to this skill (no delegation): DFIR forensics, OT/ICS, post-quantum crypto, identity & Web3 security, agentic AI security, executive/board governance documents.
+
+**Incident Response & DFIR** (document generation: playbooks/reports — live IR execution defers to devsecops-ai-team /incident-response)
 incident response, IR playbook, runbook, SOC triage, alert investigation, threat hunting, digital forensics, malware analysis, DFIR, escalation workflow, forensic report, chain of custody, evidence handling, log analysis, SIEM correlation, post-mortem, SOAR, security orchestration, automation, MITRE ATT&CK, NIST 800-61, ISO 27035
 
-**DevSecOps & Code Security**
+**DevSecOps & Code Security** (pipeline configs & documents — scan execution defers to /sast-scan, /dast-scan, /sca-scan, /sbom-generate)
 DevSecOps, SAST, DAST, SCA, SBOM, CI/CD security, GitOps, security-as-code, OWASP, Semgrep, CodeQL, SARIF, variant analysis, code scanning, static analysis, CWE Top 25
 
-**Container & Supply Chain**
+**Container & Supply Chain** (hardening/policy documents — image scan execution defers to /container-scan)
 container security, Trivy, Grype, Dockerfile hardening, image scanning, supply chain, cosign, SLSA, NIST 800-190
 
-**Compliance & Risk**
+**Compliance & Risk** (gap-analysis & audit documents — automated framework-mapping reports defer to /compliance-report; interactive threat-modeling sessions defer to threat-modeler)
 compliance reports, threat modeling, security architecture, SOC 2, ISO 27001, GDPR, HIPAA, PCI-DSS, STRIDE, PASTA, risk assessment, PDPA, NIST 800-53, CIS Controls, CIS Benchmarks, gap analysis, control mapping, compliance audit
 
 **Cloud Security & CSPM**
@@ -47,7 +60,7 @@ AI security, LLM security, prompt injection, AI red team, MITRE ATLAS, AI govern
 **API Security**
 API security, OWASP API, BOLA, API gateway, rate limiting, JWT security, OAuth security, API authentication, API inventory, API fuzzing, ความปลอดภัย API
 
-**Vulnerability Management & Threat Intelligence**
+**Vulnerability Management & Threat Intelligence** (VM program/prioritization documents — live triage defers to vuln-triager)
 vulnerability management, CVSS, EPSS, KEV, patch management, vulnerability scan, Nessus, Qualys, vulnerability prioritization, SSVC, การจัดการช่องโหว่, threat intelligence, STIX, TAXII, IOC, indicator of compromise, threat feed, MISP, OpenCTI, TLP, intelligence sharing, ข่าวกรองภัยคุกคาม
 
 **Cross-Domain & Governance**
